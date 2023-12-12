@@ -1,0 +1,103 @@
+@media (max-width: 500px) {
+  /* info_detail_s1 */
+  .info_detail_s1 {
+    height: 115.03vw;
+  }
+  .info_detail_s1 .title_box {
+    height: 9.07%;
+  }
+  .info_detail_s1 .title_box .title {
+    width: 43%;
+  }
+  .info_detail_s1 .title_box .title img {
+    width: 3.89vw;
+    height: 3.89vw;
+  }
+  .info_detail_s1 .title_box .title p {
+    font-size: 3.11vw;
+  }
+  .info_detail_s1 .article_container {
+    height: 90.93%;
+  }
+  .info_detail_s1 .article_container .img_box {
+    width: 100%;
+    height: 76.46%;
+    margin: 0;
+  }
+  .info_detail_s1 .article_container .text_box {
+    width: 89.64%;
+  }
+  .info_detail_s1 .article_container .text_box p:nth-child(1) {
+    font-size: 5.18vw;
+  }
+  .info_detail_s1 .article_container .text_box p:nth-child(2) {
+    font-size: 3.63vw;
+    margin-top: 3vw;
+  }
+  /* info_detail_s2 */
+  .info_detail_s2 {
+    height: 85.49vw;
+  }
+  .info_detail_s2 .section_container {
+    width: 89.64%;
+  }
+  .info_detail_s2 .section_container > p {
+    width: 29.79%;
+    font-size: 3.63vw;
+    border-width: 1px;
+    padding-bottom: 1vw;
+  }
+  .info_detail_s2 .section_container .article_container {
+    height: 56.97%;
+    margin-top: 3vw;
+  }
+  .info_detail_s2 .section_container .article_container .article {
+    width: 30%;
+  }
+  .info_detail_s2 .section_container .article_container .article:nth-child(2) {
+    width: 63%;
+  }
+  .info_detail_s2
+    .section_container
+    .article_container
+    .article
+    .text_box
+    p:nth-child(1) {
+    font-size: 2.59vw;
+  }
+  .info_detail_s2
+    .section_container
+    .article_container
+    .article
+    .text_box
+    p:nth-child(2) {
+    font-size: 2.59vw;
+    line-height: 1.5vw;
+  }
+  .info_detail_s2
+    .section_container
+    .article_container
+    .article:nth-child(2)
+    .text_box
+    p:nth-child(2) {
+    font-size: 2.59vw;
+    line-height: 1.8vw;
+  }
+  .info_detail_s2
+    .section_container
+    .article_container
+    .article:nth-child(2)
+    .text_box
+    p:nth-child(1) {
+    width: 30%;
+  }
+  .info_detail_s2 .section_container .btn_box {
+    width: 82.9%;
+    margin: 0 auto;
+    margin-top: 5.24vw;
+    float: none;
+  }
+  .info_detail_s2 .section_container .btn {
+    font-size: 5.18vw;
+  }
+}

@@ -1,0 +1,96 @@
+/* signin_step1_s1 */
+.signin_step1_s1 {
+  width: 53.56%;
+  height: 15.99vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.signin_step1_s1 .article_container {
+  width: 100%;
+  height: 24.12%;
+  display: flex;
+  justify-content: space-between;
+}
+.signin_step1_s1 .article_container .article {
+  width: 26.71%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signin_step1_s1 .article_container .article > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.signin_step1_s1 .article_container .article > p {
+  font-size: 1.12vw;
+  font-weight: 700;
+  color: white;
+  position: inherit;
+  z-index: 2;
+}
+
+/* signin_step1_s2 */
+.signin_step1_s2 {
+  width: 53.56%;
+  height: 28.28vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14.98vw;
+}
+.signin_step1_s2 .article_container {
+  width: 100%;
+  height: 67.29%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #b6b6b6;
+  padding-left: 1.16vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+}
+.signin_step1_s2 .article_container > p {
+  font-size: 1.2vw;
+  font-weight: 500;
+  letter-spacing: -0.05vw;
+}
+.signin_step1_s2 .article_container .check_box {
+  width: 80%;
+  height: 8.86%;
+  display: flex;
+  align-items: center;
+}
+.signin_step1_s2 .article_container .check_box .check {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.signin_step1_s2 .article_container .check_box .check > img {
+  height: 100%;
+  margin-right: 0.79vw;
+  cursor: pointer;
+}
+.signin_step1_s2 .article_container .check_box .check > p {
+  font-size: 1.2vw;
+  margin-right: 1.65vw;
+  letter-spacing: -0.05vw;
+}
+.signin_step1_s2 .btn {
+  width: 7.49vw;
+  height: 3vw;
+  border-radius: 0.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 700;
+  color: white;
+}

@@ -1,0 +1,101 @@
+/* square_s1 */
+.square_s1 {
+  width: 100%;
+  height: 49.06vw;
+}
+.square_s1 .title_box {
+  width: 100%;
+  height: 13.36%;
+  display: flex;
+  align-items: center;
+}
+.square_s1 .title_box .title {
+  width: 8.54%;
+  height: 26.86%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 4.79vw;
+}
+.square_s1 .title_box .title img {
+  width: 1.12vw;
+  height: 1.12vw;
+}
+.square_s1 .title_box .title p {
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #272727;
+}
+.square_s1 .article_container {
+  width: 100%;
+  height: 86.64%;
+  background-color: #f8f8f8;
+  border: 1px solid #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square_s1 .article_container .article {
+  width: 69.81%;
+  height: 88.34%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.square_s1 .article_container .article > p {
+  font-size: 1.8vw;
+  font-weight: 700;
+  color: #272727;
+}
+.square_s1 .article_container .article .row_container {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.square_s1 .article_container .article .row_container .row_box {
+  width: 100%;
+  height: 45.89%;
+  display: flex;
+  justify-content: space-between;
+}
+.square_s1 .article_container .article .row_container .row_box .row {
+  width: 31.92%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #bababa;
+  border-radius: 1vw;
+}
+.square_s1 .article_container .article .row_container .row_box .row img {
+  width: 87.06%;
+  height: 39.95%;
+  margin-top: 1.39vw;
+}
+.square_s1
+  .article_container
+  .article
+  .row_container
+  .row_box
+  .row
+  p:nth-child(2) {
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #272727;
+  margin-top: 1.84vw;
+}
+.square_s1
+  .article_container
+  .article
+  .row_container
+  .row_box
+  .row
+  p:nth-child(3) {
+  font-size: 1.35vw;
+  color: #979797;
+  margin-top: 0.5vw;
+}

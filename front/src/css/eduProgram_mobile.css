@@ -1,0 +1,18 @@
+@media (max-width: 500px) {
+  .eduProgram_s1 {
+    height: 50vw;
+  }
+  .eduProgram_s1 .title_box .title {
+    width: 25%;
+  }
+  .eduProgram_s1 .title_box .title img {
+    width: 3.89vw;
+    height: 3.89vw;
+  }
+  .eduProgram_s1 .title_box .title p {
+    font-size: 3.11vw;
+  }
+  .eduProgram_s1 .article_container .article_box {
+    margin-top: 5vw;
+  }
+}

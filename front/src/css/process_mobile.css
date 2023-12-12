@@ -1,0 +1,38 @@
+@media (max-width: 500px) {
+  .process_s1 {
+    height: 109.07vw;
+  }
+  .process_s1 .title_box {
+    height: 8.31%;
+  }
+  .process_s1 .title_box .title {
+    width: 24.87%;
+  }
+  .process_s1 .title_box .title img {
+    width: 3.89vw;
+    height: 3.89vw;
+  }
+  .process_s1 .title_box .title p {
+    font-size: 3.11vw;
+  }
+  .process_s1 .article_container {
+    height: 91.69%;
+  }
+  .process_s1 .article_container img {
+    width: 70.73%;
+    height: 27.46%;
+    margin-top: 10.88vw;
+  }
+  .process_s1 .article_container .text_box {
+    width: 70.73%;
+    height: 43%;
+    margin-top: 6vw;
+  }
+  .process_s1 .article_container .text_box p:nth-child(1) {
+    font-size: 5.18vw;
+    line-height: 2.9vw;
+  }
+  .process_s1 .article_container .text_box p:nth-child(3) {
+    font-size: 2.59vw;
+  }
+}

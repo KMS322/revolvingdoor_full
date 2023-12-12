@@ -1,0 +1,27 @@
+@media (max-width: 500px) {
+  .signIn_s1 > p {
+    display: none;
+  }
+  .signIn_s1 .article_container {
+    width: 80%;
+    height: 80%;
+    margin-top: 3.5vw;
+  }
+  .signIn_s1 .article_container .article .content_box p:nth-child(1) {
+    font-size: 3vw;
+  }
+  .signIn_s1 .article_container .article .btn_box {
+    font-size: 3vw;
+  }
+  .signIn_s1 .article_container .article .icon_box {
+    width: 30%;
+    height: 45%;
+  }
+  .signIn_s1 .article_container .article .icon_box img {
+    width: 4vw;
+    height: 4vw;
+  }
+  .signIn_s1 .article_container .article .content_box p:nth-child(2) {
+    font-size: 2.59vw;
+  }
+}

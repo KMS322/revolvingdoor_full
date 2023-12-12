@@ -1,0 +1,87 @@
+@media (max-width: 500px) {
+  .logIn_s1 {
+    height: 65vw;
+  }
+  .logIn_s1 .section_container {
+    width: 73.06%;
+    height: 46.89vw;
+    margin-top: 12.44vw;
+  }
+  .logIn_s1 .section_container .ad_box {
+    display: none;
+  }
+  .logIn_s1 .section_container .login_container {
+    width: 100%;
+  }
+  .logIn_s1 .section_container .login_container .text_tab .active {
+    font-size: 5.18vw;
+  }
+  .logIn_s1 .section_container .login_container .text_tab {
+    width: 100%;
+  }
+  .logIn_s1 .section_container .login_container .text_tab .active {
+    border-bottom: 2px solid #cabd99;
+  }
+  .logIn_s1 .section_container .login_container .text_tab p {
+    font-size: 5.18vw;
+  }
+  .logIn_s1 .section_container .login_container .text_tab p {
+    border-bottom: 2px solid #d9d9d9;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .input_container
+    .input_text_box
+    .input_text
+    p {
+    font-size: 3vw;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .input_container
+    .input_submit_btn {
+    font-size: 3vw;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .check_box_container
+    .article
+    .check {
+    width: 3.11vw;
+    height: 3.11vw;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .check_box_container
+    .article
+    p {
+    font-size: 2.59vw;
+  }
+  .logIn_s1 .section_container .login_container .check_box_container {
+    width: 55%;
+  }
+  .logIn_s1 .section_container .login_container .text_btn_container {
+    width: 60%;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .text_btn_container
+    p:nth-child(1) {
+    font-size: 2.59vw;
+  }
+  .logIn_s1
+    .section_container
+    .login_container
+    .text_btn_container
+    p:nth-child(2) {
+    font-size: 2.59vw;
+  }
+  .logIn_s1 > p {
+    display: none;
+  }
+}

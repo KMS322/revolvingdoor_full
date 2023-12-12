@@ -1,0 +1,134 @@
+/* eduProgram_s1 */
+.eduProgram_s1 {
+  width: 100%;
+  height: 49.06vw;
+}
+.eduProgram_s1 .title_box {
+  width: 100%;
+  height: 13.36%;
+  display: flex;
+  align-items: center;
+}
+.eduProgram_s1 .title_box .title {
+  width: 22.33%;
+  height: 26.86%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 4.79vw;
+}
+.eduProgram_s1 .title_box .title img {
+  width: 1.12vw;
+  height: 1.12vw;
+}
+.eduProgram_s1 .title_box .title p {
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #272727;
+}
+.eduProgram_s1 .article_container {
+  width: 100%;
+  height: 86.64%;
+  background-color: #f8f8f8;
+  border: 1px solid #f8f8f8;
+}
+.eduProgram_s1 .article_container .select_box {
+  width: 81.61%;
+  height: 5.48%;
+  margin-top: 3.37vw;
+  margin-left: 6.59vw;
+  display: flex;
+  justify-content: flex-end;
+}
+.eduProgram_s1 .article_container .select_box select {
+  width: 7.8%;
+  height: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  background-image: none;
+  font-size: 0.9vw;
+  background-color: #f8f8f8;
+  border: 2px solid #979797;
+  border-radius: 0.3vw;
+  text-align: center;
+  color: #b6b6b6;
+}
+.eduProgram_s1 .article_container .article_box {
+  width: 81.61%;
+  height: 78.71%;
+  margin-top: 1.8vw;
+  margin-left: 6.59vw;
+  display: flex;
+  justify-content: space-between;
+}
+.eduProgram_s1 .article_container .article_box .article1 {
+  width: 16.5%;
+  height: 33.45%;
+  margin-top: 0.75vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.eduProgram_s1 .article_container .article_box .article1 .main {
+  font-size: 1.05vw;
+  font-weight: 700;
+}
+.eduProgram_s1 .article_container .article_box .article1 .sub {
+  font-size: 1.05vw;
+  color: #979797;
+}
+.eduProgram_s1 .article_container .article_box .article1 .active {
+  color: #272727;
+}
+.eduProgram_s1 .article_container .article_box .article2 {
+  width: 76.27%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.eduProgram_s1 .article_container .article_box .article2 .row {
+  width: 100%;
+  height: 47.7%;
+  display: flex;
+  justify-content: space-between;
+}
+.eduProgram_s1 .article_container .article_box .article2 .row .content {
+  width: 30.32%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.eduProgram_s1 .article_container .article_box .article2 .row .content img {
+  width: 100%;
+  height: 78.55%;
+}
+.eduProgram_s1
+  .article_container
+  .article_box
+  .article2
+  .row
+  .content
+  p:nth-child(2) {
+  font-size: 0.9vw;
+  font-weight: 700;
+  color: #272727;
+}
+.eduProgram_s1
+  .article_container
+  .article_box
+  .article2
+  .row
+  .content
+  p:nth-child(3) {
+  font-size: 0.53vw;
+  font-weight: 500;
+  color: #b6b6b6;
+}

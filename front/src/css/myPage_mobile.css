@@ -1,0 +1,148 @@
+@media (max-width: 500px) {
+  /* .myPage_s1 */
+  .myPage_s1 {
+    height: 86.27vw;
+  }
+  .myPage_s1 .title_box {
+    height: 10.51%;
+  }
+  .myPage_s1 .title_box .title {
+    width: 19.43%;
+  }
+  .myPage_s1 .title_box .title img {
+    width: 3.89vw;
+    height: 3.89vw;
+  }
+  .myPage_s1 .title_box .title p {
+    font-size: 3.11vw;
+  }
+  .myPage_s1 .article_container {
+    height: 89.49%;
+  }
+  .myPage_s1 .article_container .article {
+    width: 62.7%;
+    height: 70%;
+    margin-top: 10vw;
+  }
+  .myPage_s1 .article_container .article p:nth-child(2) {
+    font-size: 6.22vw;
+  }
+  .myPage_s1 .article_container .article p:nth-child(3) {
+    font-size: 4.15vw;
+  }
+  .myPage_s1 .article_container .article p:nth-child(4) {
+    font-size: 3.11vw;
+  }
+
+  /* myPage_s2 */
+  .myPage_s2 {
+    height: 72.8vw;
+  }
+  .myPage_s2 .article_container {
+    width: 100%;
+  }
+  .myPage_s2 .article_container .box_container p {
+    font-size: 5.18vw;
+    margin-left: 4vw;
+  }
+  .myPage_s2 .article_container .box_container .btn_box {
+    width: 23%;
+    font-size: 2.59vw;
+  }
+  .myPage_s2 .article_container .table_container {
+    height: 73.31%;
+  }
+
+  .myPage_s2 .article_container .table_container .row p:nth-child(2) {
+    font-size: 2.59vw;
+  }
+  .myPage_s2 .article_container .table_container .row:nth-child(1) p {
+    font-size: 3.11vw;
+  }
+  .myPage_s2 .article_container .table_container .content_row p {
+    font-size: 2.59vw;
+  }
+  .myPage_s2 .article_container .table_container .row .manage_box .manage {
+    font-size: 2.59vw;
+  }
+  .myPage_s2 .article_container .table_container .row p:nth-child(2) {
+    margin-left: 2vw;
+    width: 30%;
+  }
+  .myPage_s2 .article_container .table_container .row p:nth-child(3) {
+    margin-left: 3vw;
+    width: 20%;
+  }
+  .myPage_s2 .article_container .table_container .row p:nth-child(4) {
+    width: 16%;
+  }
+  .myPage_s2 .article_container .table_container .row p:nth-child(5) {
+    width: 16%;
+  }
+  .myPage_s2 .article_container .table_container .row .manage_box {
+    width: 16%;
+  }
+  .myPage_s2 .article_container .table_container .row .manage_box .manage {
+    height: 52%;
+  }
+
+  /* myPage_s3 */
+  .myPage_s3 {
+    height: 72.8vw;
+  }
+  .myPage_s3 .article_container {
+    width: 100%;
+  }
+  .myPage_s3 .article_container > p {
+    font-size: 5.18vw;
+    margin-left: 4vw;
+  }
+  .myPage_s3 .article_container .box_container .btn_box {
+    width: 23%;
+    font-size: 2.59vw;
+  }
+  .myPage_s3 .article_container .table_container {
+    height: 73.31%;
+  }
+  .myPage_s3 .article_container .table_container .row p:nth-child(2) {
+    font-size: 2.59vw;
+  }
+  .myPage_s3 .article_container .table_container .row:nth-child(1) p {
+    font-size: 3.11vw;
+  }
+  .myPage_s3 .article_container .table_container .content_row p {
+    font-size: 2.59vw;
+  }
+  .myPage_s3 .article_container .table_container .row .manage_box .manage {
+    font-size: 2.59vw;
+  }
+  .myPage_s3 .article_container .table_container .row p:nth-child(2) {
+    margin-left: 2vw;
+    width: 35%;
+  }
+  .myPage_s3 .article_container .table_container .row p:nth-child(3) {
+    margin-left: 3vw;
+    width: 20%;
+  }
+  .myPage_s3 .article_container .table_container .row p:nth-child(4) {
+    width: 16%;
+    letter-spacing: -0.02vw;
+    line-height: 2vw;
+  }
+  .myPage_s3 .article_container .table_container .row p:nth-child(5) {
+    width: 16%;
+  }
+  .myPage_s3 .article_container .table_container .row .manage_box {
+    width: 16%;
+  }
+  .myPage_s3 .article_container .table_container .row .manage_box .manage {
+    height: 52%;
+  }
+  .myPage_s3 .article_container .table_container .row div:nth-child(5) {
+    width: 16%;
+    font-size: 2.59vw;
+  }
+  .myPage_s3 .article_container .table_container .row .btn_box .btn {
+    font-size: 2.59vw;
+  }
+}

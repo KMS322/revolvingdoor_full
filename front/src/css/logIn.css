@@ -1,0 +1,184 @@
+/* logIn_s1 */
+.logIn_s1 {
+  width: 100%;
+  height: 42.44vw;
+  text-align: center;
+}
+.logIn_s1 .section_container {
+  width: 46.67%;
+  height: 38.84%;
+  margin: 0 auto;
+  margin-top: 10.04vw;
+  display: flex;
+  justify-content: space-between;
+}
+.logIn_s1 .section_container .login_container {
+  width: 56.5%;
+  height: 100%;
+}
+.logIn_s1 .section_container .login_container .text_tab {
+  width: 61.51%;
+  height: 13.86%;
+  display: flex;
+  justify-content: space-between;
+}
+.logIn_s1 .section_container .login_container .text_tab p {
+  width: 50%;
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 4px solid #d9d9d9;
+  cursor: pointer;
+}
+.logIn_s1 .section_container .login_container .text_tab .active {
+  color: #cabd99;
+  border-bottom: 4px solid #cabd99;
+}
+.logIn_s1 .section_container .login_container .input_container {
+  width: 100%;
+  height: 34.09%;
+  margin-top: 3.07vw;
+  display: flex;
+  justify-content: space-between;
+}
+.logIn_s1 .section_container .login_container .input_container .input_text_box {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .input_container
+  .input_text_box
+  .input_text {
+  width: 100%;
+  height: 44%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .input_container
+  .input_text_box
+  .input_text
+  p {
+  font-size: 1.05vw;
+  font-weight: 700;
+  color: #979797;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .input_container
+  .input_text_box
+  .input_text
+  input {
+  width: 72.35%;
+  height: 100%;
+  border: 2px solid #979797;
+  border-radius: 0.4vw;
+  padding-left: 0.5vw;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .input_container
+  .input_submit_btn {
+  width: 22.44%;
+  height: 100%;
+  background-color: #cabd99;
+  border-radius: 0.3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9vw;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+.logIn_s1 .section_container .login_container .check_box_container {
+  width: 48.44%;
+  height: 7.27%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.05vw;
+}
+.logIn_s1 .section_container .login_container .check_box_container .article {
+  width: 47.21%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .check_box_container
+  .article
+  .check {
+  width: 0.86vw;
+  height: 0.86vw;
+  border: 1px solid #b6b6b6;
+}
+.logIn_s1 .section_container .login_container .check_box_container .article p {
+  font-size: 0.9vw;
+  color: #979797;
+}
+.logIn_s1 .section_container .login_container .text_btn_container {
+  width: 64.49%;
+  height: 7.96%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.9vw;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .text_btn_container
+  p:nth-child(1) {
+  width: 64.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.05vw;
+  font-weight: 700;
+  color: #bebebe;
+  cursor: pointer;
+}
+.logIn_s1
+  .section_container
+  .login_container
+  .text_btn_container
+  p:nth-child(2) {
+  width: 31.06%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.05vw;
+  font-weight: 700;
+  color: #cabd99;
+  border-left: 2px solid #cabd99;
+  cursor: pointer;
+}
+.logIn_s1 .section_container .ad_box {
+  width: 36.36%;
+  height: 100%;
+}
+.logIn_s1 .section_container .ad_box img {
+  width: 100%;
+}
+
+.logIn_s1 > p {
+  font-size: 0.9vw;
+  color: #b6b6b6;
+  margin-top: 11.65vw;
+}
