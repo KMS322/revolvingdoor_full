@@ -1,61 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { API_URL } from "../../constants";
 import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
 
 const SignInStep3S2 = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    user_member_id: "",
-    user_member_pw: "",
-  });
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useInput("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const onChangePasswordCheck = useCallback(
+    (e) => {
+      setPasswordCheck(e.target.value);
+      setPasswordError(e.target.value !== password);
+    },
+    [password]
+  );
 
-  const inputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      console.log(id, password);
+    },
+    [id, password]
+  );
 
-  const sendSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const result = await axios.post(`${API_URL}/auth/join`, formData);
-      console.log(result);
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-      // navigate("/");
-    }
-  };
-
-  const checkEmail = async () => {
-    try {
-      const result = await axios.post(`${API_URL}/auth/checkEmail`, {
-        user_member_id: formData.user_member_id,
-      });
-
-      if (result.data.message === "exist") {
-        alert("중복된 이메일이 이미 존재합니다.");
-      } else {
-        alert("사용 가능한 이메일입니다.");
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // 이메일 형식 체크 정규표현식
-  // const isValidEmail = (email) => {
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return emailRegex.test(email);
-  // };
   return (
     <div className="signin_step3_s2">
-      <form onSubmit={sendSubmit}>
+      <form>
         <p>회원정보</p>
         <label className="input_box input_nomargin">
           <p>
@@ -65,16 +39,14 @@ const SignInStep3S2 = () => {
             // type="email"
             type="text"
             name="user_member_id"
-            value={formData.user_member_id}
-            onChange={inputChange}
+            value={id}
+            onChange={onChangeId}
           />
           <div
             className="email_check"
             style={{
-              // backgroundColor: isValidEmail(formData.user_member_id)
-              backgroundColor: formData.user_member_id ? "#CABD99" : "#b6b6b6",
+              backgroundColor: id ? "#CABD99" : "#b6b6b6",
             }}
-            onClick={checkEmail}
           >
             중복확인
           </div>
@@ -84,13 +56,24 @@ const SignInStep3S2 = () => {
           <input
             type="text"
             name="user_member_pw"
-            value={formData.user_member_pw}
-            onChange={inputChange}
+            value={password}
+            onChange={onChangePassword}
+          />
+        </label>
+        <label className="input_box">
+          <p>비밀번호 확인</p>
+          <input
+            type="text"
+            name="user_member_pwcheck"
+            value={passwordCheck}
+            onChange={onChangePasswordCheck}
           />
         </label>
         <p>인적사항</p>
         <p>학력사항</p>
-        <button type="submit">회원가입</button>
+        <button type="submit" onClick={onSubmitForm}>
+          회원가입
+        </button>
       </form>
     </div>
   );

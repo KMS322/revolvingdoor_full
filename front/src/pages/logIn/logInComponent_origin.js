@@ -1,30 +1,48 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import "../../css/logIn.css";
 import "../../css/logIn_mobile.css";
-import useInput from "../hooks/useInput";
 const LogInComponent = () => {
   const navigate = useNavigate();
-  // const [loginData, setLoginData] = useState({
-  //   user_member_id: "",
-  //   user_member_pw: "",
-  // });
-
-  const [id, onChangeId] = useInput("");
-  const [password, onChangePassword] = useInput("");
-
-  const onSubmitForm = useCallback(
-    (e) => {
-      e.preventDefault();
-      console.log(id, password);
-    },
-    [id, password]
-  );
+  const [loginData, setLoginData] = useState({
+    user_member_id: "",
+    user_member_pw: "",
+  });
   const [checkID, setCheckID] = useState(true);
   const [checkLogin, setCheckLogin] = useState(false);
   const [userType, setUserType] = useState(true); // true : private
+
+  const inputChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
+  const sendSubmit = async (e) => {
+    // e.preventDefault();
+
+    try {
+      const result = await axios.post(`${API_URL}/auth/login`, loginData);
+      console.log("result 메시지", result.data.message);
+      if (result.data.message === "loginFail") {
+        alert("로그인에 실패했습니다.");
+        return navigate("/login");
+      }
+      if (!result.data.message || result.data.message === "") {
+        navigate("/");
+      }
+      if (result.data.message === "loginSuccess") {
+        navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+      // navigate("/");
+    }
+  };
 
   const handleCheck1 = () => {
     setCheckID(!checkID);
@@ -67,8 +85,8 @@ const LogInComponent = () => {
                 <input
                   type="text"
                   name="user_member_id"
-                  value={id}
-                  onChange={onChangeId}
+                  value={loginData.user_member_id}
+                  onChange={inputChange}
                 />
               </label>
               <label className="input_text">
@@ -76,15 +94,15 @@ const LogInComponent = () => {
                 <input
                   type="text"
                   name="user_member_pw"
-                  value={password}
-                  onChange={onChangePassword}
+                  value={loginData.user_member_pw}
+                  onChange={inputChange}
                 />
               </label>
             </form>
             <button
               type="submit"
               className="input_submit_btn"
-              onClick={onSubmitForm}
+              onClick={sendSubmit}
             >
               로그인
             </button>
