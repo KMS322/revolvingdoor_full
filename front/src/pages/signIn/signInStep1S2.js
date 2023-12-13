@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const SignInStep1S2 = () => {
+const SignInStep1S2 = (props) => {
+  const { type } = props;
   const navigate = useNavigate();
   const [check1, setCheck1] = useState(false);
   const [checkOff1, setCheckOff1] = useState(false);
@@ -124,7 +125,7 @@ const SignInStep1S2 = () => {
         style={{ backgroundColor: bgColor, cursor: cursor }}
         onClick={() => {
           if (check1 && check2 && check3) {
-            navigate("/signStep2");
+            navigate("/signStep2", { state: { type } });
           }
         }}
       >

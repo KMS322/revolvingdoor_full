@@ -5,33 +5,44 @@ import { useNavigate } from "react-router-dom";
 import "../../css/logIn.css";
 import "../../css/logIn_mobile.css";
 import useInput from "../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../reducers/user";
 const LogInComponent = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   // const [loginData, setLoginData] = useState({
   //   user_member_id: "",
   //   user_member_pw: "",
   // });
-
+  const [userType, setUserType] = useState("individual"); // individual : 개인, business : 기업
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(id, password);
+      console.log(
+        "아이디 : ",
+        id,
+        " 비밀번호 : ",
+        password,
+        " 유저타입 : ",
+        userType
+      );
+      dispatch(loginAction({ id, password, userType }));
+      navigate("/");
     },
-    [id, password]
+    [id, password, userType]
   );
   const [checkID, setCheckID] = useState(true);
   const [checkLogin, setCheckLogin] = useState(false);
-  const [userType, setUserType] = useState(true); // true : private
 
   const handleCheck1 = () => {
     setCheckID(!checkID);
   };
-  const handleCheck2 = () => {
-    setCheckLogin(!checkLogin);
-  };
+  // const handleCheck2 = () => {
+  //   setCheckLogin(!checkLogin);
+  // };
   const handleUserType = (value) => {
     setUserType(value);
   };
@@ -44,17 +55,17 @@ const LogInComponent = () => {
         <div className="login_container">
           <div className="text_tab">
             <p
-              className={userType === true ? "active" : ""}
+              className={userType === "individual" ? "active" : ""}
               onClick={() => {
-                handleUserType(true);
+                handleUserType("individual");
               }}
             >
               개인회원
             </p>
             <p
-              className={userType === false ? "active" : ""}
+              className={userType === "business" ? "active" : ""}
               onClick={() => {
-                handleUserType(false);
+                handleUserType("business");
               }}
             >
               기업회원
@@ -98,14 +109,14 @@ const LogInComponent = () => {
               ></div>
               <p>아이디 저장</p>
             </div>
-            <div className="article">
+            {/* <div className="article">
               <div
                 className="check"
                 onClick={handleCheck2}
                 style={{ backgroundColor: checkLogin ? "#979797" : "white" }}
               ></div>
               <p>로그인 유지</p>
-            </div>
+            </div> */}
           </div>
           <div className="text_btn_container">
             <p>아이디 / 비밀번호 찾기</p>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const SignInStep2S2 = () => {
+const SignInStep2S2 = (props) => {
+  const { type } = props;
   const navigate = useNavigate();
   const [checked1_1, setChecked1_1] = useState(false);
   const [checked1_2, setChecked1_2] = useState(false);
@@ -223,7 +224,7 @@ const SignInStep2S2 = () => {
       <div
         className="btn"
         onClick={() => {
-          navigate("/signStep3");
+          navigate("/signStep3", { state: { type } });
         }}
       >
         다음

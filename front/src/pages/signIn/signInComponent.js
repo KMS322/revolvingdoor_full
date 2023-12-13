@@ -1,11 +1,11 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/signIn.css";
 import "../../css/signIn_mobile.css";
 const SignInComponent = () => {
   const navigate = useNavigate();
-
-  const goPage = (path) => {
-    navigate(path);
+  const goPage = (path, type) => {
+    navigate(path, { state: { type } });
   };
   return (
     <div className="signIn_s1">
@@ -21,7 +21,8 @@ const SignInComponent = () => {
           <div
             className="btn_box"
             onClick={() => {
-              goPage("/signStep1");
+              goPage("/signStep1", "individual");
+              console.log("개인회원 클릭");
             }}
           >
             개인회원
@@ -35,7 +36,7 @@ const SignInComponent = () => {
           <div
             className="btn_box"
             onClick={() => {
-              goPage("/signInForm");
+              goPage("/signInForm", "business");
             }}
           >
             기업회원

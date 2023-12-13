@@ -1,16 +1,12 @@
 import "../css/header.css";
 import "../css/header_mobile.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { API_URL } from "../constants";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../reducers/user";
 const Header = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
-  console.log("user:", user);
-  // const {isLoggedIn} = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
   const [menuState, setMenuState] = useState(false);
   const navigate = useNavigate();
   const goPage = (path) => {
@@ -19,10 +15,6 @@ const Header = () => {
   const handleMenu = () => {
     setMenuState(!menuState);
   };
-
-  const logOut = useCallback(() => {
-    dispatch(logoutAction());
-  }, [dispatch]);
 
   return (
     <>
@@ -48,14 +40,11 @@ const Header = () => {
           </li>
           <li
             onClick={() => {
-              if (!isLoggedIn) {
-                goPage("/logIn");
-              } else {
-                logOut();
-              }
+              goPage("/logIn");
             }}
           >
-            {isLoggedIn ? "로그아웃" : "로그인"}
+            {/* {user !== undefined ? `${user.user}` : "로그인"} */}
+            {user === null ? "로그로그" : "로그인"}
             {/* 로그인 */}
           </li>
           <li
@@ -64,7 +53,7 @@ const Header = () => {
               goPage("/signStep3");
             }}
           >
-            {user ? user.userType : "회원가입"}
+            회원가입
           </li>
         </ul>
         <div className="img_box mobile" onClick={handleMenu}>

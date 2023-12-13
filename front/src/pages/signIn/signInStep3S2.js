@@ -4,7 +4,10 @@ import { API_URL } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 
-const SignInStep3S2 = () => {
+const SignInStep3S2 = (props) => {
+  const { type } = props;
+  // const [userType, setUserType] = useState(type);
+  const [userType, setUserType] = useState("individual");
   const navigate = useNavigate();
 
   const [id, onChangeId] = useInput("");
@@ -22,9 +25,16 @@ const SignInStep3S2 = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(id, password);
+      console.log(
+        "아이디 : ",
+        id,
+        " 비밀번호 : ",
+        password,
+        " 유저타입 : ",
+        userType
+      );
     },
-    [id, password]
+    [id, password, userType]
   );
 
   return (
@@ -69,6 +79,9 @@ const SignInStep3S2 = () => {
             onChange={onChangePasswordCheck}
           />
         </label>
+        {passwordError && (
+          <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
+        )}
         <p>인적사항</p>
         <p>학력사항</p>
         <button type="submit" onClick={onSubmitForm}>
