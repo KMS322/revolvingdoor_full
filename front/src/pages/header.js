@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../reducers/user";
+import { logoutRequestAction } from "../reducers/user";
 const Header = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
-  console.log("user:", user);
-  // const {isLoggedIn} = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.user);
+  console.log("me : ", me);
   const dispatch = useDispatch();
   const [menuState, setMenuState] = useState(false);
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const Header = () => {
   };
 
   const logOut = useCallback(() => {
-    dispatch(logoutAction());
+    dispatch(logoutRequestAction());
   }, [dispatch]);
 
   return (
@@ -48,14 +47,14 @@ const Header = () => {
           </li>
           <li
             onClick={() => {
-              if (!isLoggedIn) {
+              if (!me) {
                 goPage("/logIn");
               } else {
                 logOut();
               }
             }}
           >
-            {isLoggedIn ? "로그아웃" : "로그인"}
+            {me ? "로그아웃" : "로그인"}
             {/* 로그인 */}
           </li>
           <li
@@ -64,7 +63,7 @@ const Header = () => {
               goPage("/signStep3");
             }}
           >
-            {user ? user.userType : "회원가입"}
+            {me ? me.userType : "회원가입"}
           </li>
         </ul>
         <div className="img_box mobile" onClick={handleMenu}>

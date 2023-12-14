@@ -3,15 +3,18 @@ import axios from "axios";
 import { API_URL } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { SIGN_UP_REQUEST } from "../../reducers/user";
 
 const SignInStep3S2 = (props) => {
+  const dispatch = useDispatch();
   const { type } = props;
   // const [userType, setUserType] = useState(type);
   const [userType, setUserType] = useState("individual");
   const navigate = useNavigate();
 
-  const [id, onChangeId] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const [user_member_id, onChangeId] = useInput("");
+  const [user_member_pw, onChangePassword] = useInput("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const onChangePasswordCheck = useCallback(
@@ -33,8 +36,12 @@ const SignInStep3S2 = (props) => {
         " 유저타입 : ",
         userType
       );
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { user_member_id, user_member_pw, userType },
+      });
     },
-    [id, password, userType]
+    [user_member_id, user_member_pw, userType]
   );
 
   return (
@@ -49,7 +56,7 @@ const SignInStep3S2 = (props) => {
             // type="email"
             type="text"
             name="user_member_id"
-            value={id}
+            value={user_member_id}
             onChange={onChangeId}
           />
           <div
@@ -66,7 +73,7 @@ const SignInStep3S2 = (props) => {
           <input
             type="text"
             name="user_member_pw"
-            value={password}
+            value={user_member_pw}
             onChange={onChangePassword}
           />
         </label>

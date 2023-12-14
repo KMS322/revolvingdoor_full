@@ -3,11 +3,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 
 import reducer from "../reducers";
-import rootreducer from "../sagas";
+import rootSaga from "../sagas";
 
 const configureStore = () => {
   const sagaMiddlware = createSagaMiddleware();
-  const middlewares = [sagaMiddlware, loggerMiddleware];
+  const middlewares = [sagaMiddlware];
   const enhancer =
     process.env.NODE_ENV === "production"
       ? compose(applyMiddleware(...middlewares))
