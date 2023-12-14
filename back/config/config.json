@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "zmfladhvm",
-    "database": "revolving",
+    "database": "revolving_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

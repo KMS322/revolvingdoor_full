@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    "User",
+  const UserInfo = sequelize.define(
+    "UserInfo",
     {
       // MYSQL에서는 users 테이블
-      user_member_id: {
+      user_member_id11: {
         type: DataTypes.STRING(30),
         allowNull: false,
         unique: true,
       },
-      user_member_pw: {
+      user_member_pw11: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
@@ -18,9 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci",
     }
   );
-  User.associate = (db) => {
-    db.User.hasOne(db.UserInfo);
-    db.User.hasMany(db.Post);
+  UserInfo.associate = (db) => {
+    db.UserInfo.belongsTo(db.User);
   };
-  return User;
+  return UserInfo;
 };
