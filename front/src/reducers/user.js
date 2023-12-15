@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from "../util/produce";
 
 export const initialState = {
   followLoading: false, // 팔로우 시도중
@@ -86,7 +86,7 @@ const reducer = (state = initialState, action) => {
         break;
       case LOG_IN_SUCCESS:
         draft.logInLoading = false;
-        draft.me = dummyUser(action.data);
+        draft.me = action.data;
         draft.logInDone = true;
         break;
       case LOG_IN_FAILURE:

@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
 );
 
 db.User = require("./user")(sequelize, Sequelize);
+db.UserInfo = require("./userinfo")(sequelize, Sequelize);
 db.Post = require("./post")(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {

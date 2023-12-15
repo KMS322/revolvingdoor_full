@@ -2,11 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define(
     "Post",
     {
-      content: {},
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     },
     {
       charset: "utf8mb4",
-      collate: "utf8_general_ci",
+      collate: "utf8mb4_general_ci",
     }
   );
   Post.associate = (db) => {};

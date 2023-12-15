@@ -1,13 +1,12 @@
-import React, { useState, useCallback } from "react";
-import axios from "axios";
-import { API_URL } from "../../constants";
+import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SIGN_UP_REQUEST } from "../../reducers/user";
 
 const SignInStep3S2 = (props) => {
   const dispatch = useDispatch();
+  const { signUpDone, signUpError } = useSelector((state) => state.user);
   const { type } = props;
   // const [userType, setUserType] = useState(type);
   const [userType, setUserType] = useState("individual");
@@ -20,19 +19,30 @@ const SignInStep3S2 = (props) => {
   const onChangePasswordCheck = useCallback(
     (e) => {
       setPasswordCheck(e.target.value);
-      setPasswordError(e.target.value !== password);
+      setPasswordError(e.target.value !== user_member_pw);
     },
-    [password]
+    [passwordCheck]
   );
 
+  useEffect(() => {
+    if (signUpDone) {
+      navigate("/");
+    }
+  }, [signUpDone]);
+
+  useEffect(() => {
+    if (signUpError) {
+      alert(signUpError);
+    }
+  }, [signUpError]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
       console.log(
         "아이디 : ",
-        id,
+        user_member_id,
         " 비밀번호 : ",
-        password,
+        user_member_pw,
         " 유저타입 : ",
         userType
       );
@@ -40,6 +50,7 @@ const SignInStep3S2 = (props) => {
         type: SIGN_UP_REQUEST,
         data: { user_member_id, user_member_pw, userType },
       });
+      console.log("aa");
     },
     [user_member_id, user_member_pw, userType]
   );
@@ -62,7 +73,7 @@ const SignInStep3S2 = (props) => {
           <div
             className="email_check"
             style={{
-              backgroundColor: id ? "#CABD99" : "#b6b6b6",
+              backgroundColor: user_member_id ? "#CABD99" : "#b6b6b6",
             }}
           >
             중복확인
