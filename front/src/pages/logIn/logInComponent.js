@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN_REQUEST } from "../../reducers/user";
 const LogInComponent = () => {
   const dispatch = useDispatch();
-  const { logInDone } = useSelector((state) => state.user);
+  const { logInDone, logInError } = useSelector((state) => state.user);
   const navigate = useNavigate();
   // const [loginData, setLoginData] = useState({
   //   user_member_id: "",
@@ -18,6 +18,12 @@ const LogInComponent = () => {
   const [userType, setUserType] = useState("individual"); // individual : 개인, business : 기업
   const [user_member_id, onChangeId] = useInput("");
   const [user_member_pw, onChangePassword] = useInput("");
+
+  useEffect(() => {
+    if (logInError) {
+      alert(logInError);
+    }
+  }, [logInError]);
 
   useEffect(() => {
     if (logInDone) {

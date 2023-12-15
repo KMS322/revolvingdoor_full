@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     "Post",
     {
       content: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(30),
         allowNull: true,
       },
     },
@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8mb4_general_ci",
     }
   );
-  Post.associate = (db) => {};
+  Post.associate = (db) => {
+    db.Post.belongsTo(db.User);
+  };
   return Post;
 };
