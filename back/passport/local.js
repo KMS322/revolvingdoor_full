@@ -7,9 +7,9 @@ module.exports = () => {
     new LocalStrategy(
       {
         usernameField: "user_member_id",
-        passwordField: "user_member_password",
+        passwordField: "user_member_pw",
       },
-      async (user_member_id, user_member_password, done) => {
+      async (user_member_id, user_member_pw, done) => {
         try {
           const user = await User.findOne({
             where: { user_member_id },
@@ -18,8 +18,8 @@ module.exports = () => {
             return done(null, false, { reason: "존재하지 않는 사용자입니다." });
           }
           const result = await bcrypt.compare(
-            user_member_password,
-            user.user_member_password
+            user_member_pw,
+            user.user_member_pw
           );
           if (result) {
             return done(null, user);

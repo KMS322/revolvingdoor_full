@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
+      userType: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+      },
     },
     {
       charset: "utf8",
@@ -20,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = (db) => {
     db.User.hasOne(db.UserInfo);
+    db.User.hasMany(db.UserResume);
     db.User.hasMany(db.Post);
   };
   return User;

@@ -11,8 +11,9 @@ const sequelize = new Sequelize(
 );
 
 db.User = require("./user")(sequelize, Sequelize);
-db.UserInfo = require("./userinfo")(sequelize, Sequelize);
+db.UserInfo = require("./userInfo")(sequelize, Sequelize);
 db.Post = require("./post")(sequelize, Sequelize);
+db.UserResume = require("./userResume")(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

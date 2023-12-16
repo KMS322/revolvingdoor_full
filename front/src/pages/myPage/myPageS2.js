@@ -1,8 +1,21 @@
-import { useNavigate } from "react-router-dom";
 import "../../css/myPage.css";
 import "../../css/myPage_mobile.css";
+import dayjs from "dayjs";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
+
 const MyPageS2 = () => {
+  const dispatch = useDispatch();
+  const { resumes } = useSelector((state) => state.userResume);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch({
+      type: LOAD_RESUME_REQUEST,
+    });
+  }, [dispatch]);
 
   const goPage = (path) => {
     navigate(path);
@@ -29,101 +42,25 @@ const MyPageS2 = () => {
             <p>지원여부</p>
             <p>관리</p>
           </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              출근 가능한 임시직 인재
-              <br />
-              <span>회계전문자격자</span>
-            </p>
-            <p>2023-09-20</p>
-            <p className="state1">비공개 상태</p>
-            <div className="manage_box">
-              <div className="manage">수정</div>
-              <div className="manage">삭제</div>
-            </div>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              출근 가능한 임시직 인재
-              <br />
-              <span>회계전문자격자</span>
-            </p>
-            <p>2023-09-20</p>
-            <p className="state2">제출완료</p>
-            <div className="manage_box">
-              <div className="manage">수정</div>
-              <div className="manage">삭제</div>
-            </div>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              출근 가능한 임시직 인재
-              <br />
-              <span>회계전문자격자</span>
-            </p>
-            <p>2023-09-20</p>
-            <p className="state3">공개모집중</p>
-            <div className="manage_box">
-              <div className="manage">수정</div>
-              <div className="manage">삭제</div>
-            </div>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              출근 가능한 임시직 인재
-              <br />
-              <span>회계전문자격자</span>
-            </p>
-            <p>2023-09-20</p>
-            <p className="state3">공개모집중</p>
-            <div className="manage_box">
-              <div className="manage">수정</div>
-              <div className="manage">삭제</div>
-            </div>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              출근 가능한 임시직 인재
-              <br />
-              <span className="span">회계전문자격자</span>
-            </p>
-            <p>2023-09-20</p>
-            <p className="state3">공개모집중</p>
-            <div className="manage_box">
-              <div className="manage">수정</div>
-              <div className="manage">삭제</div>
-            </div>
-          </div>
+          {resumes.map((resume) => {
+            return (
+              <div
+                className="content_row row"
+                onClick={() => {
+                  navigate(`/infoDetail/${resume.id}`, { state: { resume } });
+                }}
+              >
+                <p className="pc">경산시</p>
+                <p>{resume.title}</p>
+                <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
+                <p className="state1">비공개 상태</p>
+                <div className="manage_box">
+                  <div className="manage">수정</div>
+                  <div className="manage">삭제</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { API_URL } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../reducers/user";
 const Header = () => {
+  console.log("document.cookie: ", document.cookie);
   const { me } = useSelector((state) => state.user);
   console.log("me : ", me);
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Header = () => {
 
   const logOut = useCallback(() => {
     dispatch(logoutRequestAction());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

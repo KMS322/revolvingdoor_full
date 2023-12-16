@@ -10,6 +10,7 @@ module.exports = () => {
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findOne({ where: { id } });
+      console.log("passport deserial 안에서 user : ", user);
       done(null, user); // req.user
     } catch (error) {
       console.error(error);
@@ -19,3 +20,5 @@ module.exports = () => {
 
   local();
 };
+
+passport._debug = true;

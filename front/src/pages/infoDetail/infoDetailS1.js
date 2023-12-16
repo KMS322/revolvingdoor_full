@@ -1,6 +1,8 @@
 import "../../css/infoDetail.css";
 import "../../css/infoDetail_mobile.css";
-const InfoDetailS1 = () => {
+import dayjs from "dayjs";
+const InfoDetailS1 = (props) => {
+  const { data } = props;
   return (
     <div className="info_detail_s1">
       <div className="title_box">
@@ -14,8 +16,8 @@ const InfoDetailS1 = () => {
           {/* <img src="/images/info_detail_s2_img1.jpg" /> */}
         </div>
         <div className="text_box">
-          <p>재택 가능한 임시직 보조 구인</p>
-          <p>2023.09.09</p>
+          <p>{data.resume.title}</p>
+          <p>{dayjs(data.resume.updatedAt).format("YYYY-MM-DD")}</p>
         </div>
       </div>
     </div>

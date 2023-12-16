@@ -1,5 +1,6 @@
 import "../../css/infoDetail.css";
-const InfoDetailS2 = () => {
+const InfoDetailS2 = (props) => {
+  const { data } = props;
   return (
     <div className="info_detail_s2">
       <div className="section_container">

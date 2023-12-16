@@ -1,12 +1,9 @@
 import produce from "../util/produce";
 
 export const initialState = {
-  followLoading: false, // 팔로우 시도중
-  followDone: false,
-  followError: null,
-  unfollowLoading: false, // 언팔로우 시도중
-  unfollowDone: false,
-  unfollowError: null,
+  loadUserLoading: false, // 유저 정보
+  loadUserDone: false,
+  loadUserError: null,
   logInLoading: false, // 로그인 시도중
   logInDone: false,
   logInError: null,
@@ -16,13 +13,14 @@ export const initialState = {
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
-  changeNicknameLoading: false, // 닉네임 변경 시도중
-  changeNicknameDone: false,
-  changeNicknameError: null,
   me: null,
   signUpData: {},
   loginData: {},
 };
+
+export const LOAD_MY_INFO_REQUEST = "LOAD_MY_INFO_REQUEST";
+export const LOAD_MY_INFO_SUCCESS = "LOAD_MY_INFO_SUCCESS";
+export const LOAD_MY_INFO_FAILURE = "LOAD_MY_INFO_FAUILURE";
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
@@ -36,37 +34,18 @@ export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAUILURE";
 
-export const FOLLOW_REQUEST = "FOLLOW_REQUEST";
-export const FOLLOW_SUCCESS = "FOLLOW_SUCCESS";
-export const FOLLOW_FAILURE = "FOLLOW_FAUILURE";
-
-export const UNFOLLOW_REQUEST = "UNFOLLOW_REQUEST";
-export const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
-export const UNFOLLOW_FAILURE = "UNFOLLOW_FAUILURE";
-
-export const ADD_POST_TO_ME = "ADD_POST_TO_ME";
-export const REMOVE_POST_OF_ME = "REMOVE_POST_OF_ME";
-
-const dummyUser = (data) => ({
-  ...data,
-  nickname: "제로초",
-  id: 1,
-  Posts: [{ id: 1 }],
-  Followings: [
-    { nickname: "부기초" },
-    { nickname: "Chanho Lee" },
-    { nickname: "neue zeal" },
-  ],
-  Followers: [
-    { nickname: "부기초" },
-    { nickname: "Chanho Lee" },
-    { nickname: "neue zeal" },
-  ],
-});
+export const ADD_RESUME_TO_ME = "ADD_RESUME_TO_ME";
+export const REMOVE_RESUME_OF_ME = "REMOVE_RESUME_OF_ME";
 
 export const loginRequestAction = (data) => {
   return {
     type: LOG_IN_REQUEST,
+    data,
+  };
+};
+export const signupRequestAction = (data) => {
+  return {
+    type: SIGN_UP_REQUEST,
     data,
   };
 };
@@ -79,6 +58,20 @@ export const logoutRequestAction = () => {
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
+      case LOAD_MY_INFO_REQUEST:
+        draft.loadUserLoading = true;
+        draft.loadUserError = null;
+        draft.loadUserDone = false;
+        break;
+      case LOAD_MY_INFO_SUCCESS:
+        draft.loadUserLoading = false;
+        draft.me = action.data;
+        draft.loadUserDone = true;
+        break;
+      case LOAD_MY_INFO_FAILURE:
+        draft.loadUserLoading = false;
+        draft.loadUserError = action.error;
+        break;
       case LOG_IN_REQUEST:
         draft.logInLoading = true;
         draft.logInError = null;
@@ -120,8 +113,8 @@ const reducer = (state = initialState, action) => {
         draft.signUpLoading = false;
         draft.signUpError = action.error;
         break;
-      case ADD_POST_TO_ME:
-        draft.me.Posts.unshift({ id: action.data });
+      case ADD_RESUME_TO_ME:
+        draft.me.resumes.unshift({ id: action.data });
         break;
       // return {
       //   ...state,
@@ -130,9 +123,10 @@ const reducer = (state = initialState, action) => {
       //     Posts: [{ id: action.data }, ...state.me.Posts],
       //   },
       // };
-      case REMOVE_POST_OF_ME:
-        draft.me.Posts = draft.me.Posts.filter((v) => v.id !== action.data);
+      case REMOVE_RESUME_OF_ME:
+        draft.me.resumes = draft.me.Posts.filter((v) => v.id !== action.data);
         break;
+
       // return {
       //   ...state,
       //   me: {

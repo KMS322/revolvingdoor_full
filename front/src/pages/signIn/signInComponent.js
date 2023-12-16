@@ -36,7 +36,7 @@ const SignInComponent = () => {
           <div
             className="btn_box"
             onClick={() => {
-              goPage("/signInForm", "business");
+              goPage("/signBusinessStep1", "business");
             }}
           >
             기업회원

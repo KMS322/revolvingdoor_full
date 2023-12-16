@@ -6,7 +6,7 @@ import "../../css/logIn.css";
 import "../../css/logIn_mobile.css";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { LOG_IN_REQUEST } from "../../reducers/user";
+import { loginRequestAction } from "../../reducers/user";
 const LogInComponent = () => {
   const dispatch = useDispatch();
   const { logInDone, logInError } = useSelector((state) => state.user);
@@ -41,10 +41,9 @@ const LogInComponent = () => {
         " 유저타입 : ",
         userType
       );
-      dispatch({
-        type: LOG_IN_REQUEST,
-        data: { user_member_id, user_member_pw, userType },
-      });
+      dispatch(
+        loginRequestAction({ user_member_id, user_member_pw, userType })
+      );
     },
     [user_member_id, user_member_pw, userType]
   );

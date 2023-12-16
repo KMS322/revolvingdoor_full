@@ -1,34 +1,48 @@
 import "../../css/resume.css";
 import "../../css/resume_mobile.css";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_RESUME_REQUEST } from "../../reducers/userResume";
+import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
 const ResumeS1 = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [user_resume_title, onChangeTitle] = useInput("");
+  const { addResumeDone } = useSelector((state) => state.userResume);
+  useEffect(() => {
+    if (addResumeDone) {
+      navigate(-1);
+    }
+  }, [addResumeDone]);
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      console.log("타이틀 : ", user_resume_title);
+      dispatch({
+        type: ADD_RESUME_REQUEST,
+        data: { user_resume_title },
+      });
+    },
+    [user_resume_title]
+  );
   return (
     <div className="resume_s1">
-      <div className="article_container">
-        <div className="img_box">
-          <img src="/images/resume_s1_img.png" alt="" />
-        </div>
-        <div className="article">
-          <div className="title_box">
-            <p>홍길동</p>
-            <div className="career">공인회계사</div>
-          </div>
-          <p>남자 00세 / 0000년생</p>
-          <div className="text_container">
-            <div className="text_box">
-              <p>주소</p>
-              <p>000도 00시 00구 0000로 000 (000동 0000호)</p>
-            </div>
-            <div className="text_box">
-              <p>이메일</p>
-              <p>000*****@naver.com</p>
-            </div>
-            <div className="text_box">
-              <p>연락처</p>
-              <p>010-0000-0000</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p>MY페이지 > 이력서관리 > 신규이력서작성</p>
+      <form>
+        <p className="title">이력서 제목</p>
+        <input
+          className="title_input"
+          type="text"
+          name="user_resume_title"
+          value={user_resume_title}
+          onChange={onChangeTitle}
+        />
+        <p>학력사항</p>
+        <button type="submit" onClick={onSubmitForm}>
+          이력서 저장
+        </button>
+      </form>
     </div>
   );
 };
