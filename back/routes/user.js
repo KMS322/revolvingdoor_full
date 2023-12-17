@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User, Post, UserResume } = require("../models");
+const { User, Post, UserResume, UserCareer } = require("../models");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
@@ -16,6 +16,10 @@ router.get("/", async (req, res, next) => {
         include: [
           {
             model: UserResume,
+            attributes: ["id"],
+          },
+          {
+            model: UserCareer,
             attributes: ["id"],
           },
         ],
@@ -74,6 +78,10 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
         include: [
           {
             model: UserResume,
+            attributes: ["id"],
+          },
+          {
+            model: UserCareer,
             attributes: ["id"],
           },
         ],

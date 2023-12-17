@@ -35,6 +35,7 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAUILURE";
 
 export const ADD_RESUME_TO_ME = "ADD_RESUME_TO_ME";
+export const ADD_CAREER_TO_ME = "ADD_CAREER_TO_ME";
 export const REMOVE_RESUME_OF_ME = "REMOVE_RESUME_OF_ME";
 
 export const loginRequestAction = (data) => {
@@ -115,6 +116,9 @@ const reducer = (state = initialState, action) => {
         break;
       case ADD_RESUME_TO_ME:
         draft.me.resumes.unshift({ id: action.data });
+        break;
+      case ADD_CAREER_TO_ME:
+        draft.me.careers.unshift({ id: action.data });
         break;
       // return {
       //   ...state,

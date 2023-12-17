@@ -50,7 +50,6 @@ const SignInStep3S2 = (props) => {
         type: SIGN_UP_REQUEST,
         data: { user_member_id, user_member_pw, userType },
       });
-      console.log("aa");
     },
     [user_member_id, user_member_pw, userType]
   );

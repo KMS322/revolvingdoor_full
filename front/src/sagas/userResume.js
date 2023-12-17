@@ -1,6 +1,5 @@
 import axios from "axios";
-import shortId from "shortid";
-import { all, fork, put, takeLatest, throttle, call } from "redux-saga/effects";
+import { all, fork, put, takeLatest, call } from "redux-saga/effects";
 
 import {
   ADD_RESUME_REQUEST,
@@ -43,7 +42,6 @@ function* addResume(action) {
   try {
     const result = yield call(addResumeAPI, action.data);
     console.log("addresume : ", result);
-    const id = shortId.generate();
     yield put({
       type: ADD_RESUME_SUCCESS,
       data: result.data,
@@ -84,22 +82,22 @@ function* removeResume(action) {
     });
   }
 }
-function* watchLoadRESUME() {
+function* watchLoadResume() {
   yield takeLatest(LOAD_RESUME_REQUEST, loadResume);
 }
 
-function* watchAddRESUME() {
+function* watchAddResume() {
   yield takeLatest(ADD_RESUME_REQUEST, addResume);
 }
 
-function* watchRemoveRESUME() {
+function* watchRemoveResume() {
   yield takeLatest(REMOVE_RESUME_REQUEST, removeResume);
 }
 
 export default function* resumeSaga() {
   yield all([
-    fork(watchAddRESUME),
-    fork(watchRemoveRESUME),
-    fork(watchLoadRESUME),
+    fork(watchLoadResume),
+    fork(watchAddResume),
+    fork(watchRemoveResume),
   ]);
 }

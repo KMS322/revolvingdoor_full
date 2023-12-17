@@ -7,9 +7,7 @@ import { API_URL } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../reducers/user";
 const Header = () => {
-  console.log("document.cookie: ", document.cookie);
   const { me } = useSelector((state) => state.user);
-  console.log("me : ", me);
   const dispatch = useDispatch();
   const [menuState, setMenuState] = useState(false);
   const navigate = useNavigate();
@@ -61,10 +59,14 @@ const Header = () => {
           <li
             onClick={() => {
               // goPage("/signin");
-              goPage("/signStep3");
+              if (me) {
+                goPage("/career");
+              } else {
+                goPage("/signStep1");
+              }
             }}
           >
-            {me ? me.userType : "회원가입"}
+            {me ? "경력관리" : "회원가입"}
           </li>
         </ul>
         <div className="img_box mobile" onClick={handleMenu}>

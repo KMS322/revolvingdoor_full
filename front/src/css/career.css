@@ -1,0 +1,68 @@
+/* career_s1 */
+.career_s1 {
+  width: 37.15%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.career_s1 form > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #787160;
+  text-align: left;
+  margin-top: 3.11vw;
+  margin-bottom: 1.46vw;
+}
+.career_s1 form > p:nth-child(1) {
+  margin-top: 0vw;
+}
+.career_s1 form .input_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.career_s1 form .input_nomargin {
+  margin-top: 0vw;
+}
+.career_s1 form > .input_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.career_s1 form > .input_box > p > span {
+  font-size: 0.9vw;
+  font-weight: 700;
+  color: #b6b6b6;
+  display: flex;
+  align-items: flex-end;
+}
+.career_s1 form > .input_box > input {
+  width: 67.37%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+
+.career_s1 form button {
+  width: 7.49vw;
+  height: 3vw;
+  margin: 0 auto;
+  margin-top: 6.07vw;
+  border-radius: 0.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background-color: #cabd99;
+}

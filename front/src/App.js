@@ -23,6 +23,7 @@ import SignInStep3Components from "./pages/signIn/sigInStep3Components.js";
 import SignInBusinessStep1Components from "./pages/signInBusiness/sigInBusinessStep1Components.js";
 import SignInBusinessStep2Components from "./pages/signInBusiness/sigInBusinessStep2Components.js";
 import ResumeComponents from "./pages/resume/resumeComponents.js";
+import CareerComponent from "./pages/career/careerComponent.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
         />
 
         <Route path="/resume" element={<ResumeComponents />} />
+        <Route path="/career" element={<CareerComponent />} />
       </Routes>
       <Footer />
     </>

@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const { UserResume, User } = require("../models");
+const { UserCareer, User } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 
 router.post("/", isLoggedIn, async (req, res, next) => {
   try {
-    const resume = await UserResume.create({
-      title: req.body.user_resume_title,
+    const career = await UserCareer.create({
+      user_career_company: req.body.user_career_company,
       UserId: req.user.id,
     });
-    const fullResume = await UserResume.findOne({
-      where: { id: resume.id },
+    const fullCareer = await UserCareer.findOne({
+      where: { id: career.id },
       include: [
         {
           model: User,
         },
       ],
     });
-    res.status(201).json(fullResume);
+    res.status(201).json(fullCareer);
   } catch (error) {
     console.error(error);
     next(error);
