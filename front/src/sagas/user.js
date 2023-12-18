@@ -77,6 +77,7 @@ function* logOut() {
 }
 
 function signUpAPI(data) {
+  console.log("data : ", data);
   return axios.post("/user/signup", data);
 }
 

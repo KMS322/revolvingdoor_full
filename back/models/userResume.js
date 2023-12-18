@@ -2,12 +2,104 @@ module.exports = (sequelize, DataTypes) => {
   const UserResume = sequelize.define(
     "UserResume",
     {
-      title: {
+      user_resume_title: {
         type: DataTypes.STRING(100),
-        allowNull: false,
+        allowNull: true,
       },
-      content: {
+      user_resume_schoolMajor: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      user_resume_schoolPeriod1Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_schoolPeriod1Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_schoolPeriod2Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_schoolPeriod2Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_schoolFinal: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeCompany: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      user_resume_hopeRegion1: {
         type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_resume_hopeRegion2: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_resume_hopeRegion: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopePayType1: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopePay: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopePayType2: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopework1: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopework2: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopework3: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopework4: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeStartYear: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeStartMonth: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeStartDay: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeWorkTime1Hour: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeWorkTime1Minute: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeWorkTime2Hour: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_resume_hopeWorkTime2Minute: {
+        type: DataTypes.STRING(10),
         allowNull: true,
       },
     },

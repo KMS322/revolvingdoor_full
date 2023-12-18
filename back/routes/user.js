@@ -35,6 +35,7 @@ router.get("/", async (req, res, next) => {
 });
 router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
+    console.log(req.body);
     const exUser = await User.findOne({
       where: {
         user_member_id: req.body.user_member_id,
@@ -44,10 +45,17 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       return res.status(403).send("이미 사용중인 아이디 입니다.");
     }
     const hashedPassword = await bcrypt.hash(req.body.user_member_pw, 12);
+    const fullAddress =
+      req.body.user_member_address1 + " " + req.body.user_member_address2;
     await User.create({
+      userType: req.body.userType,
       user_member_id: req.body.user_member_id,
       user_member_pw: hashedPassword,
-      userType: req.body.userType,
+      user_member_name: req.body.user_member_name,
+      user_member_num: req.body.user_member_num,
+      user_member_address: fullAddress,
+      user_member_tel: req.body.user_member_tel,
+      user_member_email: req.body.user_member_email,
     });
     res.status(201).send("ok");
   } catch (error) {

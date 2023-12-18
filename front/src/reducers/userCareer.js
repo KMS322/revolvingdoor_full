@@ -26,19 +26,18 @@ const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case ADD_CAREER_REQUEST:
-        draft.addCarerLoading = true;
-        draft.addCarerDone = false;
-        draft.addCarerError = null;
+        draft.addCareerLoading = true;
+        draft.addCareerDone = false;
+        draft.addCareerError = null;
         break;
       case ADD_CAREER_SUCCESS:
-        console.log("AA");
-        draft.addCarerLoading = false;
-        draft.addCarerDone = true;
+        draft.addCareerLoading = false;
+        draft.addCareerDone = true;
         draft.careers.unshift(action.data);
         break;
       case ADD_CAREER_FAILURE:
-        draft.addCarerLoading = false;
-        draft.addCarerError = action.error;
+        draft.addCareerLoading = false;
+        draft.addCareerError = action.error;
         break;
       case LOAD_CAREER_REQUEST:
         draft.loadCareerLoading = true;

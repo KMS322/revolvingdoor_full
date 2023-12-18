@@ -2,7 +2,10 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      // MYSQL에서는 users 테이블
+      userType: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+      },
       user_member_id: {
         type: DataTypes.STRING(30),
         allowNull: false,
@@ -12,9 +15,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      userType: {
+      user_member_name: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_member_num: {
         type: DataTypes.STRING(20),
-        allowNull: false,
+        allowNull: true,
+      },
+      user_member_address: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      user_member_tel: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      user_member_email: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
       },
     },
     {

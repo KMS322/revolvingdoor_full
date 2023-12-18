@@ -5,6 +5,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10vw;
 }
 .resume_s1 > p {
   font-size: 0.75vw;
@@ -99,13 +100,8 @@
   width: 67.37%;
   height: 100%;
   display: flex;
-
-  /* background-color: #eeeeee;
-  font-size: 1.2vw;
-  border: none;
-  border-radius: 0.4vw; */
 }
-.resume_s1 form > .select_box > .sub_select > input {
+.resume_s1 form > .select_box > .sub_select > .select {
   height: 100%;
   font-size: 1.2vw;
   border: none;
@@ -116,26 +112,95 @@
   text-align: center;
   margin: 0vw;
   padding: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.resume_s1 form > .select_box > .sub_select1 > input {
-  width: 23%;
+.resume_s1 form > .select_box > .sub_select1 > .select {
+  width: 5.62vw;
   margin-right: 0.7vw;
 }
-.resume_s1 form > .select_box > .sub_select1 > input:last-child {
+.resume_s1 form > .select_box > .sub_select1 > .select:last-child {
   margin-right: 0vw;
 }
-.resume_s1 form > .select_box > .sub_select2 > input {
-  width: 23%;
+.resume_s1 form > .select_box > .sub_select2 > .select {
+  width: 5.62vw;
   margin-right: 0.7vw;
 }
-.resume_s1 form > .select_box > .sub_select3 > input {
-  width: 23%;
+.resume_s1 form > .select_box > .sub_select3 > .select {
+  width: 5.62vw;
   margin-right: 0.7vw;
 }
-.resume_s1 form > .select_box > .sub_select3 > input:last-child {
+.resume_s1 form > .select_box > .sub_select3 > .select:last-child {
   width: 50%;
 }
-
+.resume_s1 form > .select_box > .sub_select4 > .select {
+  width: 5.62vw;
+  margin-right: 0.7vw;
+}
+.resume_s1 form > .select_box > .sub_select4 > .select:first-child {
+  width: 7.5vw;
+}
+.resume_s1 form > .input_box > .sub_input1 > p {
+  width: 48%;
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.resume_s1 form > .input_box > .sub_input1 > input {
+  width: 48%;
+}
+.resume_s1 form > .input_box > .sub_input2 > p {
+  width: 20%;
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.resume_s1 form > .input_box > .sub_input2 > input {
+  width: 74%;
+}
+.resume_s1 form > .select_box > .sub_select5 > .select {
+  width: 10vw;
+}
+.resume_s1 form > .select_box1 > p {
+  flex-direction: column;
+}
+.resume_s1 form > .select_box1 > p > span {
+  font-size: 0.94vw;
+}
+.resume_s1 form > .input_box > .sub_input3 > input {
+  width: 25%;
+}
+.resume_s1 form > .input_box > .sub_input4 > input {
+  width: 18%;
+}
+.resume_s1 form .article {
+  width: 100%;
+  height: 11.24vw;
+  border: 1px solid #cabd99;
+  border-radius: 0.5vw;
+  background-color: #f9f5ea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3.75vw;
+}
+.resume_s1 form .article > p {
+  width: 85%;
+}
+.resume_s1 form .article > p:nth-child(1) {
+  font-size: 1.12vw;
+  font-weight: 700;
+  color: #272727;
+}
+.resume_s1 form .article > p:nth-child(2) {
+  font-size: 0.94vw;
+  font-weight: 700;
+  color: #cabd99;
+  margin-top: 1.31vw;
+  letter-spacing: -0.06vw;
+  line-height: 2vw;
+}
 .resume_s1 form button {
   width: 7.49vw;
   height: 3vw;

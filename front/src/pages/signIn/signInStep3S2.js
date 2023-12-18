@@ -9,11 +9,17 @@ const SignInStep3S2 = (props) => {
   const { signUpDone, signUpError } = useSelector((state) => state.user);
   const { type } = props;
   // const [userType, setUserType] = useState(type);
-  const [userType, setUserType] = useState("individual");
   const navigate = useNavigate();
 
+  const [userType, setUserType] = useState("individual");
   const [user_member_id, onChangeId] = useInput("");
   const [user_member_pw, onChangePassword] = useInput("");
+  const [user_member_name, onChangeName] = useInput("");
+  const [user_member_num, onChangeNum] = useInput("");
+  const [user_member_address1, onChangeAddress1] = useInput("");
+  const [user_member_address2, onChangeAddress2] = useInput("");
+  const [user_member_tel, onChangeTel] = useInput("");
+  const [user_member_email, onChangeEmail] = useInput("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const onChangePasswordCheck = useCallback(
@@ -23,7 +29,6 @@ const SignInStep3S2 = (props) => {
     },
     [passwordCheck]
   );
-
   useEffect(() => {
     if (signUpDone) {
       navigate("/");
@@ -46,12 +51,39 @@ const SignInStep3S2 = (props) => {
         " 유저타입 : ",
         userType
       );
+      console.log("user_member_name : ", user_member_name);
+      console.log("user_member_num : ", user_member_num);
+      console.log("user_member_address1 : ", user_member_address1);
+      console.log("user_member_address2 : ", user_member_address2);
+      console.log("user_member_tel : ", user_member_tel);
+      console.log("user_member_email : ", user_member_email);
+
       dispatch({
         type: SIGN_UP_REQUEST,
-        data: { user_member_id, user_member_pw, userType },
+        data: {
+          userType,
+          user_member_id,
+          user_member_pw,
+          user_member_name,
+          user_member_num,
+          user_member_address1,
+          user_member_address2,
+          user_member_tel,
+          user_member_email,
+        },
       });
     },
-    [user_member_id, user_member_pw, userType]
+    [
+      userType,
+      user_member_id,
+      user_member_pw,
+      user_member_name,
+      user_member_num,
+      user_member_address1,
+      user_member_address2,
+      user_member_tel,
+      user_member_email,
+    ]
   );
 
   return (
@@ -100,7 +132,60 @@ const SignInStep3S2 = (props) => {
           <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
         )}
         <p>인적사항</p>
-        <p>학력사항</p>
+        <label className="input_box">
+          <p>성명</p>
+          <input
+            type="text"
+            name="user_member_name"
+            value={user_member_name}
+            onChange={onChangeName}
+          />
+        </label>
+        <label className="input_box">
+          <p>주민등록번호</p>
+          <input
+            type="text"
+            name="user_member_num"
+            value={user_member_num}
+            onChange={onChangeNum}
+          />
+        </label>
+        <label className="input_box">
+          <p>주소</p>
+          <input
+            type="text"
+            name="user_member_address1"
+            value={user_member_address1}
+            onChange={onChangeAddress1}
+          />
+        </label>
+        <label className="input_box">
+          <p></p>
+          <input
+            type="text"
+            name="user_member_address2"
+            value={user_member_address2}
+            onChange={onChangeAddress2}
+          />
+        </label>
+        <label className="input_box">
+          <p>휴대전화</p>
+          <input
+            type="text"
+            name="user_member_tel"
+            value={user_member_tel}
+            onChange={onChangeTel}
+          />
+        </label>
+        <label className="input_box">
+          <p>이메일</p>
+          <input
+            type="text"
+            name="user_member_email"
+            value={user_member_email}
+            onChange={onChangeEmail}
+          />
+        </label>
         <button type="submit" onClick={onSubmitForm}>
           회원가입
         </button>
