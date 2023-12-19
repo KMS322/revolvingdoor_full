@@ -21,7 +21,7 @@ const Header = () => {
   const logOut = useCallback(() => {
     dispatch(logoutRequestAction());
   }, []);
-
+  console.log("me : ", me);
   return (
     <>
       <div className="header">
@@ -39,7 +39,11 @@ const Header = () => {
         <ul>
           <li
             onClick={() => {
-              goPage("/myPage");
+              if (me.userType === "individual") {
+                goPage("/myPage");
+              } else if (me.userType === "business") {
+                goPage("/myPageBusiness");
+              }
             }}
           >
             MY페이지

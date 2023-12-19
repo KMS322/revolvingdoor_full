@@ -101,7 +101,61 @@ const SignInStep3S2 = (props) => {
           <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
         )}
         <p>업체현황</p>
-        <p>채용 담당자</p>
+        <label className="input_box">
+          <p>사업장명</p>
+          <input />
+        </label>
+        <label className="input_box">
+          <p>사업자등록번호</p>
+          <input />
+        </label>
+        <label className="input_box">
+          <p>대표자</p>
+          <input />
+        </label>
+        <label className="select_box">
+          <p>사업자</p>
+          <div className="sub_select sub_select1">
+            <div className="select">개인</div>
+            <div className="select">법인</div>
+          </div>
+        </label>
+        <label className="input_box">
+          <p>근로자 수</p>
+          <input />
+        </label>
+        <label className="select_box">
+          <p>사무실 형태</p>
+          <div className="sub_select sub_select2">
+            <div className="select">공인회계사</div>
+            <div className="select">세무사</div>
+            <div className="select">회계법인</div>
+          </div>
+        </label>
+        <label className="select_box">
+          <p></p>
+          <div className="sub_select sub_select2">
+            <div className="select">세무법인</div>
+            <div className="select">기업</div>
+            <div className="select">기타</div>
+          </div>
+        </label>
+        <label className="input_box">
+          <p>주소</p>
+          <input />
+        </label>
+        <label className="input_box">
+          <p></p>
+          <input />
+        </label>
+        <label className="input_box">
+          <p>대표 전화번호</p>
+          <input />
+        </label>
+        <label className="input_box">
+          <p>이메일</p>
+          <input />
+        </label>
         <button type="submit" onClick={onSubmitForm}>
           회원가입
         </button>

@@ -105,6 +105,64 @@
   border-radius: 0.4vw;
   cursor: pointer;
 }
+.signin_business_step2_s2 form .select_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.signin_business_step2_s2 form > .select_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.signin_business_step2_s2 form > .select_box > .sub_select {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+}
+.signin_business_step2_s2 form > .select_box > .sub_select > .select {
+  height: 100%;
+  font-size: 1.2vw;
+  border: none;
+  border: 2px solid #eeeeee;
+  border-radius: 0.4vw;
+  font-size: 0.98vw;
+  color: #707070;
+  text-align: center;
+  margin: 0vw;
+  padding: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.signin_business_step2_s2 form > .select_box > .sub_select1 > .select {
+  width: 48%;
+  margin-right: 0.7vw;
+}
+.signin_business_step2_s2
+  form
+  > .select_box
+  > .sub_select1
+  > .select:last-child {
+  margin-right: 0vw;
+}
+.signin_business_step2_s2 form > .select_box > .sub_select2 > .select {
+  width: 7vw;
+  margin-right: 0.7vw;
+}
+.signin_business_step2_s2
+  form
+  > .select_box
+  > .sub_select2
+  > .select:last-child {
+  margin-right: 0vw;
+}
 .signin_business_step2_s2 form button {
   width: 7.49vw;
   height: 3vw;

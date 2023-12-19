@@ -1,0 +1,208 @@
+/* myPageBusiness_s1 */
+.myPageBusiness_s1 {
+  width: 100%;
+  height: 34.53vw;
+}
+.myPageBusiness_s1 .title_box {
+  width: 100%;
+  height: 18.98%;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+}
+.myPageBusiness_s1 .title_box .title {
+  width: 8.05%;
+  height: 27.43%;
+  margin-left: 4.98vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myPageBusiness_s1 .title_box .title img {
+  width: 1.12vw;
+  height: 1.12vw;
+}
+.myPageBusiness_s1 .title_box .title p {
+  font-size: 1.34vw;
+  color: #272727;
+}
+.myPageBusiness_s1 .article_container {
+  width: 100%;
+  height: 81.02%;
+  background-color: #f8f8f8;
+  border: 1px solid #f8f8f8;
+}
+.myPageBusiness_s1 .article_container .article {
+  width: 24%;
+  height: 73.49%;
+  margin: 0 auto;
+  margin-top: 3.07vw;
+  text-align: center;
+}
+.myPageBusiness_s1 .article_container .article img {
+  width: 49.1%;
+  height: 54.64%;
+}
+.myPageBusiness_s1 .article_container .article p:nth-child(2) {
+  font-size: 2.4vw;
+  font-weight: 700;
+  color: #333333;
+  margin-top: 1.05vw;
+}
+.myPageBusiness_s1 .article_container .article p:nth-child(2) span {
+  color: #787160;
+}
+.myPageBusiness_s1 .article_container .article p:nth-child(3) {
+  font-size: 1.5vw;
+  color: #979797;
+  margin-top: 0.8vw;
+}
+.myPageBusiness_s1 .article_container .article p:nth-child(4) {
+  font-size: 0.9vw;
+  color: #979797;
+  margin-top: 0.7vw;
+  float: right;
+}
+
+/* myPageBusiness_s2 */
+.myPageBusiness_s2 {
+  width: 100%;
+  height: 32.77vw;
+}
+.myPageBusiness_s2 .article_container {
+  width: 67.42%;
+  height: 83.83%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 3.71vw;
+}
+.myPageBusiness_s2 .article_container .box_container {
+  width: 100%;
+  height: 11.69%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myPageBusiness_s2 .article_container .box_container p {
+  font-size: 2.4vw;
+  font-weight: 700;
+  color: #333333;
+}
+.myPageBusiness_s2 .article_container .box_container .btn_box {
+  width: 11.67%;
+  height: 72.94%;
+  font-size: 0.9vw;
+  color: #979797;
+  border: 1px solid #979797;
+  border-radius: 0.3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.myPageBusiness_s2 .article_container .table_container {
+  width: 100%;
+  height: 81.43%;
+  border-top: 2px solid #707070;
+}
+.myPageBusiness_s2 .article_container .table_container .head_row {
+  width: 100%;
+  height: 17% !important;
+}
+.myPageBusiness_s2 .article_container .table_container .row {
+  display: flex;
+  align-items: center;
+  height: 16.6%;
+  text-align: center;
+}
+.myPageBusiness_s2 .article_container .table_container .row p:nth-child(1) {
+  margin-left: 2.25vw;
+  width: 12%;
+}
+.myPageBusiness_s2 .article_container .table_container .row p:nth-child(2) {
+  margin-left: 10vw;
+  width: 15%;
+}
+.myPageBusiness_s2 .article_container .table_container .row p:nth-child(3) {
+  margin-left: 10.52vw;
+  width: 11%;
+}
+.myPageBusiness_s2 .article_container .table_container .row p:nth-child(4) {
+  margin-left: 4.46vw;
+  width: 8%;
+  letter-spacing: -0.02vw;
+}
+.myPageBusiness_s2 .article_container .table_container .row p:nth-child(5) {
+  margin-left: 2.47vw;
+  width: 8.83%;
+}
+.myPageBusiness_s2 .article_container .table_container .row .manage_box {
+  margin-left: 2.47vw;
+  width: 8.83%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myPageBusiness_s2
+  .article_container
+  .table_container
+  .row
+  .manage_box
+  .manage {
+  width: 47.17%;
+  height: 45.92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9vw;
+}
+.myPageBusiness_s2
+  .article_container
+  .table_container
+  .row
+  .manage_box
+  .manage:nth-child(1) {
+  background-color: #cabd99;
+  color: white;
+  border-radius: 0.3vw;
+}
+.myPageBusiness_s2
+  .article_container
+  .table_container
+  .row
+  .manage_box
+  .manage:nth-child(2) {
+  border: 1px solid #979797;
+  color: #979797;
+  border-radius: 0.3vw;
+}
+.myPageBusiness_s2 .article_container .table_container .row:nth-child(1) p {
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #333333;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row {
+  border-top: 2px solid #b6b6b6;
+  cursor: pointer;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row:last-child {
+  border-bottom: 1px solid #b6b6b6;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row p {
+  font-size: 0.9vw;
+}
+span {
+  color: #979797;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row .state1 {
+  color: #979797;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row .state2 {
+  color: #0047ff;
+}
+.myPageBusiness_s2 .article_container .table_container .content_row .state3 {
+  color: #333333;
+}

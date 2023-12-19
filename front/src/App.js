@@ -16,6 +16,7 @@ import SquareComponents from "./pages/square/squareComponent.js";
 import LogInComponent from "./pages/logIn/logInComponent.js";
 import SignInComponent from "./pages/signIn/signInComponent.js";
 import MyPageComponents from "./pages/myPage/myPageComponents.js";
+import MyPageBusinessComponents from "./pages/myPageBusiness/myPageBusinessComponents.js";
 import SignInFormComponents from "./pages/signInForm/signInFormComponents.js";
 import SignInStep1Components from "./pages/signIn/sigInStep1Components.js";
 import SignInStep2Components from "./pages/signIn/sigInStep2Components.js";
@@ -24,6 +25,7 @@ import SignInBusinessStep1Components from "./pages/signInBusiness/sigInBusinessS
 import SignInBusinessStep2Components from "./pages/signInBusiness/sigInBusinessStep2Components.js";
 import ResumeComponents from "./pages/resume/resumeComponents.js";
 import CareerComponent from "./pages/career/careerComponent.js";
+import ApplicationStep1Components from "./pages/application/applicationStep1Components.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +53,7 @@ function App() {
         <Route path="/logIn" element={<LogInComponent />} />
         <Route path="/signIn" element={<SignInComponent />} />
         <Route path="/myPage" element={<MyPageComponents />} />
+        <Route path="/myPageBusiness" element={<MyPageBusinessComponents />} />
         <Route path="/signInForm" element={<SignInFormComponents />} />
         <Route path="/signStep1" element={<SignInStep1Components />} />
         <Route path="/signStep2" element={<SignInStep2Components />} />
@@ -66,6 +69,10 @@ function App() {
 
         <Route path="/resume" element={<ResumeComponents />} />
         <Route path="/career" element={<CareerComponent />} />
+        <Route
+          path="/applicationStep1"
+          element={<ApplicationStep1Components />}
+        />
       </Routes>
       <Footer />
     </>
