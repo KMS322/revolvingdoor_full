@@ -1,19 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-  const Business = sequelize.define(
-    "Business",
+  const UserBusiness = sequelize.define(
+    "UserBusiness",
     {
-      userType: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
-      },
-      business_member_id: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
-      },
-      business_member_pw: {
-        type: DataTypes.STRING(100),
-        allowNull: true,
-      },
       business_member_companyName: {
         type: DataTypes.STRING(30),
         allowNull: true,
@@ -56,9 +44,8 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci",
     }
   );
-  Business.associate = (db) => {
-    db.Business.hasMany(db.BusinessApplication);
-    db.Business.hasOne(db.BusinessRecruitment);
+  UserBusiness.associate = (db) => {
+    db.UserBusiness.belongsTo(db.User, { foreignKey: "BusinessId" });
   };
-  return Business;
+  return UserBusiness;
 };

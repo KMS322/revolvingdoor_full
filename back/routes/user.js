@@ -64,7 +64,7 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
 });
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
-  passport.authenticate("user-local", (err, user, info) => {
+  passport.authenticate("local", (err, user, info) => {
     if (err) {
       console.error(err);
       return next(err);
@@ -100,9 +100,13 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 });
 
 router.post("/logout", isLoggedIn, (req, res) => {
-  req.logout();
-  req.session.destroy();
-  res.send("ok");
+  req.logout((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    }
+    res.redirect("/"); // 로그아웃 후 리다이렉트 등의 처리
+  });
 });
 
 module.exports = router;

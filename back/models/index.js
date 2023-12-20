@@ -11,12 +11,10 @@ const sequelize = new Sequelize(
 );
 
 db.User = require("./user")(sequelize, Sequelize);
-db.UserInfo = require("./userInfo")(sequelize, Sequelize);
-db.Post = require("./post")(sequelize, Sequelize);
-db.UserResume = require("./userResume")(sequelize, Sequelize);
+db.UserIndividual = require("./userIndividual")(sequelize, Sequelize);
 db.UserCareer = require("./userCareer")(sequelize, Sequelize);
-
-db.Business = require("./business")(sequelize, Sequelize);
+db.UserResume = require("./userResume")(sequelize, Sequelize);
+db.UserBusiness = require("./userBusiness")(sequelize, Sequelize);
 db.BusinessApplication = require("./businessApplication")(sequelize, Sequelize);
 db.BusinessRecruitment = require("./businessRecruitment")(sequelize, Sequelize);
 

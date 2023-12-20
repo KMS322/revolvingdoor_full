@@ -15,26 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      user_member_name: {
-        type: DataTypes.STRING(10),
-        allowNull: true,
-      },
-      user_member_num: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
-      },
-      user_member_address: {
-        type: DataTypes.STRING(50),
-        allowNull: true,
-      },
-      user_member_tel: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
-      },
-      user_member_email: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
-      },
     },
     {
       charset: "utf8",
@@ -42,10 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = (db) => {
-    db.User.hasOne(db.UserInfo);
-    db.User.hasOne(db.UserCareer);
-    db.User.hasMany(db.UserResume);
-    db.User.hasMany(db.Post);
+    db.User.hasOne(db.UserIndividual, { foreignKey: "UserId" });
+    db.User.hasOne(db.UserCareer, { foreignKey: "UserId" });
+    db.User.hasMany(db.UserResume, { foreignKey: "UserId" });
+    db.User.hasOne(db.UserBusiness, { foreignKey: "BusinessId" });
+    db.User.hasMany(db.BusinessApplication, { foreignKey: "BusinessId" });
+    db.User.hasOne(db.BusinessRecruitment, { foreignKey: "BusinessId" });
   };
   return User;
 };

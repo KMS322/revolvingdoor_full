@@ -145,7 +145,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   BusinessRecruitment.associate = (db) => {
-    db.BusinessRecruitment.belongsTo(db.Business, { foreignKey: "BusinessId" });
+    db.BusinessRecruitment.belongsTo(db.User, { foreignKey: "BusinessId" });
   };
   return BusinessRecruitment;
 };

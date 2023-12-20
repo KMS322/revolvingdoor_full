@@ -46,7 +46,7 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
 });
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
-  passport.authenticate("business-local", (err, user, info) => {
+  passport.authenticate("local", (err, user, info) => {
     console.log("info : ", info);
     if (err) {
       console.error(err);
