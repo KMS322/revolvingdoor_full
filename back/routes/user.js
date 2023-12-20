@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User, Post, UserResume, UserCareer } = require("../models");
+const { User, UserResume, UserCareer } = require("../models");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
@@ -35,7 +35,6 @@ router.get("/", async (req, res, next) => {
 });
 router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
-    console.log(req.body);
     const exUser = await User.findOne({
       where: {
         user_member_id: req.body.user_member_id,
@@ -65,7 +64,7 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
 });
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("user-local", (err, user, info) => {
     if (err) {
       console.error(err);
       return next(err);

@@ -9,6 +9,7 @@ const postRouter = require("./routes/post");
 const resumeRouter = require("./routes/userResume");
 const resumesRouter = require("./routes/resumes");
 const careerRouter = require("./routes/userCareer");
+const businessRouter = require("./routes/business");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -51,15 +52,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-  res.send("hello express");
-});
+app.get("/", (req, res) => {});
 
 app.use("/user", userRouter);
 app.use("/post", postRouter);
 app.use("/resume", resumeRouter);
 app.use("/resumes", resumesRouter);
 app.use("/career", careerRouter);
+app.use("/business", businessRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });

@@ -1,6 +1,6 @@
 const passport = require("passport");
 const local = require("./local");
-const { User, Business } = require("../models");
+const { User } = require("../models");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -10,16 +10,8 @@ module.exports = () => {
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findOne({ where: { id } });
-      if (user) {
-        done(null, user);
-      } else {
-        const business = await Business.findOne({ where: { id } });
-        if (business) {
-          done(null, business);
-        } else {
-          done(null, null); // 사용자 또는 사업자가 찾아지지 않은 경우
-        }
-      }
+      console.log("passport deserial 안에서 user : ", user);
+      done(null, user); // req.user
     } catch (error) {
       console.error(error);
       done(error);

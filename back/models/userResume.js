@@ -109,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   UserResume.associate = (db) => {
-    db.UserResume.belongsTo(db.User);
+    db.UserResume.belongsTo(db.User, { foreignKey: "UserId" });
   };
   return UserResume;
 };
