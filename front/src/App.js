@@ -25,17 +25,20 @@ import SignInBusinessStep1Components from "./pages/signInBusiness/sigInBusinessS
 import SignInBusinessStep2Components from "./pages/signInBusiness/sigInBusinessStep2Components.js";
 import ResumeComponents from "./pages/resume/resumeComponents.js";
 import CareerComponent from "./pages/career/careerComponent.js";
+import RecruitmentComponent from "./pages/recruitment/recruitmentComponent.js";
 import ApplicationStep1Components from "./pages/application/applicationStep1Components.js";
-
+import ApplicationStep2Components from "./pages/application/applicationStep2Components.js";
+import MyResumeComponent from "./pages/myResume/myResumeComponent.js";
 function App() {
   const dispatch = useDispatch();
-  const { me } = useSelector((state) => state.user);
+  const { logInDone } = useSelector((state) => state.user);
+  // const { me_business } = useSelector((state) => state.business);
 
   useEffect(() => {
     dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
-  }, []);
+  }, [logInDone]);
   return (
     <>
       <Header />
@@ -69,10 +72,16 @@ function App() {
 
         <Route path="/resume" element={<ResumeComponents />} />
         <Route path="/career" element={<CareerComponent />} />
+        <Route path="/recruitment" element={<RecruitmentComponent />} />
         <Route
           path="/applicationStep1"
           element={<ApplicationStep1Components />}
         />
+        <Route
+          path="/applicationStep2"
+          element={<ApplicationStep2Components />}
+        />
+        <Route path="/myResume" element={<MyResumeComponent />} />
       </Routes>
       <Footer />
     </>

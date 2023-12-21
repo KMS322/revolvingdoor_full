@@ -1,133 +1,109 @@
-import "../../css/application.css";
-import "../../css/application_mobile.css";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ADD_RESUME_REQUEST } from "../../reducers/userResume";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 const ApplicationStep1S2 = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [user_resume_title, onChangeTitle] = useInput("");
-  const [user_resume_schoolMajor, onChangeSchoolMajor] = useInput("");
-  const [user_resume_schoolPeriod1Year, onChangeSchoolPeriod1Year] =
+  const [business_application_name, onChangeName] = useInput("");
+  const [business_application_type, onChangeType] = useInput("");
+  const [business_application_number, onChangeNumber] = useInput("");
+  const [business_application_startNow, setStartNow] = useState();
+  const [business_application_startYear, onChangeStartYear] = useInput("");
+  const [business_application_startMonth, onChangeStartMonth] = useInput("");
+  const [business_application_expectPeriod, setExpectPeriod] = useState();
+  const [business_application_workContent1, setWorkContent1] = useState();
+  const [business_application_workContent2, setWorkContent2] = useState();
+  const [business_application_workContent3, setWorkContent3] = useState();
+  const [business_application_workContent4, setWorkContent4] = useState();
+  const [business_application_workContent5, setWorkContent5] = useState();
+  const [business_application_workContent6, setWorkContent6] = useState();
+  const [business_application_workContent7, setWorkContent7] = useState();
+  const [business_application_program, setProgram] = useState();
+  const [business_application_program1, onChangeProgram1] = useInput("");
+  const [business_application_career, setCareer] = useState();
+  const [business_application_career1, onChangeCareer1] = useInput("");
+  const [business_application_schoolFinal, setSchoolFinal] = useState();
+  const [business_application_schoolLisence, onChangeSchoolLisence] =
     useInput("");
-  const [user_resume_schoolPeriod1Month, onChangeSchoolPeriod1Month] =
-    useInput("");
-  const [user_resume_schoolPeriod2Year, onChangeSchoolPeriod2Year] =
-    useInput("");
-  const [user_resume_schoolPeriod2Month, onChangeSchoolPeriod2Month] =
-    useInput("");
-  const [user_resume_schoolFinal, setSchoolFinal] = useState();
-  const [user_resume_hopeCompany, setHopeCompany] = useState();
-  const [user_resume_hopeRegion1, onChangeHopeRegion1] = useInput("");
-  const [user_resume_hopeRegion2, onChangeHopeRegion2] = useInput("");
-  const [user_resume_hopeRegion, setHopeRegion] = useState(false);
-
-  const [user_resume_hopePayType1, setHopePayType1] = useState();
-  const [user_resume_hopePayType2, setHopePayType2] = useState();
-  const [user_resume_hopePay, onChangeHopePay] = useInput("");
-  const [user_resume_hopeWork1, setHopeWork1] = useState();
-  const [user_resume_hopeWork2, setHopeWork2] = useState();
-  const [user_resume_hopeWork3, setHopeWork3] = useState();
-  const [user_resume_hopeWork4, setHopeWork4] = useState();
-  const [user_resume_hopeStartYear, onChangeHopeStartYear] = useInput("");
-  const [user_resume_hopeStartMonth, onChangeHopeStartMonth] = useInput("");
-  const [user_resume_hopeStartDay, onChangeHopeStartDay] = useInput("");
-  const [user_resume_hopeWorkTime1Hour, setHopeWorkTime1Hour] = useInput("");
-  const [user_resume_hopeWorkTime1Minute, setHopeWorkTime1Minute] =
-    useInput("");
-  const [user_resume_hopeWorkTime2Hour, setHopeWorkTime2Hour] = useInput("");
-  const [user_resume_hopeWorkTime2Minute, setHopeWorkTime2Minute] =
-    useInput("");
-
-  const { addResumeDone } = useSelector((state) => state.userResume);
-  useEffect(() => {
-    if (addResumeDone) {
-      navigate(-1);
-    }
-  }, [addResumeDone]);
+  const [business_application_schoolLisence1, setSchoolLisence1] = useState();
 
   const selectStyle1 = (data) => {
     return {
-      borderColor: user_resume_schoolFinal === data ? "#2196F3" : "#eeeeee",
-      color: user_resume_schoolFinal === data ? "#2196F3" : "#707070",
+      borderColor:
+        business_application_expectPeriod === data ? "#2196F3" : "#eeeeee",
+      color: business_application_expectPeriod === data ? "#2196F3" : "#707070",
     };
   };
   const selectStyle2 = (data) => {
     return {
-      borderColor: user_resume_hopeCompany === data ? "#2196F3" : "#eeeeee",
-      color: user_resume_hopeCompany === data ? "#2196F3" : "#707070",
+      borderColor: business_application_career === data ? "#2196F3" : "#eeeeee",
+      color: business_application_career === data ? "#2196F3" : "#707070",
     };
   };
   const selectStyle3 = (data) => {
     return {
-      borderColor: user_resume_hopePayType1 === data ? "#2196F3" : "#eeeeee",
-      color: user_resume_hopePayType1 === data ? "#2196F3" : "#707070",
+      borderColor:
+        business_application_schoolFinal === data ? "#2196F3" : "#eeeeee",
+      color: business_application_schoolFinal === data ? "#2196F3" : "#707070",
     };
   };
-
+  const selectStyle4 = (data) => {
+    return {
+      borderColor:
+        business_application_schoolLisence1 === data ? "#2196F3" : "#eeeeee",
+      color:
+        business_application_schoolLisence1 === data ? "#2196F3" : "#707070",
+    };
+  };
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log("타이틀 : ", user_resume_title);
-      dispatch({
-        type: ADD_RESUME_REQUEST,
-        data: {
-          user_resume_title,
-          user_resume_schoolMajor,
-          user_resume_schoolPeriod1Year,
-          user_resume_schoolPeriod1Month,
-          user_resume_schoolPeriod2Year,
-          user_resume_schoolPeriod2Month,
-          user_resume_schoolFinal,
-          user_resume_hopeCompany,
-          user_resume_hopeRegion1,
-          user_resume_hopeRegion2,
-          user_resume_hopeRegion,
-          user_resume_hopePayType1,
-          user_resume_hopePayType2,
-          user_resume_hopePay,
-          user_resume_hopeWork1,
-          user_resume_hopeWork2,
-          user_resume_hopeWork3,
-          user_resume_hopeWork4,
-          user_resume_hopeStartYear,
-          user_resume_hopeStartMonth,
-          user_resume_hopeStartDay,
-          user_resume_hopeWorkTime1Hour,
-          user_resume_hopeWorkTime1Minute,
-          user_resume_hopeWorkTime2Hour,
-          user_resume_hopeWorkTime2Minute,
-        },
-      });
+      const step1_data = {
+        business_application_name,
+        business_application_type,
+        business_application_number,
+        business_application_startNow,
+        business_application_startYear,
+        business_application_startMonth,
+        business_application_expectPeriod,
+        business_application_workContent1,
+        business_application_workContent2,
+        business_application_workContent3,
+        business_application_workContent4,
+        business_application_workContent5,
+        business_application_workContent6,
+        business_application_workContent7,
+        business_application_program,
+        business_application_program1,
+        business_application_career,
+        business_application_career1,
+        business_application_schoolFinal,
+        business_application_schoolLisence,
+        business_application_schoolLisence1,
+      };
+      navigate("/applicationStep2", { state: { step1_data } });
     },
     [
-      user_resume_title,
-      user_resume_schoolMajor,
-      user_resume_schoolPeriod1Year,
-      user_resume_schoolPeriod1Month,
-      user_resume_schoolPeriod2Year,
-      user_resume_schoolPeriod2Month,
-      user_resume_schoolFinal,
-      user_resume_hopeCompany,
-      user_resume_hopeRegion1,
-      user_resume_hopeRegion2,
-      user_resume_hopeRegion,
-      user_resume_hopePayType1,
-      user_resume_hopePayType2,
-      user_resume_hopePay,
-      user_resume_hopeWork1,
-      user_resume_hopeWork2,
-      user_resume_hopeWork3,
-      user_resume_hopeWork4,
-      user_resume_hopeStartYear,
-      user_resume_hopeStartMonth,
-      user_resume_hopeStartDay,
-      user_resume_hopeWorkTime1Hour,
-      user_resume_hopeWorkTime1Minute,
-      user_resume_hopeWorkTime2Hour,
-      user_resume_hopeWorkTime2Minute,
+      business_application_name,
+      business_application_type,
+      business_application_number,
+      business_application_startNow,
+      business_application_startYear,
+      business_application_startMonth,
+      business_application_expectPeriod,
+      business_application_workContent1,
+      business_application_workContent2,
+      business_application_workContent3,
+      business_application_workContent4,
+      business_application_workContent5,
+      business_application_workContent6,
+      business_application_workContent7,
+      business_application_program,
+      business_application_program1,
+      business_application_career,
+      business_application_career1,
+      business_application_schoolFinal,
+      business_application_schoolLisence,
+      business_application_schoolLisence1,
     ]
   );
   return (
@@ -137,31 +113,69 @@ const ApplicationStep1S2 = () => {
         <p>구인사항</p>
         <label className="input_box">
           <p>채용 제목</p>
-          <input />
+          <input
+            type="text"
+            name="business_application_name"
+            value={business_application_name}
+            onChange={onChangeName}
+          />
         </label>
         <label className="input_box">
           <p>모집 직종</p>
-          <input />
+          <input
+            type="text"
+            name="business_application_type"
+            value={business_application_type}
+            onChange={onChangeType}
+          />
         </label>
         <label className="input_box">
           <p>모집 인원</p>
           <div className="sub_input sub_input1">
-            <input />
+            <input
+              type="text"
+              name="business_application_number"
+              value={business_application_number}
+              onChange={onChangeNumber}
+            />
             <p>명</p>
           </div>
         </label>
         <label className="select_box">
           <p>근무 시기</p>
           <div className="sub_select sub_select1">
-            <div className="select">공고일 이후 채용 즉시</div>
+            <div
+              className="select"
+              onClick={() => {
+                setStartNow(!business_application_startNow);
+              }}
+              style={{
+                borderColor: business_application_startNow
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_startNow ? "#2196F3" : "#707070",
+              }}
+            >
+              공고일 이후 채용 즉시
+            </div>
           </div>
         </label>
         <label className="input_box">
           <p></p>
           <div className="sub_input sub_input2">
-            <input />
+            <input
+              type="text"
+              name="business_application_startYear"
+              value={business_application_startYear}
+              onChange={onChangeStartYear}
+            />
             <p>년</p>
-            <input />
+            <input
+              type="text"
+              name="business_application_startMonth"
+              value={business_application_startMonth}
+              onChange={onChangeStartMonth}
+            />
             <p>월</p>
             <p>부터</p>
           </div>
@@ -169,455 +183,321 @@ const ApplicationStep1S2 = () => {
         <label className="select_box">
           <p>예상 근무기간</p>
           <div className="sub_select sub_select2">
-            <div className="select">30일 이내</div>
-            <div className="select">1~3개월</div>
-            <div className="select">6개월</div>
-            <div className="select">정규직채용전</div>
+            <div
+              className="select"
+              onClick={() => {
+                setExpectPeriod("30일 이내");
+              }}
+              style={selectStyle1("30일 이내")}
+            >
+              30일 이내
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setExpectPeriod("1~3개월");
+              }}
+              style={selectStyle1("1~3개월")}
+            >
+              1~3개월
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setExpectPeriod("6개월");
+              }}
+              style={selectStyle1("6개월")}
+            >
+              6개월
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setExpectPeriod("정규직채용전");
+              }}
+              style={selectStyle1("정규직채용전")}
+            >
+              정규직채용전
+            </div>
           </div>
         </label>
         <label className="select_box">
           <p>직무 내용</p>
           <div className="sub_select sub_select2">
-            <div className="select">기장·신고</div>
-            <div className="select">결산</div>
-            <div className="select">조정</div>
-            <div className="select">회계감사</div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent1(!business_application_workContent1);
+              }}
+              style={{
+                borderColor: business_application_workContent1
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent1
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              기장·신고
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent2(!business_application_workContent2);
+              }}
+              style={{
+                borderColor: business_application_workContent2
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent2
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              결산
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent3(!business_application_workContent3);
+              }}
+              style={{
+                borderColor: business_application_workContent3
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent3
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              조정
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent4(!business_application_workContent4);
+              }}
+              style={{
+                borderColor: business_application_workContent4
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent4
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              회계감사
+            </div>
           </div>
         </label>
         <label className="select_box">
           <p></p>
           <div className="sub_select sub_select3">
-            <div className="select">세무조사</div>
-            <div className="select">컨설팅</div>
-            <div className="select">연구개발비정산</div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent5(!business_application_workContent5);
+              }}
+              style={{
+                borderColor: business_application_workContent5
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent5
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              세무조사
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent6(!business_application_workContent6);
+              }}
+              style={{
+                borderColor: business_application_workContent6
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent6
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              컨설팅
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkContent7(!business_application_workContent7);
+              }}
+              style={{
+                borderColor: business_application_workContent7
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_workContent7
+                  ? "#2196F3"
+                  : "#707070",
+              }}
+            >
+              연구개발비정산
+            </div>
           </div>
         </label>
         <label className="select_box">
           <p>사용 프로그램</p>
           <div className="sub_select sub_select1">
-            <div className="select">더죤</div>
-          </div>
-        </label>
-
-        <p>딴것</p>
-        <p>딴것</p>
-        <p>딴것</p>
-        <p>딴것</p>
-        <label className="input_box">
-          <p>재학기간</p>
-          <div className="sub_input sub_input4">
-            <input
-              type="text"
-              name="user_resume_schoolPeriod1Year"
-              value={user_resume_schoolPeriod1Year}
-              onChange={onChangeSchoolPeriod1Year}
-            />
-            <p>년</p>
-            <input
-              type="text"
-              name="user_resume_schoolPeriod1Month"
-              value={user_resume_schoolPeriod1Month}
-              onChange={onChangeSchoolPeriod1Month}
-            />
-            <p>월</p>
-            <p>~</p>
-            <input
-              type="text"
-              name="user_resume_schoolPeriod2Year"
-              value={user_resume_schoolPeriod2Year}
-              onChange={onChangeSchoolPeriod2Year}
-            />
-            <p>년</p>
-            <input
-              type="text"
-              name="user_resume_schoolPeriod2Month"
-              value={user_resume_schoolPeriod2Month}
-              onChange={onChangeSchoolPeriod2Month}
-            />
-            <p>월</p>
-          </div>
-        </label>
-        <label className="select_box">
-          <p>최종학력</p>
-          <div className="sub_select sub_select1">
             <div
               className="select"
               onClick={() => {
-                setSchoolFinal("졸업(예정)");
+                setProgram(!business_application_program);
               }}
-              style={selectStyle1("졸업(예정)")}
-            >
-              졸업(예정)
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("수료");
+              style={{
+                borderColor: business_application_program
+                  ? "#2196F3"
+                  : "#eeeeee",
+                color: business_application_program ? "#2196F3" : "#707070",
               }}
-              style={selectStyle1("수료")}
             >
-              수료
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("재학");
-              }}
-              style={selectStyle1("재학")}
-            >
-              재학
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("휴학");
-              }}
-              style={selectStyle1("휴학")}
-            >
-              휴학
+              더죤
             </div>
           </div>
         </label>
         <label className="select_box">
           <p></p>
-          <div className="sub_select sub_select2">
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("중퇴");
-              }}
-              style={selectStyle1("중퇴")}
-            >
-              중퇴
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("검정고시");
-              }}
-              style={selectStyle1("검정고시")}
-            >
-              검정고시
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setSchoolFinal("무학");
-              }}
-              style={selectStyle1("무학")}
-            >
-              무학
-            </div>
-          </div>
-        </label>
-        <p>희망취업조건</p>
-        <label className="select_box">
-          <p>희망근무처</p>
           <div className="sub_select sub_select3">
-            <div
-              className="select"
-              onClick={() => {
-                setHopeCompany("회계법인");
-              }}
-              style={selectStyle2("회계법인")}
-            >
-              회계법인
+            <div className="select" style={{ cursor: "inherit" }}>
+              기타
             </div>
-            <div
-              className="select"
-              onClick={() => {
-                setHopeCompany("세무법인");
-              }}
-              style={selectStyle2("세무법인")}
-            >
-              세무법인
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setHopeCompany("공인회계사 사무소");
-              }}
-              style={selectStyle2("공인회계사 사무소")}
-            >
-              공인회계사 사무소
-            </div>
+            <input
+              type="text"
+              name="business_application_program1"
+              value={business_application_program1}
+              onChange={onChangeProgram1}
+            />
           </div>
         </label>
         <label className="select_box">
-          <p></p>
+          <p>경력</p>
           <div className="sub_select sub_select4">
             <div
               className="select"
               onClick={() => {
-                setHopeCompany("세무사 사무소");
+                setCareer("관계없음");
               }}
-              style={selectStyle2("세무사 사무소")}
+              style={selectStyle2("관계없음")}
             >
-              세무사 사무소
+              관계없음
             </div>
             <div
               className="select"
               onClick={() => {
-                setHopeCompany("기업");
+                setCareer("신입");
               }}
-              style={selectStyle2("기업")}
+              style={selectStyle2("신입")}
             >
-              기업
-            </div>
-          </div>
-        </label>
-        <label className="input_box">
-          <p>근무지역</p>
-          <div className="sub_input sub_input1">
-            <p>1순위</p>
-            <p>2순위</p>
-          </div>
-        </label>
-        <label className="input_box">
-          <p></p>
-          <div className="sub_input sub_input1">
-            <input
-              type="text"
-              name="user_resume_hopeRegion1"
-              value={user_resume_hopeRegion1}
-              onChange={onChangeHopeRegion1}
-            />
-            <input
-              type="text"
-              name="user_resume_hopeRegion2"
-              value={user_resume_hopeRegion2}
-              onChange={onChangeHopeRegion2}
-            />
-          </div>
-        </label>
-        <label className="select_box">
-          <p></p>
-          <div className="sub_select sub_select1">
-            <div
-              className="select"
-              onClick={() => {
-                setHopeRegion(!user_resume_hopeRegion);
-              }}
-              style={{
-                borderColor: user_resume_hopeRegion ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeRegion ? "#2196F3" : "#707070",
-              }}
-            >
-              지역무관
+              신입
             </div>
           </div>
         </label>
         <label className="select_box">
-          <p>희망임금</p>
+          <p></p>
+          <div className="sub_select sub_select3">
+            <div className="select" style={{ cursor: "inherit" }}>
+              경력
+            </div>
+            <input
+              type="text"
+              name="business_application_career1"
+              value={business_application_career1}
+              onChange={onChangeCareer1}
+            />
+          </div>
+        </label>
+        <label className="select_box">
+          <p>학력</p>
           <div className="sub_select sub_select2">
             <div
               className="select"
               onClick={() => {
-                setHopePayType1("월급");
-                if (user_resume_hopePayType2) {
-                  setHopePayType2(false);
-                }
+                setSchoolFinal("고졸이상");
               }}
-              style={selectStyle3("월급")}
+              style={selectStyle3("고졸이상")}
             >
-              월급
+              고졸이상
             </div>
             <div
               className="select"
               onClick={() => {
-                setHopePayType1("일급");
-                if (user_resume_hopePayType2) {
-                  setHopePayType2(false);
-                }
+                setSchoolFinal("전문대졸이상");
               }}
-              style={selectStyle3("일급")}
+              style={selectStyle3("전문대졸이상")}
             >
-              일급
+              전문대졸이상
             </div>
             <div
               className="select"
               onClick={() => {
-                setHopePayType1("시급");
-                if (user_resume_hopePayType2) {
-                  setHopePayType2(false);
-                }
+                setSchoolFinal("대졸이상");
               }}
-              style={selectStyle3("시급")}
+              style={selectStyle3("대졸이상")}
             >
-              시급
+              대졸이상
+            </div>
+            <div
+              className="select"
+              onClick={() => {
+                setSchoolFinal("관계없음");
+              }}
+              style={selectStyle3("관계없음")}
+            >
+              관계없음
             </div>
           </div>
         </label>
         <label className="input_box">
-          <p></p>
-          <div className="sub_input sub_input2">
-            <input
-              type="text"
-              name="user_resume_hopePay"
-              value={user_resume_hopePay}
-              onChange={onChangeHopePay}
-            />
-            <p>원 이상</p>
-          </div>
+          <p>자격·면허</p>
+          <input
+            type="text"
+            name="business_application_schoolLisence"
+            value={business_application_schoolLisence}
+            onChange={onChangeSchoolLisence}
+          />
         </label>
         <label className="select_box">
           <p></p>
-          <div className="sub_select sub_select5">
-            <div
-              className="select"
-              onClick={() => {
-                setHopePayType2(!user_resume_hopePayType2);
-                if (!user_resume_hopePayType2) {
-                  setHopePayType1(false);
-                }
-              }}
-              style={{
-                borderColor: user_resume_hopePayType2 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopePayType2 ? "#2196F3" : "#707070",
-              }}
-            >
-              면접 후 결정 가능
-            </div>
-          </div>
-        </label>
-        <label className="select_box select_box1">
-          <p>
-            고용형태
-            <br />
-            <span>(복수선택가능)</span>
-          </p>
           <div className="sub_select sub_select2">
             <div
               className="select"
               onClick={() => {
-                setHopeWork1(!user_resume_hopeWork1);
-                setHopeWork4(false);
+                setSchoolLisence1("관계없음");
               }}
-              style={{
-                borderColor: user_resume_hopeWork1 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork1 ? "#2196F3" : "#707070",
-              }}
+              style={selectStyle4("관계없음")}
             >
-              출근근무
+              관계없음
             </div>
             <div
               className="select"
               onClick={() => {
-                setHopeWork2(!user_resume_hopeWork2);
-                setHopeWork4(false);
+                setSchoolLisence1("필수");
               }}
-              style={{
-                borderColor: user_resume_hopeWork2 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork2 ? "#2196F3" : "#707070",
-              }}
+              style={selectStyle4("필수")}
             >
-              탄력근무
+              필수
             </div>
             <div
               className="select"
               onClick={() => {
-                setHopeWork3(!user_resume_hopeWork3);
-                setHopeWork4(false);
+                setSchoolLisence1("우대");
               }}
-              style={{
-                borderColor: user_resume_hopeWork3 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork3 ? "#2196F3" : "#707070",
-              }}
+              style={selectStyle4("우대")}
             >
-              재택근무
-            </div>
-            <div
-              className="select"
-              onClick={() => {
-                setHopeWork4(!user_resume_hopeWork4);
-                if (!user_resume_hopeWork4) {
-                  setHopeWork1(false);
-                  setHopeWork2(false);
-                  setHopeWork3(false);
-                }
-              }}
-              style={{
-                borderColor: user_resume_hopeWork4 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork4 ? "#2196F3" : "#707070",
-              }}
-            >
-              모두가능
+              우대
             </div>
           </div>
         </label>
-        <label className="input_box">
-          <p>취업희망시기</p>
-          <div className="sub_input sub_input3">
-            <input
-              type="text"
-              name="user_resume_hopeStartYear"
-              value={user_resume_hopeStartYear}
-              onChange={onChangeHopeStartYear}
-            />
-            <p>년</p>
-            <input
-              type="text"
-              name="user_resume_hopeStartMonth"
-              value={user_resume_hopeStartMonth}
-              onChange={onChangeHopeStartMonth}
-            />
-            <p>월</p>
-            <input
-              type="text"
-              name="user_resume_hopeStartDay"
-              value={user_resume_hopeStartDay}
-              onChange={onChangeHopeStartDay}
-            />
-            <p>일</p>
-          </div>
-        </label>
-        <label className="input_box">
-          <p></p>
-          <p>부터 가능</p>
-        </label>
-        <label className="input_box">
-          <p>근무희망시간</p>
-          <div className="sub_input sub_input4">
-            <input
-              type="text"
-              name="user_resume_hopeWorkTime1Hour"
-              value={user_resume_hopeWorkTime1Hour}
-              onChange={setHopeWorkTime1Hour}
-            />
-            <p>:</p>
-            <input
-              type="text"
-              name="user_resume_hopeWorkTime1Minute"
-              value={user_resume_hopeWorkTime1Minute}
-              onChange={setHopeWorkTime1Minute}
-            />
-            <p>~</p>
-            <input
-              type="text"
-              name="user_resume_hopeWorkTime2Hour"
-              value={user_resume_hopeWorkTime2Hour}
-              onChange={setHopeWorkTime2Hour}
-            />
-            <p>:</p>
-            <input
-              type="text"
-              name="user_resume_hopeWorkTime2Minute"
-              value={user_resume_hopeWorkTime2Minute}
-              onChange={setHopeWorkTime2Minute}
-            />
-          </div>
-        </label>
-        <div className="article">
-          <p>유저님, 기업으로부터 제안을 받으시겠습니까?</p>
-          <p>
-            이력서가 공개되며, 기업으로부터 제의를 받을 수 있습니다.
-            <br />
-            제안을 받을 경우, 수락하기 전까지 채용담당자에게 연락처가 공개되지
-            않습니다.
-          </p>
-        </div>
+
         <button type="submit" onClick={onSubmitForm}>
-          이력서 저장
+          다음
         </button>
       </form>
     </div>

@@ -153,6 +153,7 @@
   align-items: center;
   justify-content: center;
   font-size: 0.9vw;
+  cursor: pointer;
 }
 .myPage_s2
   .article_container
@@ -181,7 +182,6 @@
 }
 .myPage_s2 .article_container .table_container .content_row {
   border-top: 2px solid #b6b6b6;
-  cursor: pointer;
 }
 .myPage_s2 .article_container .table_container .content_row:last-child {
   border-bottom: 1px solid #b6b6b6;

@@ -4,26 +4,19 @@ import userResume from "./userResume";
 import userAdd from "./userAdd";
 import post from "./post";
 import userCareer from "./userCareer";
-// (이전상태, 액션) => 다음상태
-// const rootReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     default:
-//       return state;
-//   }
-// };
+import business from "./business";
+import businessApplication from "./businessApplication";
+import businessRecruitment from "./businessRecruitment";
 
 const rootReducer = combineReducers({
-  // index: (state = {}, action) => {
-  //   switch (action.type) {
-  //     default:
-  //       return state;
-  //   }
-  // },
   user,
   userResume,
   userAdd,
   userCareer,
   post,
+  business,
+  businessApplication,
+  businessRecruitment,
 });
 
 export default rootReducer;

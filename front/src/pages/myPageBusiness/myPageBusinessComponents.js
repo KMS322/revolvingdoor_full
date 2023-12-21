@@ -10,11 +10,11 @@ import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
 const MyPageBusinessComponents = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({
-      type: LOAD_RESUME_REQUEST,
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({
+  //     // type: LOAD_RESUME_REQUEST,
+  //   });
+  // }, []);
   return (
     <>
       <Nav />

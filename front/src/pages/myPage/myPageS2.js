@@ -9,6 +9,7 @@ import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
 const MyPageS2 = () => {
   const dispatch = useDispatch();
   const { resumes } = useSelector((state) => state.userResume);
+  console.log("resumes : ", resumes);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,18 +45,22 @@ const MyPageS2 = () => {
           </div>
           {resumes.map((resume) => {
             return (
-              <div
-                className="content_row row"
-                onClick={() => {
-                  navigate(`/infoDetail/${resume.id}`, { state: { resume } });
-                }}
-              >
+              <div className="content_row row">
                 <p className="pc">경산시</p>
-                <p>{resume.title}</p>
+                <p>{resume.user_resume_title}</p>
                 <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
                 <p className="state1">비공개 상태</p>
                 <div className="manage_box">
-                  <div className="manage">수정</div>
+                  <div
+                    className="manage"
+                    onClick={() => {
+                      navigate("/myResume", {
+                        state: { resume },
+                      });
+                    }}
+                  >
+                    수정
+                  </div>
                   <div className="manage">삭제</div>
                 </div>
               </div>

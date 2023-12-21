@@ -18,7 +18,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: true,
       },
-      business_recruitment_insurance: {
+      business_recruitment_insurance1: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_recruitment_insurance2: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_recruitment_insurance3: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_recruitment_insurance4: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_recruitment_insurance5: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },

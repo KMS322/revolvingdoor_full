@@ -36,7 +36,12 @@ export const SIGN_UP_FAILURE = "SIGN_UP_FAUILURE";
 
 export const ADD_RESUME_TO_ME = "ADD_RESUME_TO_ME";
 export const ADD_CAREER_TO_ME = "ADD_CAREER_TO_ME";
+export const ADD_APPLICATION_TO_ME = "ADD_APPLICATION_TO_ME";
+export const ADD_RECRUITMENT_TO_ME = "ADD_RECRUITMENT_TO_ME";
 export const REMOVE_RESUME_OF_ME = "REMOVE_RESUME_OF_ME";
+export const REMOVE_CAREER_OF_ME = "REMOVE_CAREER_OF_ME";
+export const REMOVE_APPLICATION_OF_ME = "REMOVE_APPLICATION_OF_ME";
+export const REMOVE_RECRUITMENT_OF_ME = "REMOVE_RECRUITMENT_OF_ME";
 
 export const loginRequestAction = (data) => {
   return {
@@ -107,6 +112,7 @@ const reducer = (state = initialState, action) => {
         draft.signUpDone = false;
         break;
       case SIGN_UP_SUCCESS:
+        console.log("user request");
         draft.signUpLoading = false;
         draft.signUpDone = true;
         break;
@@ -120,6 +126,13 @@ const reducer = (state = initialState, action) => {
       case ADD_CAREER_TO_ME:
         draft.me.careers.unshift({ id: action.data });
         break;
+      case ADD_APPLICATION_TO_ME:
+        draft.me.applications.unshift({ id: action.data });
+        break;
+      case ADD_RECRUITMENT_TO_ME:
+        draft.me.recruitments.unshift({ id: action.data });
+        break;
+
       // return {
       //   ...state,
       //   me: {
@@ -130,14 +143,19 @@ const reducer = (state = initialState, action) => {
       case REMOVE_RESUME_OF_ME:
         draft.me.resumes = draft.me.Posts.filter((v) => v.id !== action.data);
         break;
-
-      // return {
-      //   ...state,
-      //   me: {
-      //     ...state.me,
-      //     Posts: state.me.Posts.filter((v) => v.id !== action.data),
-      //   },
-      // };
+      case REMOVE_CAREER_OF_ME:
+        draft.me.careers = draft.me.Posts.filter((v) => v.id !== action.data);
+        break;
+      case REMOVE_APPLICATION_OF_ME:
+        draft.me.applications = draft.me.Posts.filter(
+          (v) => v.id !== action.data
+        );
+        break;
+      case REMOVE_RECRUITMENT_OF_ME:
+        draft.me.recruitments = draft.me.Posts.filter(
+          (v) => v.id !== action.data
+        );
+        break;
       default:
         return state;
     }

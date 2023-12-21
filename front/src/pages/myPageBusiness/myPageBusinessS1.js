@@ -18,7 +18,10 @@ const MyPageBusinessS1 = () => {
         <div className="article">
           <img src="/images/myPage_s1_img2.png" alt="" />
           <p>
-            <span>{me.user_member_id}님, </span> 어서오세요.
+            <span>
+              {me && me.user_member_id ? `${me.user_member_id}님, ` : ""}
+            </span>{" "}
+            어서오세요.
           </p>
           <p>경북 00시 000***@n****.com</p>
           <p>회원정보 수정</p>

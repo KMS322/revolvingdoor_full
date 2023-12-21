@@ -7,9 +7,12 @@ import "../../css/logIn_mobile.css";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequestAction } from "../../reducers/user";
+import { loginRequestActionBusiness } from "../../reducers/business";
 const LogInComponent = () => {
   const dispatch = useDispatch();
   const { logInDone, logInError } = useSelector((state) => state.user);
+  const { logInDone: businessLogInDone, logInError: businessLogInError } =
+    useSelector((state) => state.business);
   const navigate = useNavigate();
   // const [loginData, setLoginData] = useState({
   //   user_member_id: "",
@@ -24,26 +27,38 @@ const LogInComponent = () => {
       alert(logInError);
     }
   }, [logInError]);
+  useEffect(() => {
+    if (businessLogInError) {
+      alert(businessLogInError);
+    }
+  }, [businessLogInError]);
 
   useEffect(() => {
     if (logInDone) {
       navigate("/");
     }
   }, [logInDone]);
+  useEffect(() => {
+    if (businessLogInDone) {
+      navigate("/");
+    }
+  }, [businessLogInDone]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(
-        "아이디 : ",
-        user_member_id,
-        " 비밀번호 : ",
-        user_member_pw,
-        " 유저타입 : ",
-        userType
-      );
-      dispatch(
-        loginRequestAction({ user_member_id, user_member_pw, userType })
-      );
+      if (userType === "individual") {
+        dispatch(
+          loginRequestAction({ user_member_id, user_member_pw, userType })
+        );
+      } else if (userType === "business") {
+        dispatch(
+          loginRequestActionBusiness({
+            user_member_id,
+            user_member_pw,
+            userType,
+          })
+        );
+      }
     },
     [user_member_id, user_member_pw, userType]
   );
@@ -62,6 +77,7 @@ const LogInComponent = () => {
   const goPage = (path) => {
     navigate(path);
   };
+  console.log("userType : ", userType);
   return (
     <div className="logIn_s1">
       <div className="section_container">

@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(30),
         allowNull: true,
       },
+      business_application_startNow: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
       business_application_number: {
         type: DataTypes.STRING(10),
         allowNull: true,
@@ -135,7 +139,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       business_application_workPlace: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(30),
         allowNull: true,
       },
       business_application_severancePay: {

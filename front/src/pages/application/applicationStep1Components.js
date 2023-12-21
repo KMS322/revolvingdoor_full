@@ -1,5 +1,5 @@
-import "../../css/application.css";
-import "../../css/application_mobile.css";
+import "../../css/applicationStep1.css";
+import "../../css/applicationStep1_mobile.css";
 import ApplicationStep1S1 from "./applicationStep1S1";
 import ApplicationStep1S2 from "./applicationStep1S2";
 import Nav from "../nav";

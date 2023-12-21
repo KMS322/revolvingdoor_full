@@ -1,19 +1,15 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const {
-  Business,
-  BusinessRecruitment,
-  BusinessApplication,
-} = require("../models");
+const { User, BusinessRecruitment, BusinessApplication } = require("../models");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
-    const exBusiness = await Business.findOne({
+    const exBusiness = await User.findOne({
       where: {
-        business_member_id: req.body.business_member_id,
+        user_member_id: req.body.business_member_id,
       },
     });
     if (exBusiness) {
@@ -24,10 +20,10 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       req.body.business_member_address1 +
       " " +
       req.body.business_member_address2;
-    await Business.create({
+    await User.create({
       userType: req.body.userType,
-      business_member_id: req.body.business_member_id,
-      business_member_pw: hashedPassword,
+      user_member_id: req.body.business_member_id,
+      user_member_pw: hashedPassword,
       business_member_companyName: req.body.business_member_companyName,
       business_member_companyNumber: req.body.business_member_companyNumber,
       business_member_name: req.body.business_member_name,
@@ -61,7 +57,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
         return next(loginErr);
       }
       console.log("req.body :", req.body);
-      const fullBusinessWithoutPassword = await Business.findOne({
+      const fullBusinessWithoutPassword = await User.findOne({
         where: { id: user.id },
         attributes: {
           exclude: ["business_member_pw"],

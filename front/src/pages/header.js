@@ -1,13 +1,11 @@
 import "../css/header.css";
 import "../css/header_mobile.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { API_URL } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../reducers/user";
 const Header = () => {
-  const { me } = useSelector((state) => state.user);
+  const { me, logOutDone } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [menuState, setMenuState] = useState(false);
   const navigate = useNavigate();
@@ -18,10 +16,21 @@ const Header = () => {
     setMenuState(!menuState);
   };
 
+  useEffect(() => {
+    if (!me) {
+      navigate("/");
+    }
+  }, [me, logOutDone]);
   const logOut = useCallback(() => {
-    dispatch(logoutRequestAction());
-  }, []);
-  console.log("me : ", me);
+    if (!me) {
+      goPage("/logIn");
+    } else {
+      dispatch(logoutRequestAction());
+    }
+  }, [me]);
+  // if (me && typeof me === "object" && me.userType) {
+  //   console.log("me.userType : ", me.userType);
+  // }
   return (
     <>
       <div className="header">
@@ -39,38 +48,36 @@ const Header = () => {
         <ul>
           <li
             onClick={() => {
-              if (me.userType === "individual") {
+              console.log("mypage 클릭시 me : ", me);
+              if (me && me.userType === "individual") {
                 goPage("/myPage");
-              } else if (me.userType === "business") {
+              } else if (me && me.userType === "business") {
                 goPage("/myPageBusiness");
+              } else {
+                alert("로그인 해주세요");
               }
             }}
           >
             MY페이지
           </li>
-          <li
-            onClick={() => {
-              if (!me) {
-                goPage("/logIn");
-              } else {
-                logOut();
-              }
-            }}
-          >
-            {me ? "로그아웃" : "로그인"}
-            {/* 로그인 */}
-          </li>
+          <li onClick={logOut}>{me ? "로그아웃" : "로그인"}</li>
           <li
             onClick={() => {
               // goPage("/signin");
-              if (me) {
+              if (me && me.userType === "individual") {
                 goPage("/career");
+              } else if (me && me.userType === "business") {
+                goPage("/recruitment");
               } else {
-                goPage("/signStep1");
+                goPage("/signin");
               }
             }}
           >
-            {me ? "경력관리" : "회원가입"}
+            {me
+              ? me.userType === "individual"
+                ? "경력관리"
+                : "채용관리"
+              : "회원가입"}
           </li>
         </ul>
         <div className="img_box mobile" onClick={handleMenu}>

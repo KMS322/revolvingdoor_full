@@ -1,22 +1,22 @@
 import { all, fork, takeLatest, put, call } from "redux-saga/effects";
 import axios from "axios";
 import {
-  LOAD_MY_INFO_REQUEST,
-  LOAD_MY_INFO_SUCCESS,
-  LOAD_MY_INFO_FAILURE,
-  LOG_IN_REQUEST,
-  LOG_IN_SUCCESS,
-  LOG_IN_FAILURE,
-  LOG_OUT_REQUEST,
-  LOG_OUT_SUCCESS,
-  LOG_OUT_FAILURE,
-  SIGN_UP_REQUEST,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE,
-} from "../reducers/user";
+  BUSINESS_LOAD_MY_INFO_REQUEST,
+  BUSINESS_LOAD_MY_INFO_SUCCESS,
+  BUSINESS_LOAD_MY_INFO_FAILURE,
+  BUSINESS_LOG_IN_REQUEST,
+  BUSINESS_LOG_IN_SUCCESS,
+  BUSINESS_LOG_IN_FAILURE,
+  BUSINESS_LOG_OUT_REQUEST,
+  BUSINESS_LOG_OUT_SUCCESS,
+  BUSINESS_LOG_OUT_FAILURE,
+  BUSINESS_SIGN_UP_REQUEST,
+  BUSINESS_SIGN_UP_SUCCESS,
+  BUSINESS_SIGN_UP_FAILURE,
+} from "../reducers/business";
 
 function loadUserAPI(data) {
-  return axios.get("/user", data);
+  return axios.get("/business");
 }
 
 function* loadUser(action) {
@@ -24,20 +24,21 @@ function* loadUser(action) {
     const result = yield call(loadUserAPI, action.data);
     console.log("result : ", result);
     yield put({
-      type: LOAD_MY_INFO_SUCCESS,
+      type: BUSINESS_LOAD_MY_INFO_SUCCESS,
       data: result.data,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: LOAD_MY_INFO_FAILURE,
+      type: BUSINESS_LOAD_MY_INFO_FAILURE,
       error: err.response.data,
     });
   }
 }
 
 function logInAPI(data) {
-  return axios.post("/user/login", data);
+  console.log("saga 속 data : ", data);
+  return axios.post("/business/login", data);
 }
 
 function* logIn(action) {
@@ -45,32 +46,32 @@ function* logIn(action) {
     const result = yield call(logInAPI, action.data);
     console.log("result : ", result);
     yield put({
-      type: LOG_IN_SUCCESS,
+      type: BUSINESS_LOG_IN_SUCCESS,
       data: result.data,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: LOG_IN_FAILURE,
+      type: BUSINESS_LOG_IN_FAILURE,
       error: err.response.data,
     });
   }
 }
 
 function logOutAPI() {
-  return axios.post("/user/logout");
+  return axios.post("/business/logout");
 }
 
 function* logOut() {
   try {
     yield call(logOutAPI);
     yield put({
-      type: LOG_OUT_SUCCESS,
+      type: BUSINESS_LOG_OUT_SUCCESS,
     });
   } catch (err) {
     console.log("logout saga 에러 발생");
     yield put({
-      type: LOG_OUT_FAILURE,
+      type: BUSINESS_LOG_OUT_FAILURE,
       error: err.response.data,
     });
   }
@@ -78,44 +79,44 @@ function* logOut() {
 
 function signUpAPI(data) {
   console.log("data : ", data);
-  return axios.post("/user/signup", data);
+  return axios.post("/business/signup", data);
 }
 
 function* signUp(action) {
   try {
     const result = yield call(signUpAPI, action.data);
     console.log(result);
-    console.log("user saga");
+    console.log("business saga");
 
     yield put({
-      type: SIGN_UP_SUCCESS,
+      type: BUSINESS_SIGN_UP_SUCCESS,
       data: action.data,
     });
   } catch (err) {
     yield put({
-      type: SIGN_UP_FAILURE,
+      type: BUSINESS_SIGN_UP_FAILURE,
       error: err.response.data,
     });
   }
 }
 
 function* watchLoadUser() {
-  yield takeLatest(LOAD_MY_INFO_REQUEST, loadUser);
+  yield takeLatest(BUSINESS_LOAD_MY_INFO_REQUEST, loadUser);
 }
 
 function* watchLogIn() {
-  yield takeLatest(LOG_IN_REQUEST, logIn);
+  yield takeLatest(BUSINESS_LOG_IN_REQUEST, logIn);
 }
 
 function* watchLogOut() {
-  yield takeLatest(LOG_OUT_REQUEST, logOut);
+  yield takeLatest(BUSINESS_LOG_OUT_REQUEST, logOut);
 }
 
 function* watchSignUp() {
-  yield takeLatest(SIGN_UP_REQUEST, signUp);
+  yield takeLatest(BUSINESS_SIGN_UP_REQUEST, signUp);
 }
 
-export default function* userSaga() {
+export default function* BusinessSaga() {
   yield all([
     fork(watchLoadUser),
     fork(watchLogIn),

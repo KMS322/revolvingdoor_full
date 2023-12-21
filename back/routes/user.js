@@ -100,13 +100,10 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 });
 
 router.post("/logout", isLoggedIn, (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-    }
-    res.redirect("/"); // 로그아웃 후 리다이렉트 등의 처리
+  req.logout(() => {
+    res.redirect("/");
   });
+  res.status(201).send("ok");
 });
 
 module.exports = router;

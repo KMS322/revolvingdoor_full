@@ -1,0 +1,265 @@
+/* applicationStep2_s1 */
+.applicationStep2_s1 {
+  width: 53.56%;
+  height: 15.99vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.applicationStep2_s1 .article_container {
+  width: 100%;
+  height: 24.12%;
+  display: flex;
+  justify-content: space-around;
+}
+.applicationStep2_s1 .article_container .article {
+  width: 26.71%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.applicationStep2_s1 .article_container .article > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.applicationStep2_s1 .article_container .article > p {
+  font-size: 1.12vw;
+  font-weight: 700;
+  color: white;
+  position: inherit;
+  z-index: 2;
+}
+
+/* applicationStep2_s2 */
+.applicationStep2_s2 {
+  width: 37.15%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10vw;
+}
+.applicationStep2_s2 form > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #787160;
+  text-align: left;
+  margin-top: 3.11vw;
+  margin-bottom: 1.46vw;
+}
+.applicationStep2_s2 form .title {
+  text-align: center;
+}
+.applicationStep2_s2 form .title_input {
+  width: 100%;
+  height: 3vw;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+
+.applicationStep2_s2 form .input_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.applicationStep2_s2 form > .input_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.applicationStep2_s2 form > .input_box > input {
+  width: 67.37%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+.applicationStep2_s2 form > .input_box > input {
+  width: 67.37%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input {
+  width: 67.37%;
+  height: 100%;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.applicationStep2_s2 form > .input_box > .sub_input > input {
+  width: 40%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+.applicationStep2_s2 form .select_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.applicationStep2_s2 form > .select_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.applicationStep2_s2 form > .select_box > .sub_select {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+}
+.applicationStep2_s2 form > .select_box > .sub_select > .select {
+  height: 100%;
+  border: none;
+  border: 2px solid #eeeeee;
+  border-radius: 0.4vw;
+  font-size: 0.98vw;
+  color: #707070;
+  text-align: center;
+  margin: 0vw;
+  padding: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.applicationStep2_s2 form > .select_box > .sub_select1 > .select {
+  width: 5.8vw;
+  margin-right: 0.7vw;
+  letter-spacing: -0.08vw;
+}
+.applicationStep2_s2 form > .select_box > .sub_select1 > .select:last-child {
+  margin-right: 0vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input1 > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.applicationStep2_s2 form > .input_box > .sub_input1 > input {
+  width: 30%;
+  margin-right: 0.7vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input2 > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.applicationStep2_s2 form > .input_box > .sub_input2 > input {
+  width: 15%;
+  margin-right: 0.7vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input2 > input:nth-child(3) {
+  margin-right: 0vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input2 > input:last-child {
+  margin-right: 0vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input3 {
+  justify-content: flex-start;
+}
+.applicationStep2_s2 form > .input_box > .sub_input3 > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+  margin-right: 1vw;
+}
+.applicationStep2_s2 form > .input_box > .sub_input3 > input {
+  width: 13%;
+  margin-right: 0.7vw;
+}
+.applicationStep2_s2 form > .select_box > .sub_select2 > .select {
+  width: 60%;
+  margin-right: 0.7vw;
+}
+.applicationStep2_s2 form > .select_box1 > p {
+  flex-direction: column;
+}
+.applicationStep2_s2 form > .select_box1 > p > span {
+  font-size: 0.94vw;
+}
+.applicationStep2_s2 form > .select_box > .sub_select3 > .select {
+  width: 60%;
+  margin-right: 0.7vw;
+}
+.applicationStep2_s2 form > .select_box > .sub_select3 {
+  align-items: center;
+}
+.applicationStep2_s2 form > .select_box > .sub_select3 > input {
+  width: 15%;
+  margin-right: 0.7vw;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+}
+.applicationStep2_s2 form > .select_box > .sub_select3 > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.applicationStep2_s2 form .article {
+  width: 100%;
+  height: 11.24vw;
+  border: 1px solid #cabd99;
+  border-radius: 0.5vw;
+  background-color: #f9f5ea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3.75vw;
+}
+.applicationStep2_s2 form .article > p {
+  width: 85%;
+}
+.applicationStep2_s2 form .article > p:nth-child(1) {
+  font-size: 1.12vw;
+  font-weight: 700;
+  color: #272727;
+}
+.applicationStep2_s2 form .article > p:nth-child(2) {
+  font-size: 0.94vw;
+  font-weight: 700;
+  color: #cabd99;
+  margin-top: 1.31vw;
+  letter-spacing: -0.06vw;
+  line-height: 2vw;
+}
+.applicationStep2_s2 form button {
+  width: 7.49vw;
+  height: 3vw;
+  margin: 0 auto;
+  margin-top: 6.07vw;
+  border-radius: 0.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background-color: #cabd99;
+}
