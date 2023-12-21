@@ -1,0 +1,116 @@
+- 로그인
+-> post("/user/login", data)
+-> data 형태
+data : { 
+  user_member_id, // 입력한 아이디
+  user_member_pw, // 입력한 비밀번호
+  userType, // 구직자 or 구인기업 (구직자 : "business", 구인기업 : "individual")
+}
+
+- 로그아웃
+-> post("/user/logout")
+
+- 회원가입(구직용) 
+-> post("user/signup", data)
+-> data 형태
+data : {
+  userType,
+    user_member_id, // 아이디
+    user_member_pw, // 비밀번호
+    user_member_name, // 성명
+    user_member_num, // 주민등록번호
+    user_member_address1, // 주소1
+    user_member_address2, // 주소2
+    user_member_tel, // 휴대전화
+    user_member_email, // 이메일
+}
+
+- 이력서 작성
+-> post("/resume", data)
+-> data 형태
+data : {
+  user_resume_title, // 이력서 제목
+  user_resume_schoolMajor, // 전공(부전공)
+  user_resume_schoolPeriod1Year, // 재학기간 시작 년
+  user_resume_schoolPeriod1Month, // 재학기간 시작 월
+  user_resume_schoolPeriod2Year, // 재학기간 끝 년
+  user_resume_schoolPeriod2Month, // 재학기간 끝 월
+  user_resume_schoolFinal, // 최종학력(보기 중 1)
+  user_resume_hopeCompany, // 희망근무처(보기 중 1) 
+  user_resume_hopeRegion1, // 근무지역 1순위
+  user_resume_hopeRegion2, // 근무지역 2순위
+  user_resume_hopeRegion, // 지역무관 선택 
+  user_resume_hopePayType1, // 희망임금(보기 중 1)
+  user_resume_hopePayType2, // "면접 후 결정 가능"
+  user_resume_hopePay, // 희망임금 금액
+  user_resume_hopeWork1, // 출근근무
+  user_resume_hopeWork2, // 탄력근무
+  user_resume_hopeWork3, // 재택근무
+  user_resume_hopeWork4, // 모두가능
+  user_resume_hopeStartYear, // 취업희망시기 년
+  user_resume_hopeStartMonth, // 취업희망시기 월
+  user_resume_hopeStartDay, // 취업희망시기 일
+  user_resume_hopeWorkTime1Hour, // 근무가능시간 시작 시간
+  user_resume_hopeWorkTime1Minute, // 근무가능시간 시작 분
+  user_resume_hopeWorkTime2Hour, // 근무가능시간 끝 시간
+  user_resume_hopeWorkTime2Minute, // 근무가능시간 끝 분
+}
+
+-경력 작성
+-> post("/career", data)
+-> data 형태
+data : {
+  user_career_company1, // 근무처
+  user_career_position1, // 직위
+  user_career_companyState1, // 담당 사업장 형태와 업태
+  user_career_program1, // 사용 프로그램
+  user_career_period11Year, // 근무기간 시작 년
+  user_career_period11Month, // 근무기간 시작 월
+  user_career_period12Year, // 근무기간 끝 년
+  user_career_period12Month, // 근무기간 끝 월
+  user_career_license1, // 자격명 
+  user_career_license1Year, // 취득일 년
+  user_career_license1Month, // 취득일 월
+  user_career_license1Day, // 취득일 일
+  user_career_license1Organization, // 발급기관
+  user_career_trainingName1, // 훈련 과정명
+  user_career_trainingPeriod11Year, // 훈련기간 시작 년
+  user_career_trainingPeriod11Month, // 훈련기간 시작 월
+  user_career_trainingPeriod12Year, // 훈련기간 끝 년
+  user_career_trainingPeriod12Month, // 훈련기간 끝 월
+  user_career_trainingDetail1, // 세부 훈련 내용
+  user_career_trainingOrganization, // 훈련 기관명
+  user_career_changeYear, // 최종이직시기 년
+  user_career_changeMonth, // 최종이직시기 월
+  user_career_changeReason, // 이직사유(보기 중 1)
+  user_career_knowCount, // 회계지식(보기 중 1)
+  user_career_knowTax, // 세무(법)지식(보기 중 1)
+  user_career_abilityProcess1, // 전산활용능력 문서작성
+  user_career_abilityProcess2, // 전산활용능력 스프레드시트
+  user_career_abilityProcess3, // 전산활용능력 프레젠테이션
+  user_career_abilityProcess4, // 전산활용능력 회계프로그램
+  user_career_abilityProcess5, // 전산활용능력 기타
+  user_career_abilityProcess6, // 전산활용능력 텍스트
+  user_career_abilityDrive1, // 운전능력 운전면허증
+  user_career_abilityDrive2, // 운전능력 차량소지자
+}
+
+- 회원가입(구인용) 
+-> post("user/signup", data)
+-> data 형태
+data : {
+  business_member_id, // 아이디
+  business_member_pw, // 비밀번호
+  userType, // "business"
+  business_member_companyName, // 사업자명
+  business_member_companyNumber, // 사업자등록번호
+  business_member_name, // 대표자
+  business_member_companyState, // 사업자
+  business_member_employeeNumber, // 근로자 수
+  business_member_officeState, // 사무실 형태
+  business_member_address1, // 주소1
+  business_member_address2, // 주소2
+  business_member_tel, // 대표 전화번호 
+  business_member_email, //이메일
+} 
+

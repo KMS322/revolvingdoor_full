@@ -29,6 +29,8 @@ import RecruitmentComponent from "./pages/recruitment/recruitmentComponent.js";
 import ApplicationStep1Components from "./pages/application/applicationStep1Components.js";
 import ApplicationStep2Components from "./pages/application/applicationStep2Components.js";
 import MyResumeComponent from "./pages/myResume/myResumeComponent.js";
+import MyApplicationStep1Components from "./pages/myApplication/myApplicationStep1Components.js";
+import MyApplicationStep2Components from "./pages/myApplication/myApplicationStep2Components.js";
 function App() {
   const dispatch = useDispatch();
   const { logInDone } = useSelector((state) => state.user);
@@ -82,6 +84,14 @@ function App() {
           element={<ApplicationStep2Components />}
         />
         <Route path="/myResume" element={<MyResumeComponent />} />
+        <Route
+          path="/myApplicationStep1"
+          element={<MyApplicationStep1Components />}
+        />
+        <Route
+          path="/myApplicationStep2"
+          element={<MyApplicationStep2Components />}
+        />
       </Routes>
       <Footer />
     </>

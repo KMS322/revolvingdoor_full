@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ADD_APPLICATION_REQUEST } from "../../reducers/businessApplication";
 import { useNavigate, useLocation } from "react-router-dom";
 import useInput from "../hooks/useInput";
-const ApplicationStep2S2 = () => {
+const MyApplicationStep2S2 = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
@@ -489,4 +489,4 @@ const ApplicationStep2S2 = () => {
   );
 };
 
-export default ApplicationStep2S2;
+export default MyApplicationStep2S2;

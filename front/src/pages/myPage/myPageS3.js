@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "../../css/myPage.css";
 const MyPageS3 = () => {
   const navigate = useNavigate();
 

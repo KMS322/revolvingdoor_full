@@ -1,5 +1,3 @@
-import "../../css/myPage.css";
-import "../../css/myPage_mobile.css";
 import { useSelector } from "react-redux";
 const MyPageS1 = () => {
   const { me } = useSelector((state) => state.user);

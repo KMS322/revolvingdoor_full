@@ -37,6 +37,7 @@ function* loadUser(action) {
 }
 
 function logInAPI(data) {
+  console.log("data : ", data);
   return axios.post("/user/login", data);
 }
 

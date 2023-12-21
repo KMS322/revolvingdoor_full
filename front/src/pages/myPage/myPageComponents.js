@@ -1,3 +1,5 @@
+import "../../css/myPage.css";
+import "../../css/myPage_mobile.css";
 import Nav from "../nav";
 import Banner from "../banner";
 import MyPageS1 from "./myPageS1";

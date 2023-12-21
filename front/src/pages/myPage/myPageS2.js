@@ -1,5 +1,3 @@
-import "../../css/myPage.css";
-import "../../css/myPage_mobile.css";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +7,21 @@ import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
 const MyPageS2 = () => {
   const dispatch = useDispatch();
   const { resumes } = useSelector((state) => state.userResume);
-  console.log("resumes : ", resumes);
+  const removeDuplicatesById = (resumes) => {
+    const uniqueResumes = [];
+    const existingIds = [];
+
+    for (const resume of resumes) {
+      if (!existingIds.includes(resume.id)) {
+        uniqueResumes.push(resume);
+        existingIds.push(resume.id);
+      }
+    }
+
+    return uniqueResumes;
+  };
+
+  const uniqueResumes = removeDuplicatesById(resumes);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +30,6 @@ const MyPageS2 = () => {
     });
   }, [dispatch]);
 
-  const goPage = (path) => {
-    navigate(path);
-  };
   return (
     <div className="myPage_s2">
       <div className="article_container">
@@ -43,9 +52,9 @@ const MyPageS2 = () => {
             <p>지원여부</p>
             <p>관리</p>
           </div>
-          {resumes.map((resume) => {
+          {uniqueResumes.map((resume, index) => {
             return (
-              <div className="content_row row">
+              <div className="content_row row" key={index}>
                 <p className="pc">경산시</p>
                 <p>{resume.user_resume_title}</p>
                 <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>

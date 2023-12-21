@@ -1,25 +1,37 @@
-import "../../css/myPage.css";
-import "../../css/myPage_mobile.css";
+import "../../css/myPageBusiness.css";
+import "../../css/myPageBusiness_mobile.css";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
+import { LOAD_APPLICATION_REQUEST } from "../../reducers/businessApplication";
 
 const MyPageBusinessS2 = () => {
   const dispatch = useDispatch();
-  const { resumes } = useSelector((state) => state.userResume);
+  const { applications } = useSelector((state) => state.businessApplication);
+  const removeDuplicatesById = (applications) => {
+    const uniqueApplication = [];
+    const existingIds = [];
+
+    for (const application of applications) {
+      if (!existingIds.includes(application.id)) {
+        uniqueApplication.push(application);
+        existingIds.push(application.id);
+      }
+    }
+
+    return uniqueApplication;
+  };
+
+  const uniqueApplications = removeDuplicatesById(applications);
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
-      type: LOAD_RESUME_REQUEST,
+      type: LOAD_APPLICATION_REQUEST,
     });
   }, [dispatch]);
 
-  const goPage = (path) => {
-    navigate(path);
-  };
   return (
     <div className="myPageBusiness_s2">
       <div className="article_container">
@@ -42,20 +54,24 @@ const MyPageBusinessS2 = () => {
             <p>지원여부</p>
             <p>관리</p>
           </div>
-          {resumes.map((resume) => {
+          {uniqueApplications.map((application, index) => {
             return (
-              <div
-                className="content_row row"
-                onClick={() => {
-                  navigate(`/infoDetail/${resume.id}`, { state: { resume } });
-                }}
-              >
+              <div className="content_row row" key={index}>
                 <p className="pc">경산시</p>
-                <p>{resume.title}</p>
-                <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
+                <p>{application.business_application_name}</p>
+                <p>{dayjs(application.updatedAt).format("YYYY-MM-DD")}</p>
                 <p className="state1">비공개 상태</p>
                 <div className="manage_box">
-                  <div className="manage">수정</div>
+                  <div
+                    className="manage"
+                    onClick={() => {
+                      navigate("/myApplicationStep1", {
+                        state: { application },
+                      });
+                    }}
+                  >
+                    수정
+                  </div>
                   <div className="manage">삭제</div>
                 </div>
               </div>

@@ -1,3 +1,5 @@
+import "../../css/myPageBusiness.css";
+import "../../css/myPageBusiness_mobile.css";
 import { useSelector } from "react-redux";
 const MyPageBusinessS1 = () => {
   // const navigate = useNavigate();
