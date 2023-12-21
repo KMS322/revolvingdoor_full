@@ -6,40 +6,66 @@ import useInput from "../hooks/useInput";
 const MyApplicationStep2S2 = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const newState = state.copiedState;
   const dispatch = useDispatch();
-  const [business_application_payType, setPayType] = useState();
-  const [business_application_payMin, onChangePayMin] = useInput("");
-  const [business_application_payMax, onChangePayMax] = useInput("");
-  const [business_application_workTime1Hour, onChangeWorkTime1Hour] =
-    useInput("");
+  const [business_application_payType, setPayType] = useState(
+    newState.business_application_payType
+  );
+  const [business_application_payMin, onChangePayMin] = useInput(
+    newState.business_application_payMin
+  );
+  const [business_application_payMax, onChangePayMax] = useInput(
+    newState.business_application_payMax
+  );
+  const [business_application_workTime1Hour, onChangeWorkTime1Hour] = useInput(
+    newState.business_application_workTime1Hour
+  );
   const [business_application_workTime1Minute, onChangeWorkTime1Minute] =
-    useInput("");
-  const [business_application_workTime2Hour, onChangeWorkTime2Hour] =
-    useInput("");
+    useInput(newState.business_application_workTime1Minute);
+  const [business_application_workTime2Hour, onChangeWorkTime2Hour] = useInput(
+    newState.business_application_workTime2Hour
+  );
   const [business_application_workTime2Minute, onChangeWorkTime2Minute] =
-    useInput("");
-  const [business_application_workTimeDay, onChangeWorkTimeDay] = useInput("");
-  const [business_application_workTimeHour, onChangeWorkTimeHour] =
-    useInput("");
+    useInput(newState.business_application_workTime2Minute);
+  const [business_application_workTimeDay, onChangeWorkTimeDay] = useInput(
+    newState.business_application_workTimeDay
+  );
+  const [business_application_workTimeHour, onChangeWorkTimeHour] = useInput(
+    newState.business_application_workTimeHour
+  );
   const [business_application_breakTime1Hour, onChangebreakTime1Hour] =
-    useInput("");
+    useInput(newState.business_application_breakTime1Hour);
   const [business_application_breakTime1Minute, onChangebreakTime1Minute] =
-    useInput("");
+    useInput(newState.business_application_breakTime1Minute);
   const [business_application_breakTime2Hour, onChangebreakTime2Hour] =
-    useInput("");
+    useInput(newState.business_application_breakTime2Hour);
   const [business_application_breakTime2Minute, onChangebreakTime2Minute] =
-    useInput("");
-  const [business_application_workPlace, setWorkPlace] = useState();
-  const [business_application_severancePay, setSeverancePay] = useState();
-  const [business_application_employmentType, setEmploymentType] = useState();
+    useInput(newState.business_application_breakTime2Minute);
+  const [business_application_workPlace, setWorkPlace] = useState(
+    newState.business_application_workPlace
+  );
+  const [business_application_severancePay, setSeverancePay] = useState(
+    newState.business_application_severancePay
+  );
+  const [business_application_employmentType, setEmploymentType] = useState(
+    newState.business_application_employmentType
+  );
   const [
     business_application_employmentTypeMonth,
     onChangeEmploymentTypeMonth,
-  ] = useInput("");
-  const [business_application_rank1, onChangeRank1] = useInput("");
-  const [business_application_rank2, onChangeRank2] = useInput("");
-  const [business_application_rank3, onChangeRank3] = useInput("");
-  const [business_application_rank4, onChangeRank4] = useInput("");
+  ] = useInput(newState.business_application_employmentTypeMonth);
+  const [business_application_rank1, onChangeRank1] = useInput(
+    newState.business_application_rank1
+  );
+  const [business_application_rank2, onChangeRank2] = useInput(
+    newState.business_application_rank2
+  );
+  const [business_application_rank3, onChangeRank3] = useInput(
+    newState.business_application_rank3
+  );
+  const [business_application_rank4, onChangeRank4] = useInput(
+    newState.business_application_rank4
+  );
 
   const { addApplicationDone } = useSelector(
     (state) => state.businessApplication
@@ -482,7 +508,7 @@ const MyApplicationStep2S2 = () => {
         </label>
 
         <button type="submit" onClick={onSubmitForm}>
-          신청하기
+          수정하기
         </button>
       </form>
     </div>
