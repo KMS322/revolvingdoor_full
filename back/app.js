@@ -15,6 +15,8 @@ const applicationsRouter = require("./routes/applications");
 const recruitmentRouter = require("./routes/businessRecruitment");
 const db = require("./models");
 const passportConfig = require("./passport");
+// const hpp = require("hpp");
+// const helmet = require("helmet");
 
 dotenv.config();
 const app = express();
@@ -28,9 +30,19 @@ db.sequelize
 
 passportConfig();
 
+// if (process.env.NODE_ENV === "production") {
+//   app.use(morgan("combined"));
+//   app.use(hpp());
+//   app.use(helmet());
+// } else {
+//   app.use(morgan("dev"));
+// }
+// npm i pm2 cross-env helmet hpp
+// (package.json) "cross-env NODE_ENV=production pm2 start app"
+
 app.use(
   cors({
-    // origin: 'https://domain.com'
+    // origin: ['https://domain.com', 'revolving.com'],
     origin: "http://localhost:3000",
     credentials: true,
   })
