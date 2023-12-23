@@ -33,9 +33,9 @@ import MyApplicationStep1Components from "./pages/myApplication/myApplicationSte
 import MyApplicationStep2Components from "./pages/myApplication/myApplicationStep2Components.js";
 function App() {
   const dispatch = useDispatch();
-  const { logInDone } = useSelector((state) => state.user);
+  const { me, logInDone } = useSelector((state) => state.user);
   // const { me_business } = useSelector((state) => state.business);
-
+  console.log("App.js 에서 me : ", me);
   useEffect(() => {
     dispatch({
       type: LOAD_MY_INFO_REQUEST,
