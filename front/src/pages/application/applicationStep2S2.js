@@ -46,7 +46,7 @@ const ApplicationStep2S2 = () => {
   );
   useEffect(() => {
     if (addApplicationDone) {
-      navigate("/myPageBusiness");
+      window.location.href = "/myPageBusiness";
     }
   }, [addApplicationDone]);
 

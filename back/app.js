@@ -9,6 +9,7 @@ const postRouter = require("./routes/post");
 const resumeRouter = require("./routes/userResume");
 const resumesRouter = require("./routes/resumes");
 const careerRouter = require("./routes/userCareer");
+const careersRouter = require("./routes/careers");
 const businessRouter = require("./routes/business");
 const applicationRouter = require("./routes/businessApplication");
 const applicationsRouter = require("./routes/applications");
@@ -43,7 +44,11 @@ passportConfig();
 app.use(
   cors({
     // origin: ['https://domain.com', 'revolving.com'],
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost",
+      "http://43.202.51.175",
+    ],
     credentials: true,
   })
 );
@@ -74,6 +79,7 @@ app.use("/post", postRouter);
 app.use("/resume", resumeRouter);
 app.use("/resumes", resumesRouter);
 app.use("/career", careerRouter);
+app.use("/careers", careersRouter);
 app.use("/business", businessRouter);
 app.use("/application", applicationRouter);
 app.use("/applications", applicationsRouter);

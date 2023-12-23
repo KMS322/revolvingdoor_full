@@ -17,17 +17,19 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (!me) {
-      navigate("/");
+    if (!me && logOutDone) {
+      // navigate("/");
+      window.location.href = "/";
     }
   }, [me, logOutDone]);
+
   const logOut = useCallback(() => {
     if (!me) {
       goPage("/logIn");
     } else {
       dispatch(logoutRequestAction());
     }
-  }, [me]);
+  }, [me, navigate, dispatch]);
   // if (me && typeof me === "object" && me.userType) {
   //   console.log("me.userType : ", me.userType);
   // }

@@ -52,7 +52,7 @@ const MyPageS2 = () => {
             <p>지원여부</p>
             <p>관리</p>
           </div>
-          {uniqueResumes.map((resume, index) => {
+          {uniqueResumes.slice(0, 5).map((resume, index) => {
             return (
               <div className="content_row row" key={index}>
                 <p className="pc">경산시</p>

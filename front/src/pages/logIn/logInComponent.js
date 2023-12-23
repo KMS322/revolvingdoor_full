@@ -77,7 +77,6 @@ const LogInComponent = () => {
   const goPage = (path) => {
     navigate(path);
   };
-  console.log("userType : ", userType);
   return (
     <div className="logIn_s1">
       <div className="section_container">

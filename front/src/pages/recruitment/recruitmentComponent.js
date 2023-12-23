@@ -2,14 +2,12 @@ import "../../css/recruitment.css";
 import "../../css/recruitment_mobile.css";
 import Nav from "../nav";
 import React, { useState, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_RECRUITMENT_REQUEST } from "../../reducers/businessRecruitment";
 
 const RecruitmentComponent = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [business_recruitment_name, onChangeName] = useInput("");
   const [business_recruitment_tel, onChangeTel] = useInput("");
   const [business_recruitment_email, onChangeEmail] = useInput("");
@@ -86,7 +84,7 @@ const RecruitmentComponent = () => {
   );
   useEffect(() => {
     if (addRecruitmentDone) {
-      navigate("/");
+      window.location.href = "/";
     }
   }, [addRecruitmentDone]);
   const onSubmitForm = useCallback(

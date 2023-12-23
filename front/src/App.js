@@ -4,8 +4,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { LOAD_MY_INFO_REQUEST } from "./reducers/user";
+import { LOAD_CAREER_REQUEST } from "./reducers/userCareer";
 import Header from "./pages/header.js";
 import Footer from "./pages/footer.js";
+import ScrollToTop from "./scrollToTop.js";
 import MainComponents from "./pages/main/mainComponents";
 import MatchingComponents from "./pages/matchingInfo/matchingInfoComponents";
 import InfoDetailComponents from "./pages/infoDetail/infoDetailComponents";
@@ -17,33 +19,39 @@ import LogInComponent from "./pages/logIn/logInComponent.js";
 import SignInComponent from "./pages/signIn/signInComponent.js";
 import MyPageComponents from "./pages/myPage/myPageComponents.js";
 import MyPageBusinessComponents from "./pages/myPageBusiness/myPageBusinessComponents.js";
-import SignInFormComponents from "./pages/signInForm/signInFormComponents.js";
 import SignInStep1Components from "./pages/signIn/sigInStep1Components.js";
 import SignInStep2Components from "./pages/signIn/sigInStep2Components.js";
 import SignInStep3Components from "./pages/signIn/sigInStep3Components.js";
 import SignInBusinessStep1Components from "./pages/signInBusiness/sigInBusinessStep1Components.js";
 import SignInBusinessStep2Components from "./pages/signInBusiness/sigInBusinessStep2Components.js";
-import ResumeComponents from "./pages/resume/resumeComponents.js";
+import ResumeComponent from "./pages/resume/resumeComponent.js";
 import CareerComponent from "./pages/career/careerComponent.js";
 import RecruitmentComponent from "./pages/recruitment/recruitmentComponent.js";
 import ApplicationStep1Components from "./pages/application/applicationStep1Components.js";
 import ApplicationStep2Components from "./pages/application/applicationStep2Components.js";
-import MyResumeComponent from "./pages/myResume/myResumeComponent.js";
+import MyResumeComponents from "./pages/myResume/myResumeComponent.js";
 import MyApplicationStep1Components from "./pages/myApplication/myApplicationStep1Components.js";
 import MyApplicationStep2Components from "./pages/myApplication/myApplicationStep2Components.js";
+
 function App() {
   const dispatch = useDispatch();
-  const { me, logInDone } = useSelector((state) => state.user);
-  // const { me_business } = useSelector((state) => state.business);
-  console.log("App.js 에서 me : ", me);
+  const { logInDone } = useSelector((state) => state.user);
+  const { changeCareerDone } = useSelector((state) => state.userCareer);
+
   useEffect(() => {
     dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
   }, [logInDone]);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_CAREER_REQUEST,
+    });
+  }, [changeCareerDone]);
   return (
     <>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainComponents />} />
         <Route path="/matchingInfo" element={<MatchingComponents />} />
@@ -59,7 +67,6 @@ function App() {
         <Route path="/signIn" element={<SignInComponent />} />
         <Route path="/myPage" element={<MyPageComponents />} />
         <Route path="/myPageBusiness" element={<MyPageBusinessComponents />} />
-        <Route path="/signInForm" element={<SignInFormComponents />} />
         <Route path="/signStep1" element={<SignInStep1Components />} />
         <Route path="/signStep2" element={<SignInStep2Components />} />
         <Route path="/signStep3" element={<SignInStep3Components />} />
@@ -72,7 +79,7 @@ function App() {
           element={<SignInBusinessStep2Components />}
         />
 
-        <Route path="/resume" element={<ResumeComponents />} />
+        <Route path="/resume" element={<ResumeComponent />} />
         <Route path="/career" element={<CareerComponent />} />
         <Route path="/recruitment" element={<RecruitmentComponent />} />
         <Route
@@ -83,7 +90,7 @@ function App() {
           path="/applicationStep2"
           element={<ApplicationStep2Components />}
         />
-        <Route path="/myResume" element={<MyResumeComponent />} />
+        <Route path="/myResume" element={<MyResumeComponents />} />
         <Route
           path="/myApplicationStep1"
           element={<MyApplicationStep1Components />}

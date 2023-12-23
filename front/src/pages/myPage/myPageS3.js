@@ -17,7 +17,7 @@ const MyPageS3 = () => {
             <p>급여</p>
             <p>수락여부</p>
           </div>
-          <div
+          {/* <div
             className="content_row row end"
             onClick={() => {
               goPage("/infoDetail");
@@ -85,7 +85,7 @@ const MyPageS3 = () => {
               <div className="btn">수락</div>
               <div className="btn">거절</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -49,9 +49,7 @@ const reducer = (state = initialState, action) => {
       case LOAD_RESUME_SUCCESS:
         draft.loadResumeLoading = false;
         draft.loadResumeDone = true;
-        console.log("reduces 안에서 resumes : ", state.resumes);
         draft.resumes = draft.resumes.concat(action.data);
-        console.log("reduces 안에서 concat 후 resumes : ", state.resumes);
         break;
       case LOAD_RESUME_FAILURE:
         draft.loadResumeLoading = false;

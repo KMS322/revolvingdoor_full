@@ -14,13 +14,13 @@ import {
 } from "../reducers/userResume";
 import { ADD_RESUME_TO_ME, REMOVE_RESUME_OF_ME } from "../reducers/user";
 
-function loadResumeAPI(data) {
+function loadResumeAPI() {
   return axios.get("/resumes");
 }
 
-function* loadResume(action) {
+function* loadResume() {
   try {
-    const result = yield call(loadResumeAPI, action.data);
+    const result = yield call(loadResumeAPI);
     yield put({
       type: LOAD_RESUME_SUCCESS,
       data: result.data,

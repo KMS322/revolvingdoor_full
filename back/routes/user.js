@@ -101,7 +101,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 
 router.post("/logout", isLoggedIn, (req, res) => {
   req.logout(() => {
-    res.redirect("/");
+    // res.redirect("/");
   });
   res.status(201).send("ok");
 });

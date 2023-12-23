@@ -11,7 +11,9 @@ import {
 
 const CareerComponent = () => {
   const dispatch = useDispatch();
-  const { addCareerDone, careers } = useSelector((state) => state.userCareer);
+  const { addCareerDone, careers, loadCareerDone } = useSelector(
+    (state) => state.userCareer
+  );
   console.log("career 컴포넌트 내에서 careers : ", careers[0]);
   const [user_career_company1, onChangeCompany1] = useInput(
     careers[0] ? careers[0].user_career_company1 : ""
@@ -107,6 +109,11 @@ const CareerComponent = () => {
     careers[0] ? careers[0].user_career_abilityDrive2 : ""
   );
 
+  useEffect(() => {
+    const Company1 = careers[0] ? careers[0].user_career_abilityDrive2 : "";
+    setAbilityDrive2(Company1);
+  }, [loadCareerDone]);
+
   const selectStyle1 = (data) => {
     return {
       borderColor: user_career_changeReason === data ? "#2196F3" : "#eeeeee",
@@ -130,6 +137,11 @@ const CareerComponent = () => {
       window.location.href = "/";
     }
   }, [addCareerDone]);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_CAREER_REQUEST,
+    });
+  }, []);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
