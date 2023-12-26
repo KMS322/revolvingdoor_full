@@ -15,13 +15,13 @@ import {
   SIGN_UP_FAILURE,
 } from "../reducers/user";
 
-function loadUserAPI(data) {
-  return axios.get("/user", data);
+function loadUserAPI() {
+  return axios.get("/user");
 }
 
 function* loadUser(action) {
   try {
-    const result = yield call(loadUserAPI, action.data);
+    const result = yield call(loadUserAPI);
     console.log("result : ", result);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
@@ -37,7 +37,6 @@ function* loadUser(action) {
 }
 
 function logInAPI(data) {
-  console.log("data : ", data);
   return axios.post("/user/login", data);
 }
 

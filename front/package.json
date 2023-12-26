@@ -22,8 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env NODE_ENV=production react-scripts start -p 80",
+    "build": "cross-env ANALYZE=true NODE_ENV=production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

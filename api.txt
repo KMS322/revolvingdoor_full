@@ -1,3 +1,15 @@
+DB 정보
+username : root
+database 명 : revolving_db
+password : zmfladhvm
+
+DB 데이터 확인(mysql 접속) 방법
+1. 키 파일 있는 폴더에서 cmd 켜기
+2. ssh -i "apsp.pem" ubuntu@ec2-52-79-149-76.ap-northeast-2.compute.amazonaws.com 입력
+3. cd revolvingdoor_full 입력
+4. mysql -uroot -p 입력
+5. db 정보 확인
+
 - 로그인
 -> post("/user/login", data)
 -> data 형태
@@ -24,6 +36,54 @@ data : {
     user_member_tel, // 휴대전화
     user_member_email, // 이메일
 }
+
+- 유저정보 불러오기(현재 로그인된 유저 정보)
+-> get("/user")
+
+- 유저(구직자) 경력사항 불러오기
+-> get("/careers")
+
+- 유저(구직자) 경력사항 저장하기
+-> post("/career", data)
+-> data 형태
+data: {
+  user_career_company1, // 근무처
+  user_career_position1, // 직위
+  user_career_companyState1, // 담당 사업장 형태와 업태
+  user_career_program1, // 사용 프로그램
+  user_career_period11Year, // 근무기간 시작 년
+  user_career_period11Month, // 근무기간 시작 월
+  user_career_period12Year, // 근무기간 끝 년
+  user_career_period12Month, // 근무기간 끝 월
+  user_career_license1, // 자격명
+  user_career_license1Year, // 취득일 년
+  user_career_license1Month, // 취득일 월
+  user_career_license1Day, // 취득일 일
+  user_career_license1Organization, // 발급기관
+  user_career_trainingName1, // 훈련 과정명
+  user_career_trainingPeriod11Year, // 훈련기간 시작 년
+  user_career_trainingPeriod11Month, // 훈련기간 시작 월
+  user_career_trainingPeriod12Year, // 훈련기간 끝 년 
+  user_career_trainingPeriod12Month, // 훈련기간 끝 월
+  user_career_trainingDetail1, // 세부 훈련 내용
+  user_career_trainingOrganization, // 훈련 기관명
+  user_career_changeYear, // 최종 이직 시기 년
+  user_career_changeMonth, // 최종 이직 시기 월
+  user_career_changeReason, // 이직 사유
+  user_career_knowCount, // 회계 지식(보기 중 택 1)
+  user_career_knowTax, // 세무 지식(보기 중 택 1)
+  user_career_abilityProcess1, // 전산활용능력 문서 작성
+  user_career_abilityProcess2, // 전산활용능력 스프레드시트
+  user_career_abilityProcess3, // 전산활용능력 프레젠테이션
+  user_career_abilityProcess4, // 전산활용능력 회계프로그램
+  user_career_abilityProcess5, // 전산활용능력 기타
+  user_career_abilityProcess6, // 전산활용능력 텍스트
+  user_career_abilityDrive1, // 운전능력 운전면허증
+  user_career_abilityDrive2, // 운전능력 차량소지자
+},
+
+- 유저(구직자) 이력서 불러오기
+-> get("/resumes")
 
 - 이력서 작성
 -> post("/resume", data)
@@ -95,6 +155,11 @@ data : {
   user_career_abilityDrive2, // 운전능력 차량소지자
 }
 
+- 경력 정보 수정
+-> post("/career/change", data)
+-> data 형태
+post("/career", data)의 데이터 형태와 동일
+
 - 회원가입(구인용) 
 -> post("user/signup", data)
 -> data 형태
@@ -112,5 +177,103 @@ data : {
   business_member_address2, // 주소2
   business_member_tel, // 대표 전화번호 
   business_member_email, //이메일
-} 
+}
 
+- 구인신청서(구인기업) 불러오기
+get("/applications")
+
+- 구인신청서(구인기업) 저장
+-> post("/application", data)
+-> data 형태
+data: {
+  step1_data: state.step1_data, // 아래내용 참고
+  business_application_payType, // 임금(보기 중 택 1)
+  business_application_payMin, // 임금 최저 금액
+  business_application_payMax, // 임금 최대 금액
+  business_application_workTime1Hour, // 근무시간 시작 시간
+  business_application_workTime1Minute, // 근무시간 시작 분
+  business_application_workTime2Hour, // 근무시간 끝 시간
+  business_application_workTime2Minute, // 근무시간 끝 분
+  business_application_workTimeDay, // 근무시간 일 
+  business_application_workTimeHour, // 근무시간 시간
+  business_application_breakTime1Hour, // 휴게시간 시작 시간
+  business_application_breakTime1Minute, // 휴게시간 시작 분
+  business_application_breakTime2Hour, // 휴게시간 끝 시간
+  business_application_breakTime2Minute, // 휴게시간 끝 분
+  business_application_workPlace, // 근무 장소(보기 중 택1)
+  business_application_severancePay, // 퇴직 급여(보기 중 택1)
+  business_application_employmentType, // 고용형태(보기 중 택1)
+  business_application_employmentTypeMonth, // 고용형태 개월
+  business_application_rank1, // 임시직 채용우선순위 근무시작 가능시기(1~4)
+  business_application_rank2, // 임시직 채용우선순위 경력 가능시기(1~4)
+  business_application_rank3, // 임시직 채용우선순위 근무형태 가능시기(1~4)
+  business_application_rank4, // 임시직 채용우선순위 가능시기(1~4)
+},
+-> step1_data 형태
+step1_data = {
+  business_application_name, // 채용 제목
+  business_application_type, // 모집 직종
+  business_application_number, // 모집 이누언
+  business_application_startNow, // 근무시기 공고일 이후 채용 즉시
+  business_application_startYear, // 근무시기 시작 년
+  business_application_startMonth, // 근무시기 시작 월
+  business_application_expectPeriod, // 예상 근무기간
+  business_application_workContent1, // 직무내용 기장 신고
+  business_application_workContent2, // 직무내용 결산
+  business_application_workContent3, // 직무내용 조정
+  business_application_workContent4, // 직무내용 회계감사
+  business_application_workContent5, // 직무내용 세무조사
+  business_application_workContent6, // 직무내용 컨설팅
+  business_application_workContent7, // 직무내용 연구개발비정산
+  business_application_program, // 직무내용 더죤
+  business_application_program1, // 직무내용 텍스트
+  business_application_career, // 경력(관계 없음, 신입 중 택1)
+  business_application_career1, // 경력 텍스트
+  business_application_schoolFinal, // 학력(보기 중 택1)
+  business_application_schoolLisence, // 자격면허 텍스트
+  business_application_schoolLisence1, // 자격면허 (보기 중 택1)
+};
+
+- 채용담당(구인기업) 저장
+-> post("/application", data)
+-> data 형태
+data: {
+  business_recruitment_name, // 성명
+  business_recruitment_tel, // 전화
+  business_recruitment_email, // 이메일
+  business_recruitment_phone, // 휴대전화
+  business_recruitment_insurance1, // 사회보험 고용보험
+  business_recruitment_insurance2, // 사회보험 산재보험 
+  business_recruitment_insurance3, // 사회보험 건강보험
+  business_recruitment_insurance4, // 사회보험 국민연금
+  business_recruitment_insurance5, // 사회보험 해당사항없음
+  business_recruitment_welfare1, // 복리후생 통근버스
+  business_recruitment_welfare2, // 복리후생 차량유지비 
+  business_recruitment_welfare3, // 복리후생 기숙사
+  business_recruitment_welfare4, // 복리후생 교육비
+  business_recruitment_welfare5, // 복리후생 모성 보호 시설
+  business_recruitment_welfare6, // 복리후생 자녀 학자금 지원
+  business_recruitment_welfare7, // 복리후생 주택자금
+  business_recruitment_welfare8, // 복리후생 직원대출제도
+  business_recruitment_welfare9, // 복리후생 기타
+  business_recruitment_welfare10, // 복리후생 텍스트
+  business_recruitment_meal, // 식사제공(보기 중 택1)
+  business_recruitment_handicapped1, // 장애인용 복지시설 주차장
+  business_recruitment_handicapped2, // 장애인용 복지시설 승강기
+  business_recruitment_handicapped3, // 장애인용 복지시설 건물 내부 경사로
+  business_recruitment_handicapped4, // 장애인용 복지시설 화장실
+  business_recruitment_handicapped5, // 장애인용 복지시설 기타
+  business_recruitment_handicapped6, // 장애인용 복지시설 텍스트
+  business_recruitment_program1, // 전산활용 문서 작성
+  business_recruitment_program2, // 전산활용 스프레드시트
+  business_recruitment_program3, // 전산활용 프레젠테이션
+  business_recruitment_program4, // 전산활용 회계프로그램
+  business_recruitment_program5, // 전산활용 기타
+  business_recruitment_program6, // 전산활용 텍스트
+  business_recruitment_accountingProgram, // 전산활용(경험있음, 경험없음 중 택 1)
+  business_recruitment_accountingProgramLevel, // 전산활용 수준(상, 중, 하 중 택1)
+  business_recruitment_abilityDrive1, // 운전 운전면허증
+  business_recruitment_abilityDrive2, // 운전 차량소지자
+  business_recruitment_major1, // 전공 특정 전공자
+  business_recruitment_major2, // 전공 텍스트
+},
