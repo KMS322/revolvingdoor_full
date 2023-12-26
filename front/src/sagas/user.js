@@ -22,7 +22,7 @@ function loadUserAPI() {
 function* loadUser(action) {
   try {
     const result = yield call(loadUserAPI);
-    console.log("result : ", result);
+    console.log("로드 saga 내에서 result : ", result);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result.data,

@@ -65,7 +65,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false, // HTTPS를 사용하면 true로 변경
-      sameSite: "None",
+      // sameSite: "None",
       maxAge: 1000 * 60 * 60 * 24, // 세션 쿠키의 유효 기간 (1일)
     },
   })

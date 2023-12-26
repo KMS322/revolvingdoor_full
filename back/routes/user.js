@@ -93,7 +93,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
           },
         ],
       });
-
+      console.log("login 라우터 진입");
       return res.status(200).json(fullUserWithoutPassword);
     });
   })(req, res, next);

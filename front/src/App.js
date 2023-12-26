@@ -43,11 +43,11 @@ function App() {
       type: LOAD_MY_INFO_REQUEST,
     });
   }, [logInDone]);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_CAREER_REQUEST,
-    });
-  }, [changeCareerDone]);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_CAREER_REQUEST,
+  //   });
+  // }, [changeCareerDone]);
   return (
     <>
       <Header />
