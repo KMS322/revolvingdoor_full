@@ -37,7 +37,11 @@ function App() {
   const dispatch = useDispatch();
   const { logInDone } = useSelector((state) => state.user);
   const { changeCareerDone } = useSelector((state) => state.userCareer);
-
+  useEffect(() => {
+    document.cookie = "safeCookie1=foo;SameSite=Lax";
+    document.cookie = "safeCookie2=foo";
+    document.cookie = "crossCookie=bar;SameSite=None;Secure";
+  }, []);
   useEffect(() => {
     dispatch({
       type: LOAD_MY_INFO_REQUEST,
