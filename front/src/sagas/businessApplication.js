@@ -11,6 +11,9 @@ import {
   LOAD_APPLICATION_REQUEST,
   LOAD_APPLICATION_SUCCESS,
   LOAD_APPLICATION_FAILURE,
+  CHANGE_APPLICATION_REQUEST,
+  CHANGE_APPLICATION_SUCCESS,
+  CHANGE_APPLICATION_FAILURE,
 } from "../reducers/businessApplication";
 import {
   ADD_APPLICATION_TO_ME,
@@ -62,16 +65,36 @@ function* addApplication(action) {
   }
 }
 
+function changeApplicationAPI(data) {
+  return axios.post("/application/change", data);
+}
+
+function* changeApplication(action) {
+  try {
+    const result = yield call(changeApplicationAPI, action.data);
+    yield put({
+      type: CHANGE_APPLICATION_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: CHANGE_APPLICATION_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
 function removeApplicationAPI(data) {
-  return axios.delete(`/application/${data}`);
+  return axios.delete("/application/remove", { data: { id: data.id } });
 }
 
 function* removeApplication(action) {
   try {
-    // const result = yield call(removeApplicationAPI, action.data);
+    const result = yield call(removeApplicationAPI, action.data);
     yield put({
       type: REMOVE_APPLICATION_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
     yield put({
       type: REMOVE_APPLICATION_OF_ME,
@@ -85,6 +108,7 @@ function* removeApplication(action) {
     });
   }
 }
+
 function* watchLoadApplication() {
   yield takeLatest(LOAD_APPLICATION_REQUEST, loadApplication);
 }
@@ -97,10 +121,15 @@ function* watchRemoveApplication() {
   yield takeLatest(REMOVE_APPLICATION_REQUEST, removeApplication);
 }
 
+function* watchChangeApplication() {
+  yield takeLatest(CHANGE_APPLICATION_REQUEST, changeApplication);
+}
+
 export default function* applicationSaga() {
   yield all([
     fork(watchLoadApplication),
     fork(watchAddApplication),
     fork(watchRemoveApplication),
+    fork(watchChangeApplication),
   ]);
 }

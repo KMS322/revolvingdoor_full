@@ -43,20 +43,6 @@ const SignInStep3S2 = (props) => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(
-        "아이디 : ",
-        user_member_id,
-        " 비밀번호 : ",
-        user_member_pw,
-        " 유저타입 : ",
-        userType
-      );
-      console.log("user_member_name : ", user_member_name);
-      console.log("user_member_num : ", user_member_num);
-      console.log("user_member_address1 : ", user_member_address1);
-      console.log("user_member_address2 : ", user_member_address2);
-      console.log("user_member_tel : ", user_member_tel);
-      console.log("user_member_email : ", user_member_email);
 
       dispatch({
         type: SIGN_UP_REQUEST,

@@ -1,20 +1,32 @@
 import "../../css/myPageBusiness.css";
 import "../../css/myPageBusiness_mobile.css";
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_APPLICATION_REQUEST } from "../../reducers/businessApplication";
+import {
+  LOAD_APPLICATION_REQUEST,
+  REMOVE_APPLICATION_REQUEST,
+} from "../../reducers/businessApplication";
 
 const MyPageBusinessS2 = () => {
   const dispatch = useDispatch();
-  const { applications } = useSelector((state) => state.businessApplication);
+  const { applications, removeApplicationDone } = useSelector(
+    (state) => state.businessApplication
+  );
   const removeDuplicatesById = (applications) => {
+    if (!applications || !Array.isArray(applications)) {
+      return [];
+    }
     const uniqueApplication = [];
     const existingIds = [];
 
     for (const application of applications) {
-      if (!existingIds.includes(application.id)) {
+      if (
+        application &&
+        application.id &&
+        !existingIds.includes(application.id)
+      ) {
         uniqueApplication.push(application);
         existingIds.push(application.id);
       }
@@ -32,6 +44,27 @@ const MyPageBusinessS2 = () => {
     });
   }, [dispatch]);
 
+  const onDelete = useCallback(
+    (e, id) => {
+      const isConfirmed = window.confirm("삭제하시겠습니까?");
+      if (isConfirmed) {
+        e.preventDefault();
+        dispatch({
+          type: REMOVE_APPLICATION_REQUEST,
+          data: {
+            id,
+          },
+        });
+      }
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (removeApplicationDone) {
+      window.location.reload();
+    }
+  }, [removeApplicationDone]);
   return (
     <div className="myPageBusiness_s2">
       <div className="article_container">
@@ -60,7 +93,8 @@ const MyPageBusinessS2 = () => {
                 <p className="pc">경산시</p>
                 <p>{application.business_application_name}</p>
                 <p>{dayjs(application.updatedAt).format("YYYY-MM-DD")}</p>
-                <p className="state1">비공개 상태</p>
+                {/* <p className="state1">비공개 상태</p> */}
+                <p className="state1">{application.id}</p>
                 <div className="manage_box">
                   <div
                     className="manage"
@@ -72,7 +106,14 @@ const MyPageBusinessS2 = () => {
                   >
                     수정
                   </div>
-                  <div className="manage">삭제</div>
+                  <div
+                    className="manage"
+                    onClick={(e) => {
+                      onDelete(e, application.id);
+                    }}
+                  >
+                    삭제
+                  </div>
                 </div>
               </div>
             );

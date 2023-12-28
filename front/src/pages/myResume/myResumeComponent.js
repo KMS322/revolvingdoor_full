@@ -2,7 +2,7 @@ import "../../css/myResume.css";
 import "../../css/myResume_mobile.css";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_RESUME_REQUEST } from "../../reducers/userResume";
+import { CHANGE_RESUME_REQUEST } from "../../reducers/userResume";
 import { useNavigate, useLocation } from "react-router-dom";
 import useInput from "../hooks/useInput";
 const MyResumeComponent = () => {
@@ -10,88 +10,88 @@ const MyResumeComponent = () => {
   const { state } = useLocation();
   const dispatch = useDispatch();
   const [user_resume_title, onChangeTitle] = useInput(
-    state.resume.user_resume_title
+    state && state.resume ? state.resume.user_resume_title : ""
   );
   const [user_resume_schoolMajor, onChangeSchoolMajor] = useInput(
-    state.resume.user_resume_schoolMajor
+    state && state.resume ? state.resume.user_resume_schoolMajor : ""
   );
   const [user_resume_schoolPeriod1Year, onChangeSchoolPeriod1Year] = useInput(
-    state.resume.user_resume_schoolPeriod1Year
+    state && state.resume ? state.resume.user_resume_schoolPeriod1Year : ""
   );
   const [user_resume_schoolPeriod1Month, onChangeSchoolPeriod1Month] = useInput(
-    state.resume.user_resume_schoolPeriod1Month
+    state && state.resume ? state.resume.user_resume_schoolPeriod1Month : ""
   );
   const [user_resume_schoolPeriod2Year, onChangeSchoolPeriod2Year] = useInput(
-    state.resume.user_resume_schoolPeriod2Year
+    state && state.resume ? state.resume.user_resume_schoolPeriod2Year : ""
   );
   const [user_resume_schoolPeriod2Month, onChangeSchoolPeriod2Month] = useInput(
-    state.resume.user_resume_schoolPeriod2Month
+    state && state.resume ? state.resume.user_resume_schoolPeriod2Month : ""
   );
   const [user_resume_schoolFinal, setSchoolFinal] = useState(
-    state.resume.user_resume_schoolFinal
+    state && state.resume ? state.resume.user_resume_schoolFinal : ""
   );
   const [user_resume_hopeCompany, setHopeCompany] = useState(
-    state.resume.user_resume_hopeCompany
+    state && state.resume ? state.resume.user_resume_hopeCompany : ""
   );
   const [user_resume_hopeRegion1, onChangeHopeRegion1] = useInput(
-    state.resume.user_resume_hopeRegion1
+    state && state.resume ? state.resume.user_resume_hopeRegion1 : ""
   );
   const [user_resume_hopeRegion2, onChangeHopeRegion2] = useInput(
-    state.resume.user_resume_hopeRegion2
+    state && state.resume ? state.resume.user_resume_hopeRegion2 : ""
   );
   const [user_resume_hopeRegion, setHopeRegion] = useState(
-    state.resume.user_resume_hopeRegion
+    state && state.resume ? state.resume.user_resume_hopeRegion : ""
   );
 
   const [user_resume_hopePayType1, setHopePayType1] = useState(
-    state.resume.user_resume_hopePayType1
+    state && state.resume ? state.resume.user_resume_hopePayType1 : ""
   );
   const [user_resume_hopePayType2, setHopePayType2] = useState(
-    state.resume.user_resume_hopePayType2
+    state && state.resume ? state.resume.user_resume_hopePayType2 : ""
   );
   const [user_resume_hopePay, onChangeHopePay] = useInput(
-    state.resume.user_resume_hopePay
+    state && state.resume ? state.resume.user_resume_hopePay : ""
   );
   const [user_resume_hopeWork1, setHopeWork1] = useState(
-    state.resume.user_resume_hopeWork1
+    state && state.resume ? state.resume.user_resume_hopeWork1 : ""
   );
   const [user_resume_hopeWork2, setHopeWork2] = useState(
-    state.resume.user_resume_hopeWork2
+    state && state.resume ? state.resume.user_resume_hopeWork2 : ""
   );
   const [user_resume_hopeWork3, setHopeWork3] = useState(
-    state.resume.user_resume_hopeWork3
+    state && state.resume ? state.resume.user_resume_hopeWork3 : ""
   );
   const [user_resume_hopeWork4, setHopeWork4] = useState(
-    state.resume.user_resume_hopeWork4
+    state && state.resume ? state.resume.user_resume_hopeWork4 : ""
   );
   const [user_resume_hopeStartYear, onChangeHopeStartYear] = useInput(
-    state.resume.user_resume_hopeStartYear
+    state && state.resume ? state.resume.user_resume_hopeStartYear : ""
   );
   const [user_resume_hopeStartMonth, onChangeHopeStartMonth] = useInput(
-    state.resume.user_resume_hopeStartMonth
+    state && state.resume ? state.resume.user_resume_hopeStartMonth : ""
   );
   const [user_resume_hopeStartDay, onChangeHopeStartDay] = useInput(
-    state.resume.user_resume_hopeStartDay
+    state && state.resume ? state.resume.user_resume_hopeStartDay : ""
   );
   const [user_resume_hopeWorkTime1Hour, setHopeWorkTime1Hour] = useInput(
-    state.resume.user_resume_hopeWorkTime1Hour
+    state && state.resume ? state.resume.user_resume_hopeWorkTime1Hour : ""
   );
   const [user_resume_hopeWorkTime1Minute, setHopeWorkTime1Minute] = useInput(
-    state.resume.user_resume_hopeWorkTime1Minute
+    state && state.resume ? state.resume.user_resume_hopeWorkTime1Minute : ""
   );
   const [user_resume_hopeWorkTime2Hour, setHopeWorkTime2Hour] = useInput(
-    state.resume.user_resume_hopeWorkTime2Hour
+    state && state.resume ? state.resume.user_resume_hopeWorkTime2Hour : ""
   );
   const [user_resume_hopeWorkTime2Minute, setHopeWorkTime2Minute] = useInput(
-    state.resume.user_resume_hopeWorkTime2Minute
+    state && state.resume ? state.resume.user_resume_hopeWorkTime2Minute : ""
   );
 
-  const { addResumeDone } = useSelector((state) => state.userResume);
+  const { changeResumeDone } = useSelector((state) => state.userResume);
   useEffect(() => {
-    if (addResumeDone) {
+    if (changeResumeDone) {
       navigate(-1);
     }
-  }, [addResumeDone]);
+  }, [changeResumeDone]);
 
   const selectStyle1 = (data) => {
     return {
@@ -115,10 +115,10 @@ const MyResumeComponent = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log("타이틀 : ", user_resume_title);
       dispatch({
-        type: ADD_RESUME_REQUEST,
+        type: CHANGE_RESUME_REQUEST,
         data: {
+          resumeId: state.resume.id,
           user_resume_title,
           user_resume_schoolMajor,
           user_resume_schoolPeriod1Year,

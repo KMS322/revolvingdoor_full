@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_APPLICATION_REQUEST } from "../../reducers/businessApplication";
+import { CHANGE_APPLICATION_REQUEST } from "../../reducers/businessApplication";
 import { useNavigate, useLocation } from "react-router-dom";
 import useInput from "../hooks/useInput";
 const MyApplicationStep2S2 = () => {
@@ -67,14 +67,14 @@ const MyApplicationStep2S2 = () => {
     newState.business_application_rank4
   );
 
-  const { addApplicationDone } = useSelector(
+  const { changeApplicationDone } = useSelector(
     (state) => state.businessApplication
   );
   useEffect(() => {
-    if (addApplicationDone) {
+    if (changeApplicationDone) {
       navigate("/myPageBusiness");
     }
-  }, [addApplicationDone]);
+  }, [changeApplicationDone]);
 
   const selectStyle1 = (data) => {
     return {
@@ -109,8 +109,9 @@ const MyApplicationStep2S2 = () => {
     (e) => {
       e.preventDefault();
       dispatch({
-        type: ADD_APPLICATION_REQUEST,
+        type: CHANGE_APPLICATION_REQUEST,
         data: {
+          applicationId: newState.id,
           step1_data: state.step1_data,
           business_application_payType,
           business_application_payMin,

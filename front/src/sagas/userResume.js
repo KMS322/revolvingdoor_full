@@ -11,6 +11,9 @@ import {
   LOAD_RESUME_REQUEST,
   LOAD_RESUME_SUCCESS,
   LOAD_RESUME_FAILURE,
+  CHANGE_RESUME_REQUEST,
+  CHANGE_RESUME_SUCCESS,
+  CHANGE_RESUME_FAILURE,
 } from "../reducers/userResume";
 import { ADD_RESUME_TO_ME, REMOVE_RESUME_OF_ME } from "../reducers/user";
 
@@ -59,16 +62,36 @@ function* addResume(action) {
   }
 }
 
+function changeResumeAPI(data) {
+  return axios.post("/resume/change", data);
+}
+
+function* changeResume(action) {
+  try {
+    const result = yield call(changeResumeAPI, action.data);
+    yield put({
+      type: CHANGE_RESUME_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: CHANGE_RESUME_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
 function removeResumeAPI(data) {
-  return axios.delete(`/resume/${data}`);
+  return axios.delete("/resume/remove", { data: { id: data.id } });
 }
 
 function* removeResume(action) {
   try {
-    // const result = yield call(removeResumeAPI, action.data);
+    const result = yield call(removeResumeAPI, action.data);
     yield put({
       type: REMOVE_RESUME_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
     yield put({
       type: REMOVE_RESUME_OF_ME,
@@ -94,10 +117,14 @@ function* watchRemoveResume() {
   yield takeLatest(REMOVE_RESUME_REQUEST, removeResume);
 }
 
+function* watchChangeResume() {
+  yield takeLatest(CHANGE_RESUME_REQUEST, changeResume);
+}
 export default function* resumeSaga() {
   yield all([
     fork(watchLoadResume),
     fork(watchAddResume),
     fork(watchRemoveResume),
+    fork(watchChangeResume),
   ]);
 }

@@ -8,6 +8,12 @@ export const initialState = {
   loadApplicationLoading: false,
   loadApplicationDone: false,
   loadApplicationError: null,
+  removeApplicationLoading: false,
+  removeApplicationDone: false,
+  removeApplicationError: null,
+  changeApplicationLoading: false,
+  changeApplicationDone: false,
+  changeApplicationError: null,
 };
 
 export const ADD_APPLICATION_REQUEST = "ADD_APPLICATION_REQUEST";
@@ -19,6 +25,9 @@ export const REMOVE_APPLICATION_FAILURE = "REMOVE_APPLICATION_FAILURE";
 export const LOAD_APPLICATION_REQUEST = "LOAD_APPLICATION_REQUEST";
 export const LOAD_APPLICATION_SUCCESS = "LOAD_APPLICATION_SUCCESS";
 export const LOAD_APPLICATION_FAILURE = "LOAD_APPLICATION_FAILURE";
+export const CHANGE_APPLICATION_REQUEST = "CHANGE_APPLICATION_REQUEST";
+export const CHANGE_APPLICATION_SUCCESS = "CHANGE_APPLICATION_SUCCESS";
+export const CHANGE_APPLICATION_FAILURE = "CHANGE_APPLICATION_FAILURE";
 export const uploadApplication = (data) => ({
   type: ADD_APPLICATION_REQUEST,
   data,
@@ -54,6 +63,36 @@ const reducer = (state = initialState, action) => {
       case LOAD_APPLICATION_FAILURE:
         draft.loadApplicationLoading = false;
         draft.loadApplicationError = action.error;
+        break;
+      case CHANGE_APPLICATION_REQUEST:
+        draft.changeApplicationLoading = true;
+        draft.changeApplicationDone = false;
+        draft.changeApplicationError = null;
+        break;
+      case CHANGE_APPLICATION_SUCCESS:
+        draft.changeApplicationLoading = false;
+        draft.changeApplicationDone = true;
+        draft.applications = action.data;
+        break;
+      case CHANGE_APPLICATION_FAILURE:
+        draft.changeApplicationLoading = false;
+        draft.changeApplicationError = action.error;
+        break;
+      case REMOVE_APPLICATION_REQUEST:
+        draft.removeApplicationLoading = true;
+        draft.removeApplicationDone = false;
+        draft.removeApplicationError = null;
+        break;
+      case REMOVE_APPLICATION_SUCCESS:
+        draft.removeApplicationLoading = false;
+        draft.removeApplicationDone = true;
+        draft.applications = draft.applications.filter(
+          (v) => v.id !== action.data
+        );
+        break;
+      case REMOVE_APPLICATION_FAILURE:
+        draft.removeApplicationLoading = false;
+        draft.removeApplicationError = action.error;
         break;
       default:
         return state;

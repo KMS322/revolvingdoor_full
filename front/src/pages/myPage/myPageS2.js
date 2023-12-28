@@ -1,18 +1,26 @@
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_RESUME_REQUEST } from "../../reducers/userResume";
+import {
+  LOAD_RESUME_REQUEST,
+  REMOVE_RESUME_REQUEST,
+} from "../../reducers/userResume";
 
 const MyPageS2 = () => {
   const dispatch = useDispatch();
-  const { resumes } = useSelector((state) => state.userResume);
+  const { resumes, removeResumeDone } = useSelector(
+    (state) => state.userResume
+  );
   const removeDuplicatesById = (resumes) => {
+    if (!resumes || !Array.isArray(resumes)) {
+      return [];
+    }
     const uniqueResumes = [];
     const existingIds = [];
 
     for (const resume of resumes) {
-      if (!existingIds.includes(resume.id)) {
+      if (resume && resume.id && !existingIds.includes(resume.id)) {
         uniqueResumes.push(resume);
         existingIds.push(resume.id);
       }
@@ -30,6 +38,27 @@ const MyPageS2 = () => {
     });
   }, [dispatch]);
 
+  const onDelete = useCallback(
+    (e, id) => {
+      const isConfirmed = window.confirm("삭제하시겠습니까?");
+      if (isConfirmed) {
+        e.preventDefault();
+        dispatch({
+          type: REMOVE_RESUME_REQUEST,
+          data: {
+            id,
+          },
+        });
+      }
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (removeResumeDone) {
+      window.location.reload();
+    }
+  }, [removeResumeDone]);
   return (
     <div className="myPage_s2">
       <div className="article_container">
@@ -70,7 +99,14 @@ const MyPageS2 = () => {
                   >
                     수정
                   </div>
-                  <div className="manage">삭제</div>
+                  <div
+                    className="manage"
+                    onClick={(e) => {
+                      onDelete(e, resume.id);
+                    }}
+                  >
+                    삭제
+                  </div>
                 </div>
               </div>
             );

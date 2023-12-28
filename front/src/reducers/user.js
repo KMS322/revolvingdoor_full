@@ -141,18 +141,20 @@ const reducer = (state = initialState, action) => {
       //   },
       // };
       case REMOVE_RESUME_OF_ME:
-        draft.me.resumes = draft.me.Posts.filter((v) => v.id !== action.data);
+        console.log("redux내에서 resumes me : ", draft.me.resumes);
+        draft.me.resumes = draft.me.resumes.filter((v) => v.id !== action.data);
         break;
       case REMOVE_CAREER_OF_ME:
-        draft.me.careers = draft.me.Posts.filter((v) => v.id !== action.data);
+        draft.me.careers = draft.me.careers.filter((v) => v.id !== action.data);
         break;
       case REMOVE_APPLICATION_OF_ME:
-        draft.me.applications = draft.me.Posts.filter(
+        console.log("redux내에서 applications me : ", draft.me.applications);
+        draft.me.applications = draft.me.applications.filter(
           (v) => v.id !== action.data
         );
         break;
       case REMOVE_RECRUITMENT_OF_ME:
-        draft.me.recruitments = draft.me.Posts.filter(
+        draft.me.recruitments = draft.me.recruitments.filter(
           (v) => v.id !== action.data
         );
         break;
