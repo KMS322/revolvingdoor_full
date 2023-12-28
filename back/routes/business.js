@@ -1,7 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User, BusinessRecruitment, BusinessApplication } = require("../models");
+const {
+  User,
+  BusinessRecruitment,
+  BusinessApplication,
+  UserBusiness,
+} = require("../models");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
@@ -20,20 +25,25 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       req.body.business_member_address1 +
       " " +
       req.body.business_member_address2;
-    await User.create({
+    const createdUser = await User.create({
       userType: req.body.userType,
       user_member_id: req.body.business_member_id,
       user_member_pw: hashedPassword,
-      business_member_companyName: req.body.business_member_companyName,
-      business_member_companyNumber: req.body.business_member_companyNumber,
-      business_member_name: req.body.business_member_name,
-      business_member_companyState: req.body.business_member_companyState,
-      business_member_employeeNumber: req.body.business_member_employeeNumber,
-      business_member_officeState: req.body.business_member_officeState,
-      business_member_address: fullAddress,
-      business_member_tel: req.body.business_member_tel,
-      business_member_email: req.body.business_member_email,
     });
+    if (req.body.userType === "business") {
+      await UserBusiness.create({
+        business_member_companyName: req.body.business_member_companyName,
+        business_member_companyNumber: req.body.business_member_companyNumber,
+        business_member_name: req.body.business_member_name,
+        business_member_companyState: req.body.business_member_companyState,
+        business_member_employeeNumber: req.body.business_member_employeeNumber,
+        business_member_officeState: req.body.business_member_officeState,
+        business_member_address: fullAddress,
+        business_member_tel: req.body.business_member_tel,
+        business_member_email: req.body.business_member_email,
+        BusinessId: createdUser.id,
+      });
+    }
     res.status(201).send("ok");
   } catch (error) {
     console.error(error);

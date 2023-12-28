@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User, UserResume, UserCareer } = require("../models");
+const { User, UserResume, UserCareer, UserIndividual } = require("../models");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
@@ -46,16 +46,22 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.user_member_pw, 12);
     const fullAddress =
       req.body.user_member_address1 + " " + req.body.user_member_address2;
-    await User.create({
+    const createdUser = await User.create({
       userType: req.body.userType,
       user_member_id: req.body.user_member_id,
       user_member_pw: hashedPassword,
-      user_member_name: req.body.user_member_name,
-      user_member_num: req.body.user_member_num,
-      user_member_address: fullAddress,
-      user_member_tel: req.body.user_member_tel,
-      user_member_email: req.body.user_member_email,
     });
+    if (req.body.userType === "individual") {
+      await UserIndividual.create({
+        user_member_name: req.body.user_member_name,
+        user_member_num: req.body.user_member_num,
+        user_member_address: fullAddress,
+        user_member_tel: req.body.user_member_tel,
+        user_member_email: req.body.user_member_email,
+        IndividualId: createdUser.id,
+      });
+    }
+
     res.status(201).send("ok");
   } catch (error) {
     console.error(error);

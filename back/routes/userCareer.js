@@ -64,7 +64,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
 
 router.post("/change", isLoggedIn, async (req, res, next) => {
   try {
-    const career = await UserCareer.update(
+    const changedCareer = await UserCareer.update(
       {
         user_career_company1: req.body.user_career_company1,
         user_career_position1: req.body.user_career_position1,
@@ -109,17 +109,10 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       },
       {
         where: { id: career.id },
+        returning: true,
       }
     );
-    const ChangedCareer = await UserCareer.findOne({
-      where: { id: career.id },
-      include: [
-        {
-          model: User,
-        },
-      ],
-    });
-    res.status(201).json(ChangedCareer);
+    res.status(201).json(changedCareer);
   } catch (error) {
     console.error(error);
     next(error);
