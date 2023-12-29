@@ -87,6 +87,6 @@ app.use("/recruitments", recruitmentsRouter);
 //   // 에러 처리 미들웨어
 // });
 
-app.listen(3065, () => {
+app.listen(3000, () => {
   console.log("서버 실행 중");
 });
