@@ -90,7 +90,7 @@ const MyPageBusinessS2 = () => {
           {uniqueApplications.map((application, index) => {
             return (
               <div className="content_row row" key={index}>
-                <p className="pc">경산시</p>
+                <p className="pc"></p>
                 <p>{application.business_application_name}</p>
                 <p>{dayjs(application.updatedAt).format("YYYY-MM-DD")}</p>
                 {/* <p className="state1">비공개 상태</p> */}

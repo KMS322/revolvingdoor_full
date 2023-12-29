@@ -84,7 +84,7 @@ const MyPageS2 = () => {
           {uniqueResumes.slice(0, 5).map((resume, index) => {
             return (
               <div className="content_row row" key={index}>
-                <p className="pc">경산시</p>
+                <p className="pc"></p>
                 <p>{resume.user_resume_title}</p>
                 <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
                 <p className="state1">비공개 상태</p>
