@@ -108,7 +108,7 @@ const SignInStep3S2 = (props) => {
         <label className="input_box">
           <p>비밀번호 확인</p>
           <input
-            type="text"
+            type="password"
             name="user_member_pwcheck"
             value={passwordCheck}
             onChange={onChangePasswordCheck}
