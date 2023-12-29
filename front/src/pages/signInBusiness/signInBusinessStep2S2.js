@@ -124,7 +124,7 @@ const SignInStep3S2 = (props) => {
         <label className="input_box">
           <p>비밀번호</p>
           <input
-            type="text"
+            type="password"
             name="business_member_pw"
             value={business_member_pw}
             onChange={onChangePassword}

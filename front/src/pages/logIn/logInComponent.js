@@ -114,7 +114,7 @@ const LogInComponent = () => {
               <label className="input_text">
                 <p>비밀번호</p>
                 <input
-                  type="text"
+                  type="password"
                   name="user_member_pw"
                   value={user_member_pw}
                   onChange={onChangePassword}
