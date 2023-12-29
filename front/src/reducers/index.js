@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 import user from "./user";
 import userResume from "./userResume";
 import userAdd from "./userAdd";
-import post from "./post";
 import userCareer from "./userCareer";
 import business from "./business";
 import businessApplication from "./businessApplication";
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   userResume,
   userAdd,
   userCareer,
-  post,
   business,
   businessApplication,
   businessRecruitment,

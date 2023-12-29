@@ -4,9 +4,9 @@ export const initialState = {
   loadUserLoading: false, // 유저 정보
   loadUserDone: false,
   loadUserError: null,
-  logInLoading: false, // 로그인 시도중
-  logInDone: false,
-  logInError: null,
+  logInLoadingBusiness: false, // 로그인 시도중
+  logInDoneBusiness: false,
+  logInErrorBusiness: null,
   logOutLoading: false, // 로그아웃 시도중
   logOutDone: false,
   logOutError: null,
@@ -74,20 +74,18 @@ const reducer = (state = initialState, action) => {
         draft.loadUserError = action.error;
         break;
       case BUSINESS_LOG_IN_REQUEST:
-        draft.logInLoading = true;
-        draft.logInError = null;
-        draft.logInDone = false;
+        draft.logInLoadingBusiness = true;
+        draft.logInErrorBusiness = null;
+        draft.logInDoneBusiness = false;
         break;
       case BUSINESS_LOG_IN_SUCCESS:
-        console.log("reducer login success");
-        draft.logInLoading = false;
+        draft.logInLoadingBusiness = false;
         draft.me = action.data;
-        draft.logInDone = true;
+        draft.logInDoneBusiness = true;
         break;
       case BUSINESS_LOG_IN_FAILURE:
-        console.log("reducer login fail");
-        draft.logInLoading = false;
-        draft.logInError = action.error;
+        draft.logInLoadingBusiness = false;
+        draft.logInErrorBusiness = action.error;
         break;
       case BUSINESS_LOG_OUT_REQUEST:
         draft.logOutLoading = true;

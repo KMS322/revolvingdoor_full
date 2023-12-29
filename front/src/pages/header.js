@@ -4,7 +4,16 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../reducers/user";
+import { LOAD_CAREER_REQUEST } from "../reducers/userCareer";
+import { LOAD_RECRUITMENT_REQUEST } from "../reducers/businessRecruitment";
+
 const Header = () => {
+  const { careers, changeCareerDone } = useSelector(
+    (state) => state.userCareer
+  );
+  const { recruitments, changeRecruitmentDone } = useSelector(
+    (state) => state.businessRecruitment
+  );
   const { me, logOutDone } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [menuState, setMenuState] = useState(false);
@@ -15,10 +24,8 @@ const Header = () => {
   const handleMenu = () => {
     setMenuState(!menuState);
   };
-
   useEffect(() => {
     if (!me && logOutDone) {
-      // navigate("/");
       window.location.href = "/";
     }
   }, [me, logOutDone]);
@@ -30,9 +37,18 @@ const Header = () => {
       dispatch(logoutRequestAction());
     }
   }, [me, navigate, dispatch]);
-  // if (me && typeof me === "object" && me.userType) {
-  //   console.log("me.userType : ", me.userType);
-  // }
+
+  useEffect(() => {
+    if (me && me.userType === "individual") {
+      dispatch({
+        type: LOAD_CAREER_REQUEST,
+      });
+    } else if (me && me.userType === "business") {
+      dispatch({
+        type: LOAD_RECRUITMENT_REQUEST,
+      });
+    }
+  }, [me, dispatch, changeCareerDone, changeRecruitmentDone]);
   return (
     <>
       <div className="header">
@@ -50,7 +66,6 @@ const Header = () => {
         <ul>
           <li
             onClick={() => {
-              console.log("mypage 클릭시 me : ", me);
               if (me && me.userType === "individual") {
                 goPage("/myPage");
               } else if (me && me.userType === "business") {
@@ -67,9 +82,9 @@ const Header = () => {
             onClick={() => {
               // goPage("/signin");
               if (me && me.userType === "individual") {
-                goPage("/career");
+                navigate("/career", { state: { careers } });
               } else if (me && me.userType === "business") {
-                goPage("/recruitment");
+                navigate("/recruitment", { state: { recruitments } });
               } else {
                 goPage("/signin");
               }

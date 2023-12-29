@@ -66,7 +66,6 @@ function changeCareerAPI(data) {
 function* changeCareer(action) {
   try {
     const result = yield call(changeCareerAPI, action.data);
-    console.log("addCareer : ", result);
     yield put({
       type: CHANGE_CAREER_SUCCESS,
       data: result.data,

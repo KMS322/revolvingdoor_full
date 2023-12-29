@@ -80,12 +80,54 @@ data: {
   user_career_abilityProcess6, // 전산활용능력 텍스트
   user_career_abilityDrive1, // 운전능력 운전면허증
   user_career_abilityDrive2, // 운전능력 차량소지자
+
 },
+
+-유저(구직자) 경력사항 수정하기
+-> post("/career/change", data)
+-> data 형태(경력사항 저장과 동일)
+data: {
+  careerId, // db에 저장된 경력사항 id(type : number);
+  user_career_company1, // 근무처
+  user_career_position1, // 직위
+  user_career_companyState1, // 담당 사업장 형태와 업태
+  user_career_program1, // 사용 프로그램
+  user_career_period11Year, // 근무기간 시작 년
+  user_career_period11Month, // 근무기간 시작 월
+  user_career_period12Year, // 근무기간 끝 년
+  user_career_period12Month, // 근무기간 끝 월
+  user_career_license1, // 자격명
+  user_career_license1Year, // 취득일 년
+  user_career_license1Month, // 취득일 월
+  user_career_license1Day, // 취득일 일
+  user_career_license1Organization, // 발급기관
+  user_career_trainingName1, // 훈련 과정명
+  user_career_trainingPeriod11Year, // 훈련기간 시작 년
+  user_career_trainingPeriod11Month, // 훈련기간 시작 월
+  user_career_trainingPeriod12Year, // 훈련기간 끝 년 
+  user_career_trainingPeriod12Month, // 훈련기간 끝 월
+  user_career_trainingDetail1, // 세부 훈련 내용
+  user_career_trainingOrganization, // 훈련 기관명
+  user_career_changeYear, // 최종 이직 시기 년
+  user_career_changeMonth, // 최종 이직 시기 월
+  user_career_changeReason, // 이직 사유
+  user_career_knowCount, // 회계 지식(보기 중 택 1)
+  user_career_knowTax, // 세무 지식(보기 중 택 1)
+  user_career_abilityProcess1, // 전산활용능력 문서 작성
+  user_career_abilityProcess2, // 전산활용능력 스프레드시트
+  user_career_abilityProcess3, // 전산활용능력 프레젠테이션
+  user_career_abilityProcess4, // 전산활용능력 회계프로그램
+  user_career_abilityProcess5, // 전산활용능력 기타
+  user_career_abilityProcess6, // 전산활용능력 텍스트
+  user_career_abilityDrive1, // 운전능력 운전면허증
+  user_career_abilityDrive2, // 운전능력 차량소지자
+},
+
 
 - 유저(구직자) 이력서 불러오기
 -> get("/resumes")
 
-- 이력서 작성
+- 유저(구직자) 이력서 작성
 -> post("/resume", data)
 -> data 형태
 data : {
@@ -116,52 +158,59 @@ data : {
   user_resume_hopeWorkTime2Minute, // 근무가능시간 끝 분
 }
 
--경력 작성
--> post("/career", data)
+- 유저(구직자) 이력서 수정
+-> post("/resume/change", data)
 -> data 형태
 data : {
-  user_career_company1, // 근무처
-  user_career_position1, // 직위
-  user_career_companyState1, // 담당 사업장 형태와 업태
-  user_career_program1, // 사용 프로그램
-  user_career_period11Year, // 근무기간 시작 년
-  user_career_period11Month, // 근무기간 시작 월
-  user_career_period12Year, // 근무기간 끝 년
-  user_career_period12Month, // 근무기간 끝 월
-  user_career_license1, // 자격명 
-  user_career_license1Year, // 취득일 년
-  user_career_license1Month, // 취득일 월
-  user_career_license1Day, // 취득일 일
-  user_career_license1Organization, // 발급기관
-  user_career_trainingName1, // 훈련 과정명
-  user_career_trainingPeriod11Year, // 훈련기간 시작 년
-  user_career_trainingPeriod11Month, // 훈련기간 시작 월
-  user_career_trainingPeriod12Year, // 훈련기간 끝 년
-  user_career_trainingPeriod12Month, // 훈련기간 끝 월
-  user_career_trainingDetail1, // 세부 훈련 내용
-  user_career_trainingOrganization, // 훈련 기관명
-  user_career_changeYear, // 최종이직시기 년
-  user_career_changeMonth, // 최종이직시기 월
-  user_career_changeReason, // 이직사유(보기 중 1)
-  user_career_knowCount, // 회계지식(보기 중 1)
-  user_career_knowTax, // 세무(법)지식(보기 중 1)
-  user_career_abilityProcess1, // 전산활용능력 문서작성
-  user_career_abilityProcess2, // 전산활용능력 스프레드시트
-  user_career_abilityProcess3, // 전산활용능력 프레젠테이션
-  user_career_abilityProcess4, // 전산활용능력 회계프로그램
-  user_career_abilityProcess5, // 전산활용능력 기타
-  user_career_abilityProcess6, // 전산활용능력 텍스트
-  user_career_abilityDrive1, // 운전능력 운전면허증
-  user_career_abilityDrive2, // 운전능력 차량소지자
+  resumeId, // db에 저장된 이력서 id
+  user_resume_title, // 이력서 제목
+  user_resume_schoolMajor, // 전공(부전공)
+  user_resume_schoolPeriod1Year, // 재학기간 시작 년
+  user_resume_schoolPeriod1Month, // 재학기간 시작 월
+  user_resume_schoolPeriod2Year, // 재학기간 끝 년
+  user_resume_schoolPeriod2Month, // 재학기간 끝 월
+  user_resume_schoolFinal, // 최종학력(보기 중 1)
+  user_resume_hopeCompany, // 희망근무처(보기 중 1) 
+  user_resume_hopeRegion1, // 근무지역 1순위
+  user_resume_hopeRegion2, // 근무지역 2순위
+  user_resume_hopeRegion, // 지역무관 선택 
+  user_resume_hopePayType1, // 희망임금(보기 중 1)
+  user_resume_hopePayType2, // "면접 후 결정 가능"
+  user_resume_hopePay, // 희망임금 금액
+  user_resume_hopeWork1, // 출근근무
+  user_resume_hopeWork2, // 탄력근무
+  user_resume_hopeWork3, // 재택근무
+  user_resume_hopeWork4, // 모두가능
+  user_resume_hopeStartYear, // 취업희망시기 년
+  user_resume_hopeStartMonth, // 취업희망시기 월
+  user_resume_hopeStartDay, // 취업희망시기 일
+  user_resume_hopeWorkTime1Hour, // 근무가능시간 시작 시간
+  user_resume_hopeWorkTime1Minute, // 근무가능시간 시작 분
+  user_resume_hopeWorkTime2Hour, // 근무가능시간 끝 시간
+  user_resume_hopeWorkTime2Minute, // 근무가능시간 끝 분
 }
 
-- 경력 정보 수정
--> post("/career/change", data)
+- 유저(구직자) 이력서 삭제
+-> post("/resume/remove", {data : { id: data.id}})
 -> data 형태
-post("/career", data)의 데이터 형태와 동일
+{data : { id: data.id}} // data.id는 db에 저장된 resume id
 
-- 회원가입(구인용) 
--> post("user/signup", data)
+------------------------------------------------------------------------------------------------------------------
+
+- 로그인(구인기업)
+-> post("/business/login", data)
+-> data 형태
+data : { 
+  user_member_id, // 입력한 아이디
+  user_member_pw, // 입력한 비밀번호
+  userType, // 구직자 or 구인기업 (구직자 : "business", 구인기업 : "individual")
+}
+
+- 로그아웃(구인기업)
+-> post("/user/logout")
+
+- 회원가입(구인기업) 
+-> post("business/signup", data)
 -> data 형태
 data : {
   business_member_id, // 아이디
@@ -177,6 +226,101 @@ data : {
   business_member_address2, // 주소2
   business_member_tel, // 대표 전화번호 
   business_member_email, //이메일
+}
+
+- 유저정보 불러오기(현재 로그인된 유저 정보)
+-> get("/user")
+
+- 채용정보(구인기업) 불러오기
+-> get("/recruitments")
+
+- 채용정보(구인기업) 저장하기
+-> post("/recruitment", data)
+-> data 형태
+data: {
+  business_recruitment_name, // 성명
+  business_recruitment_tel, // 전화
+  business_recruitment_email, // 이메일
+  business_recruitment_phone, // 휴대전화
+  business_recruitment_insurance1, // 사회보험 고용보험
+  business_recruitment_insurance2, // 사회보험 산재보험 
+  business_recruitment_insurance3, // 사회보험 건강보험
+  business_recruitment_insurance4, // 사회보험 국민연금
+  business_recruitment_insurance5, // 사회보험 해당사항없음
+  business_recruitment_welfare1, // 복리후생 통근버스
+  business_recruitment_welfare2, // 복리후생 차량유지비 
+  business_recruitment_welfare3, // 복리후생 기숙사
+  business_recruitment_welfare4, // 복리후생 교육비
+  business_recruitment_welfare5, // 복리후생 모성 보호 시설
+  business_recruitment_welfare6, // 복리후생 자녀 학자금 지원
+  business_recruitment_welfare7, // 복리후생 주택자금
+  business_recruitment_welfare8, // 복리후생 직원대출제도
+  business_recruitment_welfare9, // 복리후생 기타
+  business_recruitment_welfare10, // 복리후생 텍스트
+  business_recruitment_meal, // 식사제공(보기 중 택1)
+  business_recruitment_handicapped1, // 장애인용 복지시설 주차장
+  business_recruitment_handicapped2, // 장애인용 복지시설 승강기
+  business_recruitment_handicapped3, // 장애인용 복지시설 건물 내부 경사로
+  business_recruitment_handicapped4, // 장애인용 복지시설 화장실
+  business_recruitment_handicapped5, // 장애인용 복지시설 기타
+  business_recruitment_handicapped6, // 장애인용 복지시설 텍스트
+  business_recruitment_program1, // 전산활용 문서 작성
+  business_recruitment_program2, // 전산활용 스프레드시트
+  business_recruitment_program3, // 전산활용 프레젠테이션
+  business_recruitment_program4, // 전산활용 회계프로그램
+  business_recruitment_program5, // 전산활용 기타
+  business_recruitment_program6, // 전산활용 텍스트
+  business_recruitment_accountingProgram, // 전산활용(경험있음, 경험없음 중 택 1)
+  business_recruitment_accountingProgramLevel, // 전산활용 수준(상, 중, 하 중 택1)
+  business_recruitment_abilityDrive1, // 운전 운전면허증
+  business_recruitment_abilityDrive2, // 운전 차량소지자
+  business_recruitment_major1, // 전공 특정 전공자
+  business_recruitment_major2, // 전공 텍스트
+}
+
+- 채용정보(구인기업) 수정하기
+-> post("/recruitment/change", data)
+-> data 형태
+data: {
+  recruitmentId, // db에 저장된 채용정보 id
+  business_recruitment_name, // 성명
+  business_recruitment_tel, // 전화
+  business_recruitment_email, // 이메일
+  business_recruitment_phone, // 휴대전화
+  business_recruitment_insurance1, // 사회보험 고용보험
+  business_recruitment_insurance2, // 사회보험 산재보험 
+  business_recruitment_insurance3, // 사회보험 건강보험
+  business_recruitment_insurance4, // 사회보험 국민연금
+  business_recruitment_insurance5, // 사회보험 해당사항없음
+  business_recruitment_welfare1, // 복리후생 통근버스
+  business_recruitment_welfare2, // 복리후생 차량유지비 
+  business_recruitment_welfare3, // 복리후생 기숙사
+  business_recruitment_welfare4, // 복리후생 교육비
+  business_recruitment_welfare5, // 복리후생 모성 보호 시설
+  business_recruitment_welfare6, // 복리후생 자녀 학자금 지원
+  business_recruitment_welfare7, // 복리후생 주택자금
+  business_recruitment_welfare8, // 복리후생 직원대출제도
+  business_recruitment_welfare9, // 복리후생 기타
+  business_recruitment_welfare10, // 복리후생 텍스트
+  business_recruitment_meal, // 식사제공(보기 중 택1)
+  business_recruitment_handicapped1, // 장애인용 복지시설 주차장
+  business_recruitment_handicapped2, // 장애인용 복지시설 승강기
+  business_recruitment_handicapped3, // 장애인용 복지시설 건물 내부 경사로
+  business_recruitment_handicapped4, // 장애인용 복지시설 화장실
+  business_recruitment_handicapped5, // 장애인용 복지시설 기타
+  business_recruitment_handicapped6, // 장애인용 복지시설 텍스트
+  business_recruitment_program1, // 전산활용 문서 작성
+  business_recruitment_program2, // 전산활용 스프레드시트
+  business_recruitment_program3, // 전산활용 프레젠테이션
+  business_recruitment_program4, // 전산활용 회계프로그램
+  business_recruitment_program5, // 전산활용 기타
+  business_recruitment_program6, // 전산활용 텍스트
+  business_recruitment_accountingProgram, // 전산활용(경험있음, 경험없음 중 택 1)
+  business_recruitment_accountingProgramLevel, // 전산활용 수준(상, 중, 하 중 택1)
+  business_recruitment_abilityDrive1, // 운전 운전면허증
+  business_recruitment_abilityDrive2, // 운전 차량소지자
+  business_recruitment_major1, // 전공 특정 전공자
+  business_recruitment_major2, // 전공 텍스트
 }
 
 - 구인신청서(구인기업) 불러오기
@@ -234,10 +378,11 @@ step1_data = {
   business_application_schoolLisence1, // 자격면허 (보기 중 택1)
 };
 
-- 채용담당(구인기업) 저장
--> post("/application", data)
+- 구인신청서(구인기업) 수정
+-> post("/application/change", data)
 -> data 형태
 data: {
+  applicationId, // db에 저장된 구인신청서 id
   business_recruitment_name, // 성명
   business_recruitment_tel, // 전화
   business_recruitment_email, // 이메일
@@ -277,3 +422,8 @@ data: {
   business_recruitment_major1, // 전공 특정 전공자
   business_recruitment_major2, // 전공 텍스트
 },
+
+- 구인신청서(구인기업) 삭제
+-> post("/application/remove", {data : { id: data.id}})
+-> data 형태
+{data : { id: data.id}} // data.id는 db에 저장된 application id

@@ -8,7 +8,7 @@ router.get("/", async (req, res, next) => {
       return res.status(401).json({ message: "로그인이 필요합니다." });
     }
     const resumes = await UserResume.findAll({
-      where: { UserId: req.user.id },
+      where: { IndividualId: req.user.id },
     });
     res.status(200).json(resumes);
   } catch (error) {

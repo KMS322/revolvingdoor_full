@@ -31,7 +31,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       user_resume_hopeWorkTime1Minute: req.body.user_resume_hopeWorkTime1Minute,
       user_resume_hopeWorkTime2Hour: req.body.user_resume_hopeWorkTime2Hour,
       user_resume_hopeWorkTime2Minute: req.body.user_resume_hopeWorkTime2Minute,
-      UserId: req.user.id,
+      IndividualId: req.user.id,
     });
     const fullResume = await UserResume.findOne({
       where: { id: resume.id },
@@ -79,7 +79,7 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
         user_resume_hopeWorkTime2Hour: req.body.user_resume_hopeWorkTime2Hour,
         user_resume_hopeWorkTime2Minute:
           req.body.user_resume_hopeWorkTime2Minute,
-        UserId: req.user.id,
+        IndividualId: req.user.id,
       },
       {
         where: { id: req.body.resumeId },

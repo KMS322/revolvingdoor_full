@@ -5,25 +5,22 @@ import {
   ADD_RECRUITMENT_REQUEST,
   ADD_RECRUITMENT_SUCCESS,
   ADD_RECRUITMENT_FAILURE,
-  REMOVE_RECRUITMENT_REQUEST,
-  REMOVE_RECRUITMENT_SUCCESS,
-  REMOVE_RECRUITMENT_FAILURE,
   LOAD_RECRUITMENT_REQUEST,
   LOAD_RECRUITMENT_SUCCESS,
   LOAD_RECRUITMENT_FAILURE,
+  CHANGE_RECRUITMENT_REQUEST,
+  CHANGE_RECRUITMENT_SUCCESS,
+  CHANGE_RECRUITMENT_FAILURE,
 } from "../reducers/businessRecruitment";
-import {
-  ADD_RECRUITMENT_TO_ME,
-  REMOVE_RECRUITMENT_OF_ME,
-} from "../reducers/user";
+import { ADD_RECRUITMENT_TO_ME } from "../reducers/user";
 
-function loadRecruitmentAPI(data) {
+function loadRecruitmentAPI() {
   return axios.get("/recruitments");
 }
 
-function* loadRecruitment(action) {
+function* loadRecruitment() {
   try {
-    const result = yield call(loadRecruitmentAPI, action.data);
+    const result = yield call(loadRecruitmentAPI);
     yield put({
       type: LOAD_RECRUITMENT_SUCCESS,
       data: result.data,
@@ -62,29 +59,26 @@ function* addRecruitment(action) {
   }
 }
 
-function removeRecruitmentAPI(data) {
-  return axios.delete(`/recruitment/${data}`);
+function changeRecruitmentAPI(data) {
+  return axios.post("/recruitment/change", data);
 }
 
-function* removeRecruitment(action) {
+function* changeRecruitment(action) {
   try {
-    // const result = yield call(removeApplicationAPI, action.data);
+    const result = yield call(changeRecruitmentAPI, action.data);
     yield put({
-      type: REMOVE_RECRUITMENT_SUCCESS,
-      data: action.data,
-    });
-    yield put({
-      type: REMOVE_RECRUITMENT_OF_ME,
-      data: action.data,
+      type: CHANGE_RECRUITMENT_SUCCESS,
+      data: result.data,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: REMOVE_RECRUITMENT_FAILURE,
+      type: CHANGE_RECRUITMENT_FAILURE,
       data: err.response.data,
     });
   }
 }
+
 function* watchLoadRecruitment() {
   yield takeLatest(LOAD_RECRUITMENT_REQUEST, loadRecruitment);
 }
@@ -93,14 +87,13 @@ function* watchAddRecruitment() {
   yield takeLatest(ADD_RECRUITMENT_REQUEST, addRecruitment);
 }
 
-function* watchRemoveRecruitment() {
-  yield takeLatest(REMOVE_RECRUITMENT_REQUEST, removeRecruitment);
+function* watchChangeRecruitment() {
+  yield takeLatest(CHANGE_RECRUITMENT_REQUEST, changeRecruitment);
 }
-
 export default function* recruitmentSaga() {
   yield all([
     fork(watchLoadRecruitment),
     fork(watchAddRecruitment),
-    fork(watchRemoveRecruitment),
+    fork(watchChangeRecruitment),
   ]);
 }

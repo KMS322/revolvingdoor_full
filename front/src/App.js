@@ -36,22 +36,11 @@ import MyApplicationStep2Components from "./pages/myApplication/myApplicationSte
 function App() {
   const dispatch = useDispatch();
   const { logInDone } = useSelector((state) => state.user);
-  const { changeCareerDone } = useSelector((state) => state.userCareer);
-  useEffect(() => {
-    document.cookie = "safeCookie1=foo;SameSite=Lax";
-    document.cookie = "safeCookie2=foo";
-    document.cookie = "crossCookie=bar;SameSite=None;Secure";
-  }, []);
   useEffect(() => {
     dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
   }, [logInDone]);
-  // useEffect(() => {
-  //   dispatch({
-  //     type: LOAD_CAREER_REQUEST,
-  //   });
-  // }, [changeCareerDone]);
   return (
     <>
       <Header />
@@ -85,6 +74,7 @@ function App() {
 
         <Route path="/resume" element={<ResumeComponent />} />
         <Route path="/career" element={<CareerComponent />} />
+
         <Route path="/recruitment" element={<RecruitmentComponent />} />
         <Route
           path="/applicationStep1"

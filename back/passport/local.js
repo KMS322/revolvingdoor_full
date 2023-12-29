@@ -8,11 +8,13 @@ module.exports = () => {
       {
         usernameField: "user_member_id",
         passwordField: "user_member_pw",
+        passReqToCallback: true,
       },
-      async (user_member_id, user_member_pw, done) => {
+      async (req, user_member_id, user_member_pw, done) => {
         try {
+          const { userType } = req.body;
           const user = await User.findOne({
-            where: { user_member_id },
+            where: { user_member_id, userType },
           });
           if (!user) {
             return done(null, false, { reason: "존재하지 않는 사용자입니다." });

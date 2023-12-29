@@ -19,7 +19,7 @@ function loadUserAPI() {
   return axios.get("/user");
 }
 
-function* loadUser(action) {
+function* loadUser() {
   try {
     const result = yield call(loadUserAPI);
     yield put({
@@ -42,7 +42,6 @@ function logInAPI(data) {
 function* logIn(action) {
   try {
     const result = yield call(logInAPI, action.data);
-    console.log("result : ", result);
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data,
@@ -67,7 +66,6 @@ function* logOut() {
       type: LOG_OUT_SUCCESS,
     });
   } catch (err) {
-    console.log("logout saga 에러 발생");
     yield put({
       type: LOG_OUT_FAILURE,
       error: err.response.data,
@@ -76,16 +74,12 @@ function* logOut() {
 }
 
 function signUpAPI(data) {
-  console.log("data : ", data);
   return axios.post("/user/signup", data);
 }
 
 function* signUp(action) {
   try {
     const result = yield call(signUpAPI, action.data);
-    console.log(result);
-    console.log("user saga");
-
     yield put({
       type: SIGN_UP_SUCCESS,
       data: action.data,

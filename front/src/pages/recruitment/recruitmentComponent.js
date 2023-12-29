@@ -4,54 +4,212 @@ import Nav from "../nav";
 import React, { useState, useCallback, useEffect } from "react";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_RECRUITMENT_REQUEST } from "../../reducers/businessRecruitment";
-
+import {
+  ADD_RECRUITMENT_REQUEST,
+  CHANGE_RECRUITMENT_REQUEST,
+} from "../../reducers/businessRecruitment";
+import { useLocation } from "react-router-dom";
 const RecruitmentComponent = () => {
+  const { state } = useLocation();
   const dispatch = useDispatch();
-  const [business_recruitment_name, onChangeName] = useInput("");
-  const [business_recruitment_tel, onChangeTel] = useInput("");
-  const [business_recruitment_email, onChangeEmail] = useInput("");
-  const [business_recruitment_phone, onChangePhone] = useInput("");
-  const [business_recruitment_insurance1, setInsurance1] = useState();
-  const [business_recruitment_insurance2, setInsurance2] = useState();
-  const [business_recruitment_insurance3, setInsurance3] = useState();
-  const [business_recruitment_insurance4, setInsurance4] = useState();
-  const [business_recruitment_insurance5, setInsurance5] = useState();
-  const [business_recruitment_welfare1, setwelfare1] = useState();
-  const [business_recruitment_welfare2, setwelfare2] = useState();
-  const [business_recruitment_welfare3, setwelfare3] = useState();
-  const [business_recruitment_welfare4, setwelfare4] = useState();
-  const [business_recruitment_welfare5, setwelfare5] = useState();
-  const [business_recruitment_welfare6, setwelfare6] = useState();
-  const [business_recruitment_welfare7, setwelfare7] = useState();
-  const [business_recruitment_welfare8, setwelfare8] = useState();
-  const [business_recruitment_welfare9, setwelfare9] = useState();
-  const [business_recruitment_welfare10, onChangeWelfare10] = useInput("");
-  const [business_recruitment_meal, setMeal] = useState();
-  const [business_recruitment_handicapped1, setHandicapped1] = useState();
-  const [business_recruitment_handicapped2, setHandicapped2] = useState();
-  const [business_recruitment_handicapped3, setHandicapped3] = useState();
-  const [business_recruitment_handicapped4, setHandicapped4] = useState();
-  const [business_recruitment_handicapped5, setHandicapped5] = useState();
-  const [business_recruitment_handicapped6, onChangeHandicapped6] =
-    useInput("");
+  const { addRecruitmentDone, changeRecruitmentDone } = useSelector(
+    (state) => state.businessRecruitment
+  );
+  const [business_recruitment_name, onChangeName] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_name
+      : ""
+  );
+  const [business_recruitment_tel, onChangeTel] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_tel
+      : ""
+  );
+  const [business_recruitment_email, onChangeEmail] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_email
+      : ""
+  );
+  const [business_recruitment_phone, onChangePhone] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_phone
+      : ""
+  );
+  const [business_recruitment_insurance1, setInsurance1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_insurance1
+      : ""
+  );
+  const [business_recruitment_insurance2, setInsurance2] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_insurance2
+      : ""
+  );
+  const [business_recruitment_insurance3, setInsurance3] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_insurance3
+      : ""
+  );
+  const [business_recruitment_insurance4, setInsurance4] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_insurance4
+      : ""
+  );
+  const [business_recruitment_insurance5, setInsurance5] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_insurance5
+      : ""
+  );
+  const [business_recruitment_welfare1, setwelfare1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare1
+      : ""
+  );
+  const [business_recruitment_welfare2, setwelfare2] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare2
+      : ""
+  );
+  const [business_recruitment_welfare3, setwelfare3] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare3
+      : ""
+  );
+  const [business_recruitment_welfare4, setwelfare4] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare4
+      : ""
+  );
+  const [business_recruitment_welfare5, setwelfare5] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare5
+      : ""
+  );
+  const [business_recruitment_welfare6, setwelfare6] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare6
+      : ""
+  );
+  const [business_recruitment_welfare7, setwelfare7] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare7
+      : ""
+  );
+  const [business_recruitment_welfare8, setwelfare8] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare8
+      : ""
+  );
+  const [business_recruitment_welfare9, setwelfare9] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare9
+      : ""
+  );
+  const [business_recruitment_welfare10, onChangeWelfare10] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_welfare10
+      : ""
+  );
+  const [business_recruitment_meal, setMeal] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_meal
+      : ""
+  );
+  const [business_recruitment_handicapped1, setHandicapped1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped1
+      : ""
+  );
+  const [business_recruitment_handicapped2, setHandicapped2] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped2
+      : ""
+  );
+  const [business_recruitment_handicapped3, setHandicapped3] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped3
+      : ""
+  );
+  const [business_recruitment_handicapped4, setHandicapped4] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped4
+      : ""
+  );
+  const [business_recruitment_handicapped5, setHandicapped5] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped5
+      : ""
+  );
+  const [business_recruitment_handicapped6, onChangeHandicapped6] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_handicapped6
+      : ""
+  );
 
-  const [business_recruitment_program1, setProgram1] = useState();
-  const [business_recruitment_program2, setProgram2] = useState();
-  const [business_recruitment_program3, setProgram3] = useState();
-  const [business_recruitment_program4, setProgram4] = useState();
-  const [business_recruitment_program5, setProgram5] = useState();
-  const [business_recruitment_program6, onChangeProgram6] = useInput("");
+  const [business_recruitment_program1, setProgram1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program1
+      : ""
+  );
+  const [business_recruitment_program2, setProgram2] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program2
+      : ""
+  );
+  const [business_recruitment_program3, setProgram3] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program3
+      : ""
+  );
+  const [business_recruitment_program4, setProgram4] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program4
+      : ""
+  );
+  const [business_recruitment_program5, setProgram5] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program5
+      : ""
+  );
+  const [business_recruitment_program6, onChangeProgram6] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_program6
+      : ""
+  );
   const [business_recruitment_accountingProgram, setAccountingProgram] =
-    useState();
+    useState(
+      state && state.recruitments[0]
+        ? state.recruitments[0].business_recruitment_accountingProgram
+        : ""
+    );
   const [
     business_recruitment_accountingProgramLevel,
     setAccountingProgramLevel,
-  ] = useState();
-  const [business_recruitment_abilityDrive1, setAbilityDrive1] = useState();
-  const [business_recruitment_abilityDrive2, setAbilityDrive2] = useState();
-  const [business_recruitment_major1, setMajor1] = useState();
-  const [business_recruitment_major2, onChangeMajor2] = useInput("");
+  ] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_accountingProgramLevel
+      : ""
+  );
+  const [business_recruitment_abilityDrive1, setAbilityDrive1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_abilityDrive1
+      : ""
+  );
+  const [business_recruitment_abilityDrive2, setAbilityDrive2] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_abilityDrive2
+      : ""
+  );
+  const [business_recruitment_major1, setMajor1] = useState(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_major1
+      : ""
+  );
+  const [business_recruitment_major2, onChangeMajor2] = useInput(
+    state && state.recruitments[0]
+      ? state.recruitments[0].business_recruitment_major2
+      : ""
+  );
 
   const selectStyle1 = (data) => {
     return {
@@ -79,20 +237,28 @@ const RecruitmentComponent = () => {
           : "#707070",
     };
   };
-  const { addRecruitmentDone } = useSelector(
-    (state) => state.businessRecruitment
-  );
+
   useEffect(() => {
     if (addRecruitmentDone) {
       window.location.href = "/";
     }
   }, [addRecruitmentDone]);
+  useEffect(() => {
+    if (changeRecruitmentDone) {
+      window.location.href = "/";
+    }
+  }, [changeRecruitmentDone]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
       dispatch({
-        type: ADD_RECRUITMENT_REQUEST,
+        type:
+          state && state.recruitments[0]
+            ? CHANGE_RECRUITMENT_REQUEST
+            : ADD_RECRUITMENT_REQUEST,
         data: {
+          recruitmentId:
+            state && state.recruitments[0] ? state.recruitments[0].id : "",
           business_recruitment_name,
           business_recruitment_tel,
           business_recruitment_email,
@@ -844,7 +1010,7 @@ const RecruitmentComponent = () => {
           </label>
 
           <button type="submit" onClick={onSubmitForm}>
-            저장
+            {state && state.recruitments[0] ? "저장" : "등록"}
           </button>
         </form>
       </div>

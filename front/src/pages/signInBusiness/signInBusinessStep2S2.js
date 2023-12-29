@@ -50,24 +50,6 @@ const SignInStep3S2 = (props) => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      // dispatch({
-      //   type: SIGN_UP_REQUEST,
-      //   data: {
-      //     business_member_id,
-      //     business_member_pw,
-      //     userType,
-      //     business_member_companyName,
-      //     business_member_companyNumber,
-      //     business_member_name,
-      //     business_member_companyState,
-      //     business_member_employeeNumber,
-      //     business_member_officeState,
-      //     business_member_address1,
-      //     business_member_address2,
-      //     business_member_tel,
-      //     business_member_email,
-      //   },
-      // });
       dispatch(
         signupRequestActionBusiness({
           business_member_id,

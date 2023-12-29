@@ -6,105 +6,146 @@ import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ADD_CAREER_REQUEST,
-  LOAD_CAREER_REQUEST,
+  CHANGE_CAREER_REQUEST,
 } from "../../reducers/userCareer";
+import { useLocation } from "react-router-dom";
 
 const CareerComponent = () => {
+  const { state } = useLocation();
   const dispatch = useDispatch();
-  const { addCareerDone, careers } = useSelector((state) => state.userCareer);
-  console.log("career 컴포넌트 내에서 careers : ", careers[0]);
+  const { addCareerDone, changeCareerDone } = useSelector(
+    (state) => state.userCareer
+  );
   const [user_career_company1, onChangeCompany1] = useInput(
-    careers[0] ? careers[0].user_career_company1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_company1 : ""
   );
   const [user_career_position1, onChangePosition1] = useInput(
-    careers[0] ? careers[0].user_career_position1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_position1 : ""
   );
   const [user_career_companyState1, onChangeCompanyState1] = useInput(
-    careers[0] ? careers[0].user_career_companyState1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_companyState1 : ""
   );
   const [user_career_program1, onChangeProgram1] = useInput(
-    careers[0] ? careers[0].user_career_program1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_program1 : ""
   );
   const [user_career_period11Year, onChangePeriod11Year] = useInput(
-    careers[0] ? careers[0].user_career_period11Year : ""
+    state && state.careers[0] ? state.careers[0].user_career_period11Year : ""
   );
   const [user_career_period11Month, onChangePeriod11Month] = useInput(
-    careers[0] ? careers[0].user_career_period11Month : ""
+    state && state.careers[0] ? state.careers[0].user_career_period11Month : ""
   );
   const [user_career_period12Year, onChangePeriod12Year] = useInput(
-    careers[0] ? careers[0].user_career_period12Year : ""
+    state && state.careers[0] ? state.careers[0].user_career_period12Year : ""
   );
   const [user_career_period12Month, onChangePeriod12Month] = useInput(
-    careers[0] ? careers[0].user_career_period12Month : ""
+    state && state.careers[0] ? state.careers[0].user_career_period12Month : ""
   );
   const [user_career_license1, onChangeLicense] = useInput(
-    careers[0] ? careers[0].user_career_license1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_license1 : ""
   );
   const [user_career_license1Year, onChangeLicense1Year] = useInput(
-    careers[0] ? careers[0].user_career_license1Year : ""
+    state && state.careers[0] ? state.careers[0].user_career_license1Year : ""
   );
   const [user_career_license1Month, onChangeLicense1Month] = useInput(
-    careers[0] ? careers[0].user_career_license1Month : ""
+    state && state.careers[0] ? state.careers[0].user_career_license1Month : ""
   );
   const [user_career_license1Day, onChangeLicense1Day] = useInput(
-    careers[0] ? careers[0].user_career_license1Day : ""
+    state && state.careers[0] ? state.careers[0].user_career_license1Day : ""
   );
   const [user_career_license1Organization, onChangeLicense1Organization] =
-    useInput(careers[0] ? careers[0].user_career_license1Organization : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_license1Organization
+        : ""
+    );
   const [user_career_trainingName1, onChangeTrainingName1] = useInput(
-    careers[0] ? careers[0].user_career_trainingName1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_trainingName1 : ""
   );
   const [user_career_trainingPeriod11Year, onChangeTrainingPeriod11Year] =
-    useInput(careers[0] ? careers[0].user_career_trainingPeriod11Year : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_trainingPeriod11Year
+        : ""
+    );
   const [user_career_trainingPeriod11Month, onChangeTrainingPeriod11Month] =
-    useInput(careers[0] ? careers[0].user_career_trainingPeriod11Month : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_trainingPeriod11Month
+        : ""
+    );
   const [user_career_trainingPeriod12Year, onChangeTrainingPeriod12Year] =
-    useInput(careers[0] ? careers[0].user_career_trainingPeriod12Year : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_trainingPeriod12Year
+        : ""
+    );
   const [user_career_trainingPeriod12Month, onChangeTrainingPeriod12Month] =
-    useInput(careers[0] ? careers[0].user_career_trainingPeriod12Month : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_trainingPeriod12Month
+        : ""
+    );
   const [user_career_trainingDetail1, onChangeTrainingDetail] = useInput(
-    careers[0] ? careers[0].user_career_trainingDetail1 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_trainingDetail1
+      : ""
   );
   const [user_career_trainingOrganization, onChangeTrainingOrganization] =
-    useInput(careers[0] ? careers[0].user_career_trainingOrganization : "");
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_trainingOrganization
+        : ""
+    );
   const [user_career_changeYear, onChangeChangeYear] = useInput(
-    careers[0] ? careers[0].user_career_changeYear : ""
+    state && state.careers[0] ? state.careers[0].user_career_changeYear : ""
   );
   const [user_career_changeMonth, onChangeChangeMonth] = useInput(
-    careers[0] ? careers[0].user_career_changeMonth : ""
+    state && state.careers[0] ? state.careers[0].user_career_changeMonth : ""
   );
   const [user_career_changeReason, setChangeReason] = useState(
-    careers[0] ? careers[0].user_career_changeReason : ""
+    state && state.careers[0] ? state.careers[0].user_career_changeReason : ""
   );
   const [user_career_knowCount, setKnowCount] = useState(
-    careers[0] ? careers[0].user_career_knowCount : ""
+    state && state.careers[0] ? state.careers[0].user_career_knowCount : ""
   );
   const [user_career_knowTax, setKnowTax] = useState(
-    careers[0] ? careers[0].user_career_knowTax : ""
+    state && state.careers[0] ? state.careers[0].user_career_knowTax : ""
   );
   const [user_career_abilityProcess1, setAbilityProcess1] = useState(
-    careers[0] ? careers[0].user_career_abilityProcess1 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess1
+      : ""
   );
   const [user_career_abilityProcess2, setAbilityProcess2] = useState(
-    careers[0] ? careers[0].user_career_abilityProcess2 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess2
+      : ""
   );
   const [user_career_abilityProcess3, setAbilityProcess3] = useState(
-    careers[0] ? careers[0].user_career_abilityProcess3 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess3
+      : ""
   );
   const [user_career_abilityProcess4, setAbilityProcess4] = useState(
-    careers[0] ? careers[0].user_career_abilityProcess4 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess4
+      : ""
   );
   const [user_career_abilityProcess5, setAbilityProcess5] = useState(
-    careers[0] ? careers[0].user_career_abilityProcess5 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess5
+      : ""
   );
   const [user_career_abilityProcess6, onChangeAbilityProcess6] = useInput(
-    careers[0] ? careers[0].user_career_abilityProcess6 : ""
+    state && state.careers[0]
+      ? state.careers[0].user_career_abilityProcess6
+      : ""
   );
   const [user_career_abilityDrive1, setAbilityDrive1] = useState(
-    careers[0] ? careers[0].user_career_abilityDrive1 : ""
+    state && state.careers[0] ? state.careers[0].user_career_abilityDrive1 : ""
   );
   const [user_career_abilityDrive2, setAbilityDrive2] = useState(
-    careers[0] ? careers[0].user_career_abilityDrive2 : ""
+    state && state.careers[0] ? state.careers[0].user_career_abilityDrive2 : ""
   );
 
   const selectStyle1 = (data) => {
@@ -130,12 +171,21 @@ const CareerComponent = () => {
       window.location.href = "/";
     }
   }, [addCareerDone]);
+  useEffect(() => {
+    if (changeCareerDone) {
+      window.location.href = "/";
+    }
+  }, [changeCareerDone]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
       dispatch({
-        type: careers[0] ? "" : ADD_CAREER_REQUEST,
+        type:
+          state && state.careers[0]
+            ? CHANGE_CAREER_REQUEST
+            : ADD_CAREER_REQUEST,
         data: {
+          careerId: state && state.careers[0] ? state.careers[0].id : "",
           user_career_company1,
           user_career_position1,
           user_career_companyState1,
@@ -766,7 +816,7 @@ const CareerComponent = () => {
             </div>
           </label>
           <button type="submit" onClick={onSubmitForm}>
-            {careers[0] ? "저장" : "등록"}
+            {state && state.careers[0] ? "저장" : "등록"}
           </button>
         </form>
       </div>

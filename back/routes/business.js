@@ -53,7 +53,6 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    console.log("info : ", info);
     if (err) {
       console.error(err);
       return next(err);
@@ -66,7 +65,6 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
         console.error(loginErr);
         return next(loginErr);
       }
-      console.log("req.body :", req.body);
       const fullBusinessWithoutPassword = await User.findOne({
         where: { id: user.id },
         attributes: {
@@ -90,9 +88,10 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 });
 
 router.post("/logout", isLoggedIn, (req, res) => {
-  req.logout();
-  req.session.destroy();
-  res.send("ok");
+  req.logout(() => {
+    // res.redirect("/");
+  });
+  res.status(201).send("ok");
 });
 
 module.exports = router;

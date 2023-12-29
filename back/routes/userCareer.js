@@ -45,7 +45,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       user_career_abilityProcess6: req.body.user_career_abilityProcess6,
       user_career_abilityDrive1: req.body.user_career_abilityDrive1,
       user_career_abilityDrive2: req.body.user_career_abilityDrive2,
-      UserId: req.user.id,
+      IndividualId: req.user.id,
     });
     const fullCareer = await UserCareer.findOne({
       where: { id: career.id },
@@ -105,10 +105,10 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
         user_career_abilityProcess6: req.body.user_career_abilityProcess6,
         user_career_abilityDrive1: req.body.user_career_abilityDrive1,
         user_career_abilityDrive2: req.body.user_career_abilityDrive2,
-        UserId: req.user.id,
+        IndividualId: req.user.id,
       },
       {
-        where: { id: career.id },
+        where: { id: req.body.careerId },
         returning: true,
       }
     );

@@ -11,8 +11,9 @@ import { loginRequestActionBusiness } from "../../reducers/business";
 const LogInComponent = () => {
   const dispatch = useDispatch();
   const { logInDone, logInError } = useSelector((state) => state.user);
-  const { logInDone: businessLogInDone, logInError: businessLogInError } =
-    useSelector((state) => state.business);
+  const { logInDoneBusiness, logInError: businessLogInError } = useSelector(
+    (state) => state.business
+  );
   const navigate = useNavigate();
   // const [loginData, setLoginData] = useState({
   //   user_member_id: "",
@@ -39,10 +40,11 @@ const LogInComponent = () => {
     }
   }, [logInDone]);
   useEffect(() => {
-    if (businessLogInDone) {
-      navigate("/");
+    if (logInDoneBusiness) {
+      console.log("AA");
+      window.location.href = "/";
     }
-  }, [businessLogInDone]);
+  }, [logInDoneBusiness]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();

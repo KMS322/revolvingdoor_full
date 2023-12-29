@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = (db) => {
-    db.User.hasOne(db.UserIndividual, { foreignKey: "UserId" });
-    db.User.hasOne(db.UserCareer, { foreignKey: "UserId" });
-    db.User.hasMany(db.UserResume, { foreignKey: "UserId" });
+    db.User.hasOne(db.UserIndividual, { foreignKey: "IndividualId" });
+    db.User.hasOne(db.UserCareer, { foreignKey: "IndividualId" });
+    db.User.hasMany(db.UserResume, { foreignKey: "IndividualId" });
     db.User.hasOne(db.UserBusiness, { foreignKey: "BusinessId" });
     db.User.hasMany(db.BusinessApplication, { foreignKey: "BusinessId" });
     db.User.hasOne(db.BusinessRecruitment, { foreignKey: "BusinessId" });
