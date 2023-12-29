@@ -112,7 +112,6 @@ const reducer = (state = initialState, action) => {
         draft.signUpDone = false;
         break;
       case SIGN_UP_SUCCESS:
-        console.log("user request");
         draft.signUpLoading = false;
         draft.signUpDone = true;
         break;

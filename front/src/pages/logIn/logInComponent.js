@@ -41,7 +41,6 @@ const LogInComponent = () => {
   }, [logInDone]);
   useEffect(() => {
     if (logInDoneBusiness) {
-      console.log("AA");
       window.location.href = "/";
     }
   }, [logInDoneBusiness]);

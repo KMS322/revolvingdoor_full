@@ -22,7 +22,6 @@ const SignInComponent = () => {
             className="btn_box"
             onClick={() => {
               goPage("/signStep1", "individual");
-              console.log("개인회원 클릭");
             }}
           >
             개인회원
