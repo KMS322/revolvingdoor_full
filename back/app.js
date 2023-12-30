@@ -45,8 +45,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost",
-      "http://43.202.51.175",
       "http://52.78.107.42",
+      "http://13.209.104.234",
     ],
     credentials: true,
   })
