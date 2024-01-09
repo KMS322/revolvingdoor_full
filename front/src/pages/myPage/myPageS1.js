@@ -1,6 +1,23 @@
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_INDIVIDUAL_INFO_REQUEST } from "../../reducers/userInfo";
 const MyPageS1 = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
+  console.log("me : ", me);
+  const { individualInfo } = useSelector((state) => state.userInfo);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_INDIVIDUAL_INFO_REQUEST,
+    });
+  }, []);
+  console.log("individualInfo : ", individualInfo);
+  const sumInfo = {
+    memberInfo: me,
+    userInfo: individualInfo,
+  };
   return (
     <div className="myPage_s1">
       <div className="title_box">
@@ -18,8 +35,19 @@ const MyPageS1 = () => {
             </span>{" "}
             어서오세요.
           </p>
-          {/* <p>경북 00시 000***@n****.com</p> */}
-          {/* <p>회원정보 수정</p> */}
+          <p>경북 00시 000***@n****.com</p>
+          <p
+            onClick={() => {
+              if (me.userType === "individual") {
+                navigate("/individualInfo", {
+                  state: { data: sumInfo },
+                });
+              }
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            회원정보 수정
+          </p>
         </div>
       </div>
     </div>

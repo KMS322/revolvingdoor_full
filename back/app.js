@@ -14,6 +14,7 @@ const applicationRouter = require("./routes/businessApplication");
 const applicationsRouter = require("./routes/applications");
 const recruitmentRouter = require("./routes/businessRecruitment");
 const recruitmentsRouter = require("./routes/recruitments");
+const userInfoRouter = require("./routes/userInfo");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -84,10 +85,11 @@ app.use("/application", applicationRouter);
 app.use("/applications", applicationsRouter);
 app.use("/recruitment", recruitmentRouter);
 app.use("/recruitments", recruitmentsRouter);
+app.use("/userInfo", userInfoRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });
-
-app.listen(3000, () => {
-  console.log("서버 실행 중");
+const port = 3065;
+app.listen(port, () => {
+  console.log(`${port}에서 서버 실행 중`);
 });
