@@ -2,14 +2,11 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../../reducers/business";
 import { signupRequestActionBusiness } from "../../reducers/business";
 
 const SignInStep3S2 = (props) => {
   const dispatch = useDispatch();
   const { signUpDone, signUpError } = useSelector((state) => state.business);
-  const { type } = props;
-  // const [userType, setUserType] = useState(type);
   const [userType, setUserType] = useState("business");
   const navigate = useNavigate();
 

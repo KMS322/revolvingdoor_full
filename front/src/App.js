@@ -33,6 +33,7 @@ import MyResumeComponents from "./pages/myResume/myResumeComponent.js";
 import MyApplicationStep1Components from "./pages/myApplication/myApplicationStep1Components.js";
 import MyApplicationStep2Components from "./pages/myApplication/myApplicationStep2Components.js";
 import IndividualInfoComponent from "./pages/userInfo/individualInfoComponent.js";
+import BusinessInfoComponent from "./pages/userInfo/businessInfoComponent.js";
 function App() {
   const dispatch = useDispatch();
   const { logInDone } = useSelector((state) => state.user);
@@ -95,6 +96,7 @@ function App() {
         />
 
         <Route path="/individualInfo" element={<IndividualInfoComponent />} />
+        <Route path="/businessInfo" element={<BusinessInfoComponent />} />
       </Routes>
       <Footer />
     </>

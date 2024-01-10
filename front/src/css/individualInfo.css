@@ -50,10 +50,7 @@
   font-size: 1.2vw;
   border: none;
   border-radius: 0.4vw;
-}
-.individualInfo_s1 form > .input_box:nth-child(2) > input {
-  width: 53.64%;
-  height: 100%;
+  padding-left: 1vw;
 }
 .individualInfo_s1 form > .input_box:nth-child(2) .email_check {
   width: 12.26%;
@@ -69,70 +66,48 @@
   border-radius: 0.4vw;
   cursor: pointer;
 }
-.individualInfo_s1 form > .input_box > .sub_input {
+.individualInfo_s1 form > .input_box > .text_id {
   width: 67.37%;
   height: 100%;
-  font-size: 1.2vw;
-  border: none;
-  border-radius: 0.4vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-.individualInfo_s1 form > .input_box > .sub_input > input {
-  width: 40%;
-  height: 100%;
+  padding-left: 1vw;
+  font-size: 0.97vw;
+  font-weight: 600;
   background-color: #eeeeee;
-  font-size: 1.2vw;
-  border: none;
   border-radius: 0.4vw;
 }
-.individualInfo_s1 form > .input_box > .sub_input1 > input {
-  width: 15%;
-}
-.individualInfo_s1 form .select_box {
-  width: 100%;
-  height: 3vw;
-  display: flex;
-  margin-top: 1.46vw;
-  align-items: center;
-}
-.individualInfo_s1 form > .select_box > p {
-  width: 32.63%;
-  /* height: 100%; */
-  display: flex;
-  /* align-items: center; */
-  font-size: 1.5vw;
-  font-weight: 700;
-}
-.individualInfo_s1 form > .select_box > .sub_select {
+.individualInfo_s1 form > .input_box > .pw_btn {
   width: 67.37%;
   height: 100%;
-  display: flex;
-}
-.individualInfo_s1 form > .select_box > .sub_select > .select {
-  height: 100%;
-  font-size: 1.2vw;
-  border: none;
-  border: 2px solid #eeeeee;
-  border-radius: 0.4vw;
-  font-size: 0.98vw;
-  color: #707070;
-  text-align: center;
-  margin: 0vw;
-  padding: 0vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 600;
+  background-color: #eeeeee;
+  border-radius: 0.4vw;
   cursor: pointer;
 }
-.individualInfo_s1 form > .select_box > .sub_select > .select {
-  width: 7.8vw;
-  margin-right: 0.7vw;
+.individualInfo_s1 form > .input_box > .pw_btn1_box {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.individualInfo_s1 form > .select_box > .sub_select > .select:last-child {
-  margin-right: 0vw;
+.individualInfo_s1 form > .input_box > .pw_btn1_box > .pw_btn1 {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 600;
+  background-color: #eeeeee;
+  border-radius: 0.4vw;
+  cursor: pointer;
 }
+
 .individualInfo_s1 form button {
   width: 7.49vw;
   height: 3vw;

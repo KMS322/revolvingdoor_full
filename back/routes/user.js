@@ -104,6 +104,33 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   })(req, res, next);
 });
 
+router.post("/changePassword", isLoggedIn, async (req, res, next) => {
+  try {
+    console.log("req.body.userID : ", req.body.userID);
+    const changeUser = await User.findOne({
+      where: {
+        id: req.body.userID,
+      },
+    });
+    console.log("changeUser : ", changeUser);
+    const currentPasswordMatch = await bcrypt.compare(
+      req.body.user_currentPW,
+      changeUser.user_member_pw
+    );
+
+    if (!currentPasswordMatch) {
+      return res.status(401).send("현재 비밀번호가 일치하지 않습니다.");
+    }
+    const hashedNewPassword = await bcrypt.hash(req.body.changePassword, 12);
+    changeUser.user_member_pw = hashedNewPassword;
+    await changeUser.save();
+
+    res.status(200).send("비밀번호가 성공적으로 변경되었습니다.");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
 router.post("/logout", isLoggedIn, (req, res) => {
   req.logout(() => {
     // res.redirect("/");

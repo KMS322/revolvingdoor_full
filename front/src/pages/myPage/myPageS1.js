@@ -6,14 +6,12 @@ const MyPageS1 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
-  console.log("me : ", me);
   const { individualInfo } = useSelector((state) => state.userInfo);
   useEffect(() => {
     dispatch({
       type: LOAD_INDIVIDUAL_INFO_REQUEST,
     });
   }, []);
-  console.log("individualInfo : ", individualInfo);
   const sumInfo = {
     memberInfo: me,
     userInfo: individualInfo,

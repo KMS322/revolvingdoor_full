@@ -1,5 +1,3 @@
-import "../../css/myPageBusiness.css";
-import "../../css/myPageBusiness_mobile.css";
 import dayjs from "dayjs";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

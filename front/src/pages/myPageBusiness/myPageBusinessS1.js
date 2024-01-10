@@ -1,13 +1,22 @@
-import "../../css/myPageBusiness.css";
-import "../../css/myPageBusiness_mobile.css";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_BUSINESS_INFO_REQUEST } from "../../reducers/userInfo";
 const MyPageBusinessS1 = () => {
-  // const navigate = useNavigate();
-
-  // const goPage = (path) => {
-  //   navigate(path);
-  // };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
+  const { businessInfo } = useSelector((state) => state.userInfo);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_BUSINESS_INFO_REQUEST,
+    });
+  }, []);
+  console.log("businessInfo : ", businessInfo);
+  const sumInfo = {
+    memberInfo: me,
+    userInfo: businessInfo,
+  };
   return (
     <div className="myPageBusiness_s1">
       <div className="title_box">
@@ -25,8 +34,19 @@ const MyPageBusinessS1 = () => {
             </span>{" "}
             어서오세요.
           </p>
-          {/* <p>경북 00시 000***@n****.com</p> */}
-          {/* <p>회원정보 수정</p> */}
+          <p>경북 00시 000***@n****.com</p>
+          <p
+            onClick={() => {
+              if (me.userType === "business") {
+                navigate("/businessInfo", {
+                  state: { data: sumInfo },
+                });
+              }
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            회원정보 수정
+          </p>
         </div>
       </div>
     </div>

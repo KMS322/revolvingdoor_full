@@ -1,0 +1,178 @@
+/* businessInfo_s1 */
+.businessInfo_s1 {
+  width: 37.15%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.businessInfo_s1 form > p {
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #787160;
+  text-align: left;
+  margin-top: 3.11vw;
+  margin-bottom: 1.46vw;
+}
+.businessInfo_s1 form > p:nth-child(1) {
+  margin-top: 0vw;
+}
+.businessInfo_s1 form .input_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.businessInfo_s1 form .input_nomargin {
+  margin-top: 0vw;
+}
+.businessInfo_s1 form > .input_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.businessInfo_s1 form > .input_box > p > span {
+  font-size: 0.9vw;
+  font-weight: 700;
+  color: #b6b6b6;
+  display: flex;
+  align-items: flex-end;
+}
+.businessInfo_s1 form > .input_box > input {
+  width: 67.37%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  border: none;
+  border-radius: 0.4vw;
+  padding-left: 1vw;
+}
+.businessInfo_s1 form > .input_box:nth-child(2) > input {
+  width: 53.64%;
+  height: 100%;
+}
+.businessInfo_s1 form > .input_box:nth-child(2) .email_check {
+  width: 12.26%;
+  height: 100%;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  font-size: 0.97vw;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
+.businessInfo_s1 form .select_box {
+  width: 100%;
+  height: 3vw;
+  display: flex;
+  margin-top: 1.46vw;
+  align-items: center;
+}
+.businessInfo_s1 form > .select_box > p {
+  width: 32.63%;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+.businessInfo_s1 form > .select_box > .sub_select {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+}
+.businessInfo_s1 form > .select_box > .sub_select > .select {
+  height: 100%;
+  font-size: 1.2vw;
+  border: none;
+  border: 2px solid #eeeeee;
+  border-radius: 0.4vw;
+  font-size: 0.98vw;
+  color: #707070;
+  text-align: center;
+  margin: 0vw;
+  padding: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.businessInfo_s1 form > .select_box > .sub_select1 > .select {
+  width: 48%;
+  margin-right: 0.7vw;
+}
+.businessInfo_s1 form > .select_box > .sub_select1 > .select:last-child {
+  margin-right: 0vw;
+}
+.businessInfo_s1 form > .select_box > .sub_select2 > .select {
+  width: 7vw;
+  margin-right: 0.7vw;
+}
+.businessInfo_s1 form > .select_box > .sub_select2 > .select:last-child {
+  margin-right: 0vw;
+}
+.businessInfo_s1 form > .input_box > .pw_btn {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 600;
+  background-color: #eeeeee;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
+.businessInfo_s1 form > .input_box > .text_id {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 1vw;
+  font-size: 0.97vw;
+  font-weight: 600;
+  background-color: #eeeeee;
+  border-radius: 0.4vw;
+}
+.businessInfo_s1 form > .input_box > .pw_btn1_box {
+  width: 67.37%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.businessInfo_s1 form > .input_box > .pw_btn1_box > .pw_btn1 {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 600;
+  background-color: #eeeeee;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
+
+.businessInfo_s1 form button {
+  width: 7.49vw;
+  height: 3vw;
+  margin: 0 auto;
+  margin-top: 6.07vw;
+  border-radius: 0.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.97vw;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background-color: #cabd99;
+}
