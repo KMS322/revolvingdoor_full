@@ -91,7 +91,11 @@
   width: 53.64%;
   height: 100%;
 }
-.signin_step3_s2 form > .input_box:nth-child(2) .email_check {
+.signin_step3_s2 form > .input_box > .input_btn {
+  width: 53.64%;
+  height: 100%;
+}
+.signin_step3_s2 form > .input_box .btn {
   width: 12.26%;
   height: 100%;
   margin-left: auto;

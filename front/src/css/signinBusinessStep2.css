@@ -163,6 +163,24 @@
   > .select:last-child {
   margin-right: 0vw;
 }
+.signin_business_step2_s2 form > .input_box > .input_btn {
+  width: 53.64%;
+  height: 100%;
+}
+.signin_business_step2_s2 form > .input_box .btn {
+  width: 12.26%;
+  height: 100%;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  font-size: 0.97vw;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
 .signin_business_step2_s2 form button {
   width: 7.49vw;
   height: 3vw;

@@ -2,21 +2,24 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../../reducers/user";
+import { SIGN_UP_REQUEST, CHECK_ID_REQUEST } from "../../reducers/user";
+import DaumPostcode from "react-daum-postcode";
 
-const SignInStep3S2 = (props) => {
+const SignInStep3S2 = () => {
   const dispatch = useDispatch();
-  const { signUpDone, signUpError } = useSelector((state) => state.user);
-  const { type } = props;
+  const { signUpDone, signUpError, checkIdDone, checkIdError } = useSelector(
+    (state) => state.user
+  );
   // const [userType, setUserType] = useState(type);
   const navigate = useNavigate();
-
+  const [checkIdComplete, setCheckIdComplete] = useState(false);
   const [userType, setUserType] = useState("individual");
   const [user_member_id, onChangeId] = useInput("");
   const [user_member_pw, onChangePassword] = useInput("");
   const [user_member_name, onChangeName] = useInput("");
   const [user_member_num, onChangeNum] = useInput("");
-  const [user_member_address1, onChangeAddress1] = useInput("");
+  // const [user_member_address1, onChangeAddress1] = useInput("");
+  const [user_member_address1, setAddress1] = useState("");
   const [user_member_address2, onChangeAddress2] = useInput("");
   const [user_member_tel, onChangeTel] = useInput("");
   const [user_member_email, onChangeEmail] = useInput("");
@@ -40,6 +43,17 @@ const SignInStep3S2 = (props) => {
       alert(signUpError);
     }
   }, [signUpError]);
+  useEffect(() => {
+    if (checkIdError) {
+      alert(checkIdError);
+    }
+  }, [checkIdError]);
+  useEffect(() => {
+    if (checkIdDone) {
+      alert("사용 가능한 아이디 입니다.");
+      setCheckIdComplete(user_member_id);
+    }
+  }, [checkIdDone]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -71,7 +85,54 @@ const SignInStep3S2 = (props) => {
       user_member_email,
     ]
   );
+  const [modalOpen, setModalOpen] = useState(false);
+  const [addressObj, setAddressObj] = useState({
+    areaAddress: "",
+    townAddress: "",
+  });
 
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    let localAddress = data.sido + " " + data.sigungu;
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+
+      fullAddress = fullAddress.replace(localAddress, "");
+      setAddressObj({
+        areaAddress: localAddress,
+        townAddress:
+          fullAddress + (extraAddress !== "" ? `(${extraAddress})` : ""),
+      });
+    }
+  };
+  const handleClick = () => {
+    setModalOpen(!modalOpen);
+  };
+  useEffect(() => {
+    const address1 = addressObj.areaAddress + addressObj.townAddress;
+    setAddress1(address1);
+  }, [addressObj]);
+  const checkId = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      dispatch({
+        type: CHECK_ID_REQUEST,
+        data: {
+          user_member_id,
+        },
+      });
+    },
+    [user_member_id]
+  );
   return (
     <div className="signin_step3_s2">
       <form>
@@ -88,10 +149,11 @@ const SignInStep3S2 = (props) => {
             onChange={onChangeId}
           />
           <div
-            className="email_check"
+            className="btn"
             style={{
-              backgroundColor: user_member_id ? "#CABD99" : "#b6b6b6",
+              backgroundColor: checkIdComplete ? "#CABD99" : "#b6b6b6",
             }}
+            onClick={checkId}
           >
             중복확인
           </div>
@@ -142,9 +204,27 @@ const SignInStep3S2 = (props) => {
             type="text"
             name="user_member_address1"
             value={user_member_address1}
-            onChange={onChangeAddress1}
+            className="input_btn"
+            readOnly
           />
+          <div
+            className="btn"
+            style={{
+              backgroundColor: user_member_address1 ? "#CABD99" : "#b6b6b6",
+            }}
+            onClick={() => {
+              if (!user_member_address1) {
+                handleClick();
+              }
+            }}
+          >
+            주소검색
+          </div>
         </label>
+        {modalOpen && (
+          <DaumPostcode onComplete={handleComplete} autoClose animation />
+        )}
+
         <label className="input_box">
           <p></p>
           <input

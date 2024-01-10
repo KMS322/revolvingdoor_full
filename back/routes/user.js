@@ -104,9 +104,37 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   })(req, res, next);
 });
 
+router.post("/checkId", isNotLoggedIn, async (req, res, next) => {
+  try {
+    if (req.body.user_member_id) {
+      const sameIdUser = await User.findOne({
+        where: {
+          user_member_id: req.body.user_member_id,
+        },
+      });
+      if (sameIdUser) {
+        return res.status(403).send("이미 사용중인 아이디 입니다.");
+      }
+    } else if (req.body.business_member_id) {
+      const sameIdUser = await User.findOne({
+        where: {
+          user_member_id: req.body.business_member_id,
+        },
+      });
+      if (sameIdUser) {
+        return res.status(403).send("이미 사용중인 아이디 입니다.");
+      }
+    }
+
+    return res.status(200).send("사용하실 수 있는 아이디 입니다.");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 router.post("/changePassword", isLoggedIn, async (req, res, next) => {
   try {
-    console.log("req.body.userID : ", req.body.userID);
     const changeUser = await User.findOne({
       where: {
         id: req.body.userID,

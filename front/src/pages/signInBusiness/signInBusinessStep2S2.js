@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { signupRequestActionBusiness } from "../../reducers/business";
+import { CHECK_ID_REQUEST } from "../../reducers/user";
+import DaumPostcode from "react-daum-postcode";
 
-const SignInStep3S2 = (props) => {
+const SignInStep3S2 = () => {
   const dispatch = useDispatch();
   const { signUpDone, signUpError } = useSelector((state) => state.business);
+  const { checkIdDone, checkIdError } = useSelector((state) => state.user);
+  const [checkIdComplete, setCheckIdComplete] = useState(false);
   const [userType, setUserType] = useState("business");
   const navigate = useNavigate();
 
@@ -20,7 +24,7 @@ const SignInStep3S2 = (props) => {
   const [business_member_companyState, setCompanyState] = useState();
   const [business_member_employeeNumber, onChangeEmployeeNumber] = useInput("");
   const [business_member_officeState, setOfficeState] = useState();
-  const [business_member_address1, onChangeAddress1] = useInput("");
+  const [business_member_address1, setAddress1] = useState("");
   const [business_member_address2, onChangeAddress2] = useInput("");
   const [business_member_tel, onChangeTel] = useInput("");
   const [business_member_email, onChangeEmail] = useInput("");
@@ -44,6 +48,17 @@ const SignInStep3S2 = (props) => {
       alert(signUpError);
     }
   }, [signUpError]);
+  useEffect(() => {
+    if (checkIdError) {
+      alert(checkIdError);
+    }
+  }, [checkIdError]);
+  useEffect(() => {
+    if (checkIdDone) {
+      alert("사용 가능한 아이디 입니다.");
+      setCheckIdComplete(business_member_id);
+    }
+  }, [checkIdDone]);
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -81,6 +96,54 @@ const SignInStep3S2 = (props) => {
       business_member_email,
     ]
   );
+  const [modalOpen, setModalOpen] = useState(false);
+  const [addressObj, setAddressObj] = useState({
+    areaAddress: "",
+    townAddress: "",
+  });
+
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    let localAddress = data.sido + " " + data.sigungu;
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+
+      fullAddress = fullAddress.replace(localAddress, "");
+      setAddressObj({
+        areaAddress: localAddress,
+        townAddress:
+          fullAddress + (extraAddress !== "" ? `(${extraAddress})` : ""),
+      });
+    }
+  };
+  const handleClick = () => {
+    setModalOpen(!modalOpen);
+  };
+  useEffect(() => {
+    const address1 = addressObj.areaAddress + addressObj.townAddress;
+    setAddress1(address1);
+  }, [addressObj]);
+  const checkId = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      dispatch({
+        type: CHECK_ID_REQUEST,
+        data: {
+          business_member_id,
+        },
+      });
+    },
+    [business_member_id]
+  );
   const selectStyle1 = (data) => {
     return {
       borderColor:
@@ -112,8 +175,9 @@ const SignInStep3S2 = (props) => {
           <div
             className="email_check"
             style={{
-              backgroundColor: business_member_id ? "#CABD99" : "#b6b6b6",
+              backgroundColor: checkIdComplete ? "#CABD99" : "#b6b6b6",
             }}
+            onClick={checkId}
           >
             중복확인
           </div>
@@ -269,9 +333,26 @@ const SignInStep3S2 = (props) => {
             type="text"
             name="business_member_address1"
             value={business_member_address1}
-            onChange={onChangeAddress1}
+            className="input_btn"
+            readOnly
           />
+          <div
+            className="btn"
+            style={{
+              backgroundColor: business_member_address1 ? "#CABD99" : "#b6b6b6",
+            }}
+            onClick={() => {
+              if (!business_member_address1) {
+                handleClick();
+              }
+            }}
+          >
+            주소검색
+          </div>
         </label>
+        {modalOpen && (
+          <DaumPostcode onComplete={handleComplete} autoClose animation />
+        )}
         <label className="input_box">
           <p></p>
           <input

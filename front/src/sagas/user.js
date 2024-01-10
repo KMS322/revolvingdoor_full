@@ -13,6 +13,9 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  CHECK_ID_REQUEST,
+  CHECK_ID_SUCCESS,
+  CHECK_ID_FAILURE,
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE,
@@ -95,6 +98,25 @@ function* signUp(action) {
   }
 }
 
+function checkIdAPI(data) {
+  return axios.post("/user/checkId", data);
+}
+
+function* checkId(action) {
+  try {
+    const result = yield call(checkIdAPI, action.data);
+    yield put({
+      type: CHECK_ID_SUCCESS,
+      data: action.data,
+    });
+  } catch (err) {
+    yield put({
+      type: CHECK_ID_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function changePasswordAPI(data) {
   return axios.post("/user/changePassword", data);
 }
@@ -130,6 +152,10 @@ function* watchSignUp() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 
+function* watchcheckId() {
+  yield takeLatest(CHECK_ID_REQUEST, checkId);
+}
+
 function* watchChangePassword() {
   yield takeLatest(CHANGE_PASSWORD_REQUEST, changePassword);
 }
@@ -140,5 +166,6 @@ export default function* userSaga() {
     fork(watchLogOut),
     fork(watchSignUp),
     fork(watchChangePassword),
+    fork(watchcheckId),
   ]);
 }

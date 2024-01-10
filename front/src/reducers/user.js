@@ -13,6 +13,9 @@ export const initialState = {
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
+  checkIdLoading: false,
+  checkIdDone: false,
+  checkIdError: null,
   changePasswordLoading: false,
   changePasswordDone: false,
   changePasswordError: null,
@@ -36,6 +39,10 @@ export const LOG_OUT_FAILURE = "LOG_OUT_FAUILURE";
 export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAUILURE";
+
+export const CHECK_ID_REQUEST = "CHECK_ID_REQUEST";
+export const CHECK_ID_SUCCESS = "CHECK_ID_SUCCESS";
+export const CHECK_ID_FAILURE = "CHECK_ID_FAUILURE";
 
 export const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD_REQUEST";
 export const CHANGE_PASSWORD_SUCCESS = "CHANGE_PASSWORD_SUCCESS";
@@ -127,6 +134,19 @@ const reducer = (state = initialState, action) => {
         draft.signUpLoading = false;
         draft.signUpError = action.error;
         break;
+      case CHECK_ID_REQUEST:
+        draft.checkIdLoading = true;
+        draft.checkIdError = null;
+        draft.checkIdDone = false;
+        break;
+      case CHECK_ID_SUCCESS:
+        draft.checkIdLoading = false;
+        draft.checkIdDone = true;
+        break;
+      case CHECK_ID_FAILURE:
+        draft.checkIdLoading = false;
+        draft.checkIdError = action.error;
+        break;
       case CHANGE_PASSWORD_REQUEST:
         draft.changePasswordLoading = true;
         draft.changePasswordError = null;
@@ -134,7 +154,6 @@ const reducer = (state = initialState, action) => {
         break;
       case CHANGE_PASSWORD_SUCCESS:
         draft.changePasswordLoading = false;
-        // draft.me = action.data;
         draft.changePasswordDone = true;
         break;
       case CHANGE_PASSWORD_FAILURE:
@@ -154,14 +173,12 @@ const reducer = (state = initialState, action) => {
         draft.me.recruitments.unshift({ id: action.data });
         break;
       case REMOVE_RESUME_OF_ME:
-        console.log("redux내에서 resumes me : ", draft.me.resumes);
         draft.me.resumes = draft.me.resumes.filter((v) => v.id !== action.data);
         break;
       case REMOVE_CAREER_OF_ME:
         draft.me.careers = draft.me.careers.filter((v) => v.id !== action.data);
         break;
       case REMOVE_APPLICATION_OF_ME:
-        console.log("redux내에서 applications me : ", draft.me.applications);
         draft.me.applications = draft.me.applications.filter(
           (v) => v.id !== action.data
         );
