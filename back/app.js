@@ -15,6 +15,7 @@ const applicationsRouter = require("./routes/applications");
 const recruitmentRouter = require("./routes/businessRecruitment");
 const recruitmentsRouter = require("./routes/recruitments");
 const userInfoRouter = require("./routes/userInfo");
+const adminRouter = require("./routes/admin");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -45,6 +46,7 @@ app.use(
     // origin: ['https://domain.com', 'revolving.com'],
     origin: [
       "http://localhost:3000",
+      "http://localhost:3060",
       "http://localhost",
       "http://52.78.107.42",
       "http://13.209.104.234",
@@ -86,6 +88,7 @@ app.use("/applications", applicationsRouter);
 app.use("/recruitment", recruitmentRouter);
 app.use("/recruitments", recruitmentsRouter);
 app.use("/userInfo", userInfoRouter);
+app.use("/admin", adminRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });
