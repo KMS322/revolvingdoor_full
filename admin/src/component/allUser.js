@@ -1,18 +1,17 @@
 import "../css/table.css";
 import "../css/allUser.css";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LOAD_ALLUSER_REQUEST } from "../reducers/adminUser";
 const AllUser = () => {
   const dispatch = useDispatch();
-  const { loadAllUserDone, allUsers } = useSelector((state) => state.adminUser);
+  const { allUsers } = useSelector((state) => state.adminUser);
   useEffect(() => {
     dispatch({
       type: LOAD_ALLUSER_REQUEST,
     });
   }, []);
-  console.log("allUsers : ", allUsers);
   return (
     <div className="section alluser">
       <div className="table_container">

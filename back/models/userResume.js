@@ -58,19 +58,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      user_resume_hopework1: {
+      user_resume_hopeWork1: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      user_resume_hopework2: {
+      user_resume_hopeWork2: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      user_resume_hopework3: {
+      user_resume_hopeWork3: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      user_resume_hopework4: {
+      user_resume_hopeWork4: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },

@@ -9,9 +9,17 @@
 }
 .individualUser .table_container .row p:nth-child(3) {
   margin-left: 1.56vw;
-  width: 8.13vw;
+  width: 15vw;
 }
 .individualUser .table_container .row p:nth-child(4) {
+  margin-left: 1.56vw;
+  width: 8.13vw;
+}
+.individualUser .table_container .row p:nth-child(5) {
+  margin-left: 1.56vw;
+  width: 8.13vw;
+}
+.individualUser .table_container .row p:nth-child(6) {
   margin-left: 1.56vw;
   width: 8.13vw;
 }

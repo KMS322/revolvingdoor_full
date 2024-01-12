@@ -175,6 +175,7 @@ const MyResumeComponent = () => {
       user_resume_hopeWorkTime2Minute,
     ]
   );
+
   return (
     <div className="myResume_s1">
       <p>
