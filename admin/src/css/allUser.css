@@ -1,17 +1,17 @@
 /* alluser */
 .alluser .table_container .row p:nth-child(1) {
-  margin-left: 1.98vw;
-  width: 1.98vw;
+  margin-left: 2.55vw;
+  width: 4.3%;
 }
 .alluser .table_container .row p:nth-child(2) {
-  margin-left: 1.56vw;
-  width: 8.13vw;
+  margin-left: 8.6vw;
+  width: 6%;
 }
 .alluser .table_container .row p:nth-child(3) {
-  margin-left: 1.56vw;
-  width: 8.13vw;
+  margin-left: 9.06vw;
+  width: 25.09%;
 }
 .alluser .table_container .row p:nth-child(4) {
-  margin-left: 1.56vw;
-  width: 8.13vw;
+  margin-left: 21vw;
+  width: 5.73%;
 }

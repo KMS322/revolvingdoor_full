@@ -86,6 +86,18 @@
 .career_s1 form > .input_box > .sub_input3 > input {
   width: 40%;
 }
+.career_s1 form > .input_box > .plus_btn {
+  width: 67.37%;
+  height: 100%;
+  background-color: #eeeeee;
+  font-size: 1.2vw;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
 .career_s1 form .select_box {
   width: 100%;
   height: 3vw;

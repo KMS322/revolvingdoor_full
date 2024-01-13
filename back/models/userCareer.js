@@ -34,6 +34,70 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
+      user_career_company2: {
+        type: DataTypes.STRING(40),
+        allowNull: false,
+      },
+      user_career_position2: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_companyState2: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_program2: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_period21Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period21Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period22Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period22Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_company3: {
+        type: DataTypes.STRING(40),
+        allowNull: false,
+      },
+      user_career_position3: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_companyState3: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_program3: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_period31Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period31Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period32Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_period32Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
       user_career_license1: {
         type: DataTypes.STRING(20),
         allowNull: true,
@@ -51,6 +115,46 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       user_career_license1Organization: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_license2: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      user_career_license2Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license2Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license2Day: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license2Organization: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      user_career_license3: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      user_career_license3Year: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license3Month: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license3Day: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_career_license3Organization: {
         type: DataTypes.STRING(30),
         allowNull: true,
       },

@@ -40,7 +40,58 @@ const CareerComponent = () => {
   const [user_career_period12Month, onChangePeriod12Month] = useInput(
     state && state.careers[0] ? state.careers[0].user_career_period12Month : ""
   );
-  const [user_career_license1, onChangeLicense] = useInput(
+
+  const [user_career_company2, onChangeCompany2] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_company2 : ""
+  );
+  const [user_career_position2, onChangePosition2] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_position2 : ""
+  );
+  const [user_career_companyState2, onChangeCompanyState2] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_companyState2 : ""
+  );
+  const [user_career_program2, onChangeProgram2] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_program2 : ""
+  );
+  const [user_career_period21Year, onChangePeriod21Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period21Year : ""
+  );
+  const [user_career_period21Month, onChangePeriod21Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period21Month : ""
+  );
+  const [user_career_period22Year, onChangePeriod22Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period22Year : ""
+  );
+  const [user_career_period22Month, onChangePeriod22Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period22Month : ""
+  );
+
+  const [user_career_company3, onChangeCompany3] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_company3 : ""
+  );
+  const [user_career_position3, onChangePosition3] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_position3 : ""
+  );
+  const [user_career_companyState3, onChangeCompanyState3] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_companyState3 : ""
+  );
+  const [user_career_program3, onChangeProgram3] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_program3 : ""
+  );
+  const [user_career_period31Year, onChangePeriod31Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period31Year : ""
+  );
+  const [user_career_period31Month, onChangePeriod31Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period31Month : ""
+  );
+  const [user_career_period32Year, onChangePeriod32Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period32Year : ""
+  );
+  const [user_career_period32Month, onChangePeriod32Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_period32Month : ""
+  );
+
+  const [user_career_license1, onChangeLicense1] = useInput(
     state && state.careers[0] ? state.careers[0].user_career_license1 : ""
   );
   const [user_career_license1Year, onChangeLicense1Year] = useInput(
@@ -58,6 +109,45 @@ const CareerComponent = () => {
         ? state.careers[0].user_career_license1Organization
         : ""
     );
+
+  const [user_career_license2, onChangeLicense2] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license2 : ""
+  );
+  const [user_career_license2Year, onChangeLicense2Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license2Year : ""
+  );
+  const [user_career_license2Month, onChangeLicense2Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license2Month : ""
+  );
+  const [user_career_license2Day, onChangeLicense2Day] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license2Day : ""
+  );
+  const [user_career_license2Organization, onChangeLicense2Organization] =
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_license2Organization
+        : ""
+    );
+
+  const [user_career_license3, onChangeLicense3] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license3 : ""
+  );
+  const [user_career_license3Year, onChangeLicense3Year] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license3Year : ""
+  );
+  const [user_career_license3Month, onChangeLicense3Month] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license3Month : ""
+  );
+  const [user_career_license3Day, onChangeLicense3Day] = useInput(
+    state && state.careers[0] ? state.careers[0].user_career_license3Day : ""
+  );
+  const [user_career_license3Organization, onChangeLicense3Organization] =
+    useInput(
+      state && state.careers[0]
+        ? state.careers[0].user_career_license3Organization
+        : ""
+    );
+
   const [user_career_trainingName1, onChangeTrainingName1] = useInput(
     state && state.careers[0] ? state.careers[0].user_career_trainingName1 : ""
   );
@@ -194,6 +284,22 @@ const CareerComponent = () => {
           user_career_period11Month,
           user_career_period12Year,
           user_career_period12Month,
+          user_career_company2,
+          user_career_position2,
+          user_career_companyState2,
+          user_career_program2,
+          user_career_period21Year,
+          user_career_period21Month,
+          user_career_period22Year,
+          user_career_period22Month,
+          user_career_company3,
+          user_career_position3,
+          user_career_companyState3,
+          user_career_program3,
+          user_career_period31Year,
+          user_career_period31Month,
+          user_career_period32Year,
+          user_career_period32Month,
           user_career_license1,
           user_career_license1Year,
           user_career_license1Month,
@@ -259,6 +365,8 @@ const CareerComponent = () => {
     ]
   );
 
+  const [careerCnt, setCareerCnt] = useState(1);
+  const [licenseCnt, setLicenseCnt] = useState(1);
   return (
     <>
       <Nav />
@@ -270,10 +378,10 @@ const CareerComponent = () => {
         <form>
           <p>경력사항</p>
           <label className="input_box input_nomargin">
-            <p>근무처</p>
+            <p>경력 사항 1.</p>
           </label>
           <label className="input_box">
-            <p>1.</p>
+            <p>근무처</p>
             <input
               type="text"
               name="user_career_company1"
@@ -281,20 +389,8 @@ const CareerComponent = () => {
               onChange={onChangeCompany1}
             />
           </label>
-          {/* <label className="input_box">
-            <p>2.</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>3.</p>
-            <input type="text" name="" />
-          </label> */}
-
           <label className="input_box">
             <p>직위</p>
-          </label>
-          <label className="input_box">
-            <p>1.</p>
             <input
               type="text"
               name="user_career_position1"
@@ -302,23 +398,12 @@ const CareerComponent = () => {
               onChange={onChangePosition1}
             />
           </label>
-          {/* <label className="input_box">
-            <p>2.</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>3.</p>
-            <input type="text" name="" />
-          </label> */}
           <label className="input_box">
             <p>
               담당 사업장
               <br />
               형태와 업태
             </p>
-          </label>
-          <label className="input_box">
-            <p>1.</p>
             <input
               type="text"
               name="user_career_companyState1"
@@ -326,19 +411,8 @@ const CareerComponent = () => {
               onChange={onChangeCompanyState1}
             />
           </label>
-          {/* <label className="input_box">
-            <p>2.</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>3.</p>
-            <input type="text" name="" />
-          </label> */}
           <label className="input_box">
             <p>사용 프로그램</p>
-          </label>
-          <label className="input_box">
-            <p>1.</p>
             <input
               type="text"
               name="user_career_program1"
@@ -346,19 +420,8 @@ const CareerComponent = () => {
               onChange={onChangeProgram1}
             />
           </label>
-          {/* <label className="input_box">
-            <p>2.</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>3.</p>
-            <input type="text" name="" />
-          </label> */}
           <label className="input_box">
             <p>근무기간</p>
-          </label>
-          <label className="input_box">
-            <p>1.</p>
             <div className="sub_input sub_input1">
               <input
                 type="text"
@@ -391,42 +454,231 @@ const CareerComponent = () => {
               <p>월</p>
             </div>
           </label>
-          {/* <label className="input_box">
-            <p>2.</p>
-            <div className="sub_input sub_input1">
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-              <p>~</p>
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-            </div>
-          </label>
-          <label className="input_box">
-            <p>3.</p>
-            <div className="sub_input sub_input1">
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-              <p>~</p>
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-            </div>
-          </label> */}
+          {careerCnt >= 2 ? (
+            <>
+              <label
+                className="input_box input_nomargin"
+                style={{ marginTop: "2vw" }}
+              >
+                <p>경력 사항 2.</p>
+              </label>
+              <label className="input_box">
+                <p>근무처</p>
+                <input
+                  type="text"
+                  name="user_career_company2"
+                  value={user_career_company2}
+                  onChange={onChangeCompany2}
+                />
+              </label>
+              <label className="input_box">
+                <p>직위</p>
+                <input
+                  type="text"
+                  name="user_career_position2"
+                  value={user_career_position2}
+                  onChange={onChangePosition2}
+                />
+              </label>
+              <label className="input_box">
+                <p>
+                  담당 사업장
+                  <br />
+                  형태와 업태
+                </p>
+                <input
+                  type="text"
+                  name="user_career_companyState2"
+                  value={user_career_companyState2}
+                  onChange={onChangeCompanyState2}
+                />
+              </label>
+              <label className="input_box">
+                <p>사용 프로그램</p>
+                <input
+                  type="text"
+                  name="user_career_program2"
+                  value={user_career_program2}
+                  onChange={onChangeProgram2}
+                />
+              </label>
+              <label className="input_box">
+                <p>근무기간</p>
+                <div className="sub_input sub_input1">
+                  <input
+                    type="text"
+                    name="user_career_period21Year"
+                    value={user_career_period21Year}
+                    onChange={onChangePeriod21Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_period21Month"
+                    value={user_career_period21Month}
+                    onChange={onChangePeriod21Month}
+                  />
+                  <p>월</p>
+                  <p>~</p>
+                  <input
+                    type="text"
+                    name="user_career_period22Year"
+                    value={user_career_period22Year}
+                    onChange={onChangePeriod22Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_period22Month"
+                    value={user_career_period22Month}
+                    onChange={onChangePeriod22Month}
+                  />
+                  <p>월</p>
+                </div>
+              </label>
+            </>
+          ) : (
+            ""
+          )}
+          {careerCnt === 2 ? (
+            <label className="input_box">
+              <p></p>
+              <div
+                className="plus_btn"
+                onClick={() => {
+                  setCareerCnt(careerCnt - 1);
+                }}
+              >
+                경력사항 2. 취소하기
+              </div>
+            </label>
+          ) : (
+            ""
+          )}
+          {careerCnt === 3 ? (
+            <>
+              <label
+                className="input_box input_nomargin"
+                style={{ marginTop: "2vw" }}
+              >
+                <p>경력 사항 3.</p>
+              </label>
+              <label className="input_box">
+                <p>근무처</p>
+                <input
+                  type="text"
+                  name="user_career_company3"
+                  value={user_career_company3}
+                  onChange={onChangeCompany3}
+                />
+              </label>
+              <label className="input_box">
+                <p>직위</p>
+                <input
+                  type="text"
+                  name="user_career_position3"
+                  value={user_career_position3}
+                  onChange={onChangePosition3}
+                />
+              </label>
+              <label className="input_box">
+                <p>
+                  담당 사업장
+                  <br />
+                  형태와 업태
+                </p>
+                <input
+                  type="text"
+                  name="user_career_companyState3"
+                  value={user_career_companyState3}
+                  onChange={onChangeCompanyState3}
+                />
+              </label>
+              <label className="input_box">
+                <p>사용 프로그램</p>
+                <input
+                  type="text"
+                  name="user_career_program3"
+                  value={user_career_program3}
+                  onChange={onChangeProgram3}
+                />
+              </label>
+              <label className="input_box">
+                <p>근무기간</p>
+                <div className="sub_input sub_input1">
+                  <input
+                    type="text"
+                    name="user_career_period31Year"
+                    value={user_career_period31Year}
+                    onChange={onChangePeriod31Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_period31Month"
+                    value={user_career_period31Month}
+                    onChange={onChangePeriod31Month}
+                  />
+                  <p>월</p>
+                  <p>~</p>
+                  <input
+                    type="text"
+                    name="user_career_period32Year"
+                    value={user_career_period32Year}
+                    onChange={onChangePeriod32Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_period32Month"
+                    value={user_career_period32Month}
+                    onChange={onChangePeriod32Month}
+                  />
+                  <p>월</p>
+                </div>
+              </label>
+              <label className="input_box">
+                <p></p>
+                <div
+                  className="plus_btn"
+                  onClick={() => {
+                    setCareerCnt(careerCnt - 1);
+                  }}
+                >
+                  경력사항 3. 취소하기
+                </div>
+              </label>
+            </>
+          ) : (
+            ""
+          )}
+          {careerCnt === 3 ? (
+            ""
+          ) : (
+            <label className="input_box">
+              <p></p>
+              <div
+                className="plus_btn"
+                onClick={() => {
+                  setCareerCnt(careerCnt + 1);
+                }}
+              >
+                경력사항 추가하기
+              </div>
+            </label>
+          )}
+
           <p>보유자격(면허)</p>
           <label className="input_box">
-            <p>자격명 1.</p>
+            <p>보유자격 1.</p>
+          </label>
+          <label className="input_box">
+            <p>자격명</p>
             <input
               type="text"
               name="user_career_license1"
               value={user_career_license1}
-              onChange={onChangeLicense}
+              onChange={onChangeLicense1}
             />
           </label>
           <label className="input_box">
@@ -464,44 +716,153 @@ const CareerComponent = () => {
               onChange={onChangeLicense1Organization}
             />
           </label>
-          {/* <label className="input_box">
-            <p>자격명 2.</p>
-            <input type="text" name="" />
-          </label>
+          {licenseCnt >= 2 ? (
+            <>
+              <label className="input_box">
+                <p>보유자격 2.</p>
+              </label>
+              <label className="input_box">
+                <p>자격명</p>
+                <input
+                  type="text"
+                  name="user_career_license2"
+                  value={user_career_license2}
+                  onChange={onChangeLicense2}
+                />
+              </label>
+              <label className="input_box">
+                <p>취득일</p>
+                <div className="sub_input sub_input2">
+                  <input
+                    type="text"
+                    name="user_career_license2Year"
+                    value={user_career_license2Year}
+                    onChange={onChangeLicense2Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_license2Month"
+                    value={user_career_license2Month}
+                    onChange={onChangeLicense2Month}
+                  />
+                  <p>월</p>
+                  <input
+                    type="text"
+                    name="user_career_license2Day"
+                    value={user_career_license2Day}
+                    onChange={onChangeLicense2Day}
+                  />
+                  <p>일</p>
+                </div>
+              </label>
+              <label className="input_box">
+                <p>발급기관</p>
+                <input
+                  type="text"
+                  name="user_career_license2Organization"
+                  value={user_career_license2Organization}
+                  onChange={onChangeLicense2Organization}
+                />
+              </label>
+            </>
+          ) : (
+            ""
+          )}
+          {licenseCnt === 2 ? (
+            <label className="input_box">
+              <p></p>
+              <div
+                className="plus_btn"
+                onClick={() => {
+                  setLicenseCnt(licenseCnt - 1);
+                }}
+              >
+                보유자격 2. 취소하기
+              </div>
+            </label>
+          ) : (
+            ""
+          )}
+          {licenseCnt === 3 ? (
+            <>
+              <label className="input_box">
+                <p>보유자격 3.</p>
+              </label>
+              <label className="input_box">
+                <p>자격명</p>
+                <input
+                  type="text"
+                  name="user_career_license3"
+                  value={user_career_license3}
+                  onChange={onChangeLicense3}
+                />
+              </label>
+              <label className="input_box">
+                <p>취득일</p>
+                <div className="sub_input sub_input2">
+                  <input
+                    type="text"
+                    name="user_career_license3Year"
+                    value={user_career_license3Year}
+                    onChange={onChangeLicense3Year}
+                  />
+                  <p>년</p>
+                  <input
+                    type="text"
+                    name="user_career_license3Month"
+                    value={user_career_license3Month}
+                    onChange={onChangeLicense3Month}
+                  />
+                  <p>월</p>
+                  <input
+                    type="text"
+                    name="user_career_license3Day"
+                    value={user_career_license3Day}
+                    onChange={onChangeLicense3Day}
+                  />
+                  <p>일</p>
+                </div>
+              </label>
+              <label className="input_box">
+                <p>발급기관</p>
+                <input
+                  type="text"
+                  name="user_career_license3Organization"
+                  value={user_career_license3Organization}
+                  onChange={onChangeLicense3Organization}
+                />
+              </label>
+            </>
+          ) : (
+            ""
+          )}
+          {licenseCnt === 3 ? (
+            <label className="input_box">
+              <p></p>
+              <div
+                className="plus_btn"
+                onClick={() => {
+                  setLicenseCnt(licenseCnt - 1);
+                }}
+              >
+                보유자격 3. 취소하기
+              </div>
+            </label>
+          ) : (
+            ""
+          )}
           <label className="input_box">
-            <p>취득일</p>
-            <div className="sub_input sub_input2">
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-              <input type="text" name="" />
-              <p>일</p>
+            <p></p>
+            <div
+              className="plus_btn"
+              onClick={() => {
+                setLicenseCnt(licenseCnt + 1);
+              }}
+            >
+              보유자격 추가하기
             </div>
           </label>
-          <label className="input_box">
-            <p>발급기관</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>자격명 3.</p>
-            <input type="text" name="" />
-          </label>
-          <label className="input_box">
-            <p>취득일</p>
-            <div className="sub_input sub_input2">
-              <input type="text" name="" />
-              <p>년</p>
-              <input type="text" name="" />
-              <p>월</p>
-              <input type="text" name="" />
-              <p>일</p>
-            </div>
-          </label>
-          <label className="input_box">
-            <p>발급기관</p>
-            <input type="text" name="" />
-          </label> */}
           <p>교육훈련 이수현황</p>
           <label className="input_box">
             <p>훈련 과정명</p>

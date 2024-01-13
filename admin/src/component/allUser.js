@@ -17,7 +17,7 @@ const AllUser = () => {
       <div className="table_container">
         <div className="row row_head">
           <p>No</p>
-          <p>유저 타입</p>
+          <p>유저타입</p>
           <p>유저 아이디</p>
           <p>가입일</p>
         </div>
@@ -35,7 +35,7 @@ const AllUser = () => {
                   {allUser.userType === "individual" ? "구직자" : "구인기업"}
                 </p>
                 <p>{allUser.user_member_id}</p>
-                <p>{dayjs(allUser.createdAt).format("YYYY-MM-DD")}</p>
+                <p>{dayjs(allUser.createdAt).format("YYYY.MM.DD")}</p>
               </div>
             );
           })}

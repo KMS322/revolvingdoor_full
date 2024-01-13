@@ -6,6 +6,9 @@
   letter-spacing: 0vw;
   font-weight: 500;
 }
+.app_container {
+  width: 100%;
+}
 ul li {
   list-style: none;
 }

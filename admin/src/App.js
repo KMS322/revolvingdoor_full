@@ -16,13 +16,13 @@ function App() {
   //   });
   // }, [logInDone]);
   return (
-    <>
+    <div className="app_container">
       <Header />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainComponent />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

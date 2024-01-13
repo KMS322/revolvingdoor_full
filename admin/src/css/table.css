@@ -1,12 +1,13 @@
 .section {
-  width: 100%;
+  width: 84.22%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .table_container {
-  width: 72.66%;
+  width: 86.27%;
   height: auto;
   margin-top: 4.17vw;
 }
@@ -14,21 +15,51 @@
   height: 2.6vw;
   width: 100%;
   display: flex;
+  align-items: center;
 }
 .table_container .row_head {
   height: 1.82vw;
   border: 1px solid #919191;
+  border-left: none;
+  border-right: none;
 }
 .table_container .even {
   background-color: #f7f7f7;
 }
 .table_container .row_head p {
-  font-weight: 600;
+  font-size: 1.04vw;
+  font-weight: 400;
+  letter-spacing: -0.09vw;
+  padding: 0;
 }
 .table_container p {
-  font-size: 1.04vw;
+  font-size: 0.78vw;
   font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 1px solid red; */
+}
+.modal {
+  width: 26.04vw;
+  height: 15.625vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.modal p {
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+.modal button {
+  width: 6.04vw;
+  height: 2.06vw;
+  border: 1px solid black;
 }

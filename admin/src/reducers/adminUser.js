@@ -50,6 +50,8 @@ const reducer = (state = initialState, action) => {
         draft.loadIndividualLoading = false;
         draft.loadIndividualError = action.error;
         break;
+      default:
+        return state;
     }
   });
 };

@@ -5,10 +5,18 @@ import React, { useState } from "react";
 import AllUser from "./allUser";
 import IndividualUser from "./individualUser";
 import BusinessUser from "./businessUser";
+import IndividualDetail from "./individualDetail";
+import ResumeDetail from "./resumeDetail";
+import CareerDetail from "./careerDetail";
 const MainComponent = () => {
   const [currentComponent, setCurrentComponent] = useState("");
+  const [sendData, setSendData] = useState("");
   const handleMenuSelect = (selectedMenu) => {
     setCurrentComponent(selectedMenu);
+  };
+  const handleDetailSelect = (selectedDetail, userData) => {
+    setCurrentComponent(selectedDetail);
+    setSendData(userData);
   };
   let selectedComponent;
   switch (currentComponent) {
@@ -16,13 +24,29 @@ const MainComponent = () => {
       selectedComponent = <AllUser />;
       break;
     case "구직자":
-      selectedComponent = <IndividualUser />;
+      selectedComponent = (
+        <IndividualUser onSelectDetail={handleDetailSelect} />
+      );
       break;
     case "구인기업":
       selectedComponent = <BusinessUser />;
       break;
+    case "구직자 정보 상세":
+      selectedComponent = (
+        <IndividualDetail onSelectMenu={handleMenuSelect} userData={sendData} />
+      );
+      break;
+    case "이력서":
+      selectedComponent = (
+        <ResumeDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
+      break;
+    case "경력사항":
+      selectedComponent = (
+        <CareerDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
+      break;
     default:
-      // 기본값 설정 (예: "회원목록"인 경우)
       selectedComponent = null;
   }
   return (
