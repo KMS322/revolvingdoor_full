@@ -44,8 +44,7 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       return res.status(403).send("이미 사용중인 아이디 입니다.");
     }
     const hashedPassword = await bcrypt.hash(req.body.user_member_pw, 12);
-    const fullAddress =
-      req.body.user_member_address1 + " " + req.body.user_member_address2;
+
     const createdUser = await User.create({
       userType: req.body.userType,
       user_member_id: req.body.user_member_id,
@@ -55,13 +54,14 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       await UserIndividual.create({
         user_member_name: req.body.user_member_name,
         user_member_num: req.body.user_member_num,
-        user_member_address: fullAddress,
+        user_member_jibunAddress: req.body.user_member_jibunAddress,
+        user_member_detailAddress: req.body.user_member_detailAddress,
+        user_member_roadAddress: req.body.user_member_roadAddress,
         user_member_tel: req.body.user_member_tel,
         user_member_email: req.body.user_member_email,
         IndividualId: createdUser.id,
       });
     }
-
     res.status(201).send("ok");
   } catch (error) {
     console.error(error);

@@ -66,9 +66,8 @@ const SignInStep3S2 = () => {
           user_member_pw,
           user_member_name,
           user_member_num,
-          user_member_jibunAddress,
-          user_member_detailAddress,
-          user_member_roadAddress,
+          user_member_address1,
+          user_member_address2,
           user_member_tel,
           user_member_email,
         },
@@ -80,30 +79,45 @@ const SignInStep3S2 = () => {
       user_member_pw,
       user_member_name,
       user_member_num,
-      user_member_jibunAddress,
-      user_member_detailAddress,
-      user_member_roadAddress,
+      user_member_address1,
+      user_member_address2,
       user_member_tel,
       user_member_email,
     ]
   );
   const [modalOpen, setModalOpen] = useState(false);
-  const [addressObj, setAddressObj] = useState("");
+  const [addressObj, setAddressObj] = useState();
 
   const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    let localAddress = data.sido + " " + data.sigungu;
     console.log("주소 data : ", data);
-    setJibunAddress(data.jibunAddress);
+    setJibunAddress(data.jubunAddress);
     setRoadAddress(data.roadAddress);
     if (data.addressType === "R") {
-      setAddressObj(data.jibunAddress);
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+
+      fullAddress = fullAddress.replace(localAddress, "");
+      setAddressObj({
+        areaAddress: localAddress,
+        townAddress:
+          fullAddress + (extraAddress !== "" ? `(${extraAddress})` : ""),
+      });
     }
   };
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
   useEffect(() => {
-    // const address1 = addressObj.areaAddress + addressObj.townAddress;
-    setJibunAddress(user_member_jibunAddress);
+    const address1 = addressObj.areaAddress + addressObj.townAddress;
+    setAddress1(address1);
   }, [addressObj]);
   const checkId = useCallback(
     (e) => {
@@ -175,31 +189,30 @@ const SignInStep3S2 = () => {
           />
         </label>
         <label className="input_box">
-          <p>생년월일(8자리)</p>
+          <p>주민등록번호</p>
           <input
             type="text"
             name="user_member_num"
             value={user_member_num}
             onChange={onChangeNum}
-            placeholder="ex) 20240101"
           />
         </label>
         <label className="input_box">
           <p>주소</p>
           <input
             type="text"
-            name="user_member_jibunAddress"
-            value={user_member_jibunAddress}
+            name="user_member_address1"
+            value={user_member_address1}
             className="input_btn"
             readOnly
           />
           <div
             className="btn"
             style={{
-              backgroundColor: user_member_jibunAddress ? "#CABD99" : "#b6b6b6",
+              backgroundColor: user_member_address1 ? "#CABD99" : "#b6b6b6",
             }}
             onClick={() => {
-              if (!user_member_jibunAddress) {
+              if (!user_member_address1) {
                 handleClick();
               }
             }}
@@ -215,9 +228,9 @@ const SignInStep3S2 = () => {
           <p></p>
           <input
             type="text"
-            name="user_member_detailAddress"
-            value={user_member_detailAddress}
-            onChange={onChangeDetailAddress}
+            name="user_member_address2"
+            value={user_member_address2}
+            onChange={onChangeAddress2}
           />
         </label>
         <label className="input_box">

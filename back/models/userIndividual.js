@@ -10,7 +10,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: true,
       },
-      user_member_address: {
+      user_member_jibunAddress: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      user_member_detailAddress: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      user_member_roadAddress: {
         type: DataTypes.STRING(50),
         allowNull: true,
       },

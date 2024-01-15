@@ -24,8 +24,9 @@ const SignInStep3S2 = () => {
   const [business_member_companyState, setCompanyState] = useState();
   const [business_member_employeeNumber, onChangeEmployeeNumber] = useInput("");
   const [business_member_officeState, setOfficeState] = useState();
-  const [business_member_address1, setAddress1] = useState("");
-  const [business_member_address2, onChangeAddress2] = useInput("");
+  const [business_member_jibunAddress, setJibunAddress] = useState("");
+  const [business_member_roadAddress, setRoadAddress] = useState("");
+  const [business_member_detailAddress, onChangeDetailAddress] = useInput("");
   const [business_member_tel, onChangeTel] = useInput("");
   const [business_member_email, onChangeEmail] = useInput("");
 
@@ -73,8 +74,9 @@ const SignInStep3S2 = () => {
           business_member_companyState,
           business_member_employeeNumber,
           business_member_officeState,
-          business_member_address1,
-          business_member_address2,
+          business_member_jibunAddress,
+          business_member_roadAddress,
+          business_member_detailAddress,
           business_member_tel,
           business_member_email,
         })
@@ -90,46 +92,28 @@ const SignInStep3S2 = () => {
       business_member_companyState,
       business_member_employeeNumber,
       business_member_officeState,
-      business_member_address1,
-      business_member_address2,
+      business_member_jibunAddress,
+      business_member_roadAddress,
+      business_member_detailAddress,
       business_member_tel,
       business_member_email,
     ]
   );
   const [modalOpen, setModalOpen] = useState(false);
-  const [addressObj, setAddressObj] = useState({
-    areaAddress: "",
-    townAddress: "",
-  });
+  const [addressObj, setAddressObj] = useState("");
 
   const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
-    let localAddress = data.sido + " " + data.sigungu;
-
+    setJibunAddress(data.jibunAddress);
+    setRoadAddress(data.roadAddress);
     if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-
-      fullAddress = fullAddress.replace(localAddress, "");
-      setAddressObj({
-        areaAddress: localAddress,
-        townAddress:
-          fullAddress + (extraAddress !== "" ? `(${extraAddress})` : ""),
-      });
+      setAddressObj(data.jibunAddress);
     }
   };
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
   useEffect(() => {
-    const address1 = addressObj.areaAddress + addressObj.townAddress;
-    setAddress1(address1);
+    setJibunAddress(business_member_jibunAddress);
   }, [addressObj]);
   const checkId = useCallback(
     (e) => {
@@ -331,18 +315,20 @@ const SignInStep3S2 = () => {
           <p>주소</p>
           <input
             type="text"
-            name="business_member_address1"
-            value={business_member_address1}
+            name="business_member_jibunAddress"
+            value={business_member_jibunAddress}
             className="input_btn"
             readOnly
           />
           <div
             className="btn"
             style={{
-              backgroundColor: business_member_address1 ? "#CABD99" : "#b6b6b6",
+              backgroundColor: business_member_jibunAddress
+                ? "#CABD99"
+                : "#b6b6b6",
             }}
             onClick={() => {
-              if (!business_member_address1) {
+              if (!business_member_jibunAddress) {
                 handleClick();
               }
             }}
@@ -357,9 +343,9 @@ const SignInStep3S2 = () => {
           <p></p>
           <input
             type="text"
-            name="business_member_address2"
-            value={business_member_address2}
-            onChange={onChangeAddress2}
+            name="business_member_detailAddress"
+            value={business_member_detailAddress}
+            onChange={onChangeDetailAddress}
           />
         </label>
         <label className="input_box">

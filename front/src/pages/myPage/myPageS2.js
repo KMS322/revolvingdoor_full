@@ -12,6 +12,7 @@ const MyPageS2 = () => {
   const { resumes, removeResumeDone } = useSelector(
     (state) => state.userResume
   );
+  const { individualInfo } = useSelector((state) => state.userInfo);
   const removeDuplicatesById = (resumes) => {
     if (!resumes || !Array.isArray(resumes)) {
       return [];
@@ -64,14 +65,18 @@ const MyPageS2 = () => {
       <div className="article_container">
         <div className="box_container">
           <p>이력서 관리</p>
-          <div
-            className="btn_box"
-            onClick={() => {
-              navigate("/resume");
-            }}
-          >
-            신규 이력서 작성
-          </div>
+          {uniqueResumes === null ? (
+            ""
+          ) : (
+            <div
+              className="btn_box"
+              onClick={() => {
+                navigate("/resume");
+              }}
+            >
+              신규 이력서 작성
+            </div>
+          )}
         </div>
         <div className="table_container">
           <div className="head_row row">
@@ -81,36 +86,40 @@ const MyPageS2 = () => {
             <p>지원여부</p>
             <p>관리</p>
           </div>
-          {uniqueResumes.slice(0, 5).map((resume, index) => {
-            return (
-              <div className="content_row row" key={index}>
-                <p className="pc"></p>
-                <p>{resume.user_resume_title}</p>
-                <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
-                <p className="state1">비공개 상태</p>
-                <div className="manage_box">
-                  <div
-                    className="manage"
-                    onClick={() => {
-                      navigate("/myResume", {
-                        state: { resume },
-                      });
-                    }}
-                  >
-                    수정
-                  </div>
-                  <div
-                    className="manage"
-                    onClick={(e) => {
-                      onDelete(e, resume.id);
-                    }}
-                  >
-                    삭제
+          {uniqueResumes &&
+            uniqueResumes.slice(0, 5).map((resume, index) => {
+              return (
+                <div className="content_row row" key={index}>
+                  <p className="pc">
+                    {`${individualInfo.user_member_jibunAddress?.split(" ")[0]}
+                    ${individualInfo.user_member_jibunAddress?.split(" ")[1]}`}
+                  </p>
+                  <p>{resume.user_resume_title}</p>
+                  <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
+                  <p className="state1">비공개 상태</p>
+                  <div className="manage_box">
+                    <div
+                      className="manage"
+                      onClick={() => {
+                        navigate("/myResume", {
+                          state: { resume },
+                        });
+                      }}
+                    >
+                      수정
+                    </div>
+                    <div
+                      className="manage"
+                      onClick={(e) => {
+                        onDelete(e, resume.id);
+                      }}
+                    >
+                      삭제
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>
