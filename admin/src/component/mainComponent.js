@@ -8,6 +8,11 @@ import BusinessUser from "./businessUser";
 import IndividualDetail from "./individualDetail";
 import ResumeDetail from "./resumeDetail";
 import CareerDetail from "./careerDetail";
+import BusinessDetail from "./businessDetail";
+import ApplicationDetail from "./applicationDetail";
+import RecruitmentDetail from "./recruitmentDetail";
+import AllResumes from "./allResumes";
+
 const MainComponent = () => {
   const [currentComponent, setCurrentComponent] = useState("");
   const [sendData, setSendData] = useState("");
@@ -28,9 +33,6 @@ const MainComponent = () => {
         <IndividualUser onSelectDetail={handleDetailSelect} />
       );
       break;
-    case "구인기업":
-      selectedComponent = <BusinessUser />;
-      break;
     case "구직자 정보 상세":
       selectedComponent = (
         <IndividualDetail onSelectMenu={handleMenuSelect} userData={sendData} />
@@ -44,6 +46,29 @@ const MainComponent = () => {
     case "경력사항":
       selectedComponent = (
         <CareerDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
+      break;
+    case "구인기업":
+      selectedComponent = <BusinessUser onSelectDetail={handleDetailSelect} />;
+      break;
+    case "구인기업 정보 상세":
+      selectedComponent = (
+        <BusinessDetail onSelectMenu={handleMenuSelect} userData={sendData} />
+      );
+      break;
+    case "공고내용":
+      selectedComponent = (
+        <ApplicationDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
+      break;
+    case "채용담당":
+      selectedComponent = (
+        <RecruitmentDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
+      break;
+    case "이력서 목록":
+      selectedComponent = (
+        <AllResumes onSelectMenu={handleMenuSelect} data={sendData} />
       );
       break;
     default:

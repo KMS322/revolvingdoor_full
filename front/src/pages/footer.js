@@ -1,9 +1,19 @@
 import "../css/footer.css";
+import React, { useState } from "react";
+import Popup from "./popup";
 const Footer = () => {
+  const [on, setOn] = useState(false);
   return (
     <div className="footer">
       <div className="article_container">
-        <img src="/images/logo_footer.png" alt="" />
+        <img
+          src="/images/logo_footer.png"
+          alt=""
+          onClick={() => {
+            setOn(true);
+          }}
+          style={{ cursor: "pointer" }}
+        />
         <div className="text_box">
           <p>
             © 2023 회전문
@@ -17,6 +27,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      {on && <Popup />}
     </div>
   );
 };

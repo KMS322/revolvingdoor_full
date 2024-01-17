@@ -30,6 +30,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: true,
       },
+      user_member_career: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      user_member_workType: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
     },
     {
       charset: "utf8",

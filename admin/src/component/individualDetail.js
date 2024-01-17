@@ -29,7 +29,9 @@ const IndividualDetail = ({ onSelectMenu, userData }) => {
         </div>
         <div className="text_box">
           <p className="text_title">주소</p>
-          <p className="text_content">{userIndividual.user_member_address}</p>
+          <p className="text_content">
+            {`${userIndividual.user_member_jibunAddress} ${userIndividual.user_member_detailAddress}`}
+          </p>
         </div>
         <div className="text_box">
           <p className="text_title">휴대전화</p>

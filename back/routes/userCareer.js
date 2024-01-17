@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { UserCareer, User } = require("../models");
+const { UserCareer, User, UserIndividual } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 
 router.post("/", isLoggedIn, async (req, res, next) => {
@@ -83,6 +83,14 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         },
       ],
     });
+    await UserIndividual.update(
+      {
+        user_member_career: req.body.userCareer,
+      },
+      {
+        where: { IndividualId: career.IndividualId },
+      }
+    );
     res.status(201).json(fullCareer);
   } catch (error) {
     console.error(error);
@@ -166,6 +174,14 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       {
         where: { id: req.body.careerId },
         returning: true,
+      }
+    );
+    await UserIndividual.update(
+      {
+        user_member_career: req.body.userCareer,
+      },
+      {
+        where: { IndividualId: changedCareer.IndividualId },
       }
     );
     res.status(201).json(changedCareer);

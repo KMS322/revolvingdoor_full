@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { User, BusinessApplication } = require("../models");
+const { User, BusinessApplication, UserBusiness } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 
 router.post("/", isLoggedIn, async (req, res, next) => {
-  console.log("req.body.step1_data : ", req.body.step1_data);
   try {
     const application = await BusinessApplication.create({
       business_application_name: req.body.step1_data.business_application_name,
@@ -91,6 +90,17 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         },
       ],
     });
+    await UserBusiness.update(
+      {
+        business_member_workType: req.body.workType,
+        business_member_pay: req.body.fullPay,
+      },
+      {
+        where: {
+          BusinessId: application.BusinessId,
+        },
+      }
+    );
     res.status(201).json(fullApplication);
   } catch (error) {
     console.error(error);
@@ -183,6 +193,17 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       {
         where: { id: req.body.applicationId },
         returning: true,
+      }
+    );
+    await UserBusiness.update(
+      {
+        business_member_workType: req.body.workType,
+        business_member_pay: req.body.fullPay,
+      },
+      {
+        where: {
+          BusinessId: changedApplication.BusinessId,
+        },
       }
     );
     res.status(201).json(changedApplication);

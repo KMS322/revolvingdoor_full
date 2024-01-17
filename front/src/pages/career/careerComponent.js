@@ -269,6 +269,23 @@ const CareerComponent = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
+      const calculate = (startYear, startMonth, endYear, endMonth) => {
+        let totalCareer = 0;
+        let careerYear = Number(endYear) - Number(startYear);
+        let careerMonth = Number(endMonth) - Number(startMonth);
+        totalCareer = careerYear * 12 + careerMonth;
+        if (totalCareer < 0) {
+          return;
+        } else {
+          return totalCareer.toString();
+        }
+      };
+      const userCareer = calculate(
+        user_career_period11Year,
+        user_career_period11Month,
+        user_career_period12Year,
+        user_career_period12Month
+      );
       dispatch({
         type:
           state && state.careers[0]
@@ -276,6 +293,7 @@ const CareerComponent = () => {
             : ADD_CAREER_REQUEST,
         data: {
           careerId: state && state.careers[0] ? state.careers[0].id : "",
+          userCareer,
           user_career_company1,
           user_career_position1,
           user_career_companyState1,

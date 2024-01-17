@@ -9,6 +9,7 @@
 .detail .detail_container {
   width: 86.27%;
   height: auto;
+  margin-bottom: 10vw;
 }
 .detail .detail_container .back_btn {
   width: 8.32%;

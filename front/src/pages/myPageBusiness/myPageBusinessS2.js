@@ -12,6 +12,8 @@ const MyPageBusinessS2 = () => {
   const { applications, removeApplicationDone } = useSelector(
     (state) => state.businessApplication
   );
+  const { businessInfo } = useSelector((state) => state.userInfo);
+  console.log(" businessInfo: ", businessInfo);
   const removeDuplicatesById = (applications) => {
     if (!applications || !Array.isArray(applications)) {
       return [];
@@ -88,7 +90,12 @@ const MyPageBusinessS2 = () => {
           {uniqueApplications.map((application, index) => {
             return (
               <div className="content_row row" key={index}>
-                <p className="pc"></p>
+                <p className="pc">
+                  {`${businessInfo.business_member_jibunAddress?.split(" ")[0]} 
+                    ${
+                      businessInfo.business_member_jibunAddress?.split(" ")[1]
+                    }`}
+                </p>
                 <p>{application.business_application_name}</p>
                 <p>{dayjs(application.updatedAt).format("YYYY-MM-DD")}</p>
                 {/* <p className="state1">비공개 상태</p> */}

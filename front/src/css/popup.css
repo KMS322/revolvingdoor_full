@@ -1,0 +1,108 @@
+/* popup */
+.popup {
+  width: 70vw;
+  height: auto;
+  /* height: 39.48vw; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  box-shadow: 7px 7px 28px 4px rgba(0, 0, 0, 0.1);
+}
+.popup .article_container {
+  width: 95%;
+  margin: 0;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  height: auto;
+}
+.popup .article_container p {
+  color: black;
+}
+.popup .article_container > p:nth-child(1) {
+  text-align: right;
+}
+.popup .article_container > p:nth-child(2) {
+  font-size: 1.09vw;
+  font-weight: 700;
+  margin-top: 0.91vw;
+  text-align: center;
+}
+.popup .article_container > p:nth-child(3) {
+  font-size: 0.83vw;
+  margin-top: 2.86vw;
+  margin-left: 0.78vw;
+}
+.popup .article_container .content_box {
+  width: 100%;
+  height: auto;
+  margin-top: 1.09vw;
+}
+.popup .article_container .content_box .row {
+  width: 100%;
+  height: 2.03vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup .article_container .content_box .row p {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.83vw;
+}
+.popup .article_container .content_box .row p:nth-child(1) {
+  width: 4%;
+}
+.popup .article_container .content_box .row p:nth-child(2) {
+  width: 13%;
+}
+.popup .article_container .content_box .row p:nth-child(3) {
+  width: 10%;
+}
+.popup .article_container .content_box .row p:nth-child(4) {
+  width: 18%;
+}
+.popup .article_container .content_box .row p:nth-child(5) {
+  width: 7%;
+}
+.popup .article_container .content_box .row p:nth-child(6) {
+  width: 12%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.popup .article_container .content_box .row p:nth-child(7) {
+  width: 10%;
+}
+.popup .article_container .content_box .row p:nth-child(8) {
+  width: 16%;
+}
+.popup .article_container .text_box {
+  width: 76%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 2.14vw;
+}
+.popup .article_container .text_box p {
+  line-height: 1.7vw;
+  letter-spacing: -0.04vw;
+}
+.popup .article_container .btn {
+  width: 5.31vw;
+  height: 2.14vw;
+  margin: 0 auto;
+  margin-top: 4.17vw;
+  font-size: 0.83vw;
+  color: white;
+  background-color: #cabd99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}

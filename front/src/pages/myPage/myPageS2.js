@@ -65,7 +65,7 @@ const MyPageS2 = () => {
       <div className="article_container">
         <div className="box_container">
           <p>이력서 관리</p>
-          {uniqueResumes === null ? (
+          {uniqueResumes.length >= 1 ? (
             ""
           ) : (
             <div

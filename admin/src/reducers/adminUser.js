@@ -7,8 +7,12 @@ export const initialState = {
   loadIndividualLoading: false,
   loadIndividualDone: false,
   loadIndividualError: null,
+  loadBusinessLoading: false,
+  loadBusinessDone: false,
+  loadBusinessError: null,
   allUsers: null,
   userIndividuals: null,
+  userBusinesses: null,
 };
 
 export const LOAD_ALLUSER_REQUEST = "LOAD_ALLUSER_REQUEST";
@@ -18,6 +22,10 @@ export const LOAD_ALLUSER_FAILURE = "LOAD_ALLUSER_FAILURE";
 export const LOAD_INDIVIDUAL_REQUEST = "LOAD_INDIVIDUAL_REQUEST";
 export const LOAD_INDIVIDUAL_SUCCESS = "LOAD_INDIVIDUAL_SUCCESS";
 export const LOAD_INDIVIDUAL_FAILURE = "LOAD_INDIVIDUAL_FAILURE";
+
+export const LOAD_BUSINESS_REQUEST = "LOAD_BUSINESS_REQUEST";
+export const LOAD_BUSINESS_SUCCESS = "LOAD_BUSINESS_SUCCESS";
+export const LOAD_BUSINESS_FAILURE = "LOAD_BUSINESS_FAILURE";
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -49,6 +57,20 @@ const reducer = (state = initialState, action) => {
       case LOAD_INDIVIDUAL_FAILURE:
         draft.loadIndividualLoading = false;
         draft.loadIndividualError = action.error;
+        break;
+      case LOAD_BUSINESS_REQUEST:
+        draft.loadBusinessLoading = true;
+        draft.loadBusinessError = null;
+        draft.loadBusinessDone = false;
+        break;
+      case LOAD_BUSINESS_SUCCESS:
+        draft.loadBusinessLoading = false;
+        draft.userBusinesses = action.data;
+        draft.loadBusinessDone = true;
+        break;
+      case LOAD_BUSINESS_FAILURE:
+        draft.loadBusinessLoading = false;
+        draft.loadBusinessError = action.error;
         break;
       default:
         return state;

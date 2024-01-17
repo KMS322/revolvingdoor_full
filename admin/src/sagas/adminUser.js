@@ -7,6 +7,9 @@ import {
   LOAD_INDIVIDUAL_REQUEST,
   LOAD_INDIVIDUAL_SUCCESS,
   LOAD_INDIVIDUAL_FAILURE,
+  LOAD_BUSINESS_REQUEST,
+  LOAD_BUSINESS_SUCCESS,
+  LOAD_BUSINESS_FAILURE,
 } from "../reducers/adminUser";
 
 function loadAllUserAPI() {
@@ -49,6 +52,26 @@ function* loadIndividual() {
   }
 }
 
+function loadBusinessAPI() {
+  return axios.post("/admin/user/business");
+}
+
+function* loadBusiness() {
+  try {
+    const result = yield call(loadBusinessAPI);
+    yield put({
+      type: LOAD_BUSINESS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_BUSINESS_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchLoadUser() {
   yield takeLatest(LOAD_ALLUSER_REQUEST, loadAllUser);
 }
@@ -56,6 +79,15 @@ function* watchLoadUser() {
 function* watchLoadIndividual() {
   yield takeLatest(LOAD_INDIVIDUAL_REQUEST, loadIndividual);
 }
+
+function* watchLoadBusiness() {
+  yield takeLatest(LOAD_BUSINESS_REQUEST, loadBusiness);
+}
+
 export default function* adminUserSaga() {
-  yield all([fork(watchLoadUser), fork(watchLoadIndividual)]);
+  yield all([
+    fork(watchLoadUser),
+    fork(watchLoadIndividual),
+    fork(watchLoadBusiness),
+  ]);
 }

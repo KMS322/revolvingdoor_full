@@ -40,6 +40,14 @@ const Nav = ({ onSelectMenu }) => {
       ) : (
         ""
       )}
+      <div
+        className="menu"
+        onClick={() => {
+          handleSubMenuClick("이력서 목록");
+        }}
+      >
+        이력서 목록
+      </div>
     </div>
   );
 };

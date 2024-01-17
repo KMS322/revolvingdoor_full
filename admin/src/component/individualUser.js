@@ -40,7 +40,7 @@ const IndividualUser = ({ onSelectDetail }) => {
         </div>
         {userIndividuals &&
           userIndividuals.map((userIndividual, index) => {
-            const array = userIndividual.user_member_address.split(" ");
+            const array = userIndividual.user_member_jibunAddress.split(" ");
             const userDetail = allUsers.find(
               (user) => user.id === userIndividual.IndividualId
             );
@@ -62,8 +62,10 @@ const IndividualUser = ({ onSelectDetail }) => {
                 <p>{userIndividual.id}</p>
                 <p>{userIndividual.user_member_name}</p>
                 <p>{`${array[0]} ${array[1]} ${array[2]}`}</p>
-                <p></p>
-                <p></p>
+                <p>{`${Math.floor(userIndividual.user_member_career / 12)}년 ${
+                  userIndividual.user_member_career % 12
+                }개월`}</p>
+                <p>{userIndividual.user_member_workType}</p>
                 <p>{age(userIndividual.user_member_num)}세</p>
                 <p
                   className="btn"

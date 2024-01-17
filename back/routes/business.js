@@ -21,10 +21,6 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       return res.status(403).send("이미 사용중인 아이디 입니다.");
     }
     const hashedPassword = await bcrypt.hash(req.body.business_member_pw, 12);
-    const fullAddress =
-      req.body.business_member_address1 +
-      " " +
-      req.body.business_member_address2;
     const createdUser = await User.create({
       userType: req.body.userType,
       user_member_id: req.body.business_member_id,
@@ -38,7 +34,9 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
         business_member_companyState: req.body.business_member_companyState,
         business_member_employeeNumber: req.body.business_member_employeeNumber,
         business_member_officeState: req.body.business_member_officeState,
-        business_member_address: fullAddress,
+        business_member_jibunAddress: req.body.business_member_jibunAddress,
+        business_member_detailAddress: req.body.business_member_detailAddress,
+        business_member_roadAddress: req.body.business_member_roadAddress,
         business_member_tel: req.body.business_member_tel,
         business_member_email: req.body.business_member_email,
         BusinessId: createdUser.id,

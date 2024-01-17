@@ -39,6 +39,7 @@ const ResumeComponent = () => {
   const [user_resume_hopeWorkTime2Hour, setHopeWorkTime2Hour] = useInput("");
   const [user_resume_hopeWorkTime2Minute, setHopeWorkTime2Minute] =
     useInput("");
+  // const [workType, setWorkType] = useState("");
 
   const { addResumeDone } = useSelector((state) => state.userResume);
   useEffect(() => {
@@ -70,7 +71,16 @@ const ResumeComponent = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log("타이틀 : ", user_resume_title);
+      let workType;
+      if (user_resume_hopeWork1) {
+        workType = "출퇴근";
+      } else if (user_resume_hopeWork2) {
+        workType = "출퇴근";
+      } else if (user_resume_hopeWork3) {
+        workType = "재택";
+      } else if (user_resume_hopeWork4) {
+        workType = "모두가능";
+      }
       dispatch({
         type: ADD_RESUME_REQUEST,
         data: {
@@ -99,6 +109,7 @@ const ResumeComponent = () => {
           user_resume_hopeWorkTime1Minute,
           user_resume_hopeWorkTime2Hour,
           user_resume_hopeWorkTime2Minute,
+          workType,
         },
       });
     },

@@ -26,8 +26,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      business_member_address: {
-        type: DataTypes.STRING(100),
+      business_member_jibunAddress: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      business_member_detailAddress: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      business_member_roadAddress: {
+        type: DataTypes.STRING(50),
         allowNull: true,
       },
       business_member_tel: {
@@ -36,6 +44,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       business_member_email: {
         type: DataTypes.STRING(20),
+        allowNull: true,
+      },
+      business_member_workType: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_member_pay: {
+        type: DataTypes.STRING(50),
         allowNull: true,
       },
     },

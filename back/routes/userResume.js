@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { UserResume, User } = require("../models");
+const { UserResume, User, UserIndividual } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 
 router.post("/", isLoggedIn, async (req, res, next) => {
@@ -41,6 +41,16 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         },
       ],
     });
+
+    await UserIndividual.update(
+      {
+        user_member_workType: req.body.workType,
+      },
+      {
+        where: { IndividualId: resume.IndividualId },
+        returning: true,
+      }
+    );
     res.status(201).json(fullResume);
   } catch (error) {
     console.error(error);
@@ -86,6 +96,15 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
         returning: true,
       }
     );
+    await UserIndividual.update(
+      {
+        user_member_workType: req.body.workType,
+      },
+      {
+        where: { IndividualId: changedResume.IndividualId },
+        returning: true,
+      }
+    );
     res.status(201).json(changedResume);
   } catch (error) {
     console.error(error);
@@ -98,7 +117,7 @@ router.delete("/remove", isLoggedIn, async (req, res, next) => {
     const deletedResume = await UserResume.destroy({
       where: {
         id: req.body.id,
-        UserId: req.user.id,
+        IndividualId: req.user.id,
       },
     });
     if (deletedResume) {

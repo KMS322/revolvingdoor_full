@@ -82,6 +82,15 @@ const ApplicationStep2S2 = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
+      let workType;
+      if (business_application_workPlace === "사업자 주소와 동일 (출근)") {
+        workType = "출퇴근";
+      } else if (business_application_workPlace === "재택 근무 가능") {
+        workType = "재택";
+      } else if (business_application_workPlace === "출근·재택 병행") {
+        workType = "모두가능";
+      }
+      let fullPay = `${business_application_payType} : ${business_application_payMin}원 ~ ${business_application_payMax}원`;
       dispatch({
         type: ADD_APPLICATION_REQUEST,
         data: {
@@ -107,6 +116,8 @@ const ApplicationStep2S2 = () => {
           business_application_rank2,
           business_application_rank3,
           business_application_rank4,
+          workType,
+          fullPay,
         },
       });
     },

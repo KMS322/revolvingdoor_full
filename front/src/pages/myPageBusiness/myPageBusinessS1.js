@@ -34,7 +34,11 @@ const MyPageBusinessS1 = () => {
             </span>{" "}
             어서오세요.
           </p>
-          <p>경북 00시 000***@n****.com</p>
+          <p>{`${
+            businessInfo
+              ? businessInfo.business_member_jibunAddress.split(" ")[0]
+              : ""
+          } ${businessInfo ? businessInfo.business_member_email : ""}`}</p>
           <p
             onClick={() => {
               if (me.userType === "business") {

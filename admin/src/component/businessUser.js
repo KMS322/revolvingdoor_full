@@ -1,8 +1,107 @@
+import "../css/table.css";
 import "../css/businessUser.css";
-const BusinessUser = () => {
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { LOAD_BUSINESS_REQUEST } from "../reducers/adminUser";
+const BusinessUser = ({ onSelectDetail }) => {
+  const dispatch = useDispatch();
+  const { allUsers, userBusinesses } = useSelector((state) => state.adminUser);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_BUSINESS_REQUEST,
+    });
+  }, []);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState();
+  const handleModal = (data) => {
+    setModalData(data);
+    setModalOpen(true);
+  };
   return (
-    <div className="alluser">
-      <p>구인기업 유저 정보</p>
+    <div className="section businessUser">
+      <div className="table_container">
+        <div className="row row_head">
+          <p>No</p>
+          <p>회사명</p>
+          <p>주소</p>
+          <p>근무형태</p>
+          <p>보수</p>
+        </div>
+        {userBusinesses &&
+          userBusinesses.map((userBusiness, index) => {
+            const array = userBusiness.business_member_jibunAddress.split(" ");
+            const userDetail = allUsers.find(
+              (user) => user.id === userBusiness.BusinessId
+            );
+            const businessId = userBusiness.BusinessId;
+            return (
+              <div
+                className={
+                  index % 2 === 0 ? "content_row row" : "content_row row even"
+                }
+                key={index}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  onSelectDetail("구인기업 정보 상세", {
+                    userBusiness,
+                    userDetail,
+                  });
+                }}
+              >
+                <p>{userBusiness.id}</p>
+                <p>{userBusiness.business_member_companyName}</p>
+                <p>{`${array[0]} ${array[1]} ${array[2]}`}</p>
+                <p>{userBusiness.business_member_workType}</p>
+                <p>{userBusiness.business_member_pay}</p>
+                <p
+                  className="btn"
+                  onClick={(e) =>
+                    e.stopPropagation() ||
+                    onSelectDetail("공고내용", {
+                      businessId,
+                    })
+                  }
+                >
+                  공고내용
+                </p>
+                <p
+                  className="btn"
+                  onClick={(e) =>
+                    e.stopPropagation() ||
+                    onSelectDetail("채용담당", {
+                      businessId,
+                    })
+                  }
+                >
+                  채용담당
+                </p>
+                <p
+                  className="btn"
+                  onClick={(e) => {
+                    e.stopPropagation() || handleModal(userBusiness);
+                  }}
+                >
+                  연락처
+                </p>
+              </div>
+            );
+          })}
+      </div>
+      {modalOpen && modalData && (
+        <div className="modal">
+          <p>회사명 : {modalData.business_member_companyName}</p>
+          <p>연락처 : {modalData.business_member_tel}</p>
+          <p>이메일 : {modalData.business_member_email}</p>
+          <button
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            확인
+          </button>
+        </div>
+      )}
     </div>
   );
 };
