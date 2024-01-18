@@ -1,19 +1,18 @@
 import dayjs from "dayjs";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   LOAD_APPLICATION_REQUEST,
   REMOVE_APPLICATION_REQUEST,
 } from "../../reducers/businessApplication";
-
+import ShowListPopup from "../showListPopup";
 const MyPageBusinessS2 = () => {
   const dispatch = useDispatch();
   const { applications, removeApplicationDone } = useSelector(
     (state) => state.businessApplication
   );
   const { businessInfo } = useSelector((state) => state.userInfo);
-  console.log(" businessInfo: ", businessInfo);
   const removeDuplicatesById = (applications) => {
     if (!applications || !Array.isArray(applications)) {
       return [];
@@ -65,6 +64,13 @@ const MyPageBusinessS2 = () => {
       window.location.reload();
     }
   }, [removeApplicationDone]);
+
+  const [showList, setShowList] = useState(false);
+  const closePopup = () => {
+    setShowList(false);
+  };
+  const [sendData, setSendData] = useState();
+
   return (
     <div className="myPageBusiness_s2">
       <div className="article_container">
@@ -98,8 +104,17 @@ const MyPageBusinessS2 = () => {
                 </p>
                 <p>{application.business_application_name}</p>
                 <p>{dayjs(application.updatedAt).format("YYYY-MM-DD")}</p>
-                {/* <p className="state1">비공개 상태</p> */}
-                <p className="state1">{application.id}</p>
+
+                <div
+                  className="apply_btn"
+                  onClick={() => {
+                    const address = businessInfo.business_member_jibunAddress;
+                    setShowList(true);
+                    setSendData({ application, address });
+                  }}
+                >
+                  목록 신청
+                </div>
                 <div className="manage_box">
                   <div
                     className="manage"
@@ -125,6 +140,7 @@ const MyPageBusinessS2 = () => {
           })}
         </div>
       </div>
+      {showList && <ShowListPopup onClose={closePopup} data={sendData} />}
     </div>
   );
 };

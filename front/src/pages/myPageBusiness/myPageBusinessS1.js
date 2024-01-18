@@ -12,7 +12,6 @@ const MyPageBusinessS1 = () => {
       type: LOAD_BUSINESS_INFO_REQUEST,
     });
   }, []);
-  console.log("businessInfo : ", businessInfo);
   const sumInfo = {
     memberInfo: me,
     userInfo: businessInfo,

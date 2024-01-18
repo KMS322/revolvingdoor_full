@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       business_member_email: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(50),
         allowNull: true,
       },
       business_member_workType: {

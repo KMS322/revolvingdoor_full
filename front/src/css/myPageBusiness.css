@@ -134,6 +134,20 @@
   width: 8%;
   letter-spacing: -0.02vw;
 }
+.myPageBusiness_s2 .article_container .table_container .row .apply_btn {
+  width: 8%;
+  height: 45.92%;
+  margin-left: 4.46vw;
+  letter-spacing: -0.02vw;
+  background-color: #cabd99;
+  border-radius: 0.4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9vw;
+  color: white;
+  cursor: pointer;
+}
 .myPageBusiness_s2 .article_container .table_container .row p:nth-child(5) {
   margin-left: 2.47vw;
   width: 8.83%;

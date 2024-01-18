@@ -1,8 +1,8 @@
 import "../css/footer.css";
-import React, { useState } from "react";
-import Popup from "./popup";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
-  const [on, setOn] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="footer">
       <div className="article_container">
@@ -10,9 +10,8 @@ const Footer = () => {
           src="/images/logo_footer.png"
           alt=""
           onClick={() => {
-            setOn(true);
+            navigate("/");
           }}
-          style={{ cursor: "pointer" }}
         />
         <div className="text_box">
           <p>
@@ -27,7 +26,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      {on && <Popup />}
     </div>
   );
 };

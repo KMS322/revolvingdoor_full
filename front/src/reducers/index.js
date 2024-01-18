@@ -6,7 +6,7 @@ import business from "./business";
 import businessApplication from "./businessApplication";
 import businessRecruitment from "./businessRecruitment";
 import userInfo from "./userInfo";
-
+import matching from "./matching";
 const rootReducer = combineReducers({
   user,
   userResume,
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   businessApplication,
   businessRecruitment,
   userInfo,
+  matching,
 });
 
 export default rootReducer;

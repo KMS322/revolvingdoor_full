@@ -14,6 +14,7 @@
 }
 .footer .article_container img {
   width: 4.38vw;
+  cursor: pointer;
 }
 .footer .article_container p {
   font-size: 0.9vw;

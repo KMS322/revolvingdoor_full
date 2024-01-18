@@ -17,6 +17,7 @@ const recruitmentsRouter = require("./routes/recruitments");
 const userInfoRouter = require("./routes/userInfo");
 const adminRouter = require("./routes/admin");
 const testRouter = require("./routes/test");
+const matchingRouter = require("./routes/matching");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -91,6 +92,7 @@ app.use("/recruitments", recruitmentsRouter);
 app.use("/userInfo", userInfoRouter);
 app.use("/admin", adminRouter);
 app.use("/test", testRouter);
+app.use("/matching", matchingRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });

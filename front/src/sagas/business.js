@@ -109,7 +109,7 @@ function* watchSignUp() {
   yield takeLatest(BUSINESS_SIGN_UP_REQUEST, signUp);
 }
 
-export default function* BusinessSaga() {
+export default function* businessSaga() {
   yield all([
     fork(watchLoadUser),
     fork(watchLogIn),

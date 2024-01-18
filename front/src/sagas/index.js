@@ -8,6 +8,7 @@ import businessSaga from "./business";
 import applicationSaga from "./businessApplication";
 import recruitmentSaga from "./businessRecruitment";
 import userInfoSaga from "./userInfo";
+import matchingSaga from "./matching";
 import { API_URL } from "../constants";
 
 axios.defaults.baseURL = API_URL;
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     fork(applicationSaga),
     fork(recruitmentSaga),
     fork(userInfoSaga),
+    fork(matchingSaga),
   ]);
 }
