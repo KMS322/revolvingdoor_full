@@ -17,6 +17,7 @@ db.UserResume = require("./userResume")(sequelize, Sequelize);
 db.UserBusiness = require("./userBusiness")(sequelize, Sequelize);
 db.BusinessApplication = require("./businessApplication")(sequelize, Sequelize);
 db.BusinessRecruitment = require("./businessRecruitment")(sequelize, Sequelize);
+db.ApplyProcess = require("./applyProcess")(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

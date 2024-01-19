@@ -108,9 +108,9 @@ const MyPageBusinessS2 = () => {
                 <div
                   className="apply_btn"
                   onClick={() => {
-                    const address = businessInfo.business_member_jibunAddress;
+                    const businessId = application.BusinessId;
                     setShowList(true);
-                    setSendData({ application, address });
+                    setSendData({ businessId });
                   }}
                 >
                   목록 신청

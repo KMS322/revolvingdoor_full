@@ -13,7 +13,6 @@ function showListAPI(data) {
 function* showList(action) {
   try {
     const result = yield call(showListAPI, action.data);
-    console.log("result : ", result);
     yield put({
       type: SHOW_LIST_SUCCESS,
       data: result.data,

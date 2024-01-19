@@ -2,22 +2,18 @@ import "../css/table.css";
 import "../css/businessUser.css";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { LOAD_BUSINESS_REQUEST } from "../reducers/adminUser";
+
 const BusinessUser = ({ onSelectDetail }) => {
   const dispatch = useDispatch();
   const { allUsers, userBusinesses } = useSelector((state) => state.adminUser);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_BUSINESS_REQUEST,
-    });
-  }, []);
-
+  const previousComponent = "구인기업";
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState();
   const handleModal = (data) => {
     setModalData(data);
     setModalOpen(true);
   };
+
   return (
     <div className="section businessUser">
       <div className="table_container">
@@ -33,6 +29,9 @@ const BusinessUser = ({ onSelectDetail }) => {
             const array = userBusiness.business_member_jibunAddress.split(" ");
             const userDetail = allUsers.find(
               (user) => user.id === userBusiness.BusinessId
+            );
+            const business = userBusinesses.find(
+              (user) => user.BusinessId === userBusiness.BusinessId
             );
             const businessId = userBusiness.BusinessId;
             return (
@@ -52,7 +51,7 @@ const BusinessUser = ({ onSelectDetail }) => {
                 <p>{userBusiness.id}</p>
                 <p>{userBusiness.business_member_companyName}</p>
                 <p>{`${array[0]} ${array[1]} ${array[2]}`}</p>
-                <p>{userBusiness.business_member_workType}</p>
+                <p>{business.business_member_workType}</p>
                 <p>{userBusiness.business_member_pay}</p>
                 <p
                   className="btn"
@@ -60,6 +59,7 @@ const BusinessUser = ({ onSelectDetail }) => {
                     e.stopPropagation() ||
                     onSelectDetail("공고내용", {
                       businessId,
+                      previousComponent,
                     })
                   }
                 >

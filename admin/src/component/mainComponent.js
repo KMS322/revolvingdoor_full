@@ -1,7 +1,7 @@
 import "../css/main.css";
 import SubHeader from "./subHeader";
 import Nav from "./nav";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AllUser from "./allUser";
 import IndividualUser from "./individualUser";
 import BusinessUser from "./businessUser";
@@ -12,9 +12,11 @@ import BusinessDetail from "./businessDetail";
 import ApplicationDetail from "./applicationDetail";
 import RecruitmentDetail from "./recruitmentDetail";
 import AllResumes from "./allResumes";
+import AllApplications from "./allApplications";
+import Process from "./process";
 
 const MainComponent = () => {
-  const [currentComponent, setCurrentComponent] = useState("");
+  const [currentComponent, setCurrentComponent] = useState("모든 유저");
   const [sendData, setSendData] = useState("");
   const handleMenuSelect = (selectedMenu) => {
     setCurrentComponent(selectedMenu);
@@ -67,9 +69,15 @@ const MainComponent = () => {
       );
       break;
     case "이력서 목록":
+      selectedComponent = <AllResumes onSelectDetail={handleDetailSelect} />;
+      break;
+    case "구인신청서 목록":
       selectedComponent = (
-        <AllResumes onSelectMenu={handleMenuSelect} data={sendData} />
+        <AllApplications onSelectDetail={handleDetailSelect} />
       );
+      break;
+    case "구인신청 진행사항":
+      selectedComponent = <Process onSelectDetail={handleDetailSelect} />;
       break;
     default:
       selectedComponent = null;

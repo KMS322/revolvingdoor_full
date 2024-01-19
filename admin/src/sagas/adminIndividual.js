@@ -36,7 +36,7 @@ function loadAllResumesAPI() {
   return axios.post("/admin/individual/allResumes");
 }
 
-function* loadAllResumes(action) {
+function* loadAllResumes() {
   try {
     const result = yield call(loadAllResumesAPI);
     yield put({

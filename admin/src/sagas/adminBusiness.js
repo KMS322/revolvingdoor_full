@@ -4,6 +4,9 @@ import {
   LOAD_APPLICATION_REQUEST,
   LOAD_APPLICATION_SUCCESS,
   LOAD_APPLICATION_FAILURE,
+  LOAD_ALLAPPLICATIONS_REQUEST,
+  LOAD_ALLAPPLICATIONS_SUCCESS,
+  LOAD_ALLAPPLICATIONS_FAILURE,
   LOAD_RECRUITMENT_REQUEST,
   LOAD_RECRUITMENT_SUCCESS,
   LOAD_RECRUITMENT_FAILURE,
@@ -24,6 +27,26 @@ function* loadApplication(action) {
     console.error(err);
     yield put({
       type: LOAD_APPLICATION_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function loadAllApplicationsAPI() {
+  return axios.post("/admin/business/allApplications");
+}
+
+function* loadAllApplications() {
+  try {
+    const result = yield call(loadAllApplicationsAPI);
+    yield put({
+      type: LOAD_ALLAPPLICATIONS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_ALLAPPLICATIONS_FAILURE,
       error: err.response.data,
     });
   }
@@ -56,6 +79,14 @@ function* watchLoadApplication() {
 function* watchLoadRecruitment() {
   yield takeLatest(LOAD_RECRUITMENT_REQUEST, loadRecruitment);
 }
+
+function* watchLoadAllApplications() {
+  yield takeLatest(LOAD_ALLAPPLICATIONS_REQUEST, loadAllApplications);
+}
 export default function* adminBusinessSaga() {
-  yield all([fork(watchLoadApplication), fork(watchLoadRecruitment)]);
+  yield all([
+    fork(watchLoadApplication),
+    fork(watchLoadRecruitment),
+    fork(watchLoadAllApplications),
+  ]);
 }

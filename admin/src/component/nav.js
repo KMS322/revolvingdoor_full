@@ -1,8 +1,8 @@
 import "../css/nav.css";
 import React, { useState } from "react";
 const Nav = ({ onSelectMenu }) => {
-  const [subMenu1, setSubMenu1] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState("");
+  const [subMenu1, setSubMenu1] = useState(true);
+  const [selectedMenu, setSelectedMenu] = useState("모든 유저");
 
   const handleSubMenuClick = (menu) => {
     onSelectMenu(menu);
@@ -47,6 +47,22 @@ const Nav = ({ onSelectMenu }) => {
         }}
       >
         이력서 목록
+      </div>
+      <div
+        className="menu"
+        onClick={() => {
+          handleSubMenuClick("구인신청서 목록");
+        }}
+      >
+        구인신청서 목록
+      </div>
+      <div
+        className="menu"
+        onClick={() => {
+          handleSubMenuClick("구인신청 진행사항");
+        }}
+      >
+        구인신청 진행사항
       </div>
     </div>
   );

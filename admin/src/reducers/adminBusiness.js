@@ -4,16 +4,24 @@ export const initialState = {
   loadApplicationLoading: false,
   loadApplicationDone: false,
   loadApplicationError: null,
+  loadAllApplicationsLoading: false,
+  loadAllApplicationsDone: false,
+  loadAllApplicationsError: null,
   loadRecruitmentLoading: false,
   loadRecruitmentDone: false,
   loadRecruitmentError: null,
   application: null,
+  allApplications: null,
   recruitment: null,
 };
 
 export const LOAD_APPLICATION_REQUEST = "LOAD_APPLICATION_REQUEST";
 export const LOAD_APPLICATION_SUCCESS = "LOAD_APPLICATION_SUCCESS";
 export const LOAD_APPLICATION_FAILURE = "LOAD_APPLICATION_FAILURE";
+
+export const LOAD_ALLAPPLICATIONS_REQUEST = "LOAD_ALLAPPLICATIONS_REQUEST";
+export const LOAD_ALLAPPLICATIONS_SUCCESS = "LOAD_ALLAPPLICATIONS_SUCCESS";
+export const LOAD_ALLAPPLICATIONS_FAILURE = "LOAD_ALLAPPLICATIONS_FAILURE";
 
 export const LOAD_RECRUITMENT_REQUEST = "LOAD_RECRUITMENT_REQUEST";
 export const LOAD_RECRUITMENT_SUCCESS = "LOAD_RECRUITMENT_SUCCESS";
@@ -33,8 +41,22 @@ const reducer = (state = initialState, action) => {
         draft.loadApplicationDone = true;
         break;
       case LOAD_APPLICATION_FAILURE:
-        draft.loadResumeLoading = false;
-        draft.loadResumeError = action.error;
+        draft.loadApplicationLoading = false;
+        draft.loadApplicationError = action.error;
+        break;
+      case LOAD_ALLAPPLICATIONS_REQUEST:
+        draft.loadAllApplicationsLoading = true;
+        draft.loadAllApplicationsError = null;
+        draft.loadAllApplicationsDone = false;
+        break;
+      case LOAD_ALLAPPLICATIONS_SUCCESS:
+        draft.loadAllApplicationsLoading = false;
+        draft.allApplications = action.data;
+        draft.loadAllApplicationsDone = true;
+        break;
+      case LOAD_ALLAPPLICATIONS_FAILURE:
+        draft.loadAllApplicationsLoading = false;
+        draft.loadAllApplicationsError = action.error;
         break;
       case LOAD_RECRUITMENT_REQUEST:
         draft.loadRecruitmentLoading = true;

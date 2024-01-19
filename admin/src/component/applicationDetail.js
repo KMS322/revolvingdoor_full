@@ -5,7 +5,13 @@ import { LOAD_APPLICATION_REQUEST } from "../reducers/adminBusiness";
 
 const ApplicationDetail = ({ onSelectMenu, data }) => {
   const businessId = data.businessId;
+  const { allUsers, userBusinesses } = useSelector((state) => state.adminUser);
   const { application } = useSelector((state) => state.adminBusiness);
+  const user = allUsers.find((id) => id.id === data.businessId);
+  const business = userBusinesses.find(
+    (id) => id.BusinessId === data.businessId
+  );
+  console.log("application : ", application);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -21,12 +27,16 @@ const ApplicationDetail = ({ onSelectMenu, data }) => {
         <div
           className="back_btn"
           onClick={() => {
-            onSelectMenu("구인기업");
+            onSelectMenu(data.previousComponent);
           }}
         >
           돌아가기
         </div>
-        <div className="title">{application.business_application_name}</div>
+        <div className="user_box">
+          <p>아이디 : {user.user_member_id}</p>
+          <p>회사 이름 : {business.business_member_companyName}</p>
+        </div>
+        <div className="title">공고내용</div>
         {application && (
           <>
             <div className="text_box">

@@ -14,6 +14,7 @@ const ShowListPopup = ({ data, onClose }) => {
       },
     });
   }, []);
+  console.log("matchingLists : ", matchingLists);
   return (
     <div className="showListPopup">
       <div className="article_container">
@@ -27,7 +28,7 @@ const ShowListPopup = ({ data, onClose }) => {
           <div className="row">
             <p>No.</p>
             <p>대학</p>
-            <p>점수</p>
+            <p>학과</p>
             <p>주소</p>
             <p>근무 경력</p>
             <p>최종 근무처</p>
@@ -38,14 +39,14 @@ const ShowListPopup = ({ data, onClose }) => {
             matchingLists.map((list, index) => {
               return (
                 <div className="row" key={index}>
-                  <p>{list.name}</p>
+                  <p>{list.UserIndividual.user_member_name}</p>
                   <p>{list.no}</p>
                   <p>{list.point}</p>
-                  <p>{list.region}</p>
+                  <p>{list.UserIndividual.user_member_jibunAddress}</p>
                   <p>{list.career}</p>
                   <p>OOOO세무사 사무소</p>
-                  <p>{list.workType}</p>
-                  <p>{list.start}</p>
+                  <p>{list.user_member_workType}</p>
+                  <p>{list.UserIndividual.user_member_career}</p>
                 </div>
               );
             })}

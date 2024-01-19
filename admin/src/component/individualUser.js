@@ -1,17 +1,10 @@
 import "../css/table.css";
 import "../css/individualUser.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { LOAD_INDIVIDUAL_REQUEST } from "../reducers/adminUser";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const IndividualUser = ({ onSelectDetail }) => {
-  const dispatch = useDispatch();
   const { allUsers, userIndividuals } = useSelector((state) => state.adminUser);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_INDIVIDUAL_REQUEST,
-    });
-  }, []);
 
   const age = (num) => {
     const currentDate = new Date();
@@ -45,6 +38,7 @@ const IndividualUser = ({ onSelectDetail }) => {
               (user) => user.id === userIndividual.IndividualId
             );
             const individualId = userIndividual.IndividualId;
+            const previousComponent = "구직자";
             return (
               <div
                 className={
@@ -73,6 +67,7 @@ const IndividualUser = ({ onSelectDetail }) => {
                     e.stopPropagation() ||
                     onSelectDetail("이력서", {
                       individualId,
+                      previousComponent,
                     })
                   }
                 >

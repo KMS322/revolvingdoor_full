@@ -2,6 +2,8 @@
 .showListPopup {
   width: 70vw;
   height: auto;
+  height: 900px;
+  overflow: scroll;
   /* height: 39.48vw; */
   position: fixed;
   top: 50%;
@@ -11,6 +13,7 @@
   display: flex;
   justify-content: center;
   box-shadow: 7px 7px 28px 4px rgba(0, 0, 0, 0.1);
+  z-index: 3;
 }
 .showListPopup .article_container {
   width: 95%;

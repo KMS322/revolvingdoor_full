@@ -3,13 +3,23 @@ import "../css/allUser.css";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_ALLUSER_REQUEST } from "../reducers/adminUser";
+import {
+  LOAD_ALLUSER_REQUEST,
+  LOAD_INDIVIDUAL_REQUEST,
+  LOAD_BUSINESS_REQUEST,
+} from "../reducers/adminUser";
 const AllUser = () => {
   const dispatch = useDispatch();
   const { allUsers } = useSelector((state) => state.adminUser);
   useEffect(() => {
     dispatch({
       type: LOAD_ALLUSER_REQUEST,
+    });
+    dispatch({
+      type: LOAD_INDIVIDUAL_REQUEST,
+    });
+    dispatch({
+      type: LOAD_BUSINESS_REQUEST,
     });
   }, []);
   return (

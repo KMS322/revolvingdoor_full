@@ -23,6 +23,15 @@
   font-size: 0.78vw;
   cursor: pointer;
 }
+.detail .detail_container .user_box {
+  display: flex;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+.detail .detail_container .user_box p {
+  font-size: 1.09vw;
+  margin-right: 1vw;
+}
 .detail .detail_container .title {
   width: 100%;
   border: 1px solid black;

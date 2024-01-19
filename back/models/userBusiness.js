@@ -62,6 +62,12 @@ module.exports = (sequelize, DataTypes) => {
   );
   UserBusiness.associate = (db) => {
     db.UserBusiness.belongsTo(db.User, { foreignKey: "BusinessId" });
+    db.UserBusiness.hasOne(db.BusinessApplication, {
+      foreignKey: "BusinessId",
+    });
+    db.UserBusiness.hasOne(db.BusinessRecruitment, {
+      foreignKey: "BusinessId",
+    });
   };
   return UserBusiness;
 };

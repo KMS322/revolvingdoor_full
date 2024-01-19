@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOAD_RESUME_REQUEST } from "../reducers/adminIndividual";
 const ResumeDetail = ({ onSelectMenu, data }) => {
   const individualId = data.individualId;
+  const { allUsers, userIndividuals } = useSelector((state) => state.adminUser);
   const { resume } = useSelector((state) => state.adminIndividual);
+  const user = allUsers.find((id) => id.id === data.individualId);
+  const individual = userIndividuals.find(
+    (id) => id.IndividualId === data.individualId
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -20,11 +25,16 @@ const ResumeDetail = ({ onSelectMenu, data }) => {
         <div
           className="back_btn"
           onClick={() => {
-            onSelectMenu("구직자");
+            onSelectMenu(data.previousComponent);
           }}
         >
           돌아가기
         </div>
+        <div className="user_box">
+          <p>아이디 : {user.user_member_id}</p>
+          <p>이름 : {individual.user_member_name}</p>
+        </div>
+
         <div className="title">이력서</div>
         {resume && (
           <>
