@@ -170,6 +170,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
+      applyDay: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+      individualCnt: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+        defaultValue: "5",
+      },
     },
     {
       charset: "utf8",
@@ -178,9 +187,9 @@ module.exports = (sequelize, DataTypes) => {
   );
   BusinessApplication.associate = (db) => {
     db.BusinessApplication.belongsTo(db.User, { foreignKey: "BusinessId" });
-    db.BusinessApplication.belongsTo(db.UserBusiness, {
-      foreignKey: "BusinessId",
-    });
+    // db.BusinessApplication.belongsTo(db.UserBusiness, {
+    //   foreignKey: "BusinessId",
+    // });
   };
   return BusinessApplication;
 };

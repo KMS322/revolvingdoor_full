@@ -9,6 +9,7 @@ import IndividualDetail from "./individualDetail";
 import ResumeDetail from "./resumeDetail";
 import CareerDetail from "./careerDetail";
 import BusinessDetail from "./businessDetail";
+import ApplicationList from "./applicationList";
 import ApplicationDetail from "./applicationDetail";
 import RecruitmentDetail from "./recruitmentDetail";
 import AllResumes from "./allResumes";
@@ -56,6 +57,11 @@ const MainComponent = () => {
     case "구인기업 정보 상세":
       selectedComponent = (
         <BusinessDetail onSelectMenu={handleMenuSelect} userData={sendData} />
+      );
+      break;
+    case "공고목록":
+      selectedComponent = (
+        <ApplicationList onSelectMenu={handleMenuSelect} data={sendData} />
       );
       break;
     case "공고내용":

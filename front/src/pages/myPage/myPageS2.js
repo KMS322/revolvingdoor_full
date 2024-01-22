@@ -13,6 +13,9 @@ const MyPageS2 = () => {
     (state) => state.userResume
   );
   const { individualInfo } = useSelector((state) => state.userInfo);
+  // console.log("individualInfo : ", individualInfo);
+  // const individualId = individualInfo.IndividualId;
+  // onSetIndividualId(individualId);
   const removeDuplicatesById = (resumes) => {
     if (!resumes || !Array.isArray(resumes)) {
       return [];

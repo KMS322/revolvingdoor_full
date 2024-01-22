@@ -1,10 +1,45 @@
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CONNECTED_COMPANIES_REQUEST } from "../../reducers/matching";
+import ShowCompany from "../showCompany";
 const MyPageS3 = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { connectedCompanies } = useSelector((state) => state.matching);
 
-  const goPage = (path) => {
-    navigate(path);
+  const removeDuplicatesById = (connectedCompanies) => {
+    if (!connectedCompanies || !Array.isArray(connectedCompanies)) {
+      return [];
+    }
+    const uniqueCompanies = [];
+    const existingIds = [];
+
+    for (const company of connectedCompanies) {
+      if (
+        company &&
+        company.businessInfo.id &&
+        !existingIds.includes(company.businessInfo.id)
+      ) {
+        uniqueCompanies.push(company);
+        existingIds.push(company.businessInfo.id);
+      }
+    }
+
+    return uniqueCompanies;
   };
+
+  const uniqueCompanies = removeDuplicatesById(connectedCompanies);
+
+  useEffect(() => {
+    dispatch({
+      type: CONNECTED_COMPANIES_REQUEST,
+    });
+  }, []);
+
+  const [showList, setShowList] = useState(false);
+  const closePopup = () => {
+    setShowList(false);
+  };
+  const [sendData, setSendData] = useState();
   return (
     <div className="myPage_s3">
       <div className="article_container">
@@ -12,82 +47,45 @@ const MyPageS3 = () => {
         <div className="table_container">
           <div className="head_row row">
             <p className="pc">지역 / 근무지</p>
-            <p>기업명 / 공고제목</p>
+            <p>공고제목</p>
             <p>근무시간</p>
             <p>급여</p>
             <p>수락여부</p>
           </div>
-          {/* <div
-            className="content_row row end"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>09:00~18:00</p>
-            <p className="hour">
-              <span>시급</span>
-              <span className="mobile">
-                <br />
-              </span>
-              &nbsp;12,000원
-            </p>
-            <div className="btn_reject">거절 완료</div>
-          </div>
-          <div
-            className="content_row row end"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>시간협의</p>
-            <p className="day">
-              <span>일급</span>
-              <span className="mobile">
-                <br />
-              </span>
-              &nbsp;83,000원
-            </p>
-            <div className="btn_accept">수락 완료</div>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              goPage("/infoDetail");
-            }}
-          >
-            <p className="pc">경산시</p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>09:00~18:00</p>
-            <p className="month">
-              <span>월급</span>
-              <span className="mobile">
-                <br />
-              </span>
-              &nbsp;2,020,000원
-            </p>
-            <div className="btn_box">
-              <div className="btn">수락</div>
-              <div className="btn">거절</div>
-            </div>
-          </div> */}
+          {uniqueCompanies &&
+            uniqueCompanies.map((company, index) => {
+              return (
+                <div className="content_row row" key={index}>
+                  <p className="pc">
+                    {company.businessInfo.business_member_jibunAddress}
+                  </p>
+                  <p>
+                    재택 가능한 임시직 보조 구인
+                    <br />
+                    <span>회전문</span>
+                  </p>
+                  <p>09:00~18:00</p>
+                  <p className="hour">
+                    <span>시급</span>
+                    <span className="mobile">
+                      <br />
+                    </span>
+                    &nbsp;12,000원
+                  </p>
+                  <div
+                    className="btn"
+                    onClick={() => {
+                      setShowList(true);
+                    }}
+                  >
+                    상세 확인
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
+      {showList && <ShowCompany onClose={closePopup} data={sendData} />}
     </div>
   );
 };

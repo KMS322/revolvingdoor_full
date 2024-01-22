@@ -109,8 +109,9 @@ const MyPageBusinessS2 = () => {
                   className="apply_btn"
                   onClick={() => {
                     const businessId = application.BusinessId;
+                    const applicationId = application.id;
                     setShowList(true);
-                    setSendData({ businessId });
+                    setSendData({ businessId, applicationId });
                   }}
                 >
                   목록 신청

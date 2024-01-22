@@ -55,15 +55,22 @@ const BusinessUser = ({ onSelectDetail }) => {
                 <p>{userBusiness.business_member_pay}</p>
                 <p
                   className="btn"
+                  // onClick={(e) =>
+                  //   e.stopPropagation() ||
+                  //   onSelectDetail("공고내용", {
+                  //     businessId,
+                  //     previousComponent,
+                  //   })
+                  // }
                   onClick={(e) =>
                     e.stopPropagation() ||
-                    onSelectDetail("공고내용", {
+                    onSelectDetail("공고목록", {
                       businessId,
                       previousComponent,
                     })
                   }
                 >
-                  공고내용
+                  공고목록
                 </p>
                 <p
                   className="btn"

@@ -14,7 +14,6 @@ const ShowListPopup = ({ data, onClose }) => {
       },
     });
   }, []);
-  console.log("matchingLists : ", matchingLists);
   return (
     <div className="showListPopup">
       <div className="article_container">

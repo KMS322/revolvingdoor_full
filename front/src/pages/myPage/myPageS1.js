@@ -7,6 +7,7 @@ const MyPageS1 = () => {
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
   const { individualInfo } = useSelector((state) => state.userInfo);
+
   useEffect(() => {
     dispatch({
       type: LOAD_INDIVIDUAL_INFO_REQUEST,

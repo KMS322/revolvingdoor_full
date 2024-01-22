@@ -233,10 +233,7 @@ span {
   height: 24.74%;
   text-align: center;
 }
-.myPage_s3 .article_container .table_container .end {
-  background-color: #f8f8f8;
-  opacity: 70%;
-}
+
 .myPage_s3 .article_container .table_container .row p:nth-child(1) {
   margin-left: 1.95vw;
   width: 12%;
@@ -268,6 +265,10 @@ span {
   border-radius: 0.3vw;
   font-size: 0.9vw;
 }
+.myPage_s3 .article_container .table_container .row .btn {
+  color: white;
+  background-color: #cabd99;
+}
 .myPage_s3 .article_container .table_container .row .btn_reject {
   color: white;
   background-color: #b6b6b6;
@@ -290,12 +291,7 @@ span {
   align-items: center;
   justify-content: center;
 }
-.myPage_s3 .article_container .table_container .row .btn_box .btn:nth-child(1) {
-  background-color: #cabd99;
-}
-.myPage_s3 .article_container .table_container .row .btn_box .btn:nth-child(2) {
-  background-color: #b6b6b6;
-}
+
 .myPage_s3 .article_container .table_container .row:nth-child(1) p {
   font-size: 1.35vw;
   font-weight: 700;

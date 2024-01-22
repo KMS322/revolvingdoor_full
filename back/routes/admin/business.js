@@ -4,7 +4,7 @@ const { BusinessApplication, BusinessRecruitment } = require("../../models");
 
 router.post("/application", async (req, res, next) => {
   try {
-    const businessApplication = await BusinessApplication.findOne({
+    const businessApplication = await BusinessApplication.findAll({
       where: {
         BusinessId: req.body.businessId,
       },
@@ -20,20 +20,6 @@ router.post("/allApplications", async (req, res, next) => {
   try {
     const allApplications = await BusinessApplication.findAll();
     res.status(200).json(allApplications);
-  } catch (error) {
-    console.error(error);
-    next();
-  }
-});
-
-router.post("/application", async (req, res, next) => {
-  try {
-    const businessApplication = await BusinessApplication.findOne({
-      where: {
-        BusinessId: req.body.businessId,
-      },
-    });
-    res.status(200).json(businessApplication);
   } catch (error) {
     console.error(error);
     next();

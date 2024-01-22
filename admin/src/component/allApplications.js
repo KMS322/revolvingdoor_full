@@ -23,17 +23,17 @@ const AllApplications = ({ onSelectDetail }) => {
           <p>No</p>
           <p>아이디</p>
           <p>회사명</p>
-          <p>채용 제목</p>
+          <p>신청서 제목</p>
           <p>지역</p>
           <p>등록일</p>
         </div>
         {allApplications &&
           allApplications.map((allApplication, index) => {
-            const userDetail = userBusinesses.find(
-              (user) => user.BusinessId === allApplication.BusinessId
-            );
             const user = allUsers.find(
               (user) => user.id === allApplication.BusinessId
+            );
+            const userDetail = userBusinesses.find(
+              (user) => user.BusinessId === allApplication.BusinessId
             );
             const array = userDetail.business_member_jibunAddress.split(" ");
             const businessId = allApplication.BusinessId;

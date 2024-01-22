@@ -63,3 +63,26 @@
   height: 2.06vw;
   border: 1px solid black;
 }
+.section .back_btn {
+  width: 8.32%;
+  height: 1.72vw;
+  margin-top: 1.78vw;
+  margin-bottom: 1.78vw;
+  background-color: #cabd99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.78vw;
+  cursor: pointer;
+}
+
+.section .user_box {
+  display: flex;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+.section .user_box p {
+  font-size: 1.09vw;
+  margin-right: 1vw;
+}
