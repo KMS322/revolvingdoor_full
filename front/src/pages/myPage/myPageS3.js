@@ -5,7 +5,6 @@ import ShowCompany from "../showCompany";
 const MyPageS3 = () => {
   const dispatch = useDispatch();
   const { connectedCompanies } = useSelector((state) => state.matching);
-
   const removeDuplicatesById = (connectedCompanies) => {
     if (!connectedCompanies || !Array.isArray(connectedCompanies)) {
       return [];
@@ -59,11 +58,7 @@ const MyPageS3 = () => {
                   <p className="pc">
                     {company.businessInfo.business_member_jibunAddress}
                   </p>
-                  <p>
-                    재택 가능한 임시직 보조 구인
-                    <br />
-                    <span>회전문</span>
-                  </p>
+                  <p>재택 가능한 임시직 보조 구인</p>
                   <p>09:00~18:00</p>
                   <p className="hour">
                     <span>시급</span>
@@ -75,10 +70,31 @@ const MyPageS3 = () => {
                   <div
                     className="btn"
                     onClick={() => {
-                      setShowList(true);
+                      if (company.connectedInfo.concurrence === "대기") {
+                        setShowList(true);
+                        setSendData(company);
+                      }
+                    }}
+                    style={{
+                      backgroundColor:
+                        company.connectedInfo.concurrence &&
+                        {
+                          대기: "#cabd99",
+                          동의: "#cabd99",
+                          거절: "#b6b6b6",
+                        }[company.connectedInfo.concurrence],
+                      cursor:
+                        company.connectedInfo.concurrence === "대기"
+                          ? "pointer"
+                          : "auto",
                     }}
                   >
-                    상세 확인
+                    {company.connectedInfo.concurrence &&
+                      {
+                        대기: "상세 확인",
+                        동의: "동의",
+                        거절: "거절",
+                      }[company.connectedInfo.concurrence]}
                   </div>
                 </div>
               );

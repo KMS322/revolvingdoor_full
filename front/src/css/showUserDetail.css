@@ -1,0 +1,84 @@
+/* showUserDetail */
+.showUserDetail {
+  width: 50vw;
+  height: 80vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 7px 7px 28px 4px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+.showUserDetail > img {
+  margin-top: 1vw;
+  margin-left: auto;
+  margin-right: 1vw;
+  width: 1.2vw;
+  cursor: pointer;
+}
+.showUserDetail .article_container {
+  width: 95%;
+  height: auto;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+.showUserDetail .article_container > p {
+  font-size: 1.09vw;
+  margin-bottom: 1vw;
+}
+.showUserDetail .article_container > .title {
+  font-size: 1.09vw !important;
+  font-weight: 700;
+  color: #cabd99;
+  margin-top: 2vw !important;
+  text-align: center;
+}
+.showUserDetail .article_container .text_box {
+  width: 80%;
+  height: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 1vw;
+}
+.showUserDetail .article_container .text_box:last-child {
+  margin-bottom: 3vw;
+}
+.showUserDetail .article_container .text_box p {
+  font-size: 0.9vw;
+}
+.showUserDetail .article_container .text_box p:nth-child(1) {
+  width: 30%;
+  text-align: center;
+}
+.showUserDetail .article_container .text_box p:nth-child(2) {
+  width: 60%;
+}
+.showUserDetail .article_container .btn {
+  width: 5.31vw;
+  height: 2.14vw;
+  margin: 0 auto;
+  margin-top: 4.17vw;
+  margin-bottom: 14vw;
+  font-size: 0.83vw;
+  color: white;
+  background-color: #cabd99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}

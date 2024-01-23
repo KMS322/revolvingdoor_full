@@ -1,7 +1,23 @@
 import "../css/showCompany.css";
-import React from "react";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_CONCURRENCE_REQUEST } from "../reducers/matching";
 const ShowCompany = ({ data, onClose }) => {
+  const dispatch = useDispatch();
+  const { setConcurrenceDone } = useSelector((state) => state.matching);
+  const sendConcurrence = (agreement) => {
+    dispatch({
+      type: SET_CONCURRENCE_REQUEST,
+      data: { agreement },
+    });
+    window.location.href = "/myPage";
+  };
+  useEffect(() => {
+    console.log("setConcurrenceDone : ", setConcurrenceDone);
+    if (setConcurrenceDone) {
+      window.location.href = "/";
+    }
+  }, [setConcurrenceDone]);
   return (
     <div className="showCompany">
       <div className="article_container">
@@ -12,20 +28,31 @@ const ShowCompany = ({ data, onClose }) => {
           <p>임시직 채용 안내</p>
           <div className="list_box">
             <div className="row row_head">
-              <p>사업장명</p>
+              <p>사업장 형태</p>
               <p>사업장 소재지</p>
               <p>채용시기</p>
               <p>예상근무기간</p>
               <p>근무형태</p>
-              <p>대우</p>
+              <p>고용형태</p>
             </div>
             <div className="row row_content">
-              <p>회계사무소</p>
-              <p>대구 동구</p>
-              <p>2023.12.01</p>
-              <p>30일이내</p>
-              <p>모두가능</p>
-              <p>협의 결정</p>
+              <p>{data.businessInfo.business_member_officeState}</p>
+              <p>{`${
+                data.businessInfo.business_member_jibunAddress.split(" ")[0]
+              } ${
+                data.businessInfo.business_member_jibunAddress.split(" ")[1]
+              }`}</p>
+              <p>{`${data.applicationInfo.business_application_startYear}년 ${data.applicationInfo.business_application_startMonth}월`}</p>
+              <p>{data.applicationInfo.business_application_expectPeriod}</p>
+              <p>
+                {data.applicationInfo.business_application_workPlace &&
+                  {
+                    "사업자 주소와 동일 (출근)": "출퇴근",
+                    "재택 근무 가능": "재택",
+                    "출근·재택 병행": "모두가능",
+                  }[data.applicationInfo.business_application_workPlace]}
+              </p>
+              <p>{data.applicationInfo.business_application_employmentType}</p>
             </div>
           </div>
           <p>
@@ -36,8 +63,24 @@ const ShowCompany = ({ data, onClose }) => {
           상기업체에서 귀하에게 연락을 하여 직접 면접을 하도록 하겠습니다.
           <p>동의하십니까?</p>
           <div className="btn_box">
-            <div className="btn">거절</div>
-            <div className="btn">승인</div>
+            <div
+              className="btn"
+              onClick={() => {
+                sendConcurrence("거절");
+                onClose();
+              }}
+            >
+              거절
+            </div>
+            <div
+              className="btn"
+              onClick={() => {
+                sendConcurrence("동의");
+                onClose();
+              }}
+            >
+              동의
+            </div>
           </div>
         </div>
       </div>

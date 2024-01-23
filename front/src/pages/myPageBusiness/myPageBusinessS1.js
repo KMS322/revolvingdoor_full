@@ -30,14 +30,18 @@ const MyPageBusinessS1 = () => {
           <p>
             <span>
               {me && me.user_member_id ? `${me.user_member_id}님, ` : ""}
-            </span>{" "}
+            </span>
             어서오세요.
           </p>
           <p>{`${
             businessInfo
               ? businessInfo.business_member_jibunAddress.split(" ")[0]
               : ""
-          } ${businessInfo ? businessInfo.business_member_email : ""}`}</p>
+          } ${
+            businessInfo && businessInfo.business_member_email !== null
+              ? businessInfo.business_member_email
+              : ""
+          }`}</p>
           <p
             onClick={() => {
               if (me.userType === "business") {

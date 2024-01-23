@@ -8,13 +8,18 @@ const {
   UserBusiness,
   BusinessApplication,
   ConnectedIndividual,
+  UserCareer,
 } = require("../models");
 
 router.post("/", async (req, res, next) => {
   try {
     const usersDB = await User.findAll({
       where: { userType: "individual" },
-      include: [{ model: UserIndividual }, { model: UserResume }],
+      include: [
+        { model: UserIndividual },
+        { model: UserResume },
+        { model: UserCareer },
+      ],
     });
 
     const users = usersDB.map((userInstance) => {
@@ -27,7 +32,6 @@ router.post("/", async (req, res, next) => {
 
     const { businessId } = req.body.matchingData;
     const { applicationId } = req.body.matchingData;
-    console.log("req.body : ", req.body);
     const businessDB = await UserBusiness.findOne({
       where: { BusinessId: businessId },
       attributes: ["business_member_jibunAddress"],
@@ -162,13 +166,13 @@ router.post("/", async (req, res, next) => {
 
     const userCnt = Number(application.individualCnt);
     const top5Users = sortedUsers.slice(0, userCnt);
-    const top20Users = sortedUsers.slice(0, 20);
+    const top15Users = sortedUsers.slice(0, 15);
 
     const exConnect = await ConnectedIndividual.findOne({
       where: { ApplicationId: application.id },
     });
     if (!exConnect) {
-      for (const user of top20Users) {
+      for (const user of top15Users) {
         await ConnectedIndividual.create({
           point: String(user.point),
           concurrence: "대기",
@@ -190,7 +194,7 @@ router.post("/connect", async (req, res, next) => {
     const { id } = req.user.dataValues;
     const connectedCompanies = await ConnectedIndividual.findOne({
       where: { IndividualId: id },
-      attributes: ["BusinessId"],
+      attributes: ["BusinessId", "concurrence"],
     });
     const businessId = connectedCompanies.BusinessId;
     const businessInfo = await UserBusiness.findOne({
@@ -202,8 +206,100 @@ router.post("/connect", async (req, res, next) => {
     const responseData = {
       businessInfo: businessInfo,
       applicationInfo: applicationInfo,
+      connectedInfo: connectedCompanies,
     };
     res.status(200).json(responseData);
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/concurrence", async (req, res, next) => {
+  try {
+    const { id } = req.user.dataValues;
+
+    await ConnectedIndividual.update(
+      {
+        concurrence: req.body.agreement,
+      },
+      {
+        where: { IndividualId: id },
+      }
+    );
+    res.status(200).send("ok");
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/changeStep", async (req, res, next) => {
+  try {
+    const { id } = req.user.dataValues;
+    if (req.body.step === "동의여부조사중") {
+      setTimeout(async () => {
+        await BusinessApplication.update(
+          {
+            progressStep: "조사완료",
+          },
+          {
+            where: { BusinessId: id },
+          }
+        );
+      }, 1000);
+    }
+    await BusinessApplication.update(
+      {
+        progressStep: req.body.step,
+      },
+      {
+        where: { BusinessId: id },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/loadConcurrence", async (req, res, next) => {
+  try {
+    const arr = req.body.arr;
+    const idArr = arr.split(" ");
+    let sendConcurrence = [];
+    for (const id of idArr) {
+      if (id) {
+        const object = await ConnectedIndividual.findOne({
+          where: { IndividualId: Number(id) },
+          attributes: ["IndividualId", "concurrence"],
+        });
+        const newObject = {
+          IndividualId: object.IndividualId,
+          concurrence: object.concurrence,
+        };
+        sendConcurrence.push(newObject);
+      }
+    }
+
+    res.status(200).json(sendConcurrence);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.post("/clickPay", async (req, res, next) => {
+  try {
+    await UserBusiness.update(
+      {
+        business_member_pay: req.body.pay,
+      },
+      {
+        where: { BusinessId: Number(req.body.businessId) },
+      }
+    );
+    res.status(200).send("ok");
   } catch (error) {
     console.error(error);
     next();

@@ -179,6 +179,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: "5",
       },
+      progressStep: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+        defaultValue: "목록신청전",
+      },
     },
     {
       charset: "utf8",

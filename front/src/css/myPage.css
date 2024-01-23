@@ -268,6 +268,7 @@ span {
 .myPage_s3 .article_container .table_container .row .btn {
   color: white;
   background-color: #cabd99;
+  cursor: pointer;
 }
 .myPage_s3 .article_container .table_container .row .btn_reject {
   color: white;
@@ -277,20 +278,6 @@ span {
   color: white;
   background-color: #cabd99;
 }
-.myPage_s3 .article_container .table_container .row .btn_box {
-  display: flex;
-  justify-content: space-between !important;
-}
-.myPage_s3 .article_container .table_container .row .btn_box .btn {
-  width: 47.17%;
-  height: 100%;
-  border-radius: 0.3vw;
-  font-size: 0.9vw;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .myPage_s3 .article_container .table_container .row:nth-child(1) p {
   font-size: 1.35vw;
@@ -299,7 +286,6 @@ span {
 }
 .myPage_s3 .article_container .table_container .content_row {
   border-top: 2px solid #b6b6b6;
-  cursor: pointer;
 }
 .myPage_s3 .article_container .table_container .content_row:last-child {
   border-bottom: 1px solid #b6b6b6;

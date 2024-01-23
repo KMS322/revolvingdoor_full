@@ -7,6 +7,8 @@ import {
   REMOVE_APPLICATION_REQUEST,
 } from "../../reducers/businessApplication";
 import ShowListPopup from "../showListPopup";
+import AcceptPopup from "../acceptPopup";
+import ShowDetail from "../showDetail";
 const MyPageBusinessS2 = () => {
   const dispatch = useDispatch();
   const { applications, removeApplicationDone } = useSelector(
@@ -65,9 +67,13 @@ const MyPageBusinessS2 = () => {
     }
   }, [removeApplicationDone]);
 
+  const [accept, setAccept] = useState(false);
   const [showList, setShowList] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
   const closePopup = () => {
     setShowList(false);
+    setAccept(false);
+    setShowDetail(false);
   };
   const [sendData, setSendData] = useState();
 
@@ -110,11 +116,24 @@ const MyPageBusinessS2 = () => {
                   onClick={() => {
                     const businessId = application.BusinessId;
                     const applicationId = application.id;
-                    setShowList(true);
+
+                    if (application.progressStep === "목록신청전") {
+                      setAccept(true);
+                    } else if (application.progressStep === "조사완료") {
+                      setShowList(true);
+                    } else if (application.progressStep === "결제완료") {
+                      setShowDetail(true);
+                    }
                     setSendData({ businessId, applicationId });
                   }}
                 >
-                  목록 신청
+                  {application.progressStep &&
+                    {
+                      목록신청전: "목록 신청",
+                      동의여부조사중: "목록 대기중",
+                      조사완료: "목록 보기",
+                      결제완료: "상세 정보",
+                    }[application.progressStep]}
                 </div>
                 <div className="manage_box">
                   <div
@@ -142,6 +161,8 @@ const MyPageBusinessS2 = () => {
         </div>
       </div>
       {showList && <ShowListPopup onClose={closePopup} data={sendData} />}
+      {accept && <AcceptPopup onClose={closePopup} data={sendData} />}
+      {showDetail && <ShowDetail onClose={closePopup} data={sendData} />}
     </div>
   );
 };

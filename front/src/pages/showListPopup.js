@@ -1,11 +1,23 @@
 import "../css/showListPopup.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SHOW_LIST_REQUEST } from "../reducers/matching";
+import {
+  SHOW_LIST_REQUEST,
+  LOAD_CONCURRENCE_REQUEST,
+} from "../reducers/matching";
+import SelectPay from "./selectPay";
 const ShowListPopup = ({ data, onClose }) => {
   const dispatch = useDispatch();
-  const { matchingLists } = useSelector((state) => state.matching);
+  const { matchingLists, concurrences } = useSelector(
+    (state) => state.matching
+  );
   const matchingData = data;
+  const sendData = matchingData.businessId;
+  let arr = "";
+  matchingLists &&
+    matchingLists.map((list) => {
+      arr += list.UserIndividual.IndividualId + " ";
+    });
   useEffect(() => {
     dispatch({
       type: SHOW_LIST_REQUEST,
@@ -14,6 +26,22 @@ const ShowListPopup = ({ data, onClose }) => {
       },
     });
   }, []);
+
+  useEffect(() => {
+    if (matchingLists) {
+      dispatch({
+        type: LOAD_CONCURRENCE_REQUEST,
+        data: {
+          arr,
+        },
+      });
+    }
+  }, [matchingLists]);
+
+  const [payPopup, setPayPopup] = useState(false);
+  const closePopup = () => {
+    setPayPopup(false);
+  };
   return (
     <div className="showListPopup">
       <div className="article_container">
@@ -26,7 +54,6 @@ const ShowListPopup = ({ data, onClose }) => {
         <div className="list_box">
           <div className="row">
             <p>No.</p>
-            <p>대학</p>
             <p>학과</p>
             <p>주소</p>
             <p>근무 경력</p>
@@ -36,20 +63,38 @@ const ShowListPopup = ({ data, onClose }) => {
           </div>
           {matchingLists &&
             matchingLists.map((list, index) => {
+              const concurrenceData =
+                concurrences &&
+                concurrences.find(
+                  (concurrence) =>
+                    concurrence.IndividualId ===
+                    String(list.UserIndividual.IndividualId)
+                );
+
+              const backgroundColor =
+                concurrenceData && concurrenceData.concurrence === "대기"
+                  ? "#F5F2EB"
+                  : concurrenceData && concurrenceData.concurrence === "동의"
+                  ? "#CABD99"
+                  : concurrenceData && concurrenceData.concurrence === "거절"
+                  ? "#C8C8C8"
+                  : "initial";
               return (
-                <div className="row" key={index}>
-                  <p>{list.UserIndividual.user_member_name}</p>
-                  <p>{list.no}</p>
-                  <p>{list.point}</p>
+                <div className="row" key={index} style={{ backgroundColor }}>
+                  <p>{index + 1}</p>
+                  <p>{list.UserResumes[0].user_resume_schoolMajor}</p>
                   <p>{list.UserIndividual.user_member_jibunAddress}</p>
-                  <p>{list.career}</p>
-                  <p>OOOO세무사 사무소</p>
-                  <p>{list.user_member_workType}</p>
-                  <p>{list.UserIndividual.user_member_career}</p>
+                  <p>{list.UserIndividual.user_member_career}년</p>
+                  <p>
+                    {list.UserCareer && list.UserCareer.user_career_company1}
+                  </p>
+                  <p>{list.UserIndividual.user_member_workType}</p>
+                  <p>{`${list.UserResumes[0].user_resume_hopeStartYear}년 ${list.UserResumes[0].user_resume_hopeStartMonth}월`}</p>
                 </div>
               );
             })}
         </div>
+        <img className="color_box" src="/images/color_box.png" alt="" />
         <div className="text_box">
           <p>
             위 대상자에 대한 연락처 등 인적사항 정보를 받고 임시직 취업을
@@ -68,8 +113,16 @@ const ShowListPopup = ({ data, onClose }) => {
           <br />
           <p>위 계약 사항에 동의하시고 계속 진행하시겠습니까?</p>
         </div>
-        <div className="btn">동의</div>
+        <div
+          className="btn"
+          onClick={() => {
+            setPayPopup(true);
+          }}
+        >
+          동의
+        </div>
       </div>
+      {payPopup && <SelectPay onClose={closePopup} data={sendData} />}
     </div>
   );
 };
