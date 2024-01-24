@@ -48,7 +48,7 @@ const ShowUserDetail = ({ data, onClose }) => {
         </div>
         <div className="text_box">
           <p>최근 근무처</p>
-          <p>{data.UserCareer.user_career_company1}</p>
+          <p>{data.UserCareer && data.UserCareer.user_career_company1}</p>
         </div>
       </div>
     </div>

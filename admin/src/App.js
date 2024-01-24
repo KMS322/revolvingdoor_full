@@ -5,22 +5,17 @@ import { Routes, Route } from "react-router-dom";
 // import { LOAD_MY_INFO_REQUEST } from "./reducers/user";
 import Header from "./component/header.js";
 import ScrollToTop from "./scrollToTop.js";
+import Login from "./component/login.js";
 import MainComponent from "./component/mainComponent";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const { logInDone } = useSelector((state) => state.user);
-  // useEffect(() => {
-  //   dispatch({
-  //     type: LOAD_MY_INFO_REQUEST,
-  //   });
-  // }, [logInDone]);
   return (
     <div className="app_container">
       <Header />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<MainComponent />} />
+        <Route path="/main" element={<MainComponent />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </div>
   );

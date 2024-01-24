@@ -15,6 +15,7 @@ import RecruitmentDetail from "./recruitmentDetail";
 import AllResumes from "./allResumes";
 import AllApplications from "./allApplications";
 import Process from "./process";
+import ProcessDetail from "./processDetail";
 
 const MainComponent = () => {
   const [currentComponent, setCurrentComponent] = useState("모든 유저");
@@ -84,6 +85,11 @@ const MainComponent = () => {
       break;
     case "구인신청 진행사항":
       selectedComponent = <Process onSelectDetail={handleDetailSelect} />;
+      break;
+    case "상세 진행사항":
+      selectedComponent = (
+        <ProcessDetail onSelectMenu={handleMenuSelect} data={sendData} />
+      );
       break;
     default:
       selectedComponent = null;

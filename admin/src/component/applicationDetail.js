@@ -11,7 +11,6 @@ const ApplicationDetail = ({ onSelectMenu, data }) => {
   const business = userBusinesses.find(
     (id) => id.BusinessId === data.businessId
   );
-  console.log("application : ", application);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({

@@ -36,10 +36,14 @@ const MyPageS1 = () => {
           </p>
           <p>
             {`${
-              individualInfo
+              individualInfo && individualInfo
                 ? individualInfo.user_member_jibunAddress.split(" ")[0]
                 : ""
-            } ${individualInfo ? individualInfo.user_member_email : ""}`}
+            } ${
+              individualInfo && individualInfo
+                ? individualInfo.user_member_email
+                : ""
+            }`}
           </p>
           <p
             onClick={() => {

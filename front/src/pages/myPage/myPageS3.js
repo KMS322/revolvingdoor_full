@@ -27,7 +27,7 @@ const MyPageS3 = () => {
   };
 
   const uniqueCompanies = removeDuplicatesById(connectedCompanies);
-
+  console.log("uniqueCompanies : ", uniqueCompanies);
   useEffect(() => {
     dispatch({
       type: CONNECTED_COMPANIES_REQUEST,
@@ -58,8 +58,32 @@ const MyPageS3 = () => {
                   <p className="pc">
                     {company.businessInfo.business_member_jibunAddress}
                   </p>
-                  <p>재택 가능한 임시직 보조 구인</p>
-                  <p>09:00~18:00</p>
+                  <p>{company.applicationInfo.business_application_name}</p>
+                  <p>{`${
+                    company.applicationInfo
+                      .business_application_workTime1Hour === null
+                      ? "00"
+                      : company.applicationInfo
+                          .business_application_workTime1Hour
+                  }:${
+                    company.applicationInfo
+                      .business_application_workTime1Minute === null
+                      ? "00"
+                      : company.applicationInfo
+                          .business_application_workTime1Minute
+                  } ~ ${
+                    company.applicationInfo
+                      .business_application_workTime2Hour === null
+                      ? "00"
+                      : company.applicationInfo
+                          .business_application_workTime2Hour
+                  }:${
+                    company.applicationInfo
+                      .business_application_workTime2Minute === null
+                      ? "00"
+                      : company.applicationInfo
+                          .business_application_workTime2Minute
+                  }`}</p>
                   <p className="hour">
                     <span>시급</span>
                     <span className="mobile">

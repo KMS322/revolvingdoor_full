@@ -7,7 +7,6 @@ import { LOAD_ALLAPPLICATIONS_REQUEST } from "../reducers/adminBusiness";
 const AllApplications = ({ onSelectDetail }) => {
   const dispatch = useDispatch();
   const { allApplications } = useSelector((state) => state.adminBusiness);
-  console.log("allApplications : ", allApplications);
   const { userBusinesses, allUsers } = useSelector((state) => state.adminUser);
   const previousComponent = "구인신청서 목록";
   useEffect(() => {

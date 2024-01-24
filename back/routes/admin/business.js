@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { BusinessApplication, BusinessRecruitment } = require("../../models");
+const {
+  BusinessApplication,
+  BusinessRecruitment,
+  ConnectedIndividual,
+} = require("../../models");
+const { Op } = require("sequelize");
 
 router.post("/application", async (req, res, next) => {
   try {
@@ -20,6 +25,79 @@ router.post("/allApplications", async (req, res, next) => {
   try {
     const allApplications = await BusinessApplication.findAll();
     res.status(200).json(allApplications);
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/appliedLists", async (req, res, next) => {
+  try {
+    const appliedLists = await BusinessApplication.findAll({
+      where: { progressStep: { [Op.ne]: "목록신청전" } },
+    });
+    res.status(200).json(appliedLists);
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/matchingLists", async (req, res, next) => {
+  try {
+    const lists = await ConnectedIndividual.findAll({
+      where: { BusinessId: req.body.businessId },
+    });
+    res.status(200).json(lists);
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.delete("/deleteList", async (req, res, next) => {
+  try {
+    const list = await ConnectedIndividual.findOne({
+      where: { id: req.body.id },
+    });
+    const deleteLists = await ConnectedIndividual.destroy({
+      where: {
+        id: req.body.id,
+      },
+    });
+    await BusinessApplication.update(
+      {
+        individualCnt: req.body.newCnt,
+      },
+      {
+        where: { BusinessId: Number(list.BusinessId) },
+      }
+    );
+    if (deleteLists) {
+      res.status(200).json({ id: req.body.id });
+    } else {
+      res.status(404).json({ error: "list not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/addList", async (req, res, next) => {
+  try {
+    const list = await ConnectedIndividual.findOne({
+      where: { id: req.body.id },
+    });
+    await BusinessApplication.update(
+      {
+        individualCnt: req.body.newCnt,
+      },
+      {
+        where: { BusinessId: Number(list.BusinessId) },
+      }
+    );
+    res.status(200).send("added");
   } catch (error) {
     console.error(error);
     next();
