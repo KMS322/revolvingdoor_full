@@ -94,8 +94,14 @@ const MyPageS2 = () => {
               return (
                 <div className="content_row row" key={index}>
                   <p className="pc">
-                    {`${individualInfo.user_member_jibunAddress?.split(" ")[0]}
-                    ${individualInfo.user_member_jibunAddress?.split(" ")[1]}`}
+                    {`${
+                      individualInfo &&
+                      individualInfo.user_member_jibunAddress?.split(" ")[0]
+                    }
+                    ${
+                      individualInfo &&
+                      individualInfo.user_member_jibunAddress?.split(" ")[1]
+                    }`}
                   </p>
                   <p>{resume.user_resume_title}</p>
                   <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>

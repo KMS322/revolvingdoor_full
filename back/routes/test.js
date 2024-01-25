@@ -41,6 +41,8 @@ function processExcelData1(data) {
       user_member_workType: String(row["근무형태"]),
       user_resume_hopeStartYear: String(row["시작연도"]),
       user_resume_hopeStartMonth: String(row["시작월"]),
+      user_resume_hopeStartDay: String(row["시작일"]),
+      user_resume_school: String(row["대학교"]),
       user_resume_schoolMajor: String(row["학과"]),
     };
   });
@@ -74,11 +76,14 @@ function processExcelData2(data) {
       business_member_jibunAddress: String(row["jibunAddress"]),
       business_member_tel: String(row["tel"]),
       business_member_email: String(row["email"]),
+      business_application_name: String(row["채용제목"]),
       business_application_career: String(row["경력"]),
-      business_application_career1: String(row["경력"]),
+      business_application_careerMin: String(row["최소경력"]),
+      business_application_careerMax: String(row["최대경력"]),
       business_application_workPlace: String(row["workPlace"]),
       business_application_startYear: String(row["시작연도"]),
       business_application_startMonth: String(row["시작월"]),
+      business_application_startDay: String(row["시작일"]),
       business_application_rank1: String(row["rank1"]),
       business_application_rank2: String(row["rank2"]),
       business_application_rank3: String(row["rank3"]),
@@ -129,12 +134,15 @@ router.post("/addCompany", async (req, res, next) => {
       });
 
       await BusinessApplication.create({
+        business_application_name: company.business_application_name,
         business_application_career: company.business_application_career,
-        business_application_career1: company.business_application_career1,
+        business_application_careerMin: company.business_application_careerMin,
+        business_application_careerMax: company.business_application_careerMax,
         business_application_workPlace: company.business_application_workPlace,
         business_application_startYear: company.business_application_startYear,
         business_application_startMonth:
           company.business_application_startMonth,
+        business_application_startDay: company.business_application_startDay,
         business_application_rank1: company.business_application_rank1,
         business_application_rank2: company.business_application_rank2,
         business_application_rank3: company.business_application_rank3,
@@ -175,6 +183,8 @@ router.post("/addUser", async (req, res, next) => {
       await UserResume.create({
         user_resume_hopeStartYear: user.user_resume_hopeStartYear,
         user_resume_hopeStartMonth: user.user_resume_hopeStartMonth,
+        user_resume_hopeStartDay: user.user_resume_hopeStartDay,
+        user_resume_school: user.user_resume_school,
         user_resume_schoolMajor: user.user_resume_schoolMajor,
         user_resume_hopeCompany: user.user_member_workType,
         IndividualId: addedUser.id,

@@ -221,15 +221,11 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                     (user) => user.IndividualId === Number(list.IndividualId)
                   );
                 const backgroundColor =
-                  list && list.concurrence === "대기" && userCnt >= index + 1
+                  list && list.concurrence === "대기"
                     ? "#F5F2EB"
-                    : list &&
-                      list.concurrence === "동의" &&
-                      userCnt >= index + 1
+                    : list && list.concurrence === "동의"
                     ? "#CABD99"
-                    : list &&
-                      list.concurrence === "거절" &&
-                      userCnt >= index + 1
+                    : list && list.concurrence === "거절"
                     ? "#C8C8C8"
                     : "initial";
                 return (

@@ -85,11 +85,25 @@ const MyPageS3 = () => {
                           .business_application_workTime2Minute
                   }`}</p>
                   <p className="hour">
-                    <span>시급</span>
+                    <span>
+                      {company.applicationInfo.business_application_payType ===
+                      null
+                        ? ""
+                        : company.applicationInfo.business_application_payType}
+                    </span>
                     <span className="mobile">
                       <br />
                     </span>
-                    &nbsp;12,000원
+                    &nbsp;
+                    {`${
+                      company.business_application_payMin === undefined
+                        ? "0"
+                        : company.business_application_payMin
+                    }원 ~ ${
+                      company.business_application_payMax === undefined
+                        ? "0"
+                        : company.business_application_payMax
+                    }원`}
                   </p>
                   <div
                     className="btn"

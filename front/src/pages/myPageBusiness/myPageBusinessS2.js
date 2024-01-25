@@ -103,8 +103,12 @@ const MyPageBusinessS2 = () => {
             return (
               <div className="content_row row" key={index}>
                 <p className="pc">
-                  {`${businessInfo.business_member_jibunAddress?.split(" ")[0]} 
+                  {`${
+                    businessInfo &&
+                    businessInfo.business_member_jibunAddress?.split(" ")[0]
+                  } 
                     ${
+                      businessInfo &&
                       businessInfo.business_member_jibunAddress?.split(" ")[1]
                     }`}
                 </p>

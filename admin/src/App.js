@@ -14,8 +14,8 @@ function App() {
       <Header />
       <ScrollToTop />
       <Routes>
-        <Route path="/main" element={<MainComponent />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<MainComponent />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

@@ -17,6 +17,7 @@ const ResumeComponent = () => {
     useInput("");
   const [user_resume_schoolPeriod2Month, onChangeSchoolPeriod2Month] =
     useInput("");
+  const [user_resume_school, onChangeSchool] = useInput("");
   const [user_resume_schoolFinal, setSchoolFinal] = useState();
   const [user_resume_hopeCompany, setHopeCompany] = useState();
   const [user_resume_hopeRegion1, onChangeHopeRegion1] = useInput("");
@@ -85,6 +86,7 @@ const ResumeComponent = () => {
         type: ADD_RESUME_REQUEST,
         data: {
           user_resume_title,
+          user_resume_school,
           user_resume_schoolMajor,
           user_resume_schoolPeriod1Year,
           user_resume_schoolPeriod1Month,
@@ -115,6 +117,7 @@ const ResumeComponent = () => {
     },
     [
       user_resume_title,
+      user_resume_school,
       user_resume_schoolMajor,
       user_resume_schoolPeriod1Year,
       user_resume_schoolPeriod1Month,
@@ -159,6 +162,15 @@ const ResumeComponent = () => {
             onChange={onChangeTitle}
           />
           <p>학력사항</p>
+          <label className="input_box">
+            <p>최종학교명</p>
+            <input
+              type="text"
+              name="user_resume_school"
+              value={user_resume_school}
+              onChange={onChangeSchool}
+            />
+          </label>
           <label className="input_box">
             <p>전공(부전공)</p>
             <input

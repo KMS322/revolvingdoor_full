@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
+      business_application_startDay: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
       business_application_expectPeriod: {
         type: DataTypes.STRING(10),
         allowNull: true,
@@ -70,8 +74,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
-      business_application_career1: {
-        type: DataTypes.STRING(30),
+      business_application_careerMin: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
+      business_application_careerMax: {
+        type: DataTypes.STRING(10),
         allowNull: true,
       },
       business_application_schoolFinal: {

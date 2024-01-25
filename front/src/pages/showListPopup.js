@@ -13,10 +13,10 @@ const ShowListPopup = ({ data, onClose }) => {
   );
   const matchingData = data;
   const sendData = matchingData.businessId;
-  let arr = "";
+  let arr = [];
   matchingLists &&
     matchingLists.map((list) => {
-      arr += list.UserIndividual.IndividualId + " ";
+      arr.push(Number(list.UserIndividual.IndividualId));
     });
   useEffect(() => {
     dispatch({
@@ -47,13 +47,14 @@ const ShowListPopup = ({ data, onClose }) => {
       <div className="article_container">
         <img src="/images/close_btn.png" alt="" onClick={onClose} />
         <p>
-          귀하께서 구인의뢰 신청서(임시직용)에서 요청하신 사항에 적합한 인력 o
-          명을 추천하고자 합니다.
+          귀하께서 구인의뢰 신청서(임시직용)에서 요청하신 사항에 적합한 인력을
+          추천하고자 합니다.
         </p>
         <p>대상자는 다음과 같습니다.</p>
         <div className="list_box">
           <div className="row">
-            <p>No.</p>
+            <p>No</p>
+            <p>최종학교</p>
             <p>학과</p>
             <p>주소</p>
             <p>근무 경력</p>
@@ -68,33 +69,36 @@ const ShowListPopup = ({ data, onClose }) => {
                 concurrences.find(
                   (concurrence) =>
                     concurrence.IndividualId ===
-                    String(list.UserIndividual.IndividualId)
+                      String(list.UserIndividual.IndividualId) &&
+                    // concurrence.concurrence === "동의"
+                    concurrence.concurrence === "대기"
                 );
-
-              const backgroundColor =
-                concurrenceData && concurrenceData.concurrence === "대기"
-                  ? "#F5F2EB"
-                  : concurrenceData && concurrenceData.concurrence === "동의"
-                  ? "#CABD99"
-                  : concurrenceData && concurrenceData.concurrence === "거절"
-                  ? "#C8C8C8"
-                  : "initial";
-              return (
-                <div className="row" key={index} style={{ backgroundColor }}>
-                  <p>{index + 1}</p>
-                  <p>{list.UserResumes[0].user_resume_schoolMajor}</p>
-                  <p>{list.UserIndividual.user_member_jibunAddress}</p>
-                  <p>{list.UserIndividual.user_member_career}년</p>
-                  <p>
-                    {list.UserCareer && list.UserCareer.user_career_company1}
-                  </p>
-                  <p>{list.UserIndividual.user_member_workType}</p>
-                  <p>{`${list.UserResumes[0].user_resume_hopeStartYear}년 ${list.UserResumes[0].user_resume_hopeStartMonth}월`}</p>
-                </div>
+              const careerYear = Math.floor(
+                list.UserIndividual.user_member_career / 12
               );
+              const careerMonth = list.UserIndividual.user_member_career % 12;
+
+              if (concurrenceData) {
+                return (
+                  <div className="row" key={index}>
+                    <p>{index + 1}</p>
+                    <p>{list.UserResumes[0].user_resume_school}</p>
+                    <p>{list.UserResumes[0].user_resume_schoolMajor}</p>
+                    <p>{list.UserIndividual.user_member_jibunAddress}</p>
+                    <p>{`${careerYear === 0 ? "" : `${careerYear}년`} ${
+                      careerMonth === 0 ? "" : `${careerMonth}개월`
+                    }`}</p>
+                    <p>
+                      {/* {list.UserCareer && list.UserCareer.user_career_company1} */}
+                      {list.point}
+                    </p>
+                    <p>{list.UserIndividual.user_member_workType}</p>
+                    <p>{`${list.UserResumes[0].user_resume_hopeStartYear}년 ${list.UserResumes[0].user_resume_hopeStartMonth}월 ${list.UserResumes[0].user_resume_hopeStartDay}일`}</p>
+                  </div>
+                );
+              }
             })}
         </div>
-        <img className="color_box" src="/images/color_box.png" alt="" />
         <div className="text_box">
           <p>
             위 대상자에 대한 연락처 등 인적사항 정보를 받고 임시직 취업을

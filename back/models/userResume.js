@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: true,
       },
+      user_resume_school: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
       user_resume_schoolMajor: {
         type: DataTypes.STRING(20),
         allowNull: true,

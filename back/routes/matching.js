@@ -45,7 +45,8 @@ router.post("/", async (req, res, next) => {
         "business_application_startYear",
         "business_application_startMonth",
         "business_application_career",
-        "business_application_career1",
+        "business_application_careerMin",
+        "business_application_careerMax",
         "business_application_workPlace",
         "business_application_rank1",
         "business_application_rank2",
@@ -70,8 +71,12 @@ router.post("/", async (req, res, next) => {
         user.UserIndividual.user_member_jibunAddress.split(" ");
       if (businessAddress[0] === userAddress[0]) {
         if (businessAddress[1] === userAddress[1]) {
-          user.point +=
-            10 * (5 - Number(application.business_application_rank4));
+          if (businessAddress[2] === userAddress[2]) {
+            user.point +=
+              10 * (5 - Number(application.business_application_rank4));
+          } else {
+            10 * (5 - Number(application.business_application_rank4)) - 5;
+          }
         } else {
           user.point +=
             10 * (5 - Number(application.business_application_rank4)) - 10;
@@ -104,15 +109,22 @@ router.post("/", async (req, res, next) => {
         }
       }
       // 경력 /////////////////////////////////////////////////////
+      const career = Number(user.UserIndividual.user_member_career);
+      // const careerYear = Math.floor(
+      //   user.UserIndividual.user_member_career / 12
+      // );
+      // const careerMonth = user.UserIndividual.user_member_career % 12;
       if (application.business_application_career === "관계없음") {
-        user.point += 10 * (5 - Number(application.business_application_rank2));
+        // user.point += 10 * (5 - Number(application.business_application_rank2));
+        user.point += 0;
       } else if (application.business_application_career === "신입") {
-        if (Number(user.UserIndividual.user_member_career) <= 1) {
+        if (career === 0) {
           user.point +=
             10 * (5 - Number(application.business_application_rank2));
-        } else {
-          user.point +=
-            10 * (5 - Number(application.business_application_rank2)) - 10;
+        } else if (career < 12) {
+          10 * (5 - Number(application.business_application_rank2)) - 5;
+        } else if (career >= 12 && career < 24) {
+          10 * (5 - Number(application.business_application_rank2)) - 10;
         }
       } else if (application.business_application_career1) {
         if (
@@ -266,14 +278,13 @@ router.post("/changeStep", async (req, res, next) => {
 router.post("/loadConcurrence", async (req, res, next) => {
   try {
     const arr = req.body.arr;
-    const idArr = arr.split(" ");
     let sendConcurrence = [];
-    for (const id of idArr) {
-      if (id) {
-        const object = await ConnectedIndividual.findOne({
-          where: { IndividualId: Number(id) },
-          attributes: ["IndividualId", "concurrence"],
-        });
+    for (const id of arr) {
+      const object = await ConnectedIndividual.findOne({
+        where: { IndividualId: Number(id) },
+        attributes: ["IndividualId", "concurrence"],
+      });
+      if (object) {
         const newObject = {
           IndividualId: object.IndividualId,
           concurrence: object.concurrence,
@@ -281,7 +292,6 @@ router.post("/loadConcurrence", async (req, res, next) => {
         sendConcurrence.push(newObject);
       }
     }
-
     res.status(200).json(sendConcurrence);
   } catch (error) {
     console.error(error);

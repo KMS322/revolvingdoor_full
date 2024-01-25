@@ -17,11 +17,12 @@ const ShowDetail = ({ data, onClose }) => {
     (state) => state.matching
   );
   const matchingData = data;
-  let arr = "";
+  let arr = [];
   matchingLists &&
     matchingLists.map((list) => {
-      arr += list.UserIndividual.IndividualId + " ";
+      arr.push(Number(list.UserIndividual.IndividualId));
     });
+
   useEffect(() => {
     dispatch({
       type: SHOW_LIST_REQUEST,
@@ -29,7 +30,8 @@ const ShowDetail = ({ data, onClose }) => {
         matchingData,
       },
     });
-  }, []);
+  }, [arr.length]);
+  console.log("matchingLists : ", matchingLists);
 
   useEffect(() => {
     if (matchingLists) {
@@ -42,24 +44,35 @@ const ShowDetail = ({ data, onClose }) => {
     }
   }, [matchingLists]);
   let acceptUsers = [];
+
+  // concurrences &&
+  //   concurrences.map((list) => {
+  //     if (list.concurrence === "동의") {
+  //       acceptUsers.push(list);
+  //     }
+  //   });
   concurrences &&
     concurrences.map((list) => {
-      if (list.concurrence === "동의") {
-        acceptUsers.push(list);
-      }
+      acceptUsers.push(list);
     });
   let filteredMatchingLists = [];
   matchingLists &&
     matchingLists.forEach((list) => {
+      console.log(
+        "list.UserIndividual.IndividualId : ",
+        list.UserIndividual.IndividualId
+      );
       const isAccepted = acceptUsers.some(
         (acceptUser) =>
           acceptUser.IndividualId === String(list.UserIndividual.IndividualId)
       );
+      console.log("acceptUsers : ", acceptUsers);
 
       if (isAccepted) {
         filteredMatchingLists.push(list);
       }
     });
+  console.log("filteredMatchingLists : ", filteredMatchingLists);
   return (
     <div className="showDetail">
       <div className="article_container">
@@ -91,7 +104,7 @@ const ShowDetail = ({ data, onClose }) => {
                     setDetailData(list);
                   }}
                 >
-                  이력서보기
+                  상세정보
                 </p>
               </div>
             ))}

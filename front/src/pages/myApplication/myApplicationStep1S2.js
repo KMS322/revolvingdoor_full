@@ -23,6 +23,9 @@ const MyApplicationStep1S2 = () => {
   const [business_application_startMonth, onChangeStartMonth] = useInput(
     state.application.business_application_startMonth
   );
+  const [business_application_startDay, onChangeStartDay] = useInput(
+    state.application.business_application_startDay
+  );
   const [business_application_expectPeriod, setExpectPeriod] = useState(
     state.application.business_application_expectPeriod
   );
@@ -56,8 +59,11 @@ const MyApplicationStep1S2 = () => {
   const [business_application_career, setCareer] = useState(
     state.application.business_application_career
   );
-  const [business_application_career1, onChangeCareer1] = useInput(
-    state.application.business_application_career1
+  const [business_application_careerMin, onChangeCareerMin] = useInput(
+    state.application.business_application_careerMin
+  );
+  const [business_application_careerMax, onChangeCareerMax] = useInput(
+    state.application.business_application_careerMax
   );
   const [business_application_schoolFinal, setSchoolFinal] = useState(
     state.application.business_application_schoolFinal
@@ -68,6 +74,9 @@ const MyApplicationStep1S2 = () => {
   const [business_application_schoolLisence1, setSchoolLisence1] = useState(
     state.application.business_application_schoolLisence1
   );
+
+  const [selectStart, setSelectStart] = useState(true);
+  const [selectCareer, setSelectCareer] = useState(false);
 
   const selectStyle1 = (data) => {
     return {
@@ -107,6 +116,7 @@ const MyApplicationStep1S2 = () => {
         business_application_startNow,
         business_application_startYear,
         business_application_startMonth,
+        business_application_startDay,
         business_application_expectPeriod,
         business_application_workContent1,
         business_application_workContent2,
@@ -118,7 +128,8 @@ const MyApplicationStep1S2 = () => {
         business_application_program,
         business_application_program1,
         business_application_career,
-        business_application_career1,
+        business_application_careerMin,
+        business_application_careerMax,
         business_application_schoolFinal,
         business_application_schoolLisence,
         business_application_schoolLisence1,
@@ -132,6 +143,7 @@ const MyApplicationStep1S2 = () => {
       business_application_startNow,
       business_application_startYear,
       business_application_startMonth,
+      business_application_startDay,
       business_application_expectPeriod,
       business_application_workContent1,
       business_application_workContent2,
@@ -143,7 +155,8 @@ const MyApplicationStep1S2 = () => {
       business_application_program,
       business_application_program1,
       business_application_career,
-      business_application_career1,
+      business_application_careerMin,
+      business_application_careerMax,
       business_application_schoolFinal,
       business_application_schoolLisence,
       business_application_schoolLisence1,
@@ -191,6 +204,11 @@ const MyApplicationStep1S2 = () => {
               className="select"
               onClick={() => {
                 setStartNow(!business_application_startNow);
+                if (business_application_startNow) {
+                  setSelectStart(false);
+                } else {
+                  setSelectStart(true);
+                }
               }}
               style={{
                 borderColor: business_application_startNow
@@ -211,6 +229,7 @@ const MyApplicationStep1S2 = () => {
               name="business_application_startYear"
               value={business_application_startYear}
               onChange={onChangeStartYear}
+              disabled={selectStart}
             />
             <p>년</p>
             <input
@@ -218,9 +237,17 @@ const MyApplicationStep1S2 = () => {
               name="business_application_startMonth"
               value={business_application_startMonth}
               onChange={onChangeStartMonth}
+              disabled={selectStart}
             />
             <p>월</p>
-            <p>부터</p>
+            <input
+              type="text"
+              name="business_application_startDay"
+              value={business_application_startDay}
+              onChange={onChangeStartDay}
+              disabled={selectStart}
+            />
+            <p>일</p>
           </div>
         </label>
         <label className="select_box">
@@ -426,6 +453,7 @@ const MyApplicationStep1S2 = () => {
               className="select"
               onClick={() => {
                 setCareer("관계없음");
+                setSelectCareer(true);
               }}
               style={selectStyle2("관계없음")}
             >
@@ -435,6 +463,7 @@ const MyApplicationStep1S2 = () => {
               className="select"
               onClick={() => {
                 setCareer("신입");
+                setSelectCareer(true);
               }}
               style={selectStyle2("신입")}
             >
@@ -444,16 +473,33 @@ const MyApplicationStep1S2 = () => {
         </label>
         <label className="select_box">
           <p></p>
-          <div className="sub_select sub_select3">
-            <div className="select" style={{ cursor: "inherit" }}>
+          <div className="sub_select sub_select5">
+            <div
+              className="select"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setSelectCareer(false);
+                setCareer(false);
+              }}
+            >
               경력
             </div>
             <input
               type="text"
-              name="business_application_career1"
-              value={business_application_career1}
-              onChange={onChangeCareer1}
+              name="business_application_careerMin"
+              value={business_application_careerMin}
+              onChange={onChangeCareerMin}
+              disabled={selectCareer}
             />
+            <p>년 ~ </p>
+            <input
+              type="text"
+              name="business_application_careerMax"
+              value={business_application_careerMax}
+              onChange={onChangeCareerMax}
+              disabled={selectCareer}
+            />
+            <p>년</p>
           </div>
         </label>
         <label className="select_box">
