@@ -22,6 +22,13 @@
   width: 1.2vw;
   cursor: pointer;
 }
+.showUserDetail .print_btn {
+  width: 1.2vw;
+  position: absolute;
+  bottom: 4vw;
+  right: 2vw;
+  z-index: 5;
+}
 .showUserDetail .article_container {
   width: 95%;
   height: auto;

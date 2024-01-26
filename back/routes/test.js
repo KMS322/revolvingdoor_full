@@ -67,7 +67,7 @@ function readExcelFile2(filePath) {
   }
 }
 function processExcelData2(data) {
-  return data.map((row) => {
+  return data.map((row, index) => {
     return {
       user_member_id: String(row["user_id"]),
       user_member_pw: String(row["user_pw"]),
@@ -99,8 +99,10 @@ function generateObjectArrayFromExcel2(filePath) {
 
 router.post("/addCompany", async (req, res, next) => {
   const companys = generateObjectArrayFromExcel2(filePath2);
+
   try {
-    for (const company of companys) {
+    const companiesToAdd = companys.slice(0, 10);
+    for (const company of companiesToAdd) {
       const hashedPassword = await bcrypt.hash(company.user_member_pw, 12);
 
       const addedCompany = await User.create({

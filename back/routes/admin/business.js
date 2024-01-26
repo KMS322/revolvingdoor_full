@@ -57,14 +57,19 @@ router.post("/matchingLists", async (req, res, next) => {
 
 router.delete("/deleteList", async (req, res, next) => {
   try {
-    const list = await ConnectedIndividual.findOne({
-      where: { id: req.body.id },
-    });
-    const deleteLists = await ConnectedIndividual.destroy({
-      where: {
-        id: req.body.id,
+    const list = await ConnectedIndividual.update(
+      {
+        showOn: "off",
       },
-    });
+      {
+        where: { id: req.body.id },
+      }
+    );
+    // const deleteLists = await ConnectedIndividual.destroy({
+    //   where: {
+    //     id: req.body.id,
+    //   },
+    // });
     await BusinessApplication.update(
       {
         individualCnt: req.body.newCnt,
@@ -73,11 +78,7 @@ router.delete("/deleteList", async (req, res, next) => {
         where: { BusinessId: Number(list.BusinessId) },
       }
     );
-    if (deleteLists) {
-      res.status(200).json({ id: req.body.id });
-    } else {
-      res.status(404).json({ error: "list not found" });
-    }
+    res.status(200).send("deleted");
   } catch (error) {
     console.error(error);
     next();
@@ -86,9 +87,14 @@ router.delete("/deleteList", async (req, res, next) => {
 
 router.post("/addList", async (req, res, next) => {
   try {
-    const list = await ConnectedIndividual.findOne({
-      where: { id: req.body.id },
-    });
+    const list = await ConnectedIndividual.update(
+      {
+        showOn: "on",
+      },
+      {
+        where: { id: req.body.id },
+      }
+    );
     await BusinessApplication.update(
       {
         individualCnt: req.body.newCnt,

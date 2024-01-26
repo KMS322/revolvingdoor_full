@@ -10,7 +10,6 @@ import {
 } from "../reducers/adminBusiness";
 import { LOAD_ALLRESUMES_REQUEST } from "../reducers/adminIndividual";
 const ProcessDetail = ({ onSelectMenu, data }) => {
-  console.log("data : ", data);
   const dispatch = useDispatch();
   const { matchingLists, deleteMatchingListDone, loadMatchingListsDone } =
     useSelector((state) => state.adminBusiness);
@@ -228,61 +227,72 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                     : list && list.concurrence === "거절"
                     ? "#C8C8C8"
                     : "initial";
-                return (
-                  <div
-                    className={
-                      index % 2 === 0
-                        ? "content_row row"
-                        : "content_row row even"
-                    }
-                    key={index}
-                  >
-                    <p style={{ backgroundColor }}>{list.id}</p>
-                    <p style={{ backgroundColor }}>{user.user_member_name}</p>
-                    <p style={{ backgroundColor }}>
-                      {user.user_member_jibunAddress}
-                    </p>
-                    <p style={{ backgroundColor }}>
-                      {user.user_member_workType}
-                    </p>
-                    <p style={{ backgroundColor }}>{`${
-                      resume && resume.user_resume_hopeStartYear
-                    }년 ${resume && resume.user_resume_hopeStartMonth}월 ${
-                      resume && resume.user_resume_hopeStartDay
-                    }일`}</p>
-                    <p style={{ backgroundColor }}>
-                      {user.user_member_career}년
-                    </p>
-                    <p style={{ backgroundColor }}>{list.point}점</p>
-                    <p
-                      className="btn"
-                      onClick={() => {
-                        handleModal(user);
-                      }}
+                if (list.showOn !== "off") {
+                  return (
+                    <div
+                      className={
+                        index % 2 === 0
+                          ? "content_row row"
+                          : "content_row row even"
+                      }
+                      key={index}
                     >
-                      연락처
-                    </p>
-                    {userCnt >= index + 1 ? (
+                      <p style={{ backgroundColor }}>{list.id}</p>
+                      <p style={{ backgroundColor }}>{user.user_member_name}</p>
+                      <p style={{ backgroundColor }}>
+                        {user.user_member_jibunAddress}
+                      </p>
+                      <p style={{ backgroundColor }}>
+                        {user.user_member_workType}
+                      </p>
+                      <p style={{ backgroundColor }}>{`${
+                        resume && resume.user_resume_hopeStartYear
+                      }년 ${resume && resume.user_resume_hopeStartMonth}월 ${
+                        resume && resume.user_resume_hopeStartDay
+                      }일`}</p>
+                      <p style={{ backgroundColor }}>
+                        {user.user_member_career}개월
+                      </p>
+                      <p style={{ backgroundColor }}>{list.point}점</p>
                       <p
                         className="btn"
-                        onClick={(e) => {
-                          deleteList(e, list.id, userCnt);
+                        onClick={() => {
+                          handleModal(user);
                         }}
                       >
-                        삭제
+                        연락처
                       </p>
-                    ) : (
-                      <p
-                        className="btn"
-                        onClick={(e) => {
-                          addList(e, list.id, userCnt);
-                        }}
-                      >
-                        추가
-                      </p>
-                    )}
-                  </div>
-                );
+                      {userCnt >= index + 1 && list.showOn === "on" ? (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            deleteList(e, list.id, userCnt);
+                          }}
+                        >
+                          삭제
+                        </p>
+                      ) : list.showOn === "on" ? (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            deleteList(e, list.id, userCnt);
+                          }}
+                        >
+                          삭제
+                        </p>
+                      ) : (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            addList(e, list.id, userCnt);
+                          }}
+                        >
+                          추가
+                        </p>
+                      )}
+                    </div>
+                  );
+                }
               })}
         </div>
       </div>

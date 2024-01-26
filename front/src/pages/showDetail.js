@@ -31,7 +31,6 @@ const ShowDetail = ({ data, onClose }) => {
       },
     });
   }, [arr.length]);
-  console.log("matchingLists : ", matchingLists);
 
   useEffect(() => {
     if (matchingLists) {
@@ -44,35 +43,23 @@ const ShowDetail = ({ data, onClose }) => {
     }
   }, [matchingLists]);
   let acceptUsers = [];
-
-  // concurrences &&
-  //   concurrences.map((list) => {
-  //     if (list.concurrence === "동의") {
-  //       acceptUsers.push(list);
-  //     }
-  //   });
   concurrences &&
     concurrences.map((list) => {
-      acceptUsers.push(list);
+      if (list.concurrence === "동의") {
+        acceptUsers.push(list);
+      }
     });
   let filteredMatchingLists = [];
   matchingLists &&
     matchingLists.forEach((list) => {
-      console.log(
-        "list.UserIndividual.IndividualId : ",
-        list.UserIndividual.IndividualId
-      );
       const isAccepted = acceptUsers.some(
         (acceptUser) =>
           acceptUser.IndividualId === String(list.UserIndividual.IndividualId)
       );
-      console.log("acceptUsers : ", acceptUsers);
-
       if (isAccepted) {
         filteredMatchingLists.push(list);
       }
     });
-  console.log("filteredMatchingLists : ", filteredMatchingLists);
   return (
     <div className="showDetail">
       <div className="article_container">
@@ -91,23 +78,27 @@ const ShowDetail = ({ data, onClose }) => {
             <p></p>
           </div>
           {filteredMatchingLists &&
-            filteredMatchingLists.map((list, index) => (
-              <div className="row row_content" key={index}>
-                <p>{index + 1}</p>
-                <p>{list.UserIndividual.user_member_name}</p>
-                <p>{list.UserIndividual.user_member_jibunAddress}</p>
-                <p>{list.UserIndividual.user_member_tel}</p>
-                <p>{list.UserIndividual.user_member_email}</p>
-                <p
-                  onClick={() => {
-                    setShowDetail(true);
-                    setDetailData(list);
-                  }}
-                >
-                  상세정보
-                </p>
-              </div>
-            ))}
+            filteredMatchingLists.map((list, index) => {
+              if (concurrences[index].showOn === "on") {
+                return (
+                  <div className="row row_content" key={index}>
+                    <p>{index + 1}</p>
+                    <p>{list.UserIndividual.user_member_name}</p>
+                    <p>{list.UserIndividual.user_member_jibunAddress}</p>
+                    <p>{list.UserIndividual.user_member_tel}</p>
+                    <p>{list.UserIndividual.user_member_email}</p>
+                    <p
+                      onClick={() => {
+                        setShowDetail(true);
+                        setDetailData(list);
+                      }}
+                    >
+                      상세정보
+                    </p>
+                  </div>
+                );
+              }
+            })}
         </div>
         <div className="btn" onClick={onClose}>
           확인

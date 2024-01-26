@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
+      showOn: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
     },
     {
       charset: "utf8mb4",

@@ -42,10 +42,16 @@ const ShowListPopup = ({ data, onClose }) => {
   const closePopup = () => {
     setPayPopup(false);
   };
+  let cnt = 0;
   return (
     <div className="showListPopup">
       <div className="article_container">
-        <img src="/images/close_btn.png" alt="" onClick={onClose} />
+        <img
+          src="/images/close_btn.png"
+          alt=""
+          onClick={onClose}
+          style={{ position: "fixed", top: "3vw", right: "3vw" }}
+        />
         <p>
           귀하께서 구인의뢰 신청서(임시직용)에서 요청하신 사항에 적합한 인력을
           추천하고자 합니다.
@@ -70,15 +76,19 @@ const ShowListPopup = ({ data, onClose }) => {
                   (concurrence) =>
                     concurrence.IndividualId ===
                       String(list.UserIndividual.IndividualId) &&
-                    // concurrence.concurrence === "동의"
-                    concurrence.concurrence === "대기"
+                    concurrence.concurrence === "동의"
                 );
               const careerYear = Math.floor(
                 list.UserIndividual.user_member_career / 12
               );
               const careerMonth = list.UserIndividual.user_member_career % 12;
 
-              if (concurrenceData) {
+              if (
+                concurrenceData &&
+                concurrenceData.showOn === "on" &&
+                cnt < 5
+              ) {
+                cnt += 1;
                 return (
                   <div className="row" key={index}>
                     <p>{index + 1}</p>
@@ -89,8 +99,7 @@ const ShowListPopup = ({ data, onClose }) => {
                       careerMonth === 0 ? "" : `${careerMonth}개월`
                     }`}</p>
                     <p>
-                      {/* {list.UserCareer && list.UserCareer.user_career_company1} */}
-                      {list.point}
+                      {list.UserCareer && list.UserCareer.user_career_company1}
                     </p>
                     <p>{list.UserIndividual.user_member_workType}</p>
                     <p>{`${list.UserResumes[0].user_resume_hopeStartYear}년 ${list.UserResumes[0].user_resume_hopeStartMonth}월 ${list.UserResumes[0].user_resume_hopeStartDay}일`}</p>
@@ -99,7 +108,7 @@ const ShowListPopup = ({ data, onClose }) => {
               }
             })}
         </div>
-        <div className="text_box">
+        {/* <div className="text_box">
           <p>
             위 대상자에 대한 연락처 등 인적사항 정보를 받고 임시직 취업을
             진행하려고 하시면 건당 수수료 20만원을 결제하시거나
@@ -116,7 +125,7 @@ const ShowListPopup = ({ data, onClose }) => {
           <br />
           <br />
           <p>위 계약 사항에 동의하시고 계속 진행하시겠습니까?</p>
-        </div>
+        </div> */}
         <div
           className="btn"
           onClick={() => {

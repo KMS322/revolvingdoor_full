@@ -81,7 +81,7 @@ const MyPageBusinessS2 = () => {
     <div className="myPageBusiness_s2">
       <div className="article_container">
         <div className="box_container">
-          <p>구인 신청 내역 관리</p>
+          <p>구인 신청 공고 관리</p>
           <div
             className="btn_box"
             onClick={() => {
@@ -94,7 +94,7 @@ const MyPageBusinessS2 = () => {
         <div className="table_container">
           <div className="head_row row">
             <p className="pc">지역 / 근무지</p>
-            <p>채용 제목</p>
+            <p>공고명</p>
             <p>최종 수정일</p>
             <p>지원여부</p>
             <p>관리</p>
@@ -133,7 +133,7 @@ const MyPageBusinessS2 = () => {
                 >
                   {application.progressStep &&
                     {
-                      목록신청전: "목록 신청",
+                      목록신청전: "확인",
                       동의여부조사중: "목록 대기중",
                       조사완료: "목록 보기",
                       결제완료: "상세 정보",

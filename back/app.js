@@ -52,6 +52,7 @@ app.use(
       "http://localhost",
       "http://52.78.107.42",
       "http://13.209.104.234",
+      "http://13.209.104.234:3306",
       "http://www.accydream.com",
     ],
     credentials: true,
