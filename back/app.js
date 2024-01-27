@@ -45,7 +45,6 @@ passportConfig();
 
 app.use(
   cors({
-    // origin: ['https://domain.com', 'revolving.com'],
     origin: [
       "http://localhost:3000",
       "http://localhost:3060",
@@ -54,6 +53,7 @@ app.use(
       "http://13.209.104.234",
       "http://13.209.104.234:3306",
       "http://www.accydream.com",
+      "http://www.accydream.com:3306",
     ],
     credentials: true,
   })
@@ -78,7 +78,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  res.send("server on");
+});
 
 app.use("/user", userRouter);
 app.use("/resume", resumeRouter);
@@ -97,7 +99,7 @@ app.use("/matching", matchingRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });
-const port = 3065;
+const port = 3060;
 app.listen(port, () => {
   console.log(`${port}에서 서버 실행 중`);
 });
