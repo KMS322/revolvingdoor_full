@@ -10,6 +10,9 @@ import {
   LOAD_BUSINESS_REQUEST,
   LOAD_BUSINESS_SUCCESS,
   LOAD_BUSINESS_FAILURE,
+  LOAD_DUMMY_REQUEST,
+  LOAD_DUMMY_SUCCESS,
+  LOAD_DUMMY_FAILURE,
 } from "../reducers/adminUser";
 
 function loadAllUserAPI() {
@@ -72,6 +75,25 @@ function* loadBusiness() {
   }
 }
 
+function loadDummyAPI() {
+  return axios.post("/test/addDummy");
+}
+
+function* loadDummy() {
+  try {
+    yield call(loadDummyAPI);
+    yield put({
+      type: LOAD_DUMMY_SUCCESS,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_DUMMY_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchLoadUser() {
   yield takeLatest(LOAD_ALLUSER_REQUEST, loadAllUser);
 }
@@ -84,10 +106,15 @@ function* watchLoadBusiness() {
   yield takeLatest(LOAD_BUSINESS_REQUEST, loadBusiness);
 }
 
+function* watchLoadDummy() {
+  yield takeLatest(LOAD_DUMMY_REQUEST, loadDummy);
+}
+
 export default function* adminUserSaga() {
   yield all([
     fork(watchLoadUser),
     fork(watchLoadIndividual),
     fork(watchLoadBusiness),
+    fork(watchLoadDummy),
   ]);
 }

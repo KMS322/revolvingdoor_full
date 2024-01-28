@@ -56,23 +56,27 @@ const SignInStep3S2 = () => {
   }, [checkIdDone]);
   const onSubmitForm = useCallback(
     (e) => {
-      e.preventDefault();
+      if (checkIdComplete) {
+        e.preventDefault();
 
-      dispatch({
-        type: SIGN_UP_REQUEST,
-        data: {
-          userType,
-          user_member_id,
-          user_member_pw,
-          user_member_name,
-          user_member_num,
-          user_member_jibunAddress,
-          user_member_detailAddress,
-          user_member_roadAddress,
-          user_member_tel,
-          user_member_email,
-        },
-      });
+        dispatch({
+          type: SIGN_UP_REQUEST,
+          data: {
+            userType,
+            user_member_id,
+            user_member_pw,
+            user_member_name,
+            user_member_num,
+            user_member_jibunAddress,
+            user_member_detailAddress,
+            user_member_roadAddress,
+            user_member_tel,
+            user_member_email,
+          },
+        });
+      } else {
+        alert("아이디 중복확인을 해주세요.");
+      }
     },
     [
       userType,
@@ -238,7 +242,13 @@ const SignInStep3S2 = () => {
             onChange={onChangeEmail}
           />
         </label>
-        <button type="submit" onClick={onSubmitForm}>
+        <button
+          type="submit"
+          onClick={onSubmitForm}
+          style={{
+            backgroundColor: checkIdComplete ? "#CABD99" : "#b6b6b6",
+          }}
+        >
           회원가입
         </button>
       </form>

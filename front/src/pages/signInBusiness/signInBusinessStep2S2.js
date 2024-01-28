@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +21,9 @@ const SignInStep3S2 = () => {
   const [business_member_companyName, onChangeCompanyName] = useInput("");
   const [business_member_companyNumber, onChangeCompanyNumber] = useInput("");
   const [business_member_name, onChangeName] = useInput("");
-  const [business_member_companyState, setCompanyState] = useState();
+  const [business_member_companyState, setCompanyState] = useState("");
   const [business_member_employeeNumber, onChangeEmployeeNumber] = useInput("");
-  const [business_member_officeState, setOfficeState] = useState();
+  const [business_member_officeState, setOfficeState] = useState("");
   const [business_member_jibunAddress, setJibunAddress] = useState("");
   const [business_member_roadAddress, setRoadAddress] = useState("");
   const [business_member_detailAddress, onChangeDetailAddress] = useInput("");
@@ -37,6 +37,12 @@ const SignInStep3S2 = () => {
     },
     [passwordCheck]
   );
+  const firstInputRef = useRef(null);
+  useEffect(() => {
+    if (firstInputRef.current) {
+      firstInputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (signUpDone) {
@@ -62,25 +68,42 @@ const SignInStep3S2 = () => {
   }, [checkIdDone]);
   const onSubmitForm = useCallback(
     (e) => {
-      e.preventDefault();
-      dispatch(
-        signupRequestActionBusiness({
-          business_member_id,
-          business_member_pw,
-          userType,
-          business_member_companyName,
-          business_member_companyNumber,
-          business_member_name,
-          business_member_companyState,
-          business_member_employeeNumber,
-          business_member_officeState,
-          business_member_jibunAddress,
-          business_member_roadAddress,
-          business_member_detailAddress,
-          business_member_tel,
-          business_member_email,
-        })
-      );
+      if (
+        !business_member_id ||
+        !business_member_pw ||
+        !business_member_companyName ||
+        !business_member_companyNumber ||
+        !business_member_name ||
+        !business_member_employeeNumber ||
+        // !business_member_jibunAddress ||
+        !business_member_detailAddress ||
+        !business_member_tel ||
+        !business_member_email
+      ) {
+        alert("모든 항목을 입력해주세요.");
+      } else if (!checkIdComplete) {
+        alert("아이디 중복확인을 해주세요.");
+      } else if (checkIdComplete) {
+        e.preventDefault();
+        dispatch(
+          signupRequestActionBusiness({
+            business_member_id,
+            business_member_pw,
+            userType,
+            business_member_companyName,
+            business_member_companyNumber,
+            business_member_name,
+            business_member_companyState,
+            business_member_employeeNumber,
+            business_member_officeState,
+            business_member_jibunAddress,
+            business_member_roadAddress,
+            business_member_detailAddress,
+            business_member_tel,
+            business_member_email,
+          })
+        );
+      }
     },
     [
       business_member_id,
@@ -117,16 +140,20 @@ const SignInStep3S2 = () => {
   }, [addressObj]);
   const checkId = useCallback(
     (e) => {
-      e.preventDefault();
+      if (business_member_id) {
+        e.preventDefault();
 
-      dispatch({
-        type: CHECK_ID_REQUEST,
-        data: {
-          business_member_id,
-        },
-      });
+        dispatch({
+          type: CHECK_ID_REQUEST,
+          data: {
+            business_member_id,
+          },
+        });
+      } else {
+        alert("아이디를 입력해주세요.");
+      }
     },
-    [business_member_id]
+    [business_member_id, dispatch]
   );
   const selectStyle1 = (data) => {
     return {
@@ -155,6 +182,8 @@ const SignInStep3S2 = () => {
             name="business_member_id"
             value={business_member_id}
             onChange={onChangeId}
+            required
+            ref={firstInputRef}
           />
           <div
             className="email_check"
@@ -173,6 +202,7 @@ const SignInStep3S2 = () => {
             name="business_member_pw"
             value={business_member_pw}
             onChange={onChangePassword}
+            required
           />
         </label>
         <label className="input_box">
@@ -182,6 +212,7 @@ const SignInStep3S2 = () => {
             name="passwordCheck"
             value={passwordCheck}
             onChange={onChangePasswordCheck}
+            required
           />
         </label>
         {passwordError && (
@@ -195,6 +226,7 @@ const SignInStep3S2 = () => {
             name="business_member_companyName"
             value={business_member_companyName}
             onChange={onChangeCompanyName}
+            required
           />
         </label>
         <label className="input_box">
@@ -204,6 +236,8 @@ const SignInStep3S2 = () => {
             name="business_member_companyNumber"
             value={business_member_companyNumber}
             onChange={onChangeCompanyNumber}
+            placeholder="000-000-000000"
+            required
           />
         </label>
         <label className="input_box">
@@ -213,6 +247,7 @@ const SignInStep3S2 = () => {
             name="business_member_name"
             value={business_member_name}
             onChange={onChangeName}
+            required
           />
         </label>
         <label className="select_box">
@@ -241,10 +276,11 @@ const SignInStep3S2 = () => {
         <label className="input_box">
           <p>근로자 수</p>
           <input
-            type="text"
+            type="number"
             name="business_member_employeeNumber"
             value={business_member_employeeNumber}
             onChange={onChangeEmployeeNumber}
+            required
           />
         </label>
         <label className="select_box">
@@ -318,6 +354,7 @@ const SignInStep3S2 = () => {
             name="business_member_jibunAddress"
             value={business_member_jibunAddress}
             className="input_btn"
+            required
             readOnly
           />
           <div
@@ -346,6 +383,7 @@ const SignInStep3S2 = () => {
             name="business_member_detailAddress"
             value={business_member_detailAddress}
             onChange={onChangeDetailAddress}
+            required
           />
         </label>
         <label className="input_box">
@@ -355,6 +393,7 @@ const SignInStep3S2 = () => {
             name="business_member_tel"
             value={business_member_tel}
             onChange={onChangeTel}
+            required
           />
         </label>
         <label className="input_box">
@@ -364,9 +403,16 @@ const SignInStep3S2 = () => {
             name="business_member_email"
             value={business_member_email}
             onChange={onChangeEmail}
+            required
           />
         </label>
-        <button type="submit" onClick={onSubmitForm}>
+        <button
+          type="submit"
+          onClick={onSubmitForm}
+          style={{
+            backgroundColor: checkIdComplete ? "#CABD99" : "#b6b6b6",
+          }}
+        >
           회원가입
         </button>
       </form>

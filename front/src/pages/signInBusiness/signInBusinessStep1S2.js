@@ -8,7 +8,7 @@ const SignInStep1S2 = (props) => {
   const [check2, setCheck2] = useState(false);
   const [checkOff2, setCheckOff2] = useState(false);
   const [check3, setCheck3] = useState(false);
-  const [checkOff3, setCheckOff3] = useState(false);
+  const [checkOff3, setCheckOff3] = useState("");
   const bgColor = check1 && check2 && check3 ? "#CABD99" : "#b6b6b6";
   const cursor = check1 && check2 && check3 ? "pointer" : "";
   return (
@@ -91,14 +91,14 @@ const SignInStep1S2 = (props) => {
           <div className="check">
             <img
               src={
-                check3
+                checkOff3 === "연간"
                   ? "/images/signInForm_s1_img2.png"
                   : "/images/signInForm_s1_img1.png"
               }
               alt=""
               onClick={() => {
-                setCheck3(!check3);
-                setCheckOff3(false);
+                setCheck3(true);
+                setCheckOff3("연간");
               }}
             />
             <p>년간 회원으로 가입하고, 무제한 추천 이용 (년간 : 25만원)</p>
@@ -106,14 +106,14 @@ const SignInStep1S2 = (props) => {
           <div className="check">
             <img
               src={
-                checkOff3
+                checkOff3 === "건당"
                   ? "/images/signInForm_s1_img2.png"
                   : "/images/signInForm_s1_img1.png"
               }
               alt=""
               onClick={() => {
-                setCheckOff3(!checkOff3);
-                setCheck3(false);
+                setCheckOff3("건당");
+                setCheck3(true);
               }}
             />
             <p>

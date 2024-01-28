@@ -86,6 +86,7 @@
   font-size: 1.2vw;
   border: none;
   border-radius: 0.4vw;
+  padding-left: 1vw;
 }
 .signin_business_step2_s2 form > .input_box:nth-child(2) > input {
   width: 53.64%;

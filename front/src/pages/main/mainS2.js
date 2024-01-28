@@ -11,11 +11,11 @@ const MainS2 = () => {
         <div className="text_box">
           <div className="box">
             <p>SEP</p>
-            <p>법인등록</p>
+            <p>창업사업화 지원사업 선정(예비창업)</p>
           </div>
           <div className="box">
             <p>OCT</p>
-            <p>사이트 개설</p>
+            <p>사업자 등록</p>
           </div>
         </div>
       </div>

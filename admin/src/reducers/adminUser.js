@@ -10,6 +10,9 @@ export const initialState = {
   loadBusinessLoading: false,
   loadBusinessDone: false,
   loadBusinessError: null,
+  loadDummyLoading: false,
+  loadDummyDone: false,
+  loadDummyError: null,
   allUsers: null,
   userIndividuals: null,
   userBusinesses: null,
@@ -26,6 +29,10 @@ export const LOAD_INDIVIDUAL_FAILURE = "LOAD_INDIVIDUAL_FAILURE";
 export const LOAD_BUSINESS_REQUEST = "LOAD_BUSINESS_REQUEST";
 export const LOAD_BUSINESS_SUCCESS = "LOAD_BUSINESS_SUCCESS";
 export const LOAD_BUSINESS_FAILURE = "LOAD_BUSINESS_FAILURE";
+
+export const LOAD_DUMMY_REQUEST = "LOAD_DUMMY_REQUEST";
+export const LOAD_DUMMY_SUCCESS = "LOAD_DUMMY_SUCCESS";
+export const LOAD_DUMMY_FAILURE = "LOAD_DUMMY_FAILURE";
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -72,6 +79,20 @@ const reducer = (state = initialState, action) => {
         draft.loadBusinessLoading = false;
         draft.loadBusinessError = action.error;
         break;
+      case LOAD_DUMMY_REQUEST:
+        draft.loadDummyLoading = true;
+        draft.loadDummyError = null;
+        draft.loadDummyDone = false;
+        break;
+      case LOAD_DUMMY_SUCCESS:
+        draft.loadDummyLoading = false;
+        draft.loadDummyDone = true;
+        break;
+      case LOAD_DUMMY_FAILURE:
+        draft.loadDummyLoading = false;
+        draft.loadDummyError = action.error;
+        break;
+
       default:
         return state;
     }

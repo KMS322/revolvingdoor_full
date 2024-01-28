@@ -145,6 +145,7 @@ const reducer = (state = initialState, action) => {
         break;
       case CHECK_ID_FAILURE:
         draft.checkIdLoading = false;
+        draft.checkIdDone = false;
         draft.checkIdError = action.error;
         break;
       case CHANGE_PASSWORD_REQUEST:

@@ -10,18 +10,33 @@ import {
 } from "../reducers/adminUser";
 const AllUser = () => {
   const dispatch = useDispatch();
-  const { allUsers } = useSelector((state) => state.adminUser);
+  const { allUsers, loadDummyDone } = useSelector((state) => state.adminUser);
   useEffect(() => {
-    dispatch({
-      type: LOAD_ALLUSER_REQUEST,
-    });
-    dispatch({
-      type: LOAD_INDIVIDUAL_REQUEST,
-    });
-    dispatch({
-      type: LOAD_BUSINESS_REQUEST,
-    });
-  }, []);
+    if (loadDummyDone) {
+      dispatch({
+        type: LOAD_ALLUSER_REQUEST,
+      });
+      dispatch({
+        type: LOAD_INDIVIDUAL_REQUEST,
+      });
+      dispatch({
+        type: LOAD_BUSINESS_REQUEST,
+      });
+    }
+  }, [loadDummyDone]);
+  useEffect(() => {
+    if (!loadDummyDone) {
+      dispatch({
+        type: LOAD_ALLUSER_REQUEST,
+      });
+      dispatch({
+        type: LOAD_INDIVIDUAL_REQUEST,
+      });
+      dispatch({
+        type: LOAD_BUSINESS_REQUEST,
+      });
+    }
+  }, [loadDummyDone]);
   return (
     <div className="section alluser">
       <div className="table_container">

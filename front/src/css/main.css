@@ -61,7 +61,7 @@
   width: 100%;
 }
 .main_s2 .article_container .text_box {
-  width: 21.27%;
+  width: 50%;
   height: 30.19%;
   margin-left: 7.98vw;
   display: flex;
@@ -78,5 +78,5 @@
   font-weight: 600;
 }
 .main_s2 .article_container .text_box .box p:nth-child(2) {
-  width: 48%;
+  width: 85%;
 }
