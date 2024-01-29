@@ -60,7 +60,7 @@ const MyPageS3 = () => {
                   <p>{company.applicationInfo?.business_application_name}</p>
                   <p>{`${
                     company.applicationInfo
-                      ?.business_application_workTime1Hour === ""
+                      ?.business_application_workTime1Hour === null
                       ? "00"
                       : company.applicationInfo
                           .business_application_workTime1Hour
