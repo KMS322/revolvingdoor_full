@@ -18,7 +18,7 @@ const MyPageComponents = () => {
       <Banner />
       <MyPageS1 onSetIndividualId={handleIndividualId} />
       <MyPageS2 />
-      {/* <MyPageS3 individualId={individualId} /> */}
+      <MyPageS3 individualId={individualId} />
     </>
   );
 };
