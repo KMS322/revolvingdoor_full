@@ -51,8 +51,8 @@ app.use(
       // "http://52.78.107.42",
       "http://www.accydream.com",
       "http://www.accydream.com:3000",
-      "http://13.209.104.234.com",
-      "http://13.209.104.234:3000",
+      // "http://13.209.104.234.com",
+      // "http://13.209.104.234:3000",
     ],
     credentials: true,
   })
