@@ -141,85 +141,91 @@ const ShowUserDetail = ({ data, onClose }) => {
         <p className="title">경력 정보</p>
         <div className="text_box">
           <p>근무처</p>
-          <p>{data.UserCareer.user_career_company1}</p>
+          <p>{data.UserCareer?.user_career_company1}</p>
         </div>
         <div className="text_box">
           <p>직위</p>
-          <p>{data.UserCareer.user_career_position1}</p>
+          <p>{data.UserCareer?.user_career_position1}</p>
         </div>
         <div className="text_box">
           <p>담당 사업장 형태</p>
-          <p>{data.UserCareer.user_career_companyState1}</p>
+          <p>{data.UserCareer?.user_career_companyState1}</p>
         </div>
         <div className="text_box">
           <p>사용 프로그램</p>
-          <p>{data.UserCareer.user_career_program1}</p>
+          <p>{data.UserCareer?.user_career_program1}</p>
         </div>
         <div className="text_box">
           <p>근무기간</p>
-          <p>{`${data.UserCareer.user_career_period11Year}년 ${data.UserCareer.user_career_period11Month}월 ~ ${data.UserCareer.user_career_period12Year}년 ${data.UserCareer.user_career_period11Month}월`}</p>
+          <p>{`${data.UserCareer?.user_career_period11Year}년 ${data.UserCareer?.user_career_period11Month}월 ~ ${data.UserCareer?.user_career_period12Year}년 ${data.UserCareer?.user_career_period11Month}월`}</p>
         </div>
         <div className="text_box">
           <p>자격명</p>
-          <p>{data.UserCareer.user_career_license1}</p>
+          <p>{data.UserCareer?.user_career_license1}</p>
         </div>
         <div className="text_box">
           <p>취득일</p>
-          <p>{`${data.UserCareer.user_career_license1Year}년 ${data.UserCareer.user_career_license1Month}월 ${data.UserCareer.user_career_license1Day}일`}</p>
+          <p>{`${data.UserCareer?.user_career_license1Year}년 ${data.UserCareer?.user_career_license1Month}월 ${data.UserCareer?.user_career_license1Day}일`}</p>
         </div>
         <div className="text_box">
           <p>발급기관</p>
-          <p>{data.UserCareer.user_career_license1Organization}</p>
+          <p>{data.UserCareer?.user_career_license1Organization}</p>
         </div>
         <div className="text_box">
           <p>훈련 과정명</p>
-          <p>{data.UserCareer.user_career_trainingName1}</p>
+          <p>{data.UserCareer?.user_career_trainingName1}</p>
         </div>
         <div className="text_box">
           <p>훈련기간</p>
-          <p>{`${data.UserCareer.user_career_trainingPeriod11Year}년 ${data.UserCareer.user_career_trainingPeriod11Month}월 ~ ${data.UserCareer.user_career_trainingPeriod12Year}년 ${data.UserCareer.user_career_trainingPeriod12Month}월`}</p>
+          <p>{`${data.UserCareer?.user_career_trainingPeriod11Year}년 ${data.UserCareer?.user_career_trainingPeriod11Month}월 ~ ${data.UserCareer?.user_career_trainingPeriod12Year}년 ${data.UserCareer?.user_career_trainingPeriod12Month}월`}</p>
         </div>
         <div className="text_box">
           <p>세부 훈련 내용</p>
-          <p>{data.UserCareer.user_career_trainingDetail1}</p>
+          <p>{data.UserCareer?.user_career_trainingDetail1}</p>
         </div>
         <div className="text_box">
           <p>훈련 기관명</p>
-          <p>{data.UserCareer.user_career_trainingOrganization}</p>
+          <p>{data.UserCareer?.user_career_trainingOrganization}</p>
         </div>
         <div className="text_box">
           <p>최종이직시기</p>
-          <p>{`${data.UserCareer.user_career_changeYear}년 ${data.UserCareer.user_career_changeMonth}월`}</p>
+          <p>{`${data.UserCareer?.user_career_changeYear}년 ${data.UserCareer?.user_career_changeMonth}월`}</p>
         </div>
         <div className="text_box">
           <p>이직사유</p>
-          <p>{data.UserCareer.user_career_changeReason}</p>
+          <p>{data.UserCareer?.user_career_changeReason}</p>
         </div>
         <div className="text_box">
           <p>회계지식</p>
-          <p>{data.UserCareer.user_career_knowCount}</p>
+          <p>{data.UserCareer?.user_career_knowCount}</p>
         </div>
         <div className="text_box">
           <p>세무(법)지식</p>
-          <p>{data.UserCareer.user_career_knowTax}</p>
+          <p>{data.UserCareer?.user_career_knowTax}</p>
         </div>
         <div className="text_box">
           <p>전산활용능력</p>
           <p>
-            {data.UserCareer.user_career_abilityProcess1 ? "문서 작성 " : ""}
-            {data.UserCareer.user_career_abilityProcess2 ? "스프레드시트 " : ""}
-            {data.UserCareer.user_career_abilityProcess3 ? "프레젠테이션 " : ""}
-            {data.UserCareer.user_career_abilityProcess4 ? "회계프로그램 " : ""}
-            {data.UserCareer.user_career_abilityProcess5
-              ? data.UserCareer.user_career_abilityProcess6
+            {data.UserCareer?.user_career_abilityProcess1 ? "문서 작성 " : ""}
+            {data.UserCareer?.user_career_abilityProcess2
+              ? "스프레드시트 "
+              : ""}
+            {data.UserCareer?.user_career_abilityProcess3
+              ? "프레젠테이션 "
+              : ""}
+            {data.UserCareer?.user_career_abilityProcess4
+              ? "회계프로그램 "
+              : ""}
+            {data.UserCareer?.user_career_abilityProcess5
+              ? data.UserCareer?.user_career_abilityProcess6
               : ""}
           </p>
         </div>
         <div className="text_box">
           <p>운전능력</p>
           <p>
-            {data.UserCareer.user_career_abilityDrive1 ? "운전면허증 " : ""}
-            {data.UserCareer.user_career_abilityDrive2 ? "차량소지자 " : ""}
+            {data.UserCareer?.user_career_abilityDrive1 ? "운전면허증 " : ""}
+            {data.UserCareer?.user_career_abilityDrive2 ? "차량소지자 " : ""}
           </p>
         </div>
       </div>
