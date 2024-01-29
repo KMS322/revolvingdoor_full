@@ -108,7 +108,7 @@ const ShowListPopup = ({ data, onClose }) => {
               }
             })}
         </div>
-        {/* <div className="text_box">
+        <div className="text_box">
           <p>
             위 대상자에 대한 연락처 등 인적사항 정보를 받고 임시직 취업을
             진행하려고 하시면 건당 수수료 20만원을 결제하시거나
@@ -125,7 +125,7 @@ const ShowListPopup = ({ data, onClose }) => {
           <br />
           <br />
           <p>위 계약 사항에 동의하시고 계속 진행하시겠습니까?</p>
-        </div> */}
+        </div>
         <div
           className="btn"
           onClick={() => {
