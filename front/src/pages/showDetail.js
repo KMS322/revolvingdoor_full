@@ -93,7 +93,7 @@ const ShowDetail = ({ data, onClose }) => {
                         setDetailData(list);
                       }}
                     >
-                      상세정보
+                      이력서
                     </p>
                   </div>
                 );
