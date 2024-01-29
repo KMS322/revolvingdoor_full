@@ -54,7 +54,7 @@ app.use(
       "http://13.209.104.234",
       "http://13.209.104.234:3306",
       "http://www.accydream.com",
-      "http://www.accydream.com:3306",
+      "http://www.accydream.com:3000",
     ],
     credentials: true,
   })
