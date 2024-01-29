@@ -127,9 +127,18 @@ const SignInStep3S2 = () => {
 
   const handleComplete = (data) => {
     setJibunAddress(data.jibunAddress);
+    if (!data.jibunAddress) {
+      setJibunAddress(data.autoJibunAddress);
+    }
     setRoadAddress(data.roadAddress);
+    if (!data.roadAddress) {
+      setRoadAddress(data.address);
+    }
     if (data.addressType === "R") {
       setAddressObj(data.jibunAddress);
+      if (!data.jibunAddress) {
+        setAddressObj(data.autoJibunAddress);
+      }
     }
   };
   const handleClick = () => {

@@ -95,18 +95,25 @@ const SignInStep3S2 = () => {
   const [addressObj, setAddressObj] = useState("");
 
   const handleComplete = (data) => {
-    console.log("주소 data : ", data);
     setJibunAddress(data.jibunAddress);
+    if (!data.jibunAddress) {
+      setJibunAddress(data.autoJibunAddress);
+    }
     setRoadAddress(data.roadAddress);
+    if (!data.roadAddress) {
+      setRoadAddress(data.address);
+    }
     if (data.addressType === "R") {
       setAddressObj(data.jibunAddress);
+      if (!data.jibunAddress) {
+        setAddressObj(data.autoJibunAddress);
+      }
     }
   };
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
   useEffect(() => {
-    // const address1 = addressObj.areaAddress + addressObj.townAddress;
     setJibunAddress(user_member_jibunAddress);
   }, [addressObj]);
   const checkId = useCallback(
@@ -203,16 +210,17 @@ const SignInStep3S2 = () => {
               backgroundColor: user_member_jibunAddress ? "#CABD99" : "#b6b6b6",
             }}
             onClick={() => {
-              if (!user_member_jibunAddress) {
-                handleClick();
-              }
+              setJibunAddress("");
+              handleClick();
             }}
           >
             주소검색
           </div>
         </label>
         {modalOpen && (
-          <DaumPostcode onComplete={handleComplete} autoClose animation />
+          <div>
+            <DaumPostcode onComplete={handleComplete} autoClose animation />
+          </div>
         )}
 
         <label className="input_box">

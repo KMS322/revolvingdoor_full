@@ -131,12 +131,12 @@ const LogInComponent = () => {
           </div>
           <div className="check_box_container">
             <div className="article">
-              <div
+              {/* <div
                 className="check"
                 onClick={handleCheck1}
                 style={{ backgroundColor: checkID ? "#979797" : "white" }}
               ></div>
-              <p>아이디 저장</p>
+              <p>아이디 저장</p> */}
             </div>
             {/* <div className="article">
               <div

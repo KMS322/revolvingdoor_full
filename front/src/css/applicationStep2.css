@@ -163,6 +163,7 @@
 .applicationStep2_s2 form > .input_box > .sub_input1 > input {
   width: 30%;
   margin-right: 0.7vw;
+  text-align: center;
 }
 .applicationStep2_s2 form > .input_box > .sub_input2 > p {
   font-size: 1.5vw;
@@ -171,6 +172,7 @@
 .applicationStep2_s2 form > .input_box > .sub_input2 > input {
   width: 15%;
   margin-right: 0.7vw;
+  text-align: center;
 }
 .applicationStep2_s2 form > .input_box > .sub_input2 > input:nth-child(3) {
   margin-right: 0vw;
@@ -189,6 +191,7 @@
 .applicationStep2_s2 form > .input_box > .sub_input3 > input {
   width: 13%;
   margin-right: 0.7vw;
+  text-align: center;
 }
 .applicationStep2_s2 form > .select_box > .sub_select2 > .select {
   width: 60%;
@@ -215,6 +218,7 @@
   font-size: 1.2vw;
   border: none;
   border-radius: 0.4vw;
+  text-align: center;
 }
 .applicationStep2_s2 form > .select_box > .sub_select3 > p {
   font-size: 1.5vw;

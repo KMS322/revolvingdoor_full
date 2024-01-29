@@ -86,7 +86,8 @@ const MyPageS2 = () => {
             <p className="pc">지역 / 근무지</p>
             <p>이력서 제목</p>
             <p>최종 수정일</p>
-            <p>지원여부</p>
+            {/* <p>지원여부</p> */}
+            <p></p>
             <p>관리</p>
           </div>
           {uniqueResumes &&
@@ -105,7 +106,8 @@ const MyPageS2 = () => {
                   </p>
                   <p>{resume.user_resume_title}</p>
                   <p>{dayjs(resume.updatedAt).format("YYYY-MM-DD")}</p>
-                  <p className="state1">비공개 상태</p>
+                  {/* <p className="state1">비공개 상태</p> */}
+                  <p></p>
                   <div className="manage_box">
                     <div
                       className="manage"

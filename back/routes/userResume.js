@@ -7,6 +7,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
   try {
     const resume = await UserResume.create({
       user_resume_title: req.body.user_resume_title,
+      user_resume_school: req.body.user_resume_school,
       user_resume_schoolMajor: req.body.user_resume_schoolMajor,
       user_resume_schoolPeriod1Year: req.body.user_resume_schoolPeriod1Year,
       user_resume_schoolPeriod1Month: req.body.user_resume_schoolPeriod1Month,
@@ -47,8 +48,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         user_member_workType: req.body.workType,
       },
       {
-        where: { IndividualId: resume.IndividualId },
-        returning: true,
+        where: { IndividualId: req.user.id },
       }
     );
     res.status(201).json(fullResume);
@@ -63,6 +63,7 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
     const changedResume = await UserResume.update(
       {
         user_resume_title: req.body.user_resume_title,
+        user_resume_school: req.body.user_resume_school,
         user_resume_schoolMajor: req.body.user_resume_schoolMajor,
         user_resume_schoolPeriod1Year: req.body.user_resume_schoolPeriod1Year,
         user_resume_schoolPeriod1Month: req.body.user_resume_schoolPeriod1Month,
@@ -93,16 +94,15 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       },
       {
         where: { id: req.body.resumeId },
-        returning: true,
       }
     );
+
     await UserIndividual.update(
       {
         user_member_workType: req.body.workType,
       },
       {
-        where: { IndividualId: changedResume.IndividualId },
-        returning: true,
+        where: { IndividualId: req.user.id },
       }
     );
     res.status(201).json(changedResume);

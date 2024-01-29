@@ -181,7 +181,7 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
         user_member_career: req.body.userCareer,
       },
       {
-        where: { IndividualId: changedCareer.IndividualId },
+        where: { IndividualId: req.user.id },
       }
     );
     res.status(201).json(changedCareer);

@@ -8,6 +8,7 @@ import useInput from "../hooks/useInput";
 const ResumeComponent = () => {
   const dispatch = useDispatch();
   const [user_resume_title, onChangeTitle] = useInput("");
+  const [user_resume_school, onChangeSchool] = useInput("");
   const [user_resume_schoolMajor, onChangeSchoolMajor] = useInput("");
   const [user_resume_schoolPeriod1Year, onChangeSchoolPeriod1Year] =
     useInput("");
@@ -17,7 +18,6 @@ const ResumeComponent = () => {
     useInput("");
   const [user_resume_schoolPeriod2Month, onChangeSchoolPeriod2Month] =
     useInput("");
-  const [user_resume_school, onChangeSchool] = useInput("");
   const [user_resume_schoolFinal, setSchoolFinal] = useState();
   const [user_resume_hopeCompany, setHopeCompany] = useState();
   const [user_resume_hopeRegion1, onChangeHopeRegion1] = useInput("");
@@ -73,13 +73,13 @@ const ResumeComponent = () => {
     (e) => {
       e.preventDefault();
       let workType;
-      if (user_resume_hopeWork1) {
+      if (user_resume_hopeWork1 === "1") {
         workType = "출퇴근";
-      } else if (user_resume_hopeWork2) {
+      } else if (user_resume_hopeWork2 === "1") {
         workType = "출퇴근";
-      } else if (user_resume_hopeWork3) {
+      } else if (user_resume_hopeWork3 === "1") {
         workType = "재택";
-      } else if (user_resume_hopeWork4) {
+      } else if (user_resume_hopeWork4 === "1") {
         workType = "모두가능";
       }
       dispatch({
@@ -358,12 +358,14 @@ const ResumeComponent = () => {
                 name="user_resume_hopeRegion1"
                 value={user_resume_hopeRegion1}
                 onChange={onChangeHopeRegion1}
+                placeholder="대구"
               />
               <input
                 type="text"
                 name="user_resume_hopeRegion2"
                 value={user_resume_hopeRegion2}
                 onChange={onChangeHopeRegion2}
+                placeholder="경산"
               />
             </div>
           </label>
@@ -461,18 +463,21 @@ const ResumeComponent = () => {
             <p>
               고용형태
               <br />
-              <span>(복수선택가능)</span>
+              {/* <span>(복수선택가능)</span> */}
             </p>
             <div className="sub_select sub_select2">
               <div
                 className="select"
                 onClick={() => {
-                  setHopeWork1(!user_resume_hopeWork1);
+                  setHopeWork1("1");
+                  setHopeWork2(false);
+                  setHopeWork3(false);
                   setHopeWork4(false);
                 }}
                 style={{
-                  borderColor: user_resume_hopeWork1 ? "#2196F3" : "#eeeeee",
-                  color: user_resume_hopeWork1 ? "#2196F3" : "#707070",
+                  borderColor:
+                    user_resume_hopeWork1 === "1" ? "#2196F3" : "#eeeeee",
+                  color: user_resume_hopeWork1 === "1" ? "#2196F3" : "#707070",
                 }}
               >
                 출근근무
@@ -480,12 +485,15 @@ const ResumeComponent = () => {
               <div
                 className="select"
                 onClick={() => {
-                  setHopeWork2(!user_resume_hopeWork2);
+                  setHopeWork2("1");
+                  setHopeWork1(false);
+                  setHopeWork3(false);
                   setHopeWork4(false);
                 }}
                 style={{
-                  borderColor: user_resume_hopeWork2 ? "#2196F3" : "#eeeeee",
-                  color: user_resume_hopeWork2 ? "#2196F3" : "#707070",
+                  borderColor:
+                    user_resume_hopeWork2 === "1" ? "#2196F3" : "#eeeeee",
+                  color: user_resume_hopeWork2 === "1" ? "#2196F3" : "#707070",
                 }}
               >
                 탄력근무
@@ -493,12 +501,15 @@ const ResumeComponent = () => {
               <div
                 className="select"
                 onClick={() => {
-                  setHopeWork3(!user_resume_hopeWork3);
+                  setHopeWork3("1");
+                  setHopeWork1(false);
+                  setHopeWork2(false);
                   setHopeWork4(false);
                 }}
                 style={{
-                  borderColor: user_resume_hopeWork3 ? "#2196F3" : "#eeeeee",
-                  color: user_resume_hopeWork3 ? "#2196F3" : "#707070",
+                  borderColor:
+                    user_resume_hopeWork3 === "1" ? "#2196F3" : "#eeeeee",
+                  color: user_resume_hopeWork3 === "1" ? "#2196F3" : "#707070",
                 }}
               >
                 재택근무
@@ -506,16 +517,15 @@ const ResumeComponent = () => {
               <div
                 className="select"
                 onClick={() => {
-                  setHopeWork4(!user_resume_hopeWork4);
-                  if (!user_resume_hopeWork4) {
-                    setHopeWork1(false);
-                    setHopeWork2(false);
-                    setHopeWork3(false);
-                  }
+                  setHopeWork4("1");
+                  setHopeWork1(false);
+                  setHopeWork2(false);
+                  setHopeWork3(false);
                 }}
                 style={{
-                  borderColor: user_resume_hopeWork4 ? "#2196F3" : "#eeeeee",
-                  color: user_resume_hopeWork4 ? "#2196F3" : "#707070",
+                  borderColor:
+                    user_resume_hopeWork4 === "1" ? "#2196F3" : "#eeeeee",
+                  color: user_resume_hopeWork4 === "1" ? "#2196F3" : "#707070",
                 }}
               >
                 모두가능
@@ -585,7 +595,7 @@ const ResumeComponent = () => {
             </div>
           </label>
           <div className="article">
-            <p>유저님, 기업으로부터 제안을 받으시겠습니까?</p>
+            <p>기업으로부터 제안을 받으시겠습니까?</p>
             <p>
               이력서가 공개되며, 기업으로부터 제의를 받을 수 있습니다.
               <br />

@@ -38,8 +38,10 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         req.body.step1_data.business_application_program1,
       business_application_career:
         req.body.step1_data.business_application_career,
-      business_application_career1:
-        req.body.step1_data.business_application_career1,
+      business_application_careerMin:
+        req.body.step1_data.business_application_careerMin,
+      business_application_careerMax:
+        req.body.step1_data.business_application_careerMax,
       business_application_schoolFinal:
         req.body.step1_data.business_application_schoolFinal,
       business_application_schoolLisence:
@@ -146,8 +148,10 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
           req.body.step1_data.business_application_program1,
         business_application_career:
           req.body.step1_data.business_application_career,
-        business_application_career1:
-          req.body.step1_data.business_application_career1,
+        business_application_careerMin:
+          req.body.step1_data.business_application_careerMin,
+        business_application_careerMax:
+          req.body.step1_data.business_application_careerMax,
         business_application_schoolFinal:
           req.body.step1_data.business_application_schoolFinal,
         business_application_schoolLisence:
@@ -192,7 +196,6 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       },
       {
         where: { id: req.body.applicationId },
-        returning: true,
       }
     );
     await UserBusiness.update(
@@ -202,7 +205,7 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
       },
       {
         where: {
-          BusinessId: changedApplication.BusinessId,
+          BusinessId: req.user.id,
         },
       }
     );

@@ -27,7 +27,6 @@ const MyPageS3 = () => {
   };
 
   const uniqueCompanies = removeDuplicatesById(connectedCompanies);
-  console.log("uniqueCompanies : ", uniqueCompanies);
   useEffect(() => {
     dispatch({
       type: CONNECTED_COMPANIES_REQUEST,
@@ -58,38 +57,38 @@ const MyPageS3 = () => {
                   <p className="pc">
                     {company.businessInfo.business_member_jibunAddress}
                   </p>
-                  <p>{company.applicationInfo.business_application_name}</p>
+                  <p>{company.applicationInfo?.business_application_name}</p>
                   <p>{`${
                     company.applicationInfo
-                      .business_application_workTime1Hour === null
+                      ?.business_application_workTime1Hour === ""
                       ? "00"
                       : company.applicationInfo
                           .business_application_workTime1Hour
                   }:${
                     company.applicationInfo
-                      .business_application_workTime1Minute === null
+                      ?.business_application_workTime1Minute === null
                       ? "00"
                       : company.applicationInfo
                           .business_application_workTime1Minute
                   } ~ ${
                     company.applicationInfo
-                      .business_application_workTime2Hour === null
+                      ?.business_application_workTime2Hour === null
                       ? "00"
                       : company.applicationInfo
                           .business_application_workTime2Hour
                   }:${
                     company.applicationInfo
-                      .business_application_workTime2Minute === null
+                      ?.business_application_workTime2Minute === null
                       ? "00"
                       : company.applicationInfo
                           .business_application_workTime2Minute
                   }`}</p>
                   <p className="hour">
                     <span>
-                      {company.applicationInfo.business_application_payType ===
+                      {company.applicationInfo?.business_application_payType ===
                       null
                         ? ""
-                        : company.applicationInfo.business_application_payType}
+                        : company.applicationInfo?.business_application_payType}
                     </span>
                     <span className="mobile">
                       <br />

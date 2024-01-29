@@ -118,6 +118,21 @@ const MyResumeComponent = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
+      console.log("user_resume_hopeWork1 : ", user_resume_hopeWork1);
+      console.log("user_resume_hopeWork2 : ", user_resume_hopeWork2);
+      console.log("user_resume_hopeWork3 : ", user_resume_hopeWork3);
+      console.log("user_resume_hopeWork4 : ", user_resume_hopeWork4);
+      let workType;
+      if (user_resume_hopeWork1 === "1") {
+        workType = "출퇴근";
+      } else if (user_resume_hopeWork2 === "1") {
+        workType = "출퇴근";
+      } else if (user_resume_hopeWork3 === "1") {
+        workType = "재택";
+      } else if (user_resume_hopeWork4 === "1") {
+        workType = "모두가능";
+      }
+      console.log("workType : ", workType);
       dispatch({
         type: CHANGE_RESUME_REQUEST,
         data: {
@@ -148,6 +163,7 @@ const MyResumeComponent = () => {
           user_resume_hopeWorkTime1Minute,
           user_resume_hopeWorkTime2Hour,
           user_resume_hopeWorkTime2Minute,
+          workType,
         },
       });
     },
@@ -495,18 +511,21 @@ const MyResumeComponent = () => {
           <p>
             고용형태
             <br />
-            <span>(복수선택가능)</span>
+            {/* <span>(복수선택가능)</span> */}
           </p>
           <div className="sub_select sub_select2">
             <div
               className="select"
               onClick={() => {
-                setHopeWork1(!user_resume_hopeWork1);
+                setHopeWork1("1");
+                setHopeWork2(false);
+                setHopeWork3(false);
                 setHopeWork4(false);
               }}
               style={{
-                borderColor: user_resume_hopeWork1 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork1 ? "#2196F3" : "#707070",
+                borderColor:
+                  user_resume_hopeWork1 === "1" ? "#2196F3" : "#eeeeee",
+                color: user_resume_hopeWork1 === "1" ? "#2196F3" : "#707070",
               }}
             >
               출근근무
@@ -514,12 +533,15 @@ const MyResumeComponent = () => {
             <div
               className="select"
               onClick={() => {
-                setHopeWork2(!user_resume_hopeWork2);
+                setHopeWork2("1");
+                setHopeWork1(false);
+                setHopeWork3(false);
                 setHopeWork4(false);
               }}
               style={{
-                borderColor: user_resume_hopeWork2 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork2 ? "#2196F3" : "#707070",
+                borderColor:
+                  user_resume_hopeWork2 === "1" ? "#2196F3" : "#eeeeee",
+                color: user_resume_hopeWork2 === "1" ? "#2196F3" : "#707070",
               }}
             >
               탄력근무
@@ -527,12 +549,15 @@ const MyResumeComponent = () => {
             <div
               className="select"
               onClick={() => {
-                setHopeWork3(!user_resume_hopeWork3);
+                setHopeWork3("1");
+                setHopeWork1(false);
+                setHopeWork2(false);
                 setHopeWork4(false);
               }}
               style={{
-                borderColor: user_resume_hopeWork3 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork3 ? "#2196F3" : "#707070",
+                borderColor:
+                  user_resume_hopeWork3 === "1" ? "#2196F3" : "#eeeeee",
+                color: user_resume_hopeWork3 === "1" ? "#2196F3" : "#707070",
               }}
             >
               재택근무
@@ -540,16 +565,15 @@ const MyResumeComponent = () => {
             <div
               className="select"
               onClick={() => {
-                setHopeWork4(!user_resume_hopeWork4);
-                if (!user_resume_hopeWork4) {
-                  setHopeWork1(false);
-                  setHopeWork2(false);
-                  setHopeWork3(false);
-                }
+                setHopeWork4("1");
+                setHopeWork1(false);
+                setHopeWork2(false);
+                setHopeWork3(false);
               }}
               style={{
-                borderColor: user_resume_hopeWork4 ? "#2196F3" : "#eeeeee",
-                color: user_resume_hopeWork4 ? "#2196F3" : "#707070",
+                borderColor:
+                  user_resume_hopeWork4 === "1" ? "#2196F3" : "#eeeeee",
+                color: user_resume_hopeWork4 === "1" ? "#2196F3" : "#707070",
               }}
             >
               모두가능

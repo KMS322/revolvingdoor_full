@@ -13,10 +13,10 @@ const SignInComponent = () => {
         <div className="article">
           <div className="content_box">
             <p>어떤 일을 찾고 계신가요?</p>
-            <div className="icon_box">
+            {/* <div className="icon_box">
               <img src="/images/signIn_img1.png" alt="" />
               <img src="/images/signIn_img2.png" alt="" />
-            </div>
+            </div> */}
           </div>
           <div
             className="btn_box"

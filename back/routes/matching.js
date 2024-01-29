@@ -29,7 +29,6 @@ router.post("/", async (req, res, next) => {
         point: user.point || 0, // 기본값 설정
       };
     });
-    console.log("users : ", users);
     const { businessId } = req.body.matchingData;
     const { applicationId } = req.body.matchingData;
     const businessDB = await UserBusiness.findOne({
@@ -93,7 +92,7 @@ router.post("/", async (req, res, next) => {
       ) {
         if (
           user.UserIndividual.user_member_workType === "모두가능" ||
-          user.UserIndividual.user_member_workType === "출근"
+          user.UserIndividual.user_member_workType === "출퇴근"
         ) {
           user.point +=
             10 * (5 - Number(application.business_application_rank3));

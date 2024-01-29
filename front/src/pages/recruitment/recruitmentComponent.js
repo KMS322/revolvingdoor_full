@@ -368,6 +368,7 @@ const RecruitmentComponent = () => {
               name="business_recruitment_tel"
               value={business_recruitment_tel}
               onChange={onChangeTel}
+              placeholder="010-0000-0000"
             />
           </label>
           <label className="input_box">
