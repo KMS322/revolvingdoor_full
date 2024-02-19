@@ -1,44 +1,25 @@
 import "../css/showUserDetail.css";
 import React, { useRef } from "react";
+import ReactToPrint from "react-to-print";
 const ShowUserDetail = ({ data, onClose }) => {
-  console.log("data : ", data);
   const printRef = useRef(null);
-  // const handlePrint = () => {
-  //   if (printRef.current) {
-  //     const content = printRef.current.innerHTML;
-  //     const printWindow = window.open("", "_blank");
-  //     printWindow.document.open();
-  //     printWindow.document.write(`
-  //       <html>
-  //         <head>
-  //           <title>사용자 상세 정보</title>
-  //           <style>
-  //             @media print {
-  //               /* 프린트할 대상 컴포넌트의 스타일을 지정합니다. */
-  //               /* 예: .showUserDetail { background: white; } */
-  //             }
-  //           </style>
-  //         </head>
-  //         <body>
-  //           ${content}
-  //         </body>
-  //       </html>
-  //     `);
-  //     printWindow.document.close();
-  //     printWindow.print();
-  //     printWindow.close();
-  //   }
-  // };
+
   return (
-    <div className="showUserDetail" ref={printRef}>
+    <div className="showUserDetail">
       <img src="/images/close_btn.png" alt="" onClick={onClose} />
       {/* <img
         className="print_btn"
-        src="/images/close_btn.png"
+        src="/images/print_btn.png"
         alt=""
         onClick={handlePrint}
       /> */}
-      <div className="article_container">
+      <ReactToPrint
+        trigger={() => (
+          <img className="print_btn" src="/images/print_btn.png" alt="" />
+        )}
+        content={() => printRef.current}
+      />
+      <div className="article_container" ref={printRef}>
         <p>{data.UserIndividual.user_member_name}님의 상세정보 입니다.</p>
         <p className="title">회원 정보</p>
         <div className="text_box">

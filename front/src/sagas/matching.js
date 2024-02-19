@@ -19,6 +19,9 @@ import {
   CLICK_PAY_REQUEST,
   CLICK_PAY_SUCCESS,
   CLICK_PAY_FAILURE,
+  CHECK_PAY_REQUEST,
+  CHECK_PAY_SUCCESS,
+  CHECK_PAY_FAILURE,
 } from "../reducers/matching";
 
 function showListAPI(data) {
@@ -140,6 +143,26 @@ function* clickPay(action) {
   }
 }
 
+function checkPayAPI(data) {
+  return axios.post("/matching/checkPay", data);
+}
+
+function* checkPay(action) {
+  try {
+    const result = yield call(checkPayAPI, action.data);
+    yield put({
+      type: CHECK_PAY_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: CHECK_PAY_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchShowList() {
   yield takeLatest(SHOW_LIST_REQUEST, showList);
 }
@@ -163,6 +186,11 @@ function* watchLoadConcurrence() {
 function* watchClickPay() {
   yield takeLatest(CLICK_PAY_REQUEST, clickPay);
 }
+
+function* watchCheckPay() {
+  yield takeLatest(CHECK_PAY_REQUEST, checkPay);
+}
+
 export default function* matchingSaga() {
   yield all([
     fork(watchShowList),
@@ -171,5 +199,6 @@ export default function* matchingSaga() {
     fork(watchChangeStep),
     fork(watchLoadConcurrence),
     fork(watchClickPay),
+    fork(watchCheckPay),
   ]);
 }

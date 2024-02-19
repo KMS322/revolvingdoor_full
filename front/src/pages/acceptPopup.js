@@ -5,11 +5,10 @@ import { CHANGE_STEP_REQUEST, SHOW_LIST_REQUEST } from "../reducers/matching";
 const AcceptPopup = ({ data, onClose }) => {
   const dispatch = useDispatch();
   const matchingData = data;
-
   const changeStep = () => {
     dispatch({
       type: CHANGE_STEP_REQUEST,
-      data: { step: "동의여부조사중" },
+      data: { step: "동의여부조사중", matchingData },
     });
     dispatch({
       type: SHOW_LIST_REQUEST,

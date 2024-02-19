@@ -85,7 +85,7 @@ const MatchingS3 = () => {
           <div
             className="content_row row"
             onClick={() => {
-              goPage("/infoDetail");
+              // goPage("/infoDetail");
             }}
           >
             <p>
@@ -117,7 +117,7 @@ const MatchingS3 = () => {
           <div
             className="content_row row"
             onClick={() => {
-              goPage("/infoDetail");
+              // goPage("/infoDetail");
             }}
           >
             <p>
@@ -142,7 +142,7 @@ const MatchingS3 = () => {
           <div
             className="content_row row"
             onClick={() => {
-              goPage("/infoDetail");
+              // goPage("/infoDetail");
             }}
           >
             <p>
@@ -173,7 +173,7 @@ const MatchingS3 = () => {
           <div
             className="content_row row"
             onClick={() => {
-              goPage("/infoDetail");
+              // goPage("/infoDetail");
             }}
           >
             <p>
@@ -198,7 +198,7 @@ const MatchingS3 = () => {
           <div
             className="content_row row"
             onClick={() => {
-              goPage("/infoDetail");
+              // goPage("/infoDetail");
             }}
           >
             <p>

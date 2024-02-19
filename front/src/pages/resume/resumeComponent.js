@@ -482,7 +482,7 @@ const ResumeComponent = () => {
               >
                 출근근무
               </div>
-              <div
+              {/* <div
                 className="select"
                 onClick={() => {
                   setHopeWork2("1");
@@ -497,7 +497,7 @@ const ResumeComponent = () => {
                 }}
               >
                 탄력근무
-              </div>
+              </div> */}
               <div
                 className="select"
                 onClick={() => {

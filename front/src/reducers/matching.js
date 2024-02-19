@@ -21,7 +21,11 @@ export const initialState = {
   clickPayLoading: false,
   clickPayDone: false,
   clickPayError: null,
+  checkPayLoading: false,
+  checkPayDone: false,
+  checkPayError: null,
   concurrences: null,
+  businessPay: null,
 };
 
 export const SHOW_LIST_REQUEST = "SHOW_LIST_REQUEST";
@@ -47,6 +51,10 @@ export const LOAD_CONCURRENCE_FAILURE = "LOAD_CONCURRENCE_FAILURE";
 export const CLICK_PAY_REQUEST = "CLICK_PAY_REQUEST";
 export const CLICK_PAY_SUCCESS = "CLICK_PAY_SUCCESS";
 export const CLICK_PAY_FAILURE = "CLICK_PAY_FAILURE";
+
+export const CHECK_PAY_REQUEST = "CHECK_PAY_REQUEST";
+export const CHECK_PAY_SUCCESS = "CHECK_PAY_SUCCESS";
+export const CHECK_PAY_FAILURE = "CHECK_PAY_FAILURE";
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -131,6 +139,20 @@ const reducer = (state = initialState, action) => {
       case CLICK_PAY_FAILURE:
         draft.clickPayLoading = false;
         draft.clickPayError = action.error;
+        break;
+      case CHECK_PAY_REQUEST:
+        draft.checkPayLoading = true;
+        draft.checkPayError = null;
+        draft.checkPayDone = false;
+        break;
+      case CHECK_PAY_SUCCESS:
+        draft.checkPayLoading = false;
+        draft.businessPay = action.data;
+        draft.checkPayDone = true;
+        break;
+      case CHECK_PAY_FAILURE:
+        draft.checkPayLoading = false;
+        draft.checkPayError = action.error;
         break;
       default:
         return state;

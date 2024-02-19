@@ -12,7 +12,7 @@ const ShowListPopup = ({ data, onClose }) => {
     (state) => state.matching
   );
   const matchingData = data;
-  const sendData = matchingData.businessId;
+  const sendData = matchingData;
   let arr = [];
   matchingLists &&
     matchingLists.map((list) => {

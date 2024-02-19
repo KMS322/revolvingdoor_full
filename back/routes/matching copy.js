@@ -305,29 +305,22 @@ router.post("/", async (req, res, next) => {
 router.post("/connect", async (req, res, next) => {
   try {
     const { id } = req.user.dataValues;
-    const connectedCompanies = await ConnectedIndividual.findAll({
+    const connectedCompanies = await ConnectedIndividual.findOne({
       where: { IndividualId: id },
-      attributes: ["BusinessId", "concurrence", "ApplicationId"],
+      attributes: ["BusinessId", "concurrence"],
     });
-
-    const responseData = [];
-
-    for (const company of connectedCompanies) {
-      const businessId = company.BusinessId;
-      const applicationId = company.ApplicationId;
-      const businessInfo = await UserBusiness.findOne({
-        where: { BusinessId: businessId },
-      });
-      const applicationInfo = await BusinessApplication.findOne({
-        where: { id: applicationId },
-      });
-
-      responseData.push({
-        businessInfo: businessInfo,
-        applicationInfo: applicationInfo,
-        connectedInfo: company,
-      });
-    }
+    const businessId = connectedCompanies.BusinessId;
+    const businessInfo = await UserBusiness.findOne({
+      where: { BusinessId: businessId },
+    });
+    const applicationInfo = await BusinessApplication.findOne({
+      where: { BusinessId: businessId },
+    });
+    const responseData = {
+      businessInfo: businessInfo,
+      applicationInfo: applicationInfo,
+      connectedInfo: connectedCompanies,
+    };
     res.status(200).json(responseData);
   } catch (error) {
     console.error(error);
@@ -344,7 +337,7 @@ router.post("/concurrence", async (req, res, next) => {
         concurrence: req.body.agreement,
       },
       {
-        where: { IndividualId: id, ApplicationId: req.body.applicationId },
+        where: { IndividualId: id },
       }
     );
     res.status(200).send("ok");
@@ -418,39 +411,19 @@ router.post("/clickPay", async (req, res, next) => {
   try {
     const currentDate = dayjs();
     const formattedDate = currentDate.format("YYYYMMDDHHmm");
-    if (req.body.pay === "50000원" || req.body.pay === "0원") {
-      req.body.pay = "250000원";
-    }
     await UserBusiness.update(
       {
         business_member_pay: req.body.pay,
-        business_member_payDate: formattedDate,
+        business_member_payData: formattedDate,
       },
       {
         where: { BusinessId: Number(req.body.businessId) },
       }
     );
-
     res.status(200).send("ok");
   } catch (error) {
     console.error(error);
     next();
   }
 });
-
-router.post("/checkPay", async (req, res, next) => {
-  try {
-    const businessId = req.body.businessId;
-    const businessPay = await UserBusiness.findOne({
-      where: { BusinessId: businessId },
-      attributes: ["business_member_pay"],
-    });
-
-    res.status(200).send(businessPay.business_member_pay);
-  } catch (error) {
-    console.error(error);
-    next();
-  }
-});
-
 module.exports = router;

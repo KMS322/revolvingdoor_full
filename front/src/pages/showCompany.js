@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { SET_CONCURRENCE_REQUEST } from "../reducers/matching";
 const ShowCompany = ({ data, onClose }) => {
   const dispatch = useDispatch();
+  const applicationId = data.applicationInfo.id;
   const { setConcurrenceDone } = useSelector((state) => state.matching);
   const sendConcurrence = (agreement) => {
     dispatch({
       type: SET_CONCURRENCE_REQUEST,
-      data: { agreement },
+      data: { agreement, applicationId },
     });
     window.location.href = "/myPage";
   };
   useEffect(() => {
-    console.log("setConcurrenceDone : ", setConcurrenceDone);
     if (setConcurrenceDone) {
       window.location.href = "/";
     }

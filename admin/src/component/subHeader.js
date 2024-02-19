@@ -4,7 +4,6 @@ import "../css/subHeader.css";
 const SubHeader = ({ data }) => {
   // const dispatch = useDispatch();
   // const addDummy = () => {
-  //   console.log("btn clicked");
   //   dispatch({
   //     type: LOAD_DUMMY_REQUEST,
   //   });

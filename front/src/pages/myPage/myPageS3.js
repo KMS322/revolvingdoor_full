@@ -15,11 +15,11 @@ const MyPageS3 = () => {
     for (const company of connectedCompanies) {
       if (
         company &&
-        company.businessInfo.id &&
-        !existingIds.includes(company.businessInfo.id)
+        company.applicationInfo.id &&
+        !existingIds.includes(company.applicationInfo.id)
       ) {
         uniqueCompanies.push(company);
-        existingIds.push(company.businessInfo.id);
+        existingIds.push(company.applicationInfo.id);
       }
     }
 

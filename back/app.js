@@ -20,7 +20,7 @@ const testRouter = require("./routes/test");
 const matchingRouter = require("./routes/matching");
 const db = require("./models");
 const passportConfig = require("./passport");
-
+const { UserBusiness } = require("./models");
 dotenv.config();
 const app = express();
 
@@ -46,11 +46,13 @@ passportConfig();
 app.use(
   cors({
     origin: [
-      // "http://localhost:3060",
-      // "http://localhost",
+      "http://localhost:3000",
+      "http://localhost",
       // "http://52.78.107.42",
       "http://www.accydream.com",
       "http://www.accydream.com:3000",
+      "https://www.accydream.com",
+      "https://www.accydream.com:3000",
       // "http://13.209.104.234.com",
       // "http://13.209.104.234:3000",
     ],
@@ -99,6 +101,24 @@ app.use("/matching", matchingRouter);
 //   // 에러 처리 미들웨어
 // });
 const port = 3060;
+
+const schedule = require("node-schedule");
+const job = schedule.scheduleJob("0 0 1 1 *", async function () {
+  console.log("결제 금액 초기화");
+  try {
+    await UserBusiness.update(
+      { business_member_pay: 0 },
+      {
+        where: {},
+      }
+    );
+    console.log(
+      "All non-null business_member_pay elements set to 0 on February 19th, 2024."
+    );
+  } catch (error) {
+    console.error("Scheduled task error:", error);
+  }
+});
 app.listen(port, () => {
   console.log(`${port}에서 서버 실행 중`);
 });

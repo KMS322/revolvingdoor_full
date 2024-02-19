@@ -54,6 +54,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: true,
       },
+      business_member_payDate: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
     },
     {
       charset: "utf8",

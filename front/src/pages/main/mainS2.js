@@ -1,5 +1,3 @@
-import "../../css/main.css";
-import "../../css/main_mobile.css";
 const MainS2 = () => {
   return (
     <div className="main_s2">
