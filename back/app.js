@@ -48,13 +48,10 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost",
-      // "http://52.78.107.42",
       "http://www.accydream.com",
       "http://www.accydream.com:3000",
-      "https://www.accydream.com",
-      "https://www.accydream.com:3000",
-      // "http://13.209.104.234.com",
-      // "http://13.209.104.234:3000",
+      // "https://www.accydream.com",
+      // "https://www.accydream.com:3000",
     ],
     credentials: true,
   })
@@ -72,6 +69,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
+      // secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
