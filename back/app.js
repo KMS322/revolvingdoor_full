@@ -27,7 +27,7 @@ const app = express();
 db.sequelize
   .sync()
   .then(() => {
-    console.log("db 연결 성공");
+    console.log("db connected");
   })
   .catch(console.err);
 
@@ -46,8 +46,8 @@ passportConfig();
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "http://localhost",
+      // "http://localhost:3000",
+      // "http://localhost",
       "http://www.accydream.com",
       "http://www.accydream.com:3000",
       // "https://www.accydream.com",
@@ -78,6 +78,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
+  console.log("server accessed");
   res.send("server on");
 });
 
