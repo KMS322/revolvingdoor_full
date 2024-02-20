@@ -79,7 +79,7 @@ app.use(passport.session());
 
 app.get("/", (req, res) => {
   console.log("server accessed");
-  res.send("server on");
+  res.status(200).send("server on");
 });
 
 app.use("/user", userRouter);
