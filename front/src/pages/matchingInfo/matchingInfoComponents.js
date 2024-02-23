@@ -8,8 +8,8 @@ const MatchingComponents = () => {
     <>
       <Nav />
       <Banner />
-      <MatchingS1 />
-      <MatchingS2 />
+      {/* <MatchingS1 /> */}
+      {/* <MatchingS2 /> */}
       <MatchingS3 />
     </>
   );

@@ -16,6 +16,7 @@ import AllResumes from "./allResumes";
 import AllApplications from "./allApplications";
 import Process from "./process";
 import ProcessDetail from "./processDetail";
+import CurrentCnt from "./currentCnt";
 
 const MainComponent = () => {
   const [currentComponent, setCurrentComponent] = useState("모든 유저");
@@ -90,6 +91,9 @@ const MainComponent = () => {
       selectedComponent = (
         <ProcessDetail onSelectMenu={handleMenuSelect} data={sendData} />
       );
+      break;
+    case "데이터 현황":
+      selectedComponent = <CurrentCnt onSelectMenu={handleMenuSelect} />;
       break;
     default:
       selectedComponent = null;

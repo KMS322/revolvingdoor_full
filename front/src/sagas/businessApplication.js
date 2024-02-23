@@ -14,6 +14,9 @@ import {
   CHANGE_APPLICATION_REQUEST,
   CHANGE_APPLICATION_SUCCESS,
   CHANGE_APPLICATION_FAILURE,
+  LOAD_ALL_APPLICATIONS_REQUEST,
+  LOAD_ALL_APPLICATIONS_SUCCESS,
+  LOAD_ALL_APPLICATIONS_FAILURE,
 } from "../reducers/businessApplication";
 import {
   ADD_APPLICATION_TO_ME,
@@ -47,7 +50,6 @@ function addApplicationAPI(data) {
 function* addApplication(action) {
   try {
     const result = yield call(addApplicationAPI, action.data);
-    console.log("addApplication : ", result);
     yield put({
       type: ADD_APPLICATION_SUCCESS,
       data: result.data,
@@ -109,6 +111,26 @@ function* removeApplication(action) {
   }
 }
 
+function loadAllApplicationsAPI() {
+  return axios.post("/applications/all");
+}
+
+function* loadAllApplications() {
+  try {
+    const result = yield call(loadAllApplicationsAPI);
+    yield put({
+      type: LOAD_ALL_APPLICATIONS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_ALL_APPLICATIONS_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
 function* watchLoadApplication() {
   yield takeLatest(LOAD_APPLICATION_REQUEST, loadApplication);
 }
@@ -125,11 +147,16 @@ function* watchChangeApplication() {
   yield takeLatest(CHANGE_APPLICATION_REQUEST, changeApplication);
 }
 
+function* watchLoadAllApplications() {
+  yield takeLatest(LOAD_ALL_APPLICATIONS_REQUEST, loadAllApplications);
+}
+
 export default function* applicationSaga() {
   yield all([
     fork(watchLoadApplication),
     fork(watchAddApplication),
     fork(watchRemoveApplication),
     fork(watchChangeApplication),
+    fork(watchLoadAllApplications),
   ]);
 }

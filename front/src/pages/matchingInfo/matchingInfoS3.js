@@ -1,228 +1,120 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { dates, sortings, condition_details } from "./selectDatas2";
+import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import "../../css/matchingInfo.css";
 import "../../css/matchingInfo_mobile.css";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_ALL_APPLICATIONS_REQUEST } from "../../reducers/businessApplication";
 const MatchingS3 = () => {
-  const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedSorting, setSelectedSorting] = useState("");
-  const [selectedConditionDetail, setSelectedConditionDetail] = useState("");
-  const handleSelect = (event) => {
-    if (event.target.name === "date") {
-      setSelectedDate(event.target.name);
-    } else if (event.target.name === "sorting") {
-      setSelectedSorting(event.target.name);
-    } else if (event.target.name === "condition_detail") {
-      setSelectedConditionDetail(event.target.name);
+  const dispatch = useDispatch();
+  const { allApplications } = useSelector((state) => state.businessApplication);
+
+  const removeDuplicatesById = (allApplications) => {
+    if (!allApplications || !Array.isArray(allApplications)) {
+      return [];
     }
+    const uniqueApplications = [];
+    const existingIds = [];
+
+    for (const application of allApplications) {
+      if (
+        application &&
+        application.application.id &&
+        !existingIds.includes(application.application.id)
+      ) {
+        uniqueApplications.push(application);
+        existingIds.push(application.application.id);
+      }
+    }
+
+    return uniqueApplications;
   };
 
-  const goPage = (path) => {
-    navigate(path);
-  };
+  const uniqueApplications = removeDuplicatesById(allApplications);
+  const groupedApplications = [];
+  for (let i = 0; i < uniqueApplications.length; i += 5) {
+    groupedApplications.push(uniqueApplications.slice(i, i + 5));
+  }
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  console.log("groupedApplications : ", groupedApplications);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_ALL_APPLICATIONS_REQUEST,
+    });
+  }, []);
   return (
     <div className="matching_s3">
       <div className="section_container">
         <div className="box_container">
           <p>채용정보 한눈에 보기</p>
-          <div className="select_box">
-            <select name="date" value={selectedDate} onChange={handleSelect}>
-              {dates.map((date) => (
-                <option key={date.value} value={date.value} className="option">
-                  {date.label}
-                </option>
-              ))}
-            </select>
-            <select
-              name="sorting"
-              value={selectedSorting}
-              onChange={handleSelect}
-            >
-              {sortings.map((sorting) => (
-                <option
-                  key={sorting.value}
-                  value={sorting.value}
-                  className="option"
-                >
-                  {sorting.label}
-                </option>
-              ))}
-            </select>
-            <select
-              name="condition_detail"
-              value={selectedConditionDetail}
-              onChange={handleSelect}
-            >
-              {condition_details.map((condition_detail) => (
-                <option
-                  key={condition_detail.value}
-                  value={condition_detail.value}
-                  className="option"
-                >
-                  {condition_detail.label}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
         <div className="table_container">
           <div className="head_row row">
-            <p>
-              지역
-              <span
-                style={{ color: "#333333", fontWeight: "Bold" }}
-                className="mobile"
-              >
-                / 근무지
-              </span>
-            </p>
-            <p>기업명 / 공고제목</p>
-            <p>근무시간</p>
-            <p>급여</p>
-            <p className="pc">등록일</p>
+            <p>지역</p>
+            <p>공고제목</p>
+            <p>사업자형태</p>
+            <p>근무시작시기</p>
+            <p>근무형태</p>
+            <p>등록일</p>
           </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              // goPage("/infoDetail");
-            }}
-          >
-            <p>
-              경산시
-              <br />
-              <span className="mobile">1분전</span>
-            </p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>
-              09:00
-              <span className="mobile">
-                <br />
-              </span>
-              ~18:00
-            </p>
-            <p className="hour">
-              <span>시급</span>
-              <span className="mobile">
-                <br />
-              </span>{" "}
-              12,000원
-            </p>
-            <p className="pc">1분전</p>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              // goPage("/infoDetail");
-            }}
-          >
-            <p>
-              경산시 <br />
-              <span className="mobile">1분전</span>
-            </p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>시간협의</p>
-            <p className="day">
-              <span>일급</span>
-              <span className="mobile">
-                <br />
-              </span>{" "}
-              83,000원
-            </p>
-            <p className="pc">1분전</p>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              // goPage("/infoDetail");
-            }}
-          >
-            <p>
-              경산시 <br />
-              <span className="mobile">1분전</span>
-            </p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>
-              09:00{" "}
-              <span className="mobile">
-                <br />
-              </span>
-              ~18:00
-            </p>
-            <p className="month">
-              <span>월급</span>{" "}
-              <span className="mobile">
-                <br />
-              </span>
-              2,020,000원
-            </p>
-            <p className="pc">5분전</p>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              // goPage("/infoDetail");
-            }}
-          >
-            <p>
-              경산시 <br />
-              <span className="mobile">1분전</span>
-            </p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>-</p>
-            <p className="day">
-              <span>일급</span>{" "}
-              <span className="mobile">
-                <br />
-              </span>
-              83,000원
-            </p>
-            <p className="pc">10분전</p>
-          </div>
-          <div
-            className="content_row row"
-            onClick={() => {
-              // goPage("/infoDetail");
-            }}
-          >
-            <p>
-              경산시 <br />
-              <span className="mobile">1분전</span>
-            </p>
-            <p>
-              재택 가능한 임시직 보조 구인
-              <br />
-              <span>회전문</span>
-            </p>
-            <p>시간협의</p>
-            <p className="hour">
-              <span>시급</span>
-              <span className="mobile">
-                <br />
-              </span>{" "}
-              12,000원
-            </p>
-            <p className="pc">12분전</p>
-          </div>
+          {groupedApplications &&
+            groupedApplications[currentPage].map((data, index) => {
+              let workType = "";
+              if (
+                data.application.business_application_workPlace ===
+                "사업자 주소와 동일 (출근)"
+              ) {
+                workType = "출퇴근";
+              } else if (
+                data.application.business_application_workPlace ===
+                "재택 근무 가능"
+              ) {
+                workType = "재택근무";
+              } else if (
+                data.application.business_application_workPlace ===
+                "출근·재택 병행"
+              ) {
+                workType = "출퇴근 + 재택";
+              }
+              return (
+                <div className="content_row row" key={index}>
+                  <p>
+                    {
+                      data.userBusiness.business_member_jibunAddress.split(
+                        " "
+                      )[0]
+                    }
+                  </p>
+                  <p>{data.application.business_application_name}</p>
+                  <p>{data.userBusiness.business_member_companyState}</p>
+                  <p>
+                    {data.application.business_application_startYear}-
+                    {data.application.business_application_startMonth}-
+                    {data.application.business_application_startDay}
+                  </p>
+                  <p>{workType}</p>
+                  <p>
+                    {dayjs(data.application.updatedAt).format("YYYY-MM-DD")}
+                  </p>
+                </div>
+              );
+            })}
         </div>
         <div className="page_num">
-          <p>1</p>
+          {groupedApplications.map((page, index) => {
+            return (
+              <p
+                onClick={() => {
+                  setCurrentPage(index);
+                }}
+                key={index}
+                style={{ color: currentPage === index ? "#CABD99" : "" }}
+              >
+                {index + 1}
+              </p>
+            );
+          })}
         </div>
       </div>
     </div>

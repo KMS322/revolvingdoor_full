@@ -141,6 +141,7 @@ select {
 .matching_s3 {
   width: 100%;
   height: 41.35vw;
+  margin-top: 10vw;
 }
 .matching_s3 .section_container {
   height: 79.44%;
@@ -184,38 +185,39 @@ select {
 .matching_s3 .section_container .table_container .row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 1vw;
   height: 16.6%;
   text-align: center;
 }
+.matching_s3 .section_container .table_container .row p {
+}
 .matching_s3 .section_container .table_container .row p:nth-child(1) {
-  margin-left: 2.1vw;
-  width: 12%;
+  width: 7%;
 }
 .matching_s3 .section_container .table_container .row p:nth-child(2) {
-  margin-left: 10.19vw;
-  width: 17.7%;
+  width: 20%;
 }
 .matching_s3 .section_container .table_container .row p:nth-child(3) {
-  margin-left: 9.48vw;
-  width: 8.72%;
+  width: 12%;
 }
 .matching_s3 .section_container .table_container .row p:nth-child(4) {
-  margin-left: 2.92vw;
-  width: 11.61%;
+  width: 13%;
 }
 .matching_s3 .section_container .table_container .row p:nth-child(5) {
-  margin-left: 2.81vw;
-  width: 6.2%;
+  width: 10%;
+}
+.matching_s3 .section_container .table_container .row p:nth-child(6) {
+  width: 10%;
 }
 .matching_s3 .section_container .table_container .row:nth-child(1) p {
-  font-size: 1.35vw;
+  font-size: 1.2vw;
   font-weight: 700;
   color: #333333;
 }
 
 .matching_s3 .section_container .table_container .content_row {
   border-top: 2px solid #b6b6b6;
-  cursor: pointer;
 }
 .matching_s3 .section_container .table_container .content_row:last-child {
   border-bottom: 1px solid #b6b6b6;
@@ -251,5 +253,9 @@ select {
 }
 .matching_s3 .section_container .page_num p {
   font-size: 0.9vw;
-  color: red;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+.matching_s3 .section_container .page_num p:last-child {
+  margin: 0;
 }

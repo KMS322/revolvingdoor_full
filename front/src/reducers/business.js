@@ -1,16 +1,16 @@
 import produce from "../util/produce";
 
 export const initialState = {
-  loadUserLoading: false, // 유저 정보
+  loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
-  logInLoadingBusiness: false, // 로그인 시도중
+  logInLoadingBusiness: false,
   logInDoneBusiness: false,
   logInErrorBusiness: null,
-  logOutLoading: false, // 로그아웃 시도중
+  logOutLoading: false,
   logOutDone: false,
   logOutError: null,
-  signUpLoading: false, // 회원가입 시도중
+  signUpLoading: false,
   signUpDone: false,
   signUpError: null,
   me: null,

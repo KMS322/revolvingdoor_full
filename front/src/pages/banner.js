@@ -11,6 +11,26 @@ const Banner = () => {
     "/images/banner_img4.jpg",
   ];
   const [currentImg, setCurrentImg] = useState(0);
+  const [delayedChange, setDelayedChange] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!delayedChange) {
+        setCurrentImg((prevImg) => (prevImg + 1) % imgSrc.length);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [delayedChange]);
+
+  const handleDotClick = (index) => {
+    setDelayedChange(true);
+    setCurrentImg(index);
+
+    setTimeout(() => {
+      setDelayedChange(false);
+    }, 4000);
+  };
   // useEffect(() => {
   //   function handleResize() {
   //     setWindowWidth(window.innerWidth);
@@ -43,7 +63,7 @@ const Banner = () => {
                 src="/images/dot_img2.png"
                 alt=""
                 onClick={() => {
-                  setCurrentImg(index);
+                  handleDotClick(index);
                 }}
                 key={index}
               />

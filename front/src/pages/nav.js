@@ -23,13 +23,13 @@ const Nav = () => {
         >
           매칭프로세스
         </li>
-        <li
+        {/* <li
           onClick={() => {
             goPage("/eduProgram");
           }}
         >
           교육프로그램
-        </li>
+        </li> */}
         {/* <li
           onClick={() => {
             goPage("/square");

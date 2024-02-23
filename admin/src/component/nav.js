@@ -64,6 +64,14 @@ const Nav = ({ onSelectMenu }) => {
       >
         구인신청 진행사항
       </div>
+      <div
+        className="menu"
+        onClick={() => {
+          handleSubMenuClick("데이터 현황");
+        }}
+      >
+        데이터 현황
+      </div>
     </div>
   );
 };
