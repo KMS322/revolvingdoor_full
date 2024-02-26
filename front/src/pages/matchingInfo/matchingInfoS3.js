@@ -37,7 +37,6 @@ const MatchingS3 = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  console.log("groupedApplications : ", groupedApplications);
   useEffect(() => {
     dispatch({
       type: LOAD_ALL_APPLICATIONS_REQUEST,
@@ -59,6 +58,7 @@ const MatchingS3 = () => {
             <p>등록일</p>
           </div>
           {groupedApplications &&
+            groupedApplications.length > 0 &&
             groupedApplications[currentPage].map((data, index) => {
               let workType = "";
               if (

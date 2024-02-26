@@ -2,5 +2,21 @@
 .currentCnt {
   width: 84.22%;
   height: auto;
-  border: 1px solid red;
+}
+.currentCnt > p {
+  font-size: 1.5vw;
+  text-align: center;
+  margin-top: 2vw;
+}
+.currentCnt .data_box {
+  width: 35%;
+  height: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 1vw;
+}
+.currentCnt .data_box p {
+  font-size: 1.2vw;
 }
