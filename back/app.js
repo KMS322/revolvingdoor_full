@@ -53,8 +53,9 @@ app.use(
       "http://www.accydream.com",
       "http://www.accydream.com:3000",
       "http://www.accydream.com:3050",
-      // "https://www.accydream.com",
-      // "https://www.accydream.com:3000",
+      "https://www.accydream.com",
+      "https://www.accydream.com:3000",
+      "https://www.accydream.com:3050",
     ],
     credentials: true,
   })
