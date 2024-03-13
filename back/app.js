@@ -49,6 +49,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost",
+      "http://localhost:3050",
       // "http://www.accydream.com",
       // "http://www.accydream.com:3000",
       // "https://www.accydream.com",
