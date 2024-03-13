@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dayjs = require("dayjs");
-const aligoapi = require("aligoapi");
-const AuthData = {
-  key: "8bcje2w5ep2y98vv950gr3m281fs7dy5",
-  user_id: "bwsuh00",
-};
+
 const {
   User,
   UserIndividual,
