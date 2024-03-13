@@ -1,10 +1,13 @@
 import "../css/acceptPopup.css";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CHANGE_STEP_REQUEST, SHOW_LIST_REQUEST } from "../reducers/matching";
+import { SEND_SMS_REQUEST } from "../reducers/aligo";
 const AcceptPopup = ({ data, onClose }) => {
   const dispatch = useDispatch();
+  const { showListDone } = useSelector((state) => state.matching);
   const matchingData = data;
+  const applicationId = matchingData.applicationId;
   const changeStep = () => {
     dispatch({
       type: CHANGE_STEP_REQUEST,
@@ -16,8 +19,17 @@ const AcceptPopup = ({ data, onClose }) => {
         matchingData,
       },
     });
-    window.location.href = "/myPageBusiness";
+    // window.location.href = "/myPageBusiness";
   };
+  useEffect(() => {
+    if (showListDone) {
+      console.log("AA");
+      dispatch({
+        type: SEND_SMS_REQUEST,
+        data: { applicationId },
+      });
+    }
+  }, [showListDone]);
   return (
     <div className="acceptPopup">
       <div className="article_container">

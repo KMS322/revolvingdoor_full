@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const dayjs = require("dayjs");
+const aligoapi = require("aligoapi");
+const AuthData = {
+  key: "8bcje2w5ep2y98vv950gr3m281fs7dy5",
+  user_id: "bwsuh00",
+};
 const {
   User,
   UserIndividual,
@@ -244,7 +249,7 @@ router.post("/", async (req, res, next) => {
     });
     if (exConnect.length === 0) {
       for (const user of top15Users) {
-        await ConnectedIndividual.create({
+        const top15User = await ConnectedIndividual.create({
           point: String(user.point),
           concurrence: "대기",
           IndividualId: String(user.UserIndividual.IndividualId),

@@ -18,6 +18,7 @@ const userInfoRouter = require("./routes/userInfo");
 const adminRouter = require("./routes/admin");
 const testRouter = require("./routes/test");
 const matchingRouter = require("./routes/matching");
+const aligoRouter = require("./routes/aligo");
 const db = require("./models");
 const passportConfig = require("./passport");
 const { UserBusiness } = require("./models");
@@ -96,6 +97,7 @@ app.use("/userInfo", userInfoRouter);
 app.use("/admin", adminRouter);
 app.use("/test", testRouter);
 app.use("/matching", matchingRouter);
+app.use("/aligo", aligoRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });

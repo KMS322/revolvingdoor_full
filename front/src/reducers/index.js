@@ -7,6 +7,7 @@ import businessApplication from "./businessApplication";
 import businessRecruitment from "./businessRecruitment";
 import userInfo from "./userInfo";
 import matching from "./matching";
+import aligo from "./aligo";
 const rootReducer = combineReducers({
   user,
   userResume,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   businessRecruitment,
   userInfo,
   matching,
+  aligo,
 });
 
 export default rootReducer;

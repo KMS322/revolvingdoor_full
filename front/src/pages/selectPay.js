@@ -6,34 +6,45 @@ import {
   CHANGE_STEP_REQUEST,
   CHECK_PAY_REQUEST,
 } from "../reducers/matching";
+import Pay from "./pay";
 const SelectPay = ({ onClose, data }) => {
   const dispatch = useDispatch();
   const { clickPayDone, businessPay } = useSelector((state) => state.matching);
   const businessId = data.businessId;
   const matchingData = data;
   const [btn, setBtn] = useState(true);
+  const [openPay, setOpenPay] = useState(false);
+  const [amount, setAmount] = useState(0);
+  const [sendData, setSendData] = useState({});
+  const closePopup = () => {
+    setOpenPay(false);
+  };
   const submitPay = () => {
-    let pay = "";
-
     if (businessPay === 0) {
       if (btn) {
-        pay = "250000원";
+        setAmount(25);
       } else {
-        pay = "200000원";
+        setAmount(20);
       }
     } else if (businessPay === "200000원") {
-      pay = "50000원";
+      setAmount(5);
     } else {
-      pay = "0원";
+      setAmount(0);
     }
-    dispatch({
-      type: CLICK_PAY_REQUEST,
-      data: {
-        pay,
-        businessId,
-      },
-    });
+    // dispatch({
+    //   type: CLICK_PAY_REQUEST,
+    //   data: {
+    //     pay,
+    //     businessId,
+    //   },
+    // });
   };
+  useEffect(() => {
+    if (amount !== 0) {
+      setSendData({ businessId, amount });
+      setOpenPay(true);
+    }
+  }, [amount]);
   useEffect(() => {
     dispatch({
       type: CHECK_PAY_REQUEST,
@@ -109,6 +120,7 @@ const SelectPay = ({ onClose, data }) => {
           {businessPay === "250000원" ? "확인" : "결제"}
         </div>
       </div>
+      {openPay ? <Pay onClose={closePopup} data={sendData} /> : ""}
     </div>
   );
 };

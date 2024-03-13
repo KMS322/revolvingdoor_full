@@ -34,6 +34,9 @@ import MyApplicationStep1Components from "./pages/myApplication/myApplicationSte
 import MyApplicationStep2Components from "./pages/myApplication/myApplicationStep2Components.js";
 import IndividualInfoComponent from "./pages/userInfo/individualInfoComponent.js";
 import BusinessInfoComponent from "./pages/userInfo/businessInfoComponent.js";
+
+// import TestSendSms from "./pages/testSendSms.js";
+
 function App() {
   const dispatch = useDispatch();
   const { logInDone } = useSelector((state) => state.user);
@@ -46,6 +49,7 @@ function App() {
     <>
       <Header />
       <ScrollToTop />
+      {/* <TestSendSms /> */}
       <Routes>
         <Route path="/" element={<MainComponents />} />
         <Route path="/matchingInfo" element={<MatchingComponents />} />
