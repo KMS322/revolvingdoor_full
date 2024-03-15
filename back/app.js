@@ -52,7 +52,7 @@ app.use(
       "localhost:443",
       "http://localhost:3050",
       "http://localhost:443",
-      // "http://www.accydream.com",
+      "http://www.accydream.com",
       "http://accydream.com:3000",
       "http://accydream.com:3050",
       // "https://www.accydream.com",
