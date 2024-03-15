@@ -47,10 +47,10 @@ passportConfig();
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "http://localhost",
-      "http://localhost:443",
-      "http://localhost:3050",
+      // "http://localhost:3000",
+      // "http://localhost",
+      "localhost:443",
+      // "http://localhost:3050",
       // "http://www.accydream.com",
       // "http://www.accydream.com:3000",
       // "http://www.accydream.com:3050",
