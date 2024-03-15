@@ -73,7 +73,7 @@ app.use(
     credentials: true,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       // secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     },
