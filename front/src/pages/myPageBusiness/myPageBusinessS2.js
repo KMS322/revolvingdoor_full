@@ -15,6 +15,8 @@ const MyPageBusinessS2 = () => {
     (state) => state.businessApplication
   );
   const { businessInfo } = useSelector((state) => state.userInfo);
+  const showCnt = applications.length > 0 && applications[0].individualCnt;
+  console.log("businessInfo : ", applications);
   const removeDuplicatesById = (applications) => {
     if (!applications || !Array.isArray(applications)) {
       return [];
@@ -76,7 +78,7 @@ const MyPageBusinessS2 = () => {
     setShowDetail(false);
   };
   const [sendData, setSendData] = useState();
-
+  console.log("sendData : ", sendData);
   return (
     <div className="myPageBusiness_s2">
       <div className="article_container">
@@ -128,7 +130,7 @@ const MyPageBusinessS2 = () => {
                     } else if (application.progressStep === "결제완료") {
                       setShowDetail(true);
                     }
-                    setSendData({ businessId, applicationId });
+                    setSendData({ businessId, applicationId, showCnt });
                   }}
                 >
                   {application.progressStep &&

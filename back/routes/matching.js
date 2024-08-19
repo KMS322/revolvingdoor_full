@@ -194,9 +194,9 @@ router.post("/", async (req, res, next) => {
       }
 
       const userStart =
-        user.UserResumes[0].user_resume_hopeStartYear +
-        user.UserResumes[0].user_resume_hopeStartMonth +
-        user.UserResumes[0].user_resume_hopeStartDay;
+        user.UserResumes[0]?.user_resume_hopeStartYear +
+        user.UserResumes[0]?.user_resume_hopeStartMonth +
+        user.UserResumes[0]?.user_resume_hopeStartDay;
       let businessStart;
       if (application.business_application_startNow) {
         businessStart = dayjs(application.updatedAt).format("YYYYMMDD");
@@ -273,16 +273,19 @@ router.post("/", async (req, res, next) => {
         (jsonUser) => user.id === Number(jsonUser.IndividualId)
       )
     );
-    for (const matchedUser of matchedUsers1) {
-      await ConnectedIndividual.update(
-        {
-          showOn: "on",
-        },
-        {
-          where: { IndividualId: String(matchedUser.id), showOn: null },
-        }
-      );
+    if (userCnt <= 5) {
+      for (const matchedUser of matchedUsers1) {
+        await ConnectedIndividual.update(
+          {
+            showOn: "on",
+          },
+          {
+            where: { IndividualId: String(matchedUser.id), showOn: null },
+          }
+        );
+      }
     }
+
     // await ConnectedIndividual.destroy({
     //   where: { ApplicationId: application.id },
     // });
@@ -393,10 +396,14 @@ router.post("/changeStep", async (req, res, next) => {
 router.post("/loadConcurrence", async (req, res, next) => {
   try {
     const arr = req.body.arr;
+    const applicationId = req.body.applicationId;
     let sendConcurrence = [];
     for (const id of arr) {
       const object = await ConnectedIndividual.findOne({
-        where: { IndividualId: Number(id) },
+        where: {
+          IndividualId: Number(id),
+          ApplicationId: Number(applicationId),
+        },
         attributes: ["IndividualId", "concurrence", "showOn"],
       });
       if (object) {
@@ -408,6 +415,7 @@ router.post("/loadConcurrence", async (req, res, next) => {
         sendConcurrence.push(newObject);
       }
     }
+    console.log("sendConcurrence : ", sendConcurrence);
     res.status(200).json(sendConcurrence);
   } catch (error) {
     console.error(error);
@@ -419,12 +427,14 @@ router.post("/clickPay", async (req, res, next) => {
   try {
     const currentDate = dayjs();
     const formattedDate = currentDate.format("YYYYMMDDHHmm");
-    if (req.body.pay === "50000원" || req.body.pay === "0원") {
-      req.body.pay = "250000원";
+    let pay = 0;
+    console.log("req.body : ", req.body);
+    if (req.body.pay === 25 || req.body.pay === "0원") {
+      pay = "250000원";
     }
     await UserBusiness.update(
       {
-        business_member_pay: req.body.pay,
+        business_member_pay: pay,
         business_member_payDate: formattedDate,
       },
       {

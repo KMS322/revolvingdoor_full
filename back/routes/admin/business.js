@@ -87,6 +87,7 @@ router.delete("/deleteList", async (req, res, next) => {
 
 router.post("/addList", async (req, res, next) => {
   try {
+    console.log("req.body : ", req.body);
     const list = await ConnectedIndividual.update(
       {
         showOn: "on",
@@ -95,12 +96,15 @@ router.post("/addList", async (req, res, next) => {
         where: { id: req.body.id },
       }
     );
+    const selectedList = await ConnectedIndividual.findOne({
+      where: { id: req.body.id },
+    });
     await BusinessApplication.update(
       {
         individualCnt: req.body.newCnt,
       },
       {
-        where: { BusinessId: Number(list.BusinessId) },
+        where: { BusinessId: Number(selectedList.BusinessId) },
       }
     );
     res.status(200).send("added");

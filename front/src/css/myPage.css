@@ -205,11 +205,14 @@ span {
 /* myPage_s3 */
 .myPage_s3 {
   width: 100%;
-  height: 23.41vw;
+  /* height: 23.41vw; */
+  height: auto;
+  margin-bottom: 5vw;
 }
 .myPage_s3 .article_container {
   width: 67.42%;
-  height: 86.24%;
+  /* height: 86.24%; */
+  height: auto;
   margin: 0 auto;
 }
 .myPage_s3 .article_container > p {
@@ -219,18 +222,21 @@ span {
 }
 .myPage_s3 .article_container .table_container {
   width: 100%;
-  height: 72.73%;
+  /* height: 72.73%; */
+  height: auto;
   margin-top: 2.2vw;
   border-top: 2px solid #707070;
 }
 .myPage_s3 .article_container .table_container .head_row {
   width: 100%;
-  height: 25.78% !important;
+  /* height: 25.78% !important; */
+  height: 3.76vw !important;
 }
 .myPage_s3 .article_container .table_container .row {
   display: flex;
   align-items: center;
-  height: 24.74%;
+  /* height: 24.74%; */
+  height: 3.5vw%;
   text-align: center;
 }
 

@@ -16,7 +16,14 @@ const ShowDetail = ({ data, onClose }) => {
   const { matchingLists, concurrences } = useSelector(
     (state) => state.matching
   );
+  console.log("data1 : ", data);
+  console.log("matchingLists1 : ", matchingLists);
+  console.log("concurrences1 : ", concurrences);
+
   const matchingData = data;
+  const applicationId = data.applicationId;
+  const showCnt = data.showCnt;
+  console.log("showCnt : ", showCnt);
   let arr = [];
   matchingLists &&
     matchingLists.map((list) => {
@@ -31,13 +38,14 @@ const ShowDetail = ({ data, onClose }) => {
       },
     });
   }, [arr.length]);
-
   useEffect(() => {
     if (matchingLists) {
+      console.log("arr : ", arr);
       dispatch({
         type: LOAD_CONCURRENCE_REQUEST,
         data: {
           arr,
+          applicationId,
         },
       });
     }
@@ -50,16 +58,31 @@ const ShowDetail = ({ data, onClose }) => {
       }
     });
   let filteredMatchingLists = [];
-  matchingLists &&
-    matchingLists.forEach((list) => {
-      const isAccepted = acceptUsers.some(
-        (acceptUser) =>
-          acceptUser.IndividualId === String(list.UserIndividual.IndividualId)
-      );
-      if (isAccepted) {
-        filteredMatchingLists.push(list);
-      }
-    });
+  if (showCnt <= 5) {
+    matchingLists &&
+      matchingLists.slice(0, 5).forEach((list) => {
+        const isAccepted = acceptUsers.some(
+          (acceptUser) =>
+            acceptUser.IndividualId === String(list.UserIndividual.IndividualId)
+        );
+        if (isAccepted) {
+          filteredMatchingLists.push(list);
+        }
+      });
+  } else {
+    matchingLists &&
+      matchingLists.forEach((list) => {
+        const isAccepted = acceptUsers.some(
+          (acceptUser) =>
+            acceptUser.IndividualId === String(list.UserIndividual.IndividualId)
+        );
+        if (isAccepted) {
+          filteredMatchingLists.push(list);
+        }
+      });
+  }
+
+  console.log("filteredMatchingLists : ", filteredMatchingLists);
   return (
     <div className="showDetail">
       <div className="article_container">
@@ -78,8 +101,12 @@ const ShowDetail = ({ data, onClose }) => {
             <p></p>
           </div>
           {filteredMatchingLists &&
-            filteredMatchingLists.map((list, index) => {
-              if (concurrences[index].showOn === "on") {
+            filteredMatchingLists.slice(0, showCnt).map((list, index) => {
+              const selectedConcurrence = concurrences.find(
+                (item) => Number(item.IndividualId) === list.id
+              );
+              console.log("selectedConcurrence : ", selectedConcurrence);
+              if (selectedConcurrence.showOn === "on") {
                 return (
                   <div className="row row_content" key={index}>
                     <p>{index + 1}</p>

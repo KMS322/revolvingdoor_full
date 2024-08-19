@@ -20,27 +20,32 @@ const SelectPay = ({ onClose, data }) => {
     setOpenPay(false);
   };
   const submitPay = () => {
+    let pay = 0;
+    console.log("businessPay : ", businessPay);
     if (businessPay === 0) {
       if (btn) {
         setAmount(25);
+        pay = 25;
       } else {
         setAmount(20);
+        pay = 20;
       }
     } else if (businessPay === "200000원") {
       setAmount(5);
+      pay = 5;
     } else {
       setAmount(0);
     }
-    // dispatch({
-    //   type: CLICK_PAY_REQUEST,
-    //   data: {
-    //     pay,
-    //     businessId,
-    //   },
-    // });
+    dispatch({
+      type: CLICK_PAY_REQUEST,
+      data: {
+        pay,
+        businessId,
+      },
+    });
   };
   useEffect(() => {
-    if (amount !== 0) {
+    if (amount !== 0 && businessPay !== 0) {
       setSendData({ businessId, amount });
       setOpenPay(true);
     }
@@ -52,7 +57,7 @@ const SelectPay = ({ onClose, data }) => {
         businessId,
       },
     });
-  }, []);
+  }, [businessPay]);
   useEffect(() => {
     if (clickPayDone) {
       window.location.href = "myPageBusiness";

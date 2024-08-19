@@ -95,7 +95,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
     await UserBusiness.update(
       {
         business_member_workType: req.body.workType,
-        business_member_pay: req.body.fullPay,
+        // business_member_pay: req.body.fullPay,
       },
       {
         where: {
@@ -201,7 +201,7 @@ router.post("/change", isLoggedIn, async (req, res, next) => {
     await UserBusiness.update(
       {
         business_member_workType: req.body.workType,
-        business_member_pay: req.body.fullPay,
+        // business_member_pay: req.body.fullPay,
       },
       {
         where: {

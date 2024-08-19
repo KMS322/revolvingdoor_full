@@ -19,11 +19,10 @@ const AcceptPopup = ({ data, onClose }) => {
         matchingData,
       },
     });
-    // window.location.href = "/myPageBusiness";
+    window.location.href = "/myPageBusiness";
   };
   useEffect(() => {
     if (showListDone) {
-      console.log("AA");
       dispatch({
         type: SEND_SMS_REQUEST,
         data: { applicationId },

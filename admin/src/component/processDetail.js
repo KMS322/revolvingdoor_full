@@ -25,7 +25,7 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
   const uniqueMatchingLists = Array.from(
     new Set(matchingLists.map((list) => list.id))
   ).map((id) => matchingLists.find((list) => list.id === id));
-  // console.log("matchingLists : ", matchingLists);
+  console.log("uniqueMatchingLists : ", uniqueMatchingLists);
   useEffect(() => {
     dispatch({
       type: LOAD_MATCHINGLISTS_REQUEST,
@@ -154,6 +154,8 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
   );
 
   const [userCnt, setUserCnt] = useState(data.list.individualCnt);
+  console.log("userCnt : ", userCnt);
+  let agreeCnt = 0;
 
   return (
     <div className="detail processDetail">
@@ -207,6 +209,7 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
           </div>
           {uniqueMatchingLists &&
             uniqueMatchingLists
+              .slice(0, 15)
               .filter((list) => Number(list.BusinessId) === businessId)
               .map((list, index) => {
                 const user =
@@ -227,6 +230,11 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                     : list && list.concurrence === "거절"
                     ? "#C8C8C8"
                     : "initial";
+                if (list.concurrence === "동의") {
+                  agreeCnt++;
+                }
+                console.log("index : ", index);
+                console.log("agreeCnt : ", agreeCnt);
                 if (list.showOn !== "off") {
                   return (
                     <div
@@ -237,7 +245,7 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                       }
                       key={index}
                     >
-                      <p style={{ backgroundColor }}>{list.id}</p>
+                      <p style={{ backgroundColor }}>{index + 1}</p>
                       <p style={{ backgroundColor }}>{user.user_member_name}</p>
                       <p style={{ backgroundColor }}>
                         {user.user_member_jibunAddress}
@@ -262,7 +270,9 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                       >
                         연락처
                       </p>
-                      {userCnt >= index + 1 && list.showOn === "on" ? (
+                      {list.concurrence === "대기" ? (
+                        <p className="btn">응답대기</p>
+                      ) : userCnt <= 5 && userCnt >= index + 1 ? (
                         <p
                           className="btn"
                           onClick={(e) => {
@@ -290,6 +300,36 @@ const ProcessDetail = ({ onSelectMenu, data }) => {
                           추가
                         </p>
                       )}
+                      {/* {userCnt > agreeCnt && list.showOn === "on" ? (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            deleteList(e, list.id, userCnt);
+                          }}
+                        >
+                          삭제
+                        </p>
+                      ) : list.showOn === "on" ? (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            deleteList(e, list.id, userCnt);
+                          }}
+                        >
+                          삭제
+                        </p>
+                      ) : list.concurrence === "동의" ? (
+                        <p
+                          className="btn"
+                          onClick={(e) => {
+                            addList(e, list.id, userCnt);
+                          }}
+                        >
+                          추가
+                        </p>
+                      ) : (
+                        <p className="btn">응답대기</p>
+                      )} */}
                     </div>
                   );
                 }

@@ -7,6 +7,8 @@ import {
 } from "../reducers/matching";
 import SelectPay from "./selectPay";
 const ShowListPopup = ({ data, onClose }) => {
+  console.log("data : ", data);
+  const applicationId = data.applicationId;
   const dispatch = useDispatch();
   const { matchingLists, concurrences } = useSelector(
     (state) => state.matching
@@ -14,6 +16,7 @@ const ShowListPopup = ({ data, onClose }) => {
   const matchingData = data;
   const sendData = matchingData;
   let arr = [];
+  console.log("matchingLists  : ", matchingLists);
   matchingLists &&
     matchingLists.map((list) => {
       arr.push(Number(list.UserIndividual.IndividualId));
@@ -33,6 +36,7 @@ const ShowListPopup = ({ data, onClose }) => {
         type: LOAD_CONCURRENCE_REQUEST,
         data: {
           arr,
+          applicationId,
         },
       });
     }
