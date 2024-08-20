@@ -1,10 +1,12 @@
 import "../css/acceptPopup.css";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CHANGE_STEP_REQUEST, SHOW_LIST_REQUEST } from "../reducers/matching";
 import { SEND_SMS_REQUEST } from "../reducers/aligo";
 const AcceptPopup = ({ data, onClose }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { showListDone } = useSelector((state) => state.matching);
   const matchingData = data;
   const applicationId = matchingData.applicationId;
@@ -19,7 +21,8 @@ const AcceptPopup = ({ data, onClose }) => {
         matchingData,
       },
     });
-    window.location.href = "/myPageBusiness";
+    // window.location.href = "/myPageBusiness";
+    navigate("/myPageBusiness");
   };
   useEffect(() => {
     if (showListDone) {
