@@ -52,6 +52,10 @@ const Header = () => {
   return (
     <>
       <div className="header">
+      <div className="text_box">
+        <p>직업정보제공사업(신고번호 J1401020230004)
+        통신판매업신고(제2024-경북경산-0645호) </p>
+      </div>
         <img
           src="/images/logo.png"
           alt=""

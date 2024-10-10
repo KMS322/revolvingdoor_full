@@ -3,6 +3,10 @@
     height: 20.98vw;
     position: relative;
   }
+  .header .text_box p {
+    font-size: 2vw;
+    font-weight: 400;
+  }
   .header > img {
     width: 25.13%;
     margin-left: 6.99vw;

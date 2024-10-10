@@ -6,6 +6,15 @@
   position: relative;
   /* justify-content: space-between; */
 }
+.header .text_box {
+  position: absolute;
+  top: 0;
+  left: 0.3vw;
+}
+.header .text_box p {
+  font-size: 0.6vw;
+  font-weight: 400;
+}
 .header img {
   width: 6.93%;
   margin-left: 4.95vw;
