@@ -18,7 +18,9 @@
     font-size: 3.12vw;
     line-height: 4.5vw;
   }
-
+  .main_s1 .text_box .add_text {
+    font-size: 2.05vw;
+  }
   /* main_s2 */
   .main_s2 {
     height: 32.64vw;

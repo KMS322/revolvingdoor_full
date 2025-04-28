@@ -63,6 +63,8 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         req.body.business_application_workTimeDay,
       business_application_workTimeHour:
         req.body.business_application_workTimeHour,
+      business_application_workTimeNego:
+        req.body.business_application_workTimeNego,  
       business_application_breakTime1Hour:
         req.body.business_application_breakTime1Hour,
       business_application_breakTime1Minute:

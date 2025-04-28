@@ -33,6 +33,9 @@ const MyApplicationStep2S2 = () => {
   const [business_application_workTimeHour, onChangeWorkTimeHour] = useInput(
     newState.business_application_workTimeHour
   );
+  const [business_application_workTimeNego, setWorkNego] = useState(
+    newState.business_application_workTimeNego
+  );
   const [business_application_breakTime1Hour, onChangebreakTime1Hour] =
     useInput(newState.business_application_breakTime1Hour);
   const [business_application_breakTime1Minute, onChangebreakTime1Minute] =
@@ -122,6 +125,7 @@ const MyApplicationStep2S2 = () => {
           business_application_workTime2Minute,
           business_application_workTimeDay,
           business_application_workTimeHour,
+          business_application_workTimeNego,
           business_application_breakTime1Hour,
           business_application_breakTime1Minute,
           business_application_breakTime2Hour,
@@ -148,6 +152,7 @@ const MyApplicationStep2S2 = () => {
       business_application_workTime2Minute,
       business_application_workTimeDay,
       business_application_workTimeHour,
+      business_application_workTimeNego,
       business_application_breakTime1Hour,
       business_application_breakTime1Minute,
       business_application_breakTime2Hour,
@@ -199,11 +204,11 @@ const MyApplicationStep2S2 = () => {
             <div
               className="select"
               onClick={() => {
-                setPayType("연봉");
+                setPayType("면접결정");
               }}
-              style={selectStyle1("연봉")}
+              style={selectStyle1("면접결정")}
             >
-              연봉
+              면접 결정
             </div>
           </div>
         </label>
@@ -259,7 +264,11 @@ const MyApplicationStep2S2 = () => {
             />
           </div>
         </label>
-        <label className="input_box">
+        <label className="input_box" onClick={(e) => {
+          if (e.target.tagName !== "INPUT") {
+            e.preventDefault();
+          }
+        }}>
           <p></p>
           <div className="sub_input sub_input3">
             <input
@@ -276,6 +285,15 @@ const MyApplicationStep2S2 = () => {
               onChange={onChangeWorkTimeHour}
             />
             <p>시간</p>
+            <div
+              className="select"
+              onClick={() => {
+                setWorkNego(!business_application_workTimeNego);
+              }}
+              style={{borderColor : business_application_workTimeNego ? "#2196F3" : "#eeeeee", color : business_application_workTimeNego ? "#2196F3" : "#707070"}}
+            >
+              조정가능
+            </div>
           </div>
         </label>
         <label className="input_box">
@@ -511,6 +529,10 @@ const MyApplicationStep2S2 = () => {
         <button type="submit" onClick={onSubmitForm}>
           수정하기
         </button>
+        <div className="noti_box">
+          <p>아래 4가지 주요사항에서 우선적으로 고려되어야 하는 순위를 정해 주세요.</p>
+          <p>구직자 추천시 이를 고려하여 추천이 이루어 집니다.</p>
+        </div>
       </form>
     </div>
   );

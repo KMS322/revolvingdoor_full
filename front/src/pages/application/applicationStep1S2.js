@@ -117,7 +117,7 @@ const ApplicationStep1S2 = () => {
   return (
     <div className="applicationStep1_s2">
       <form>
-        <p className="title">구인 신청서 작성</p>
+        <p className="title">구인 신청서 작성<br/><span>(해당 항목을 클릭하거나 작성해 주세요.)</span></p>
         <p>구인사항</p>
         <label className="input_box">
           <p>채용 제목</p>

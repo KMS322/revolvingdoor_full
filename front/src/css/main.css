@@ -52,6 +52,11 @@
   font-size: 1vw;
   color: black;
 }
+.main_s1 .text_box .add_text {
+  font-size: 1.3vw;
+  font-weight: 700;
+  margin-top: 2vw;
+}
 /* main_s2 */
 .main_s2 {
   width: 100%;

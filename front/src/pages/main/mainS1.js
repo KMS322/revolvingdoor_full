@@ -69,6 +69,7 @@ const MainS1 = () => {
             <br />근 무 : 출근 근무, 재택 근무, 출근·재택 병행{" "}
           </p>
         </div>
+        <p className="add_text">구인, 구직에 관심 있으신 분이나 사무소에서는 회원가입후 로그인 하시고 My Page 에 등록해 주세요.</p>
       </div>
       <div className="text_box mobile">
         <p>안녕하십니까? 회계전문인력 매칭 플랫폼 회전문(會專門)입니다.</p>
@@ -86,6 +87,7 @@ const MainS1 = () => {
           <br />
           근로를 제공할 수 있는 인력을 연결하고자 합니다.
         </p>
+        <p className="add_text">구인, 구직에 관심 있으신 분이나 사무소에서는 회원가입후 로그인 하시고 My Page 에 등록해 주세요.</p>
       </div>
     </div>
   );

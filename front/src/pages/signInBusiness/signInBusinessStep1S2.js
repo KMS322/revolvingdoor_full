@@ -118,11 +118,31 @@ const SignInStep1S2 = (props) => {
             />
             <p>
               필요할 때 수수료를 지급하고 이용 (회당 : 20만원, 실제 추천 받을 때
-              결제
+              결제)
             </p>
           </div>
         </div>
       </div>
+      <div className="table_box">
+            <div className="row">
+              <p>회원의 형태</p>
+              <p>회비</p>
+              <p>자격</p>
+              <p>비고</p>
+            </div>
+            <div className="row">
+              <p>일반회원</p>
+              <p>20만원</p>
+              <p>1회 이용</p>
+              <p>연간회원으로 전환가능(차액 결제, 단 연말까지 유효)</p>
+            </div>
+            <div className="row">
+              <p>연간회원</p>
+              <p>25만원</p>
+              <p>연간 무제한</p>
+              <p>회비 납입일로부터 1년간 연간회원자격</p>
+            </div>
+          </div>
       <div
         className="btn"
         style={{ backgroundColor: bgColor, cursor: cursor }}

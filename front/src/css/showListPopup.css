@@ -107,6 +107,34 @@
   line-height: 1.7vw;
   letter-spacing: -0.04vw;
 }
+.showListPopup .article_container .text_box .table_box {
+  margin-top: 0.5vw;
+  border: 1px solid black;
+}
+.showListPopup .article_container .text_box .table_box .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.showListPopup .article_container .text_box .table_box .row p {
+  font-size: 0.9vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showListPopup .article_container .text_box .table_box .row > p:nth-child(1) {
+  width: 15%;
+}
+.showListPopup .article_container .text_box .table_box .row > p:nth-child(2) {
+  width: 15%;
+}
+.showListPopup .article_container .text_box .table_box .row > p:nth-child(3) {
+  width: 20%;
+}
+.showListPopup .article_container .text_box .table_box .row > p:nth-child(4) {
+  width: 50%;
+}
 .showListPopup .article_container .btn {
   width: 5.31vw;
   height: 2.14vw;

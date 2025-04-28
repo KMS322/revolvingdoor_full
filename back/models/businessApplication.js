@@ -126,6 +126,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
+      business_application_workTimeNego: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
       business_application_workTimeHour: {
         type: DataTypes.STRING(10),
         allowNull: true,

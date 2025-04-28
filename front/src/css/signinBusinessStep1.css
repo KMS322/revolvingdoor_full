@@ -94,6 +94,34 @@
   margin-right: 1.65vw;
   letter-spacing: -0.05vw;
 }
+.signin_business_step1_s2 .table_box {
+  width: 100%;
+  border: 1px solid black;
+}
+.signin_business_step1_s2 .table_box .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.signin_business_step1_s2 .table_box .row p {
+  font-size: 0.9vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signin_business_step1_s2 .table_box .row > p:nth-child(1) {
+  width: 15%;
+}
+.signin_business_step1_s2 .table_box .row > p:nth-child(2) {
+  width: 15%;
+}
+.signin_business_step1_s2 .table_box .row > p:nth-child(3) {
+  width: 20%;
+}
+.signin_business_step1_s2 .table_box .row > p:nth-child(4) {
+  width: 50%;
+}
 .signin_business_step1_s2 .btn {
   width: 7.49vw;
   height: 3vw;

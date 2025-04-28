@@ -55,6 +55,11 @@
 .applicationStep1_s2 form .title {
   text-align: center;
 }
+.applicationStep1_s2 form .title span {
+  font-size: 1vw;
+  color: black;
+  font-weight: 600;
+}
 .applicationStep1_s2 form .title_input {
   width: 100%;
   height: 3vw;

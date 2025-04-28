@@ -52,6 +52,23 @@
   margin-top: 3.11vw;
   margin-bottom: 1.46vw;
 }
+.applicationStep2_s2 form {
+  position: relative;
+}
+.applicationStep2_s2 form .noti_box {
+  width: 23%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 9.07vw;
+  border: 3px solid black;
+}
+.applicationStep2_s2 form .noti_box p {
+  font-size: 0.9vw;
+  font-weight: 600;
+  margin-bottom: 1vw;
+
+}
 .applicationStep2_s2 form .title {
   text-align: center;
 }
@@ -192,6 +209,22 @@
   width: 13%;
   margin-right: 0.7vw;
   text-align: center;
+}
+.applicationStep2_s2 form > .input_box > .sub_input3 > .select {
+  height: 100%;
+  border: none;
+  border: 2px solid #eeeeee;
+  border-radius: 0.4vw;
+  font-size: 0.98vw;
+  color: #707070;
+  text-align: center;
+  margin: 0vw;
+  padding: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
 }
 .applicationStep2_s2 form > .select_box > .sub_select2 > .select {
   width: 60%;
