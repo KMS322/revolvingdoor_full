@@ -57,6 +57,7 @@ app.use(
       "http://175.45.195.45:3000",
       "http://175.45.195.45",
       "http://175.45.195.45:80",
+      "http://apsp.co.kr",
       // "http://accydream.com:3050",
       // "https://www.accydream.com",
       // "https://www.accydream.com:3000",
